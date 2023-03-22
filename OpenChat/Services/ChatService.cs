@@ -61,7 +61,7 @@ namespace OpenChat.Services
                 {
                     sb.Append(content);
 
-                    while (char.IsWhiteSpace(sb[0]))
+                    while (sb.Length > 0 && char.IsWhiteSpace(sb[0]))
                         sb.Remove(0, 1);
 
                     yield return sb.ToString();

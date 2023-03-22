@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
 using OpenChat.Models;
+using OpenChat.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -11,13 +13,33 @@ namespace OpenChat.ViewModels
 {
     public class ConfigPageModel : INotifyPropertyChanged
     {
-        public ConfigPageModel(IOptions<AppConfig> config)
+        public ConfigurationService Configuration { get; }
+
+        public AppConfig ConfigurationInstance => Configuration.Instance;
+
+        public ConfigPageModel(ConfigurationService configuration)
         {
-            Config = config;
+            Configuration = configuration;
+
+            LoadSystemMessages();
         }
 
-        public IOptions<AppConfig> Config { get; }
-        public AppConfig ConfigInstance => Config.Value;
+        public ObservableCollection<ValueWrapper<string>> SystemMessages { get; }
+            = new ObservableCollection<ValueWrapper<string>>();
+
+        public void LoadSystemMessages()
+        {
+            SystemMessages.Clear();
+            foreach (var msg in Configuration.Instance.SystemMessages)
+                SystemMessages.Add(new ValueWrapper<string>(msg));
+        }
+
+        public void ApplySystemMessages()
+        {
+            Configuration.Instance.SystemMessages = SystemMessages
+                .Select(wrap => wrap.Value)
+                .ToArray();
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
     }

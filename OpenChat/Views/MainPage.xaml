@@ -26,7 +26,9 @@
                                 <Setter Property="CornerRadius" Value="3"/>
                             </Style>
                         </StackPanel.Resources>
-                        <Button Content="⚙︎" BorderThickness="0" Padding="3"
+                        <Button Content="♻" BorderThickness="0" Padding="3" Margin="0 0 3 0" ToolTip="Reset chat"
+                                Command="{Binding ResetChatCommand}"/>
+                        <Button Content="⚙︎" BorderThickness="0" Padding="3" ToolTip="Go to configuration page"
                                 Command="{Binding GoToConfigPageCommand}"/>
                     </StackPanel>
                 </Grid>
@@ -46,7 +48,8 @@
                     <KeyBinding Modifiers="Ctrl" Key="Return" Command="{Binding SendCommand}"/>
                 </TextBox.InputBindings>
             </TextBox>
-            <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Padding="10,5" Content="Send" Command="{Binding SendCommand}">
+            <Button Content="Send" Command="{Binding SendCommand}" ToolTip="Send message"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Padding="10,5">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="3"/>

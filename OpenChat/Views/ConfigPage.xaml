@@ -24,7 +24,7 @@
                                 <Setter Property="CornerRadius" Value="3"/>
                             </Style>
                         </StackPanel.Resources>
-                        <Button Content="🏠︎" BorderThickness="0" Padding="3"
+                        <Button Content="🏠︎" BorderThickness="0" Padding="3" ToolTip="Go back to Main page"
                                 Command="{Binding GoToMainPageCommand}"/>
                     </StackPanel>
                 </Grid>
@@ -32,21 +32,69 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Margin="10">
-            <StackPanel Margin="0, 5">
+            <StackPanel Margin="0 5">
                 <TextBlock Text="API Key:" Margin="0 0 0 5"/>
-                <TextBox Padding="5 3" Text="{Binding ViewModel.ConfigInstance.ApiKey}"/>
+                <TextBox Padding="5 3" Text="{Binding ViewModel.ConfigurationInstance.ApiKey}"/>
             </StackPanel>
-            <StackPanel Margin="0, 5">
+            <StackPanel Margin="0 5">
                 <TextBlock Text="API GPT Model:" Margin="0 0 0 5"/>
-                <TextBox Padding="5 3" Text="{Binding ViewModel.ConfigInstance.ApiGptModel}"/>
+                <TextBox Padding="5 3" Text="{Binding ViewModel.ConfigurationInstance.ApiGptModel}"/>
             </StackPanel>
-            <StackPanel Margin="0, 5">
-                <TextBlock Text="API URL:" Margin="0 0 0 5"/>
-                <TextBox Padding="5 3" Text="{Binding ViewModel.ConfigInstance.ApiHost}"/>
+            <StackPanel Margin="0 5">
+                <TextBlock Text="API Host:" Margin="0 0 0 5"/>
+                <TextBox Padding="5 3" Text="{Binding ViewModel.ConfigurationInstance.ApiHost}"/>
+            </StackPanel>
+
+            <StackPanel Margin="0 5">
+                <Grid>
+                    <TextBlock Text="System messages:" Margin="0 0 0 5"/>
+
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="HorizontalAlignment" Value="Right"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Margin" Value="3 0 0 0"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" Padding="2 1" CornerRadius="2">
+                                                <ContentPresenter Content="{TemplateBinding Content}"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#bee6fd"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="#c4e5f6"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Resources>
+
+                        <Button Content=" - " Command="{Binding RemoveSystemMessageCommand}" ToolTip="Remove a system message"/>
+                        <Button Content=" + " Command="{Binding AddSystemMessageCommand}" ToolTip="Add a system message"/>
+                        <Button Content="Apply" Command="{Binding ApplySystemMessagesCommand}" ToolTip="Apply system messages"/>
+                    </StackPanel>
+                </Grid>
+                <Border MinHeight="30"
+                    BorderThickness="1" BorderBrush="Gray" Padding="5" CornerRadius="5">
+                    <ItemsControl ItemsSource="{Binding ViewModel.SystemMessages}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBox Padding="5 3" Text="{Binding Value}" TextWrapping="Wrap"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
             </StackPanel>
         </StackPanel>
 
-        <Button Grid.Row="1" Content="Save" Command="{Binding SaveConfigurationCommand}"
+        <Button Grid.Row="1" Content="Save" Command="{Binding SaveConfigurationCommand}" ToolTip="Save configuration"
                 HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Padding="10,5">
             <Button.Resources>
                 <Style TargetType="Border">

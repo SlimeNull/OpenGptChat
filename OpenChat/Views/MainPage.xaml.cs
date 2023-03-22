@@ -101,11 +101,19 @@ namespace OpenChat.Views
             PageService.Navigate<ConfigPage>();
         }
 
+        [RelayCommand]
+        public void ResetChat()
+        {
+            ViewModel.Messages.Clear();
+            ChatService.Clear();
+        }
+
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            //ScrollViewer scrollViewer = (ScrollViewer)sender;
+            ScrollViewer scrollViewer = (ScrollViewer)sender;
 
-            //scrollViewer.ScrollToEnd();
+            if (!ViewModel.InputBoxAvailable)
+                scrollViewer.ScrollToEnd();
         }
 
         bool apikey_notified = false;

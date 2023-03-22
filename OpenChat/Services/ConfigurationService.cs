@@ -24,7 +24,7 @@ namespace OpenChat.Services
 
         public void Save()
         {
-            using FileStream fs = File.OpenWrite(Strings.JsonConfigurationFilePath);
+            using FileStream fs = File.Create(Strings.JsonConfigurationFilePath);
             JsonSerializer.Serialize(fs, Configuration.Value, JsonHelper.ConfigurationOptions);
         }
     }

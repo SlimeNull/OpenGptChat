@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using OpenChat.Models;
 using OpenChat.Services;
 using OpenChat.ViewModels;
 using System;
@@ -41,6 +42,25 @@ namespace OpenChat.Views
         public void GoToMainPage()
         {
             PageService.Navigate<MainPage>();
+        }
+
+        [RelayCommand]
+        public void ApplySystemMessages()
+        {
+            ViewModel.ApplySystemMessages();
+            MessageBox.Show(App.Current.MainWindow, "System messages applied.", "OK", MessageBoxButton.OK, MessageBoxImage.None);
+        }
+
+        [RelayCommand]
+        public void AddSystemMessage()
+        {
+            ViewModel.SystemMessages.Add(new ValueWrapper<string>("New system message"));
+        }
+
+        [RelayCommand]
+        public void RemoveSystemMessage()
+        {
+            ViewModel.SystemMessages.RemoveAt(ViewModel.SystemMessages.Count - 1);
         }
 
         [RelayCommand]
