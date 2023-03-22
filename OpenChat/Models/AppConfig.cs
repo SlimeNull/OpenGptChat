@@ -18,6 +18,8 @@ namespace OpenChat.Models
 
         };
 
+        public bool WindowAlwaysOnTop { get; set; } = false;
+
         public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

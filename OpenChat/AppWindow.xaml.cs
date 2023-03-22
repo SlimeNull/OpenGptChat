@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenChat.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,12 +20,18 @@ namespace OpenChat
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class AppWindow : NavigationWindow
     {
-        public MainWindow()
+        public AppWindow(AppWindowModel viewModel)
         {
+            ViewModel = viewModel;
+
             InitializeComponent();
+
+            DataContext = this;
         }
+
+        public AppWindowModel ViewModel { get; }
 
         private void NavigationWindow_Navigated(object sender, NavigationEventArgs e)
         {

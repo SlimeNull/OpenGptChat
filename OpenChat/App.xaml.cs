@@ -41,7 +41,8 @@ namespace OpenChat
                 services.AddSingleton<ChatService>();
                 services.AddSingleton<ConfigurationService>();
 
-                services.AddSingleton<MainWindow>();
+                services.AddSingleton<AppWindow>();
+                services.AddSingleton<AppWindowModel>();
 
                 services.AddSingleton<MainPage>();
                 services.AddSingleton<MainPageModel>();

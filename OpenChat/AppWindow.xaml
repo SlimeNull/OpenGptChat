@@ -1,11 +1,11 @@
-﻿<NavigationWindow x:Class="OpenChat.MainWindow"
+﻿<NavigationWindow x:Class="OpenChat.AppWindow"
                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                  xmlns:local="clr-namespace:OpenChat"
+                  xmlns:local="clr-namespace:OpenChat" d:DataContext="{d:DesignInstance Type=local:AppWindow}"
                   mc:Ignorable="d" ShowsNavigationUI="False" Icon="/openai.png"
                   Title="OpenChat" Height="650" Width="450" FontSize="{DynamicResource NormalFontSize}"
-                  Navigated="NavigationWindow_Navigated">
+                  Navigated="NavigationWindow_Navigated" Topmost="{Binding ViewModel.Configuration.WindowAlwaysOnTop}">
 
 </NavigationWindow>

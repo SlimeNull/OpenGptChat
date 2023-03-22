@@ -9,9 +9,9 @@ namespace OpenChat.Services
 {
     public class PageService
     {
-        private readonly MainWindow mainWindow;
+        private readonly AppWindow mainWindow;
 
-        public PageService(MainWindow mainWindow)
+        public PageService(AppWindow mainWindow)
         {
             this.mainWindow = mainWindow;
         }

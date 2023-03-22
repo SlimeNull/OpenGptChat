@@ -13,13 +13,13 @@ namespace OpenChat.ViewModels
 {
     public class ConfigPageModel : INotifyPropertyChanged
     {
-        public ConfigurationService Configuration { get; }
+        public ConfigurationService ConfigurationService { get; }
 
-        public AppConfig ConfigurationInstance => Configuration.Instance;
+        public AppConfig Configuration => ConfigurationService.Instance;
 
-        public ConfigPageModel(ConfigurationService configuration)
+        public ConfigPageModel(ConfigurationService configurationService)
         {
-            Configuration = configuration;
+            ConfigurationService = configurationService;
 
             LoadSystemMessages();
         }
@@ -30,13 +30,13 @@ namespace OpenChat.ViewModels
         public void LoadSystemMessages()
         {
             SystemMessages.Clear();
-            foreach (var msg in Configuration.Instance.SystemMessages)
+            foreach (var msg in ConfigurationService.Instance.SystemMessages)
                 SystemMessages.Add(new ValueWrapper<string>(msg));
         }
 
         public void ApplySystemMessages()
         {
-            Configuration.Instance.SystemMessages = SystemMessages
+            ConfigurationService.Instance.SystemMessages = SystemMessages
                 .Select(wrap => wrap.Value)
                 .ToArray();
         }

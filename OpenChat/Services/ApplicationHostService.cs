@@ -29,9 +29,9 @@ namespace OpenChat.Services
             if (!File.Exists(Strings.JsonConfigurationFilePath))
                 Configuration.Save();
 
-            if (!App.Current.Windows.OfType<MainWindow>().Any())
+            if (!App.Current.Windows.OfType<AppWindow>().Any())
             {
-                MainWindow window = App.GetService<MainWindow>();
+                AppWindow window = App.GetService<AppWindow>();
                 window.Show();
 
                 window.Navigate(App.GetService<MainPage>());
