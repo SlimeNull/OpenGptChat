@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+    <ApplicationIcon>Assets\Images\openai.ico</ApplicationIcon>
+    <RepositoryUrl>https://github.com/SlimeNull/OpenChat</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Images\openai.png" />
+    <None Remove="openai.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Images\openai.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="OpenAI" Version="1.6.0" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Images\openai.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="openai.png" />
+  </ItemGroup>
+
+</Project>
