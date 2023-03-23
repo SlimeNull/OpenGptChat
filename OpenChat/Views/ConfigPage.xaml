@@ -24,6 +24,8 @@
                                 <Setter Property="CornerRadius" Value="3"/>
                             </Style>
                         </StackPanel.Resources>
+                        <Button Content="📄" BorderThickness="0" Padding="3" Margin="0 0 3 0" ToolTip="About OpenChat"
+                                Command="{Binding AboutOpenChatCommand}"/>
                         <Button Content="🏠︎" BorderThickness="0" Padding="3" ToolTip="Go back to Main page"
                                 Command="{Binding GoToMainPageCommand}"/>
                     </StackPanel>
@@ -109,7 +111,7 @@
         </ScrollViewer>
 
         <Button Grid.Row="1" Content="Save" Command="{Binding SaveConfigurationCommand}" ToolTip="Save configuration"
-                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Padding="10,5">
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="25 10" Padding="10,5">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>

@@ -29,7 +29,8 @@ namespace OpenChat.Views
             MainPageModel viewModel,
             PageService pageService,
             ChatService chatService,
-            ConfigurationService configurationService)
+            ConfigurationService configurationService,
+            SmoothScrollingService smoothScrollingService)
         {
             ViewModel = viewModel;
             PageService = pageService;
@@ -39,6 +40,8 @@ namespace OpenChat.Views
             InitializeComponent();
 
             DataContext = this;
+
+            smoothScrollingService.Register(messageScrollViewer);
         }
 
         public MainPageModel ViewModel { get; }

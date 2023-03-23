@@ -45,6 +45,20 @@ namespace OpenChat.Views
         }
 
         [RelayCommand]
+        public void AboutOpenChat()
+        {
+            MessageBox.Show(App.Current.MainWindow,
+                """
+                OpenChat, by SlimeNull
+
+                A simple chat client based on OpenAI Chat completion API.
+
+                Repository: https://github.com/SlimeNull/OpenChat
+                """,
+                "About OpenChat", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        [RelayCommand]
         public void ApplySystemMessages()
         {
             ViewModel.ApplySystemMessages();

@@ -40,6 +40,7 @@ namespace OpenChat
                 services.AddSingleton<PageService>();
                 services.AddSingleton<ChatService>();
                 services.AddSingleton<ConfigurationService>();
+                services.AddSingleton<SmoothScrollingService>();
 
                 services.AddSingleton<AppWindow>();
                 services.AddSingleton<AppWindowModel>();
