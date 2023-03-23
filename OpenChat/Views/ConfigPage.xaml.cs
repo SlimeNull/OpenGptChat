@@ -24,7 +24,11 @@ namespace OpenChat.Views
     /// </summary>
     public partial class ConfigPage : Page
     {
-        public ConfigPage(ConfigPageModel viewModel, PageService pageService, ConfigurationService configurationService)
+        public ConfigPage(
+            ConfigPageModel viewModel,
+            PageService pageService,
+            ConfigurationService configurationService,
+            SmoothScrollingService smoothScrollingService)
         {
             ViewModel = viewModel;
             PageService = pageService;
@@ -32,6 +36,8 @@ namespace OpenChat.Views
             InitializeComponent();
 
             DataContext = this;
+
+            smoothScrollingService.Register(configurationScrollViewer);
         }
 
         public ConfigPageModel ViewModel { get; }
