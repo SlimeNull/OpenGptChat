@@ -12,22 +12,24 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace OpenChat.Services
 {
     internal class ApplicationHostService : IHostedService
     {
-        public ApplicationHostService(ConfigurationService config)
+        public ApplicationHostService(
+            ConfigurationService config)
         {
-            Configuration = config;
+            ConfigurationService = config;
         }
 
-        public ConfigurationService Configuration { get; }
+        public ConfigurationService ConfigurationService { get; }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
             if (!File.Exists(Strings.JsonConfigurationFilePath))
-                Configuration.Save();
+                ConfigurationService.Save();
 
             if (!App.Current.Windows.OfType<AppWindow>().Any())
             {

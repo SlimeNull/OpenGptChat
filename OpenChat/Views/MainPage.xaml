@@ -5,11 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OpenChat.Views"
       xmlns:vm="clr-namespace:OpenChat.ViewModels"
-      mc:Ignorable="d" Loaded="Page_Loaded"
-      d:DesignHeight="650" d:DesignWidth="450" d:DataContext="{d:DesignInstance Type=local:MainPage}" d:Background="White"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="450"
+      d:DataContext="{d:DesignInstance Type=local:MainPage}" d:Background="White"
       Title="MainPage" Style="{DynamicResource AnimatedPageStyle}">
 
-    <Grid>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=inputBox}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -42,13 +43,14 @@
         </ScrollViewer>
 
         <Grid Grid.Row="2">
-            <TextBox Padding="5" FontSize="14" BorderThickness="0 1 0 0" AcceptsReturn="True" TextWrapping="Wrap"
+            <TextBox Name="inputBox"
+                     Padding="5" FontSize="14" BorderThickness="0 1 0 0" AcceptsReturn="True" TextWrapping="Wrap"
                      Text="{Binding ViewModel.InputBoxText,UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.InputBindings>
                     <KeyBinding Modifiers="Ctrl" Key="Return" Command="{Binding SendCommand}"/>
                 </TextBox.InputBindings>
             </TextBox>
-            <Button Content="Send" Command="{Binding SendCommand}" ToolTip="Send message"
+            <Button Content="Send" Command="{Binding SendCommand}" ToolTip="Send message (Ctrl + Enter)"
                     VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Padding="10,5">
                 <Button.Resources>
                     <Style TargetType="Border">

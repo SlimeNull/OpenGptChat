@@ -12,6 +12,7 @@ namespace OpenChat.Models
         public string ApiHost { get; set; } = "openaiapi.elecho.top";
         public string ApiKey { get; set; } = string.Empty;
         public string ApiGptModel { get; set; } = "gpt-3.5-turbo";
+        public int ApiTimeout { get; set; } = 5000;
 
         public string[] SystemMessages { get; set; } = new string[]
         {

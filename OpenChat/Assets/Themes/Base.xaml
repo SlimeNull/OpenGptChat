@@ -5,13 +5,16 @@
     <sys:Double x:Key="SmallFontSize">12</sys:Double>
     <sys:Double x:Key="LargeFontSize">16</sys:Double>
     <sys:Double x:Key="ExtremLargeFontSize">18</sys:Double>
+    
+    <CircleEase x:Key="ease" EasingMode="EaseOut"/>
 
     <Style x:Key="AnimatedPageStyle" TargetType="Page">
         <Style.Triggers>
             <EventTrigger RoutedEvent="Loaded">
                 <BeginStoryboard>
                     <Storyboard>
-                        <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0 5 0 0" To="0" Duration="0:0:0.100"/>
+                        <ThicknessAnimation Storyboard.TargetProperty="Margin" EasingFunction="{StaticResource ease}"
+                                            From="0 5 0 0" To="0" Duration="0:0:0.200"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>

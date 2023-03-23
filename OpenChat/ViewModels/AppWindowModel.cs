@@ -18,7 +18,7 @@ namespace OpenChat.ViewModels
 
         public ConfigurationService ConfigurationService { get; }
 
-        public AppConfig Configuration => ConfigurationService.Instance;
+        public AppConfig Configuration => ConfigurationService.Configuration;
 
         public event PropertyChangedEventHandler? PropertyChanged;
     }

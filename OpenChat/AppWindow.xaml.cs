@@ -1,4 +1,7 @@
-﻿using OpenChat.ViewModels;
+﻿using CommunityToolkit.Mvvm.Input;
+using OpenChat.Models;
+using OpenChat.Services;
+using OpenChat.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,27 +23,36 @@ namespace OpenChat
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class AppWindow : NavigationWindow
+    public partial class AppWindow : Window
     {
-        public AppWindow(AppWindowModel viewModel)
+        public AppWindow(
+            AppWindowModel viewModel,
+            NoteService noteService)
         {
             ViewModel = viewModel;
-
+            NoteService = noteService;
             InitializeComponent();
 
             DataContext = this;
         }
 
-        public AppWindowModel ViewModel { get; }
+        public NoteService NoteService { get; }
 
-        private void NavigationWindow_Navigated(object sender, NavigationEventArgs e)
+        public AppWindowModel ViewModel { get; }
+        public NoteData NoteDataModel => NoteService.Data;
+
+        public void Navigate(object content) => appFrame.Navigate(content);
+
+
+        [RelayCommand]
+        public void CloseNote()
         {
-            this.BeginAnimation(PaddingProperty, new ThicknessAnimation()
-            {
-                From = new Thickness(0, 5, 0, 0),
-                To = new Thickness(0),
-                Duration = new Duration(TimeSpan.FromMilliseconds(100))
-            });
+            NoteService.Close();
+        }
+
+        private void NoteControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            NoteService.Close();
         }
     }
 }

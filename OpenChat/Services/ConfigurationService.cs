@@ -15,17 +15,17 @@ namespace OpenChat.Services
     {
         public ConfigurationService(IOptions<AppConfig> configuration)
         {
-            Configuration = configuration;
+            OptionalConfiguration = configuration;
         }
 
-        private IOptions<AppConfig> Configuration { get; }
+        private IOptions<AppConfig> OptionalConfiguration { get; }
 
-        public AppConfig Instance => Configuration.Value;
+        public AppConfig Configuration => OptionalConfiguration.Value;
 
         public void Save()
         {
             using FileStream fs = File.Create(Strings.JsonConfigurationFilePath);
-            JsonSerializer.Serialize(fs, Configuration.Value, JsonHelper.ConfigurationOptions);
+            JsonSerializer.Serialize(fs, OptionalConfiguration.Value, JsonHelper.ConfigurationOptions);
         }
     }
 }

@@ -3,36 +3,47 @@
                     xmlns:m="clr-namespace:OpenChat.Models"
                     xmlns:markdig="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf">
     <DataTemplate x:Key="ChatBubble" DataType="m:ChatMessage">
-        <Border x:Name="chatBubble" HorizontalAlignment="{Binding SelfAlignment}" 
+        <StackPanel HorizontalAlignment="{Binding SelfAlignment}">
+            <Border x:Name="chatBubble" HorizontalAlignment="Stretch" 
                 BorderBrush="Gray" BorderThickness="1" CornerRadius="{Binding SelfCornorRadius}" Padding="5" Margin="0 5">
-
-            <Border.Style>
-                <Style TargetType="Border">
-                    <Setter Property="RenderTransform">
-                        <Setter.Value>
-                            <TranslateTransform x:Name="Translate" X="0"/>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <EventTrigger RoutedEvent="Loaded">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                     From="0" To="1" Duration="0:0:0.100"/>
-                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Y"
-                                                     From="5" To="0" Duration="0:0:0.100"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Border.Style>
-            <StackPanel HorizontalAlignment="Stretch">
-                <TextBox HorizontalAlignment="Stretch" Text="{Binding Username}" FontSize="{DynamicResource SmallFontSize}" Foreground="Gray"
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <TranslateTransform x:Name="Translate" X="0"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" EasingFunction="{StaticResource ease}"
+                                                     From="0" To="1" Duration="0:0:0.200"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Y" EasingFunction="{StaticResource ease}"
+                                                     From="5" To="0" Duration="0:0:0.200"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Unloaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" EasingFunction="{StaticResource ease}"
+                                                     From="1" To="0" Duration="0:0:0.200"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Y" EasingFunction="{StaticResource ease}"
+                                                     From="0" To="5" Duration="0:0:0.200"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel HorizontalAlignment="Stretch">
+                    <TextBox HorizontalAlignment="{Binding SelfAlignment}" Text="{Binding Username}" FontSize="{DynamicResource SmallFontSize}" Foreground="Gray"
                          IsReadOnly="True" BorderThickness="0" Background="Transparent" TextWrapping="Wrap"/>
-                <TextBox HorizontalAlignment="Stretch" Text="{Binding Message}"
+                    <TextBox HorizontalAlignment="Stretch" Text="{Binding Message}"
                          IsReadOnly="True" BorderThickness="0" Background="Transparent" TextWrapping="Wrap"/>
-            </StackPanel>
-        </Border>
+                </StackPanel>
+            </Border>
+        </StackPanel>
     </DataTemplate>
 </ResourceDictionary>

@@ -12,7 +12,6 @@ namespace OpenChat.ViewModels
     public class MainPageModel : INotifyPropertyChanged
     {
         public string InputBoxText { get; set; } = string.Empty;
-        public bool InputBoxAvailable { get; set; } = true;
 
         public ObservableCollection<ChatMessage> Messages { get; } = new ObservableCollection<ChatMessage>();
 

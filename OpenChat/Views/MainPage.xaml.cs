@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -28,12 +29,14 @@ namespace OpenChat.Views
         public MainPage(
             MainPageModel viewModel,
             PageService pageService,
+            NoteService noteService,
             ChatService chatService,
             ConfigurationService configurationService,
             SmoothScrollingService smoothScrollingService)
         {
             ViewModel = viewModel;
             PageService = pageService;
+            NoteService = noteService;
             ChatService = chatService;
             ConfigurationService = configurationService;
 
@@ -46,6 +49,7 @@ namespace OpenChat.Views
 
         public MainPageModel ViewModel { get; }
         public PageService PageService { get; }
+        public NoteService NoteService { get; }
         public ChatService ChatService { get; }
         public ConfigurationService ConfigurationService { get; }
 
@@ -53,49 +57,56 @@ namespace OpenChat.Views
         public async Task SendAsync()
         {
             if (string.IsNullOrWhiteSpace(ViewModel.InputBoxText))
+            {
+                _ = NoteService.ShowAsync("Empty message", 3000);
                 return;
+            }
 
-            if (!ViewModel.InputBoxAvailable)
+            if (string.IsNullOrWhiteSpace(ConfigurationService.Configuration.ApiKey))
+            {
+                await NoteService.ShowAsync("You can't use OpenChat now, because you haven't set your api key yet", 3000);
                 return;
+            }
 
-            string input = ViewModel.InputBoxText;
+            string input = ViewModel.InputBoxText.Trim();
             ViewModel.InputBoxText = string.Empty;
 
-            ViewModel.Messages.Add(
-                new Models.ChatMessage()
-                {
-                    Username = "Me",
-                    Message = input,
-                });
+            ChatMessage requestMessage = new ChatMessage()
+            {
+                Username = "Me",
+                Message = input,
+            };
 
-            bool added = false;
             ChatMessage responseMessage = new ChatMessage()
             {
                 Username = "Assistant",
             };
 
-            ViewModel.InputBoxAvailable = false;
+            bool responseAdded = false;
+
+            ViewModel.Messages.Add(requestMessage);
 
             try
             {
-                await foreach (var msg in ChatService.Chat(input))
+                await ChatService.Chat(input, message =>
                 {
-                    responseMessage.Message = msg;
+                    responseMessage.Message = message;
 
-                    if (!added)
+                    if (!responseAdded)
                     {
                         ViewModel.Messages.Add(responseMessage);
-                        added = true;
+                        responseAdded = true;
                     }
-                }
+                });
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                _ =  NoteService.ShowAsync($"{ex.GetType().Name}: {ex.Message}", 3000);
+                ViewModel.Messages.Remove(requestMessage);
                 ViewModel.Messages.Remove(responseMessage);
-            }
 
-            ViewModel.InputBoxAvailable = true;
+                ViewModel.InputBoxText = input;
+            }
         }
 
         [RelayCommand]
@@ -115,20 +126,8 @@ namespace OpenChat.Views
         {
             ScrollViewer scrollViewer = (ScrollViewer)sender;
 
-            if (!ViewModel.InputBoxAvailable)
+            if (SendCommand.IsRunning)
                 scrollViewer.ScrollToEnd();
-        }
-
-        bool apikey_notified = false;
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (apikey_notified)
-                return;
-
-            if (string.IsNullOrWhiteSpace(ConfigurationService.Instance.ApiKey))
-                MessageBox.Show(App.Current.MainWindow, "You can't use OpenChat now, because you haven't set your api key yet", "Warnning", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-            apikey_notified = true;
         }
     }
 }

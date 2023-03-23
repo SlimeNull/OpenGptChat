@@ -1,11 +1,33 @@
-﻿<NavigationWindow x:Class="OpenChat.AppWindow"
-                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                  xmlns:local="clr-namespace:OpenChat" d:DataContext="{d:DesignInstance Type=local:AppWindow}"
-                  mc:Ignorable="d" ShowsNavigationUI="False" Icon="/openai.png"
-                  Title="OpenChat" Height="650" Width="450" FontSize="{DynamicResource NormalFontSize}"
-                  Navigated="NavigationWindow_Navigated" Topmost="{Binding ViewModel.Configuration.WindowAlwaysOnTop}">
+﻿<Window x:Class="OpenChat.AppWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OpenChat"
+        xmlns:controls="clr-namespace:OpenChat.Controls"
+        
+        d:DataContext="{d:DesignInstance Type=local:AppWindow}"
+        mc:Ignorable="d" Icon="/openai.png"
+        Title="OpenChat" Height="650" Width="450" FontSize="{DynamicResource NormalFontSize}"
+        Topmost="{Binding ViewModel.Configuration.WindowAlwaysOnTop}">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="bool2visbility"/>
+    </Window.Resources>
 
-</NavigationWindow>
+    <Grid>
+        <Frame Name="appFrame" NavigationUIVisibility="Hidden"/>
+        <controls:NoteControl Text="{Binding NoteDataModel.Text}" Show="{Binding NoteDataModel.Show}" Background="White" MouseDown="NoteControl_MouseDown"
+                              VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50 0" BorderThickness="1 0 1 1" Visibility="Hidden">
+            <controls:NoteControl.Style>
+                <Style TargetType="controls:NoteControl">
+                    <Setter Property="BorderBrush" Value="Gray"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="IndianRed"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </controls:NoteControl.Style>
+        </controls:NoteControl>
+    </Grid>
+</Window>

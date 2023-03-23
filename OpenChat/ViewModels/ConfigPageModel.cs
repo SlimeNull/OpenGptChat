@@ -15,7 +15,7 @@ namespace OpenChat.ViewModels
     {
         public ConfigurationService ConfigurationService { get; }
 
-        public AppConfig Configuration => ConfigurationService.Instance;
+        public AppConfig Configuration => ConfigurationService.Configuration;
 
         public ConfigPageModel(ConfigurationService configurationService)
         {
@@ -30,13 +30,13 @@ namespace OpenChat.ViewModels
         public void LoadSystemMessages()
         {
             SystemMessages.Clear();
-            foreach (var msg in ConfigurationService.Instance.SystemMessages)
+            foreach (var msg in ConfigurationService.Configuration.SystemMessages)
                 SystemMessages.Add(new ValueWrapper<string>(msg));
         }
 
         public void ApplySystemMessages()
         {
-            ConfigurationService.Instance.SystemMessages = SystemMessages
+            ConfigurationService.Configuration.SystemMessages = SystemMessages
                 .Select(wrap => wrap.Value)
                 .ToArray();
         }

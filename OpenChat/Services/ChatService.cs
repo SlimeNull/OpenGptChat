@@ -1,84 +1,127 @@
 ﻿using Microsoft.Extensions.Options;
-using OpenAI_API;
+using OpenAI;
+using OpenAI.Chat;
+using OpenAI.Models;
 using OpenChat.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OpenChat.Services
 {
     public class ChatService
     {
-        public ChatService(IOptions<AppConfig> optionsSnapshot)
+        public ChatService(ConfigurationService configurationService)
         {
-            Configuration = optionsSnapshot;
+            ConfigurationService = configurationService;
         }
 
-        private readonly List<OpenAI_API.Chat.ChatMessage> chatHistory =
-            new List<OpenAI_API.Chat.ChatMessage>();
-        public IOptions<AppConfig> Configuration { get; }
+        private OpenAIClient? client;
+        private string? client_apikey;
+        private string? client_apihost;
 
-        public async IAsyncEnumerable<string> Chat(string message)
+        private readonly List<ChatPrompt> chatHistory =
+            new List<ChatPrompt>();
+
+
+
+
+        public ConfigurationService ConfigurationService { get; }
+
+        private void NewOpenAIClient(
+            [NotNull] out OpenAIClient client, 
+            [NotNull] out string client_apikey,
+            [NotNull] out string client_apihost)
         {
-            OpenAIAPI api;
+            client_apikey = ConfigurationService.Configuration.ApiKey;
+            client_apihost = ConfigurationService.Configuration.ApiHost;
 
-            api = new OpenAIAPI(Configuration.Value.ApiKey);
-            api.ApiUrlFormat = $"https://{Configuration.Value.ApiHost}/{{0}}/{{1}}";
+            client = new OpenAIClient(
+                new OpenAIAuthentication(ConfigurationService.Configuration.ApiKey),
+                new OpenAIClientSettings(ConfigurationService.Configuration.ApiHost));
+        }
 
-            List<OpenAI_API.Chat.ChatMessage> messages = new List<OpenAI_API.Chat.ChatMessage>();
+        private OpenAIClient GetOpenAIClient()
+        {
+            if (client == null ||
+                client_apikey != ConfigurationService.Configuration.ApiKey ||
+                client_apihost != ConfigurationService.Configuration.ApiHost)
+                NewOpenAIClient(out client, out client_apikey, out client_apihost);
 
-            foreach (var sysmsg in Configuration.Value.SystemMessages)
-                messages.Add(
-                    new OpenAI_API.Chat.ChatMessage()
-                    {
-                        Role = OpenAI_API.Chat.ChatMessageRole.System,
-                        Content = sysmsg
-                    });
+            return client;
+        }
+
+        public async Task Chat(string message, Action<string> messageHandler)
+        {
+            OpenAIClient client = GetOpenAIClient();
+
+            List<ChatPrompt> messages = new List<ChatPrompt>();
+
+            foreach (var sysmsg in ConfigurationService.Configuration.SystemMessages)
+                messages.Add(new ChatPrompt("system", sysmsg));
 
             foreach (var chatmsg in chatHistory)
                 messages.Add(chatmsg);
 
-            messages.Add(new OpenAI_API.Chat.ChatMessage()
-            {
-                Role = OpenAI_API.Chat.ChatMessageRole.User,
-                Content = message
-            });
+            messages.Add(new ChatPrompt("user", message));
 
-            var conversation = api.Chat.StreamChatEnumerableAsync(
-                new OpenAI_API.Chat.ChatRequest()
-                {
-                    Model = Configuration.Value.ApiGptModel,
-                    Messages = messages
-                });
+            string modelName =
+                ConfigurationService.Configuration.ApiGptModel;
 
             StringBuilder sb = new StringBuilder();
-            await foreach (var xxx in conversation)
-            {
-                string? content = xxx.Choices.FirstOrDefault()?.Delta?.Content;
-                if (!string.IsNullOrEmpty(content))
+
+            CancellationTokenSource cancelTaskCancellation = new CancellationTokenSource();
+            CancellationTokenSource completionTaskCancellation = new CancellationTokenSource();
+
+            Task completionTask = client.ChatEndpoint.StreamCompletionAsync(
+                new ChatRequest(messages, modelName),
+                response =>
                 {
-                    sb.Append(content);
+                    string? content = response.Choices.FirstOrDefault()?.Delta?.Content;
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        sb.Append(content);
 
-                    while (sb.Length > 0 && char.IsWhiteSpace(sb[0]))
-                        sb.Remove(0, 1);
+                        while (sb.Length > 0 && char.IsWhiteSpace(sb[0]))
+                            sb.Remove(0, 1);
 
-                    yield return sb.ToString();
+                        messageHandler.Invoke(sb.ToString());
+
+                        // 有响应了, 则取消超时检查
+                        cancelTaskCancellation.Cancel();
+                    }
+                }, completionTaskCancellation.Token);
+
+            Task cancelTask = Task.Run(async () =>
+            {
+                CancellationToken cancellationToken = cancelTaskCancellation.Token;
+
+                if (cancellationToken.IsCancellationRequested)
+                    return;
+
+                try
+                {
+                    await Task.Delay(ConfigurationService.Configuration.ApiTimeout, cancellationToken);
+                    if (sb.Length == 0)
+                    {
+                        completionTaskCancellation.Cancel();
+                        throw new TimeoutException();
+                    }
                 }
-            }
-
-            chatHistory.Add(new OpenAI_API.Chat.ChatMessage()
-            {
-                Role = OpenAI_API.Chat.ChatMessageRole.User,
-                Content = message,
+                catch (TaskCanceledException)
+                {
+                    return;
+                }
             });
 
-            chatHistory.Add(new OpenAI_API.Chat.ChatMessage()
-            {
-                Role = OpenAI_API.Chat.ChatMessageRole.Assistant,
-                Content = sb.ToString(),
-            });
+            await Task.WhenAll(completionTask, cancelTask);
+
+            chatHistory.Add(new ChatPrompt("user", message));
+            chatHistory.Add(new ChatPrompt("assistant", sb.ToString()));
         }
 
         public void Clear()

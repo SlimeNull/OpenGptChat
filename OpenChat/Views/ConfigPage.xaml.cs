@@ -27,11 +27,13 @@ namespace OpenChat.Views
         public ConfigPage(
             ConfigPageModel viewModel,
             PageService pageService,
+            NoteService noteService,
             ConfigurationService configurationService,
             SmoothScrollingService smoothScrollingService)
         {
             ViewModel = viewModel;
             PageService = pageService;
+            NoteService = noteService;
             ConfigurationService = configurationService;
             InitializeComponent();
 
@@ -42,6 +44,7 @@ namespace OpenChat.Views
 
         public ConfigPageModel ViewModel { get; }
         public PageService PageService { get; }
+        public NoteService NoteService { get; }
         public ConfigurationService ConfigurationService { get; }
 
         [RelayCommand]
@@ -65,10 +68,11 @@ namespace OpenChat.Views
         }
 
         [RelayCommand]
-        public void ApplySystemMessages()
+        public Task ApplySystemMessages()
         {
             ViewModel.ApplySystemMessages();
-            MessageBox.Show(App.Current.MainWindow, "System messages applied.", "OK", MessageBoxButton.OK, MessageBoxImage.None);
+            return NoteService.ShowAsync("System messages applied", 1500);
+            //MessageBox.Show(App.Current.MainWindow, "System messages applied.", "OK", MessageBoxButton.OK, MessageBoxImage.None);
         }
 
         [RelayCommand]
@@ -84,10 +88,11 @@ namespace OpenChat.Views
         }
 
         [RelayCommand]
-        public void SaveConfiguration()
+        public Task SaveConfiguration()
         {
             ConfigurationService.Save();
-            MessageBox.Show(App.Current.MainWindow, "Configuration saved.", "OK", MessageBoxButton.OK, MessageBoxImage.None);
+            return NoteService.ShowAsync("Configuration saved", 2000);
+            //MessageBox.Show(App.Current.MainWindow, "Configuration saved.", "OK", MessageBoxButton.OK, MessageBoxImage.None);
         }
     }
 }
