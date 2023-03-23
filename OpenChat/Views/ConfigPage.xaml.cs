@@ -84,7 +84,10 @@ namespace OpenChat.Views
         [RelayCommand]
         public void RemoveSystemMessage()
         {
-            ViewModel.SystemMessages.RemoveAt(ViewModel.SystemMessages.Count - 1);
+            if(ViewModel.SystemMessages.Count > 0)
+            {
+                ViewModel.SystemMessages.RemoveAt(ViewModel.SystemMessages.Count - 1);
+            }
         }
 
         [RelayCommand]
