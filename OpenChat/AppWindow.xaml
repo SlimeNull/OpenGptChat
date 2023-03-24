@@ -22,7 +22,7 @@
     <Grid>
         <Frame Name="appFrame" NavigationUIVisibility="Hidden"/>
         
-        <controls:NoteControl Name="appNote"
+        <controls:NoteControl x:Name="appNote"
                               Text="{Binding NoteDataModel.Text}" Show="{Binding NoteDataModel.Show}" Background="White" MouseDown="NoteControl_MouseDown"
                               VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50 0" BorderThickness="1 0 1 1" Visibility="Hidden">
             <controls:NoteControl.Style>
