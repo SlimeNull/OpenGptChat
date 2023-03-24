@@ -51,6 +51,10 @@
                     <TextBlock Text="API Timeout:" Margin="0 0 0 5"/>
                     <TextBox Padding="5 3" Text="{Binding ViewModel.Configuration.ApiTimeout}"/>
                 </StackPanel>
+                <StackPanel Margin="0 5">
+                    <TextBlock Text="Temperature:" Margin="0 0 0 5"/>
+                    <TextBox Padding="5 3" Text="{Binding ViewModel.Configuration.Temerature}"/>
+                </StackPanel>
 
                 <StackPanel Margin="0 5">
                     <Grid>

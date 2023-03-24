@@ -58,7 +58,7 @@ namespace OpenChat.Views
         {
             if (string.IsNullOrWhiteSpace(ViewModel.InputBoxText))
             {
-                _ = NoteService.ShowAsync("Empty message", 3000);
+                _ = NoteService.ShowAsync("Empty message", 1500);
                 return;
             }
 
@@ -116,10 +116,11 @@ namespace OpenChat.Views
         }
 
         [RelayCommand]
-        public void ResetChat()
+        public async Task ResetChat()
         {
             ViewModel.Messages.Clear();
             ChatService.Clear();
+            await NoteService.ShowAsync("Chat has been reset.", 1500);
         }
 
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)

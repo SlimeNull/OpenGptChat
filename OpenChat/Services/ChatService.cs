@@ -28,8 +28,6 @@ namespace OpenChat.Services
             new List<ChatPrompt>();
 
 
-
-
         public ConfigurationService ConfigurationService { get; }
 
         private void NewOpenAIClient(
@@ -71,6 +69,8 @@ namespace OpenChat.Services
 
             string modelName =
                 ConfigurationService.Configuration.ApiGptModel;
+            double temperature =
+                ConfigurationService.Configuration.Temerature;
 
             DateTime lastTime = DateTime.Now;
 
@@ -80,7 +80,7 @@ namespace OpenChat.Services
             CancellationTokenSource completionTaskCancellation = new CancellationTokenSource();
 
             Task completionTask = client.ChatEndpoint.StreamCompletionAsync(
-                new ChatRequest(messages, modelName),
+                new ChatRequest(messages, modelName, temperature),
                 response =>
                 {
                     string? content = response.Choices.FirstOrDefault()?.Delta?.Content;
