@@ -28,7 +28,7 @@ namespace OpenChat.Services
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            if (!File.Exists(Strings.JsonConfigurationFilePath))
+            if (!File.Exists(GlobalValues.JsonConfigurationFilePath))
                 ConfigurationService.Save();
 
             if (!App.Current.Windows.OfType<AppWindow>().Any())

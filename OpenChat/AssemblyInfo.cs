@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Windows;
+using OpenChat.Utilities;
 
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
@@ -11,5 +12,5 @@ using System.Windows;
 )]
 
 [assembly: AssemblyMetadata("Repository", "https://github.com/SlimeNull/OpenChat")]
-[assembly: AssemblyDescription("A simple chat app based on OpenAI Chat completion API.")]
 [assembly: AssemblyCopyright("Copyright 2022 SlimeNull")]
+[assembly: AssemblyDescription("A simple chat app based on OpenAI Chat completion API.")]

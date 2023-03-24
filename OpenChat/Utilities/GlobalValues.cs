@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace OpenChat.Utilities
 {
-    internal class Strings
+    internal class GlobalValues
     {
+        public const string ProductVersion = "1.0.3";
+
         public static string JsonConfigurationFilePath { get; } =
             Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule?.FileName) ?? "./", "AppConfig.json");
     }

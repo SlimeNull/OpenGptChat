@@ -30,7 +30,7 @@ namespace OpenChat
             .ConfigureAppConfiguration(config =>
             {
                 config
-                    .AddJsonFile(Strings.JsonConfigurationFilePath, true, true)
+                    .AddJsonFile(GlobalValues.JsonConfigurationFilePath, true, true)
                     .AddEnvironmentVariables();
             })
             .ConfigureServices((context, services) =>

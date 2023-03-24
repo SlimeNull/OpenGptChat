@@ -5,6 +5,7 @@ using OpenChat.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -57,8 +58,8 @@ namespace OpenChat.Views
         public void AboutOpenChat()
         {
             MessageBox.Show(App.Current.MainWindow,
-                """
-                OpenChat, by SlimeNull
+                $"""
+                OpenChat, by SlimeNull v{Assembly.GetEntryAssembly()?.GetName()?.Version}
 
                 A simple chat client based on OpenAI Chat completion API.
 

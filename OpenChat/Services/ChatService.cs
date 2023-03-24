@@ -107,7 +107,7 @@ namespace OpenChat.Services
                     TimeSpan timeout = 
                         TimeSpan.FromMilliseconds(ConfigurationService.Configuration.ApiTimeout);
 
-                    while (true)
+                    while (!completionTask.IsCompleted)
                     {
                         await Task.Delay(100);
 

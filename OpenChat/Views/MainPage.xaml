@@ -9,9 +9,12 @@
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="450"
       d:DataContext="{d:DesignInstance Type=local:MainPage}" d:Background="White"
-      Title="MainPage" Style="{DynamicResource AnimatedPageStyle}">
+      
+      Title="MainPage"
+      Style="{DynamicResource AnimatedPageStyle}"
+      FocusManager.FocusedElement="{Binding ElementName=inputBox}">
 
-    <Grid FocusManager.FocusedElement="{Binding ElementName=inputBox}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>

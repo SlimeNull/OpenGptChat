@@ -45,13 +45,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:ChatBubble}">
-                    <Border x:Name="chatBubble" HorizontalAlignment="Stretch" 
-                            BorderBrush="Gray" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}" Padding="5" Margin="0 5">
-                        <Border.Resources>
+                    <StackPanel Margin="0 5">
+                        <StackPanel.Resources>
                             <CircleEase x:Key="ease" EasingMode="EaseOut"/>
-                        </Border.Resources>
-                        <Border.Style>
-                            <Style TargetType="Border">
+                        </StackPanel.Resources>
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
                                 <Setter Property="RenderTransform">
                                     <Setter.Value>
                                         <TranslateTransform x:Name="Translate" X="0"/>
@@ -80,14 +79,19 @@
                                     </EventTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </Border.Style>
-                        <StackPanel HorizontalAlignment="Stretch">
-                            <TextBox HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Text="{TemplateBinding Username}" FontSize="{DynamicResource SmallFontSize}" Foreground="Gray"
+                        </StackPanel.Style>
+
+                        <TextBox HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Text="{TemplateBinding Username}"
+                                 FontSize="{DynamicResource SmallFontSize}" Foreground="Gray"
+                                 IsReadOnly="True" BorderThickness="0" Background="Transparent" TextWrapping="Wrap"/>
+                        <Border x:Name="chatBubble" HorizontalAlignment="Stretch" 
+                            BorderBrush="Gray" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}" Padding="5">
+                            <StackPanel HorizontalAlignment="Stretch">
+                                <TextBox HorizontalAlignment="Stretch" Text="{TemplateBinding Message}"
                                      IsReadOnly="True" BorderThickness="0" Background="Transparent" TextWrapping="Wrap"/>
-                            <TextBox HorizontalAlignment="Stretch" Text="{TemplateBinding Message}"
-                                     IsReadOnly="True" BorderThickness="0" Background="Transparent" TextWrapping="Wrap"/>
-                        </StackPanel>
-                    </Border>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
