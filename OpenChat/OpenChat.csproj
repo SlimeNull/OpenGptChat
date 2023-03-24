@@ -8,6 +8,8 @@
     <LangVersion>latest</LangVersion>
     <ApplicationIcon>Assets\Images\openai.ico</ApplicationIcon>
     <RepositoryUrl>https://github.com/SlimeNull/OpenChat</RepositoryUrl>
+
+    <ProductVersion>1.0.3</ProductVersion>
   </PropertyGroup>
 
   <ItemGroup>
