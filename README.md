@@ -13,6 +13,16 @@ A simple chat client based on Open AI Chat completion API.
 
 > Tips: You can use `Ctrl + Enter` in text box to send message.
 
+## Shared API Key
+
+These API keys can be used for testing OpenChat:
+
+```
+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
+```
+
+> You can also share your API key here, just create a issue for that.
+
 ## What you can learn?
 
 1. Learn **Binding**, **Command**, **Template**, **Style**, **Trigger**, **Animation** in WPF.
