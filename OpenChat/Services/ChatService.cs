@@ -72,6 +72,8 @@ namespace OpenChat.Services
             string modelName =
                 ConfigurationService.Configuration.ApiGptModel;
 
+            DateTime lastTime = DateTime.Now;
+
             StringBuilder sb = new StringBuilder();
 
             CancellationTokenSource cancelTaskCancellation = new CancellationTokenSource();
@@ -91,8 +93,8 @@ namespace OpenChat.Services
 
                         messageHandler.Invoke(sb.ToString());
 
-                        // 有响应了, 则取消超时检查
-                        cancelTaskCancellation.Cancel();
+                        // 有响应了, 更新时间
+                        lastTime = DateTime.Now;
                     }
                 }, completionTaskCancellation.Token);
 
@@ -100,16 +102,24 @@ namespace OpenChat.Services
             {
                 CancellationToken cancellationToken = cancelTaskCancellation.Token;
 
-                if (cancellationToken.IsCancellationRequested)
-                    return;
-
                 try
                 {
-                    await Task.Delay(ConfigurationService.Configuration.ApiTimeout, cancellationToken);
-                    if (sb.Length == 0)
+                    TimeSpan timeout = 
+                        TimeSpan.FromMilliseconds(ConfigurationService.Configuration.ApiTimeout);
+
+                    while (true)
                     {
-                        completionTaskCancellation.Cancel();
-                        throw new TimeoutException();
+                        await Task.Delay(100);
+
+                        if (cancellationToken.IsCancellationRequested)
+                            return;
+
+                        // 如果当前时间与上次响应的时间相差超过配置的超时时间, 则扔异常
+                        if ((DateTime.Now - lastTime) > timeout)
+                        {
+                            completionTaskCancellation.Cancel();
+                            throw new TimeoutException();
+                        }
                     }
                 }
                 catch (TaskCanceledException)

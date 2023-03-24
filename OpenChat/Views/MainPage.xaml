@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OpenChat.Views"
+      xmlns:controls="clr-namespace:OpenChat.Controls"
       xmlns:vm="clr-namespace:OpenChat.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="450"
@@ -37,8 +38,13 @@
         </Grid>
 
         <ScrollViewer Name="messageScrollViewer" Grid.Row="1" ScrollChanged="ScrollViewer_ScrollChanged">
-            <ItemsControl ItemsSource="{Binding ViewModel.Messages}" Padding="10 10 10 20"
-                          ItemTemplate="{DynamicResource ChatBubble}">
+            <ItemsControl ItemsSource="{Binding ViewModel.Messages}" Padding="10 10 10 20">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:ChatBubble HorizontalAlignment="{Binding SelfAlignment}" HorizontalContentAlignment="{Binding SelfAlignment}"
+                                             CornerRadius="{Binding SelfCornorRadius}" Username="{Binding Username}" Message="{Binding Message}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
 

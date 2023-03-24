@@ -7,7 +7,7 @@
         xmlns:controls="clr-namespace:OpenChat.Controls"
         
         d:DataContext="{d:DesignInstance Type=local:AppWindow}"
-        mc:Ignorable="d" Icon="/openai.png"
+        mc:Ignorable="d" Icon="/openai.png" 
         Title="OpenChat" Height="650" Width="450" FontSize="{DynamicResource NormalFontSize}"
         Topmost="{Binding ViewModel.Configuration.WindowAlwaysOnTop}">
     <Window.Resources>
