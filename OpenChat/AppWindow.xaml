@@ -5,18 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpenChat"
         xmlns:controls="clr-namespace:OpenChat.Controls"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
         
         d:DataContext="{d:DesignInstance Type=local:AppWindow}"
-        mc:Ignorable="d" Icon="/openai.png" 
+        mc:Ignorable="d" Icon="assets/images/openai.png" 
         Title="OpenChat" Height="650" Width="450" FontSize="{DynamicResource NormalFontSize}"
         Topmost="{Binding ViewModel.Configuration.WindowAlwaysOnTop}">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="bool2visbility"/>
     </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="H" Command="{Binding HideAppCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="W" Command="{Binding CloseAppCommand}"/>
+    </Window.InputBindings>
 
     <Grid>
         <Frame Name="appFrame" NavigationUIVisibility="Hidden"/>
-        <controls:NoteControl Text="{Binding NoteDataModel.Text}" Show="{Binding NoteDataModel.Show}" Background="White" MouseDown="NoteControl_MouseDown"
+        
+        <controls:NoteControl Name="appNote"
+                              Text="{Binding NoteDataModel.Text}" Show="{Binding NoteDataModel.Show}" Background="White" MouseDown="NoteControl_MouseDown"
                               VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50 0" BorderThickness="1 0 1 1" Visibility="Hidden">
             <controls:NoteControl.Style>
                 <Style TargetType="controls:NoteControl">
@@ -29,5 +36,35 @@
                 </Style>
             </controls:NoteControl.Style>
         </controls:NoteControl>
+        
+        <tb:TaskbarIcon Name="appIcon"
+                        IconSource="assets/images/openai.ico"
+                        ToolTipText="OpenChat"
+                        LeftClickCommand="{Binding ShowAppCommand}"
+                        DoubleClickCommand="{Binding ShowAppCommand}">
+            
+            <tb:TaskbarIcon.TrayToolTip>
+                <Border Background="#eff3f5" BorderBrush="#eaeaea" BorderThickness="1" CornerRadius="3" Padding="5">
+                    <TextBlock Text="OpenChat"/>
+                </Border>
+            </tb:TaskbarIcon.TrayToolTip>
+            
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <ContextMenu.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </ContextMenu.Resources>
+                        
+                    <MenuItem Header="Show" Command="{Binding ShowAppCommand}"/>
+                    <MenuItem Header="Hide" Command="{Binding HideAppCommand}"/>
+                    <MenuItem Header="Close" Command="{Binding CloseAppCommand}"/>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
     </Grid>
 </Window>
