@@ -19,7 +19,10 @@ namespace OpenChat.Models
 
         };
 
+        public bool UseEnterToSendMessage { get; set; } = false;
+
         public bool WindowAlwaysOnTop { get; set; } = false;
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
     }

@@ -45,6 +45,8 @@ namespace OpenChat.Views
             DataContext = this;
 
             smoothScrollingService.Register(messageScrollViewer);
+
+            inputBoxKeyBinding.Modifiers = configurationService.Configuration.UseEnterToSendMessage ? ModifierKeys.None : ModifierKeys.Control;
         }
 
         public MainPageModel ViewModel { get; }
@@ -52,6 +54,8 @@ namespace OpenChat.Views
         public NoteService NoteService { get; }
         public ChatService ChatService { get; }
         public ConfigurationService ConfigurationService { get; }
+        public string SendButtonToolTip => !ConfigurationService.Configuration.UseEnterToSendMessage ?
+            "Send message (Ctrl + Enter)" : "Send message (Enter)";
 
         [RelayCommand]
         public async Task SendAsync()

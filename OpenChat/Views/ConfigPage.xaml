@@ -100,7 +100,7 @@
                     </Border>
                 </StackPanel>
 
-                <StackPanel Margin="0, 30, 0, 5">
+                <StackPanel Margin="0, 10, 0, 5">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -109,8 +109,17 @@
                         <TextBlock Text="Window always on top:"/>
                         <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" IsChecked="{Binding ViewModel.Configuration.WindowAlwaysOnTop}"/>
                     </Grid>
-                    
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Use enter to send message(default ctrl+enter):"/>
+                        <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" IsChecked="{Binding ViewModel.Configuration.UseEnterToSendMessage}"/>
+                    </Grid>
+
                 </StackPanel>
+
             </StackPanel>
         </ScrollViewer>
 
