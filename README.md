@@ -1,10 +1,10 @@
-> Languages: **[English](https://github.com/SlimeNull/OpenChat/blob/main/README.md)** / **[Simplified Chinese](https://github.com/SlimeNull/OpenChat/blob/main/README_ZH-HANS.md)** / **[Traditional Chinese](https://github.com/SlimeNull/OpenChat/blob/main/README_ZH-HANT.md)**
+> Languages: **[English](README.md)** / **[简体中文](README_ZH-HANS.md)** / **[繁體中文](README_ZH-HANT.md)**
 
 # OpenChat
 
 A simple chat client based on [Open AI Chat completion API](https://platform.openai.com/docs/guides/chat).
 
-![preview](assets/preview.png)
+![Preview](assets/preview.png)
 
 ## Usage
 

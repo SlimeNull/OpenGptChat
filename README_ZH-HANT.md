@@ -1,4 +1,4 @@
-> 語言: **[英語](https://github.com/SlimeNull/OpenChat/blob/main/README.md)** / **[簡體中文](https://github.com/SlimeNull/OpenChat/blob/main/README_ZH-HANS.md)** / **[繁體中文](https://github.com/SlimeNull/OpenChat/blob/main/README_ZH-HANT.md)**
+> 語言: **[English](README.md)** / **[简体中文](README_ZH-HANS.md)** / **[繁體中文](README_ZH-HANT.md)**
 
 # OpenChat
 
