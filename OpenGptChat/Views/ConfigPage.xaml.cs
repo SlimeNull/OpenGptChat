@@ -70,23 +70,31 @@ namespace OpenGptChat.Views
                 $"About {nameof(OpenGptChat)}", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        [RelayCommand]
-        public Task LoadSystemMessages()
+        private void LoadSystemMessagesCore()
         {
             ViewModel.SystemMessages.Clear();
             foreach (var msg in ConfigurationService.Configuration.SystemMessages)
                 ViewModel.SystemMessages.Add(new ValueWrapper<string>(msg));
+        }
 
+        private void ApplySystemMessagesCore()
+        {
+            ConfigurationService.Configuration.SystemMessages = ViewModel.SystemMessages
+                .Select(wraper => wraper.Value)
+                .ToArray();
+        }
+
+        [RelayCommand]
+        public Task LoadSystemMessages()
+        {
+            LoadSystemMessagesCore();
             return NoteService.ShowAsync("System messages loaded", 1500);
         }
 
         [RelayCommand]
         public Task ApplySystemMessages()
         {
-            ConfigurationService.Configuration.SystemMessages = ViewModel.SystemMessages
-                .Select(wraper => wraper.Value)
-                .ToArray();
-
+            ApplySystemMessagesCore();
             return NoteService.ShowAsync("System messages applied", 1500);
         }
 
