@@ -56,10 +56,10 @@
                      Padding="5" FontSize="14" BorderThickness="0 1 0 0" AcceptsReturn="True" TextWrapping="Wrap"
                      Text="{Binding ViewModel.InputBoxText,UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.InputBindings>
-                    <KeyBinding Modifiers="Ctrl" Key="Return" Command="{Binding SendCommand}" x:Name="inputBoxKeyBinding"/>
+                    <KeyBinding Modifiers="{Binding ViewModel.SendMessageModifierKey}" Key="Return" Command="{Binding SendCommand}"/>
                 </TextBox.InputBindings>
             </TextBox>
-            <Button Content="Send" Command="{Binding SendCommand}" ToolTip="{Binding SendButtonToolTip}"
+            <Button Content="Send" Command="{Binding SendCommand}" ToolTip="{Binding ViewModel.SendMessageToolTip}"
                     VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Padding="10,5">
                 <Button.Resources>
                     <Style TargetType="Border">
