@@ -13,7 +13,7 @@
 ## 使用方法
 
 1. 下载最新的版本
-2. 打开 `OpenChat.exe`
+2. 打开 `OpenGptChat.exe`
 3. 转到配置页面并设置自己的API密钥
 4. 坐和放宽, 享受 `OpenGptChat` 带来的乐趣罢!
 
@@ -25,7 +25,7 @@ OpenAI API 使用API密钥进行身份验证。请前往您的[API 密钥](https
 
 ## 共享 API 密钥
 
-这些API密钥可用于测试 OpenChat:
+这些API密钥可用于测试 OpenGptChat:
 
 ```
 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

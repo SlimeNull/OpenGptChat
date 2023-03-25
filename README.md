@@ -13,7 +13,7 @@ A simple chat client based on [Open AI Chat completion API](https://platform.ope
 ## Usage
 
 1. Download the latest release.
-2. Open `OpenChat.exe`.
+2. Open `OpenGptChat.exe`.
 3. Navigate to Configuration page and set your own API key.
 4. Enjoy!
 
@@ -25,7 +25,7 @@ The OpenAI API uses API keys for authentication. Visit your [API Keys](https://p
 
 ## Shared API Key
 
-These API keys can be used for testing OpenChat:
+These API keys can be used for testing OpenGptChat:
 
 ```
 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
