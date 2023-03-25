@@ -1,0 +1,27 @@
+name: CI
+on:
+  - push
+  - workflow_dispatch
+jobs:
+  build-windows-x64:
+    name: Build on Windows x64
+    runs-on: windows-2022
+    steps:
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+
+      - name: Build
+        run: dotnet publish -c Release -p:PublishProfile=win64 -p:PublishDir=..\Publish
+
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: Release
+          path: Publish/OpenGptChat.exe
+
+          if-no-files-found: error
