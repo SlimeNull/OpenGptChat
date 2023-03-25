@@ -1,4 +1,4 @@
-# OpenChat
+# OpenGptChat
 
 A simple chat client based on Open AI Chat completion API.
 
@@ -7,7 +7,7 @@ A simple chat client based on Open AI Chat completion API.
 ## Usage
 
 1. Download the latest release
-2. Open `OpenChat.exe`
+2. Open `OpenGptChat.exe`
 3. Navigate to Configuration page and set your own API key.
 4. Enjoy!
 
