@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
 
-namespace OpenGptChat.Models
+namespace OpenGptChat.ViewModels
 {
     public class ChatMessage : INotifyPropertyChanged
     {

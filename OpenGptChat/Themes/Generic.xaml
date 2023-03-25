@@ -87,8 +87,8 @@
                         <Border x:Name="chatBubble" HorizontalAlignment="Stretch" 
                             BorderBrush="Gray" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}" Padding="5">
                             <StackPanel HorizontalAlignment="Stretch">
-                                <TextBox HorizontalAlignment="Stretch" Text="{TemplateBinding Message}"
-                                     IsReadOnly="True" BorderThickness="0" Background="Transparent" TextWrapping="Wrap"/>
+                                <TextBox HorizontalAlignment="Stretch" Text="{TemplateBinding Message}" IsReadOnly="{TemplateBinding IsReadOnly}" 
+                                         BorderThickness="0" Background="Transparent" TextWrapping="Wrap"/>
                             </StackPanel>
                         </Border>
                     </StackPanel>

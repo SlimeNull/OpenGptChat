@@ -1,4 +1,4 @@
-﻿using OpenGptChat.Models;
+﻿using OpenGptChat.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

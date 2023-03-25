@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenGptChat.Models
+namespace OpenGptChat.ViewModels
 {
     public class NoteData : INotifyPropertyChanged
     {

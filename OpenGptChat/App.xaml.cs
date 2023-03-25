@@ -29,34 +29,34 @@ namespace OpenGptChat
             .CreateDefaultBuilder()
             .ConfigureAppConfiguration(config =>
             {
+                // 支持使用 JSON 文件以及环境变量进行配置
                 config
                     .AddJsonFile(GlobalValues.JsonConfigurationFilePath, true, true)
                     .AddEnvironmentVariables();
             })
             .ConfigureServices((context, services) =>
             {
+                // 程序托管服务
                 services.AddHostedService<ApplicationHostService>();
 
+                // 添加基础服务
                 services.AddSingleton<PageService>();
                 services.AddSingleton<ChatService>();
                 services.AddSingleton<NoteService>();
                 services.AddSingleton<ConfigurationService>();
                 services.AddSingleton<SmoothScrollingService>();
 
+                // 窗体服务
                 services.AddSingleton<AppWindow>();
                 services.AddSingleton<AppWindowModel>();
 
+                // 页面服务
                 services.AddSingleton<MainPage>();
                 services.AddSingleton<MainPageModel>();
                 services.AddSingleton<ConfigPage>();
                 services.AddSingleton<ConfigPageModel>();
 
-                services.AddSingleton<JsonSerializerOptions>(
-                    services => new JsonSerializerOptions()
-                    {
-                        PropertyNamingPolicy = SnakeCaseNamingPolicy.SnakeCase,
-                    });
-
+                // 配置服务, 将配置与 AppConfig 绑定
                 services.Configure<AppConfig>(
                     o =>
                     {

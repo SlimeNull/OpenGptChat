@@ -11,7 +11,7 @@ namespace OpenGptChat.Utilities
 {
     internal class GlobalValues
     {
-        public const string ProductVersion = "1.0.3";
+        public static string AppName => nameof(OpenGptChat);
 
         public static string JsonConfigurationFilePath { get; } =
             Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule?.FileName) ?? "./", "AppConfig.json");

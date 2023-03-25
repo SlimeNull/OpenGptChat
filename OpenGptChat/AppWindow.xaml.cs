@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
 using System;

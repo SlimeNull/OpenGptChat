@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:OpenGptChat"
         xmlns:controls="clr-namespace:OpenGptChat.Controls"
         xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:utils="clr-namespace:OpenGptChat.Utilities"
         
         d:DataContext="{d:DesignInstance Type=local:AppWindow}"
         mc:Ignorable="d" Icon="assets/images/openai.png" 
-        Title="OpenChat" Height="650" Width="450" FontSize="{DynamicResource NormalFontSize}"
+        Title="{x:Static utils:GlobalValues.AppName}" Height="650" Width="450" FontSize="{DynamicResource NormalFontSize}"
         Topmost="{Binding ViewModel.Configuration.WindowAlwaysOnTop}">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="bool2visbility"/>
@@ -25,6 +26,7 @@
         <controls:NoteControl x:Name="appNote"
                               Text="{Binding NoteDataModel.Text}" Show="{Binding NoteDataModel.Show}" Background="White" MouseDown="NoteControl_MouseDown"
                               VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50 0" BorderThickness="1 0 1 1" Visibility="Hidden">
+            
             <controls:NoteControl.Style>
                 <Style TargetType="controls:NoteControl">
                     <Setter Property="BorderBrush" Value="Gray"/>
@@ -35,6 +37,7 @@
                     </Style.Triggers>
                 </Style>
             </controls:NoteControl.Style>
+            
         </controls:NoteControl>
         
         <tb:TaskbarIcon Name="appIcon"
@@ -65,6 +68,7 @@
                     <MenuItem Header="Close" Command="{Binding CloseAppCommand}"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
+            
         </tb:TaskbarIcon>
     </Grid>
 </Window>
