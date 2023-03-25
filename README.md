@@ -1,17 +1,23 @@
-# OpenGptChat
+> Languages: **[English](README.md)** / **[简体中文](README_ZH-HANS.md)** / **[繁體中文](README_ZH-HANT.md)**
 
-A simple chat client based on Open AI Chat completion API.
+# OpenChat
 
-![preview](assets/preview.png)
+A simple chat client based on [Open AI Chat completion API](https://platform.openai.com/docs/guides/chat).
+
+![Preview](assets/preview.png)
 
 ## Usage
 
-1. Download the latest release
-2. Open `OpenGptChat.exe`
+1. Download the latest release.
+2. Open `OpenChat.exe`.
 3. Navigate to Configuration page and set your own API key.
 4. Enjoy!
 
 > Tips: You can use `Ctrl + Enter` in text box to send message.
+
+## What is API Key
+
+The OpenAI API uses API keys for authentication. Visit your [API Keys](https://platform.openai.com/account/api-keys) page to retrieve the API key you'll use in your requests. Usually, the API key is a secret and do not share it with others.
 
 ## Shared API Key
 
