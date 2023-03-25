@@ -1,8 +1,12 @@
-> 语言: **[English](README.md)** / **[简体中文](README_ZH-HANS.md)** / **[繁體中文](README_ZH-HANT.md)**
+<div align=center>
 
-# OpenChat
+# OpenGptChat 
+
+[![EN-US](https://img.shields.io/badge/EN-US-blue)](README.md) [![ZH-CN](https://img.shields.io/badge/中文-简体-red)](README_ZH-HANT.md) [![ZH-CN](https://img.shields.io/badge/中文-繁體-red)](README_ZH-HANS.md) / [![release date](https://img.shields.io/github/release-date/SlimeNull/OpenGptChat)](https://github.com/SlimeNull/OpenGptChat/releases) [![stars](https://img.shields.io/github/stars/SlimeNull/OpenGptChat?style=flat)](https://github.com/SlimeNull/OpenGptChat/pulse)
 
 基于 [Open AI Chat API](https://platform.openai.com/docs/guides/chat) 的简易聊天客户端
+
+</div>
 
 ![预览](assets/preview.png)
 
@@ -11,15 +15,15 @@
 1. 下载最新的版本
 2. 打开 `OpenChat.exe`
 3. 转到配置页面并设置自己的API密钥
-4. 好好玩！
+4. 坐和放宽, 享受 `OpenGptChat` 带来的乐趣罢!
 
 > 小提示：您可以在文本框中使用 `Ctrl + Enter` 发送消息。
 
-## 什么是API密钥
+## 什么是 API 密钥
 
-OpenAI API 使用API密钥进行身份验证。请前往您的[API密钥](https://platform.openai.com/account/api-keys)页面检索您在请求中会使用的API密钥。通常情况下，API密钥是秘密的，不应与他人共享。
+OpenAI API 使用API密钥进行身份验证。请前往您的[API 密钥](https://platform.openai.com/account/api-keys)页面检索您在请求中会使用的 API 密钥。通常情况下，API 密钥是秘密的，不应与他人共享。
 
-## 共享API密钥
+## 共享 API 密钥
 
 这些API密钥可用于测试 OpenChat:
 
@@ -27,7 +31,7 @@ OpenAI API 使用API密钥进行身份验证。请前往您的[API密钥](https:
 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
 ```
 
-> 您还可以在此共享您的API密钥，只需创建一个问题即可。
+> 您还可以在此共享您的 API 密钥，只需创建一个问题即可。
 
 ## 您可以学到什么？
 
