@@ -87,7 +87,7 @@ namespace OpenGptChat.Views
 
             try
             {
-                await ChatService.Chat(input, message =>
+                await ChatService.ChatAsync(input, message =>
                 {
                     responseMessage.Message = message;
 
@@ -118,6 +118,7 @@ namespace OpenGptChat.Views
         public async Task ResetChat()
         {
             ViewModel.Messages.Clear();
+            ChatService.Cancel();
             ChatService.Clear();
             await NoteService.ShowAsync("Chat has been reset.", 1500);
         }

@@ -53,7 +53,30 @@ namespace OpenGptChat.Services
             return client;
         }
 
-        public async Task Chat(string message, Action<string> messageHandler)
+        CancellationTokenSource? cancellation;
+
+        public Task ChatAsync(string message, Action<string> messageHandler)
+        {
+            cancellation?.Cancel();
+            cancellation = new CancellationTokenSource();
+
+            return ChatCoreAsync(message, messageHandler, cancellation.Token);
+        }
+
+        public Task ChatAsync(string message, Action<string> messageHandler, CancellationToken token)
+        {
+            cancellation?.Cancel();
+            cancellation = CancellationTokenSource.CreateLinkedTokenSource(token);
+
+            return ChatCoreAsync(message, messageHandler, cancellation.Token);
+        }
+
+        public void Cancel()
+        {
+            cancellation?.Cancel();
+        }
+
+        private async Task ChatCoreAsync(string message, Action<string> messageHandler, CancellationToken token)
         {
             OpenAIClient client = GetOpenAIClient();
 
@@ -77,7 +100,7 @@ namespace OpenGptChat.Services
             StringBuilder sb = new StringBuilder();
 
             CancellationTokenSource cancelTaskCancellation = new CancellationTokenSource();
-            CancellationTokenSource completionTaskCancellation = new CancellationTokenSource();
+            CancellationTokenSource completionTaskCancellation = CancellationTokenSource.CreateLinkedTokenSource(token);
 
             Task completionTask = client.ChatEndpoint.StreamCompletionAsync(
                 new ChatRequest(messages, modelName, temperature),

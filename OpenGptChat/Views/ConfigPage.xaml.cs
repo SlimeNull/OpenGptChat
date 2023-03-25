@@ -39,7 +39,7 @@ namespace OpenGptChat.Views
             InitializeComponent();
 
             DataContext = this;
-            LoadSystemMessages();
+            LoadSystemMessagesCore();
 
             smoothScrollingService.Register(configurationScrollViewer);
         }
