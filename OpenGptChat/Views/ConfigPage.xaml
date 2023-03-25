@@ -37,23 +37,23 @@
             <StackPanel Margin="10">
                 <StackPanel Margin="0 5">
                     <TextBlock Text="API Key:" Margin="0 0 0 5"/>
-                    <TextBox Padding="5 3" Text="{Binding ViewModel.Configuration.ApiKey}"/>
+                    <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.ApiKey}"/>
                 </StackPanel>
                 <StackPanel Margin="0 5">
                     <TextBlock Text="API GPT Model:" Margin="0 0 0 5"/>
-                    <TextBox Padding="5 3" Text="{Binding ViewModel.Configuration.ApiGptModel}"/>
+                    <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.ApiGptModel}"/>
                 </StackPanel>
                 <StackPanel Margin="0 5">
                     <TextBlock Text="API Host:" Margin="0 0 0 5"/>
-                    <TextBox Padding="5 3" Text="{Binding ViewModel.Configuration.ApiHost}"/>
+                    <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.ApiHost}"/>
                 </StackPanel>
                 <StackPanel Margin="0 5">
                     <TextBlock Text="API Timeout:" Margin="0 0 0 5"/>
-                    <TextBox Padding="5 3" Text="{Binding ViewModel.Configuration.ApiTimeout}"/>
+                    <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.ApiTimeout}"/>
                 </StackPanel>
                 <StackPanel Margin="0 5">
                     <TextBlock Text="Temperature:" Margin="0 0 0 5"/>
-                    <TextBox Padding="5 3" Text="{Binding ViewModel.Configuration.Temerature}"/>
+                    <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.Temerature}"/>
                 </StackPanel>
 
                 <StackPanel Margin="0 5">
@@ -111,7 +111,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Window always on top:"/>
-                        <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" IsChecked="{Binding ViewModel.Configuration.WindowAlwaysOnTop}"/>
+                        <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" IsChecked="{Binding ConfigurationService.Configuration.WindowAlwaysOnTop}"/>
                     </Grid>
                     
                 </StackPanel>

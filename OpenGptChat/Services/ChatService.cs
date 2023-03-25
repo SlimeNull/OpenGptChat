@@ -99,8 +99,8 @@ namespace OpenGptChat.Services
 
             StringBuilder sb = new StringBuilder();
 
-            CancellationTokenSource cancelTaskCancellation = new CancellationTokenSource();
-            CancellationTokenSource completionTaskCancellation = CancellationTokenSource.CreateLinkedTokenSource(token);
+            CancellationTokenSource completionTaskCancellation =
+                CancellationTokenSource.CreateLinkedTokenSource(token);
 
             Task completionTask = client.ChatEndpoint.StreamCompletionAsync(
                 new ChatRequest(messages, modelName, temperature),
@@ -123,8 +123,6 @@ namespace OpenGptChat.Services
 
             Task cancelTask = Task.Run(async () =>
             {
-                CancellationToken cancellationToken = cancelTaskCancellation.Token;
-
                 try
                 {
                     TimeSpan timeout = 
@@ -133,9 +131,6 @@ namespace OpenGptChat.Services
                     while (!completionTask.IsCompleted)
                     {
                         await Task.Delay(100);
-
-                        if (cancellationToken.IsCancellationRequested)
-                            return;
 
                         // 如果当前时间与上次响应的时间相差超过配置的超时时间, 则扔异常
                         if ((DateTime.Now - lastTime) > timeout)
