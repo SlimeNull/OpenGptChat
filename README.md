@@ -38,4 +38,3 @@ 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
 1. Learn **Binding**, **Command**, **Template**, **Style**, **Trigger**, **Animation** in WPF.
 2. Use `CommunityToolkit.Mvvm` in WPF project.
 3. Use `Microsoft.Extensions.Hosting` for DependencyInjection, Configuration.
-4. Use `PropertyChanged.Fody` for easier data binding.

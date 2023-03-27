@@ -38,4 +38,3 @@ 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
 1. 学习 WPF 中的 **Binding**、**Command**、**Template**、**Style**、**Trigger**、**Animation**
 2. 在 WPF 项目中使用 `CommunityToolkit.Mvvm`
 3. 使用 `Microsoft.Extensions.Hosting` 进行依赖注入和配置
-4. 使用 `PropertyChanged.Fody` 更轻松地进行数据绑定
