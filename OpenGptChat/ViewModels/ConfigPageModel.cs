@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Extensions.Options;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
 using System;
@@ -11,11 +12,10 @@ using System.Threading.Tasks;
 
 namespace OpenGptChat.ViewModels
 {
-    public class ConfigPageModel : INotifyPropertyChanged
+    public partial class ConfigPageModel : ObservableObject
     {
-        public ObservableCollection<ValueWrapper<string>> SystemMessages { get; }
-            = new ObservableCollection<ValueWrapper<string>>();
-
-        public event PropertyChangedEventHandler? PropertyChanged;
+        [ObservableProperty]
+        private ObservableCollection<ValueWrapper<string>> _systemMessages =
+            new ObservableCollection<ValueWrapper<string>>();
     }
 }

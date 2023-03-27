@@ -1,4 +1,4 @@
-﻿using PropertyChanged;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,22 +10,22 @@ using System.Windows.Documents;
 
 namespace OpenGptChat.ViewModels
 {
-    public class ChatMessage : INotifyPropertyChanged
+    public partial class ChatMessage : ObservableObject
     {
-        public string Username { get; set; } = string.Empty;
-        public string Message { get; set; } = string.Empty;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(
+            nameof(IsMe),
+            nameof(SelfAlignment),
+            nameof(SelfCornorRadius))]
+        public string _username = string.Empty;
 
+        [ObservableProperty]
+        public string _message = string.Empty;
 
-
-        [DependsOn(nameof(Username))]
         public bool IsMe => "Me".Equals(Username, StringComparison.CurrentCultureIgnoreCase);
 
-        [DependsOn(nameof(IsMe))]
         public HorizontalAlignment SelfAlignment => IsMe ? HorizontalAlignment.Right : HorizontalAlignment.Left;
 
-        [DependsOn(nameof(IsMe))]
         public CornerRadius SelfCornorRadius => IsMe ? new CornerRadius(5, 0, 5, 5) : new CornerRadius(0, 5, 5, 5);
-
-        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

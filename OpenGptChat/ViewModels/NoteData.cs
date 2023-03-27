@@ -1,4 +1,4 @@
-﻿using PropertyChanged;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace OpenGptChat.ViewModels
 {
-    public class NoteData : INotifyPropertyChanged
+    public partial class NoteData : ObservableObject
     {
-        public string Text { get; set; } = string.Empty;
+        [ObservableProperty]
+        private string _text = string.Empty;
 
-        public bool Show { get; set; } = false;
-
-
-        public event PropertyChangedEventHandler? PropertyChanged;
+        [ObservableProperty]
+        private bool _show = false;
     }
 }

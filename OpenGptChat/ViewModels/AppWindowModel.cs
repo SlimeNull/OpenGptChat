@@ -1,4 +1,5 @@
-﻿using OpenGptChat.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using OpenGptChat.Models;
 using OpenGptChat.Services;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OpenGptChat.ViewModels
 {
-    public class AppWindowModel : INotifyPropertyChanged
+    public class AppWindowModel : ObservableObject
     {
         public AppWindowModel(ConfigurationService configurationService)
         {
@@ -19,7 +20,5 @@ namespace OpenGptChat.ViewModels
         public ConfigurationService ConfigurationService { get; }
 
         public AppConfig Configuration => ConfigurationService.Configuration;
-
-        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }
