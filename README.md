@@ -23,16 +23,6 @@ A simple chat client based on [Open AI Chat completion API](https://platform.ope
 
 The OpenAI API uses API keys for authentication. Visit your [API Keys](https://platform.openai.com/account/api-keys) page to retrieve the API key you'll use in your requests. Usually, the API key is a secret and do not share it with others.
 
-## Shared API Key
-
-These API keys can be used for testing OpenGptChat:
-
-```
-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
-```
-
-> You can also share your API key here, just create a issue for that.
-
 ## What you can learn?
 
 1. Learn **Binding**, **Command**, **Template**, **Style**, **Trigger**, **Animation** in WPF.

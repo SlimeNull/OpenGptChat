@@ -23,16 +23,6 @@
 
 OpenAI API 使用API密钥进行身份验证。请前往您的[API 密钥](https://platform.openai.com/account/api-keys)页面检索您在请求中会使用的 API 密钥。通常情况下，API 密钥是秘密的，不应与他人共享。
 
-## 共享 API 密钥
-
-这些API密钥可用于测试 OpenGptChat:
-
-```
-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
-```
-
-> 您还可以在此共享您的 API 密钥，只需创建一个问题即可。
-
 ## 您可以学到什么？
 
 1. 学习 WPF 中的 **Binding**、**Command**、**Template**、**Style**、**Trigger**、**Animation**
