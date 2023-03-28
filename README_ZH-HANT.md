@@ -8,7 +8,7 @@
 
 </div>
 
-![預覽](assets/preview.png)
+![預覽](assets/preview2.png)
 
 ## 使用方法
 
