@@ -1,8 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -30,6 +33,8 @@ namespace OpenGptChat.Views
             PageService pageService,
             NoteService noteService,
             ChatService chatService,
+            ChatPageService chatPageService,
+            ChatStorageService chatStorageService,
             ConfigurationService configurationService,
             SmoothScrollingService smoothScrollingService)
         {
@@ -37,76 +42,32 @@ namespace OpenGptChat.Views
             PageService = pageService;
             NoteService = noteService;
             ChatService = chatService;
+            ChatPageService = chatPageService;
+            ChatStorageService = chatStorageService;
             ConfigurationService = configurationService;
-
-            InitializeComponent();
-
             DataContext = this;
 
-            smoothScrollingService.Register(messageScrollViewer);
+            foreach (var session in ChatStorageService.GetAllSessions())
+                ViewModel.Sessions.Add(new ChatSessionModel(session));
+
+#if DEBUG
+            if (ViewModel.Sessions.Count == 0)
+                ViewModel.Sessions.Add(new ChatSessionModel(ChatService.NewSession("New session")));
+#endif
+            InitializeComponent();
+
+            smoothScrollingService.Register(sessionsScrollViewer);
         }
 
         public MainPageModel ViewModel { get; }
         public PageService PageService { get; }
         public NoteService NoteService { get; }
         public ChatService ChatService { get; }
+        public ChatPageService ChatPageService { get; }
+        public ChatStorageService ChatStorageService { get; }
         public ConfigurationService ConfigurationService { get; }
 
-        [RelayCommand]
-        public async Task SendAsync()
-        {
-            if (string.IsNullOrWhiteSpace(ViewModel.InputBoxText))
-            {
-                _ = NoteService.ShowAsync("Empty message", 1500);
-                return;
-            }
 
-            if (string.IsNullOrWhiteSpace(ConfigurationService.Configuration.ApiKey))
-            {
-                await NoteService.ShowAsync("You can't use OpenChat now, because you haven't set your api key yet", 3000);
-                return;
-            }
-
-            string input = ViewModel.InputBoxText.Trim();
-            ViewModel.InputBoxText = string.Empty;
-
-            ChatMessage requestMessage = new ChatMessage()
-            {
-                Username = "Me",
-                Message = input,
-            };
-
-            ChatMessage responseMessage = new ChatMessage()
-            {
-                Username = "Assistant",
-            };
-
-            bool responseAdded = false;
-
-            ViewModel.Messages.Add(requestMessage);
-
-            try
-            {
-                await ChatService.ChatAsync(input, message =>
-                {
-                    responseMessage.Message = message;
-
-                    if (!responseAdded)
-                    {
-                        ViewModel.Messages.Add(responseMessage);
-                        responseAdded = true;
-                    }
-                });
-            }
-            catch (Exception ex)
-            {
-                _ =  NoteService.ShowAsync($"{ex.GetType().Name}: {ex.Message}", 3000);
-                ViewModel.Messages.Remove(requestMessage);
-                ViewModel.Messages.Remove(responseMessage);
-
-                ViewModel.InputBoxText = input;
-            }
-        }
 
         [RelayCommand]
         public void GoToConfigPage()
@@ -117,18 +78,57 @@ namespace OpenGptChat.Views
         [RelayCommand]
         public async Task ResetChat()
         {
-            ViewModel.Messages.Clear();
-            ChatService.Cancel();
-            ChatService.Clear();
-            await NoteService.ShowAsync("Chat has been reset.", 1500);
+            if (ViewModel.SelectedSession != null)
+            {
+                Guid sessionId = ViewModel.SelectedSession.Id;
+
+                ChatService.Cancel();
+                ChatStorageService.ClearMessage(sessionId);
+                ViewModel.CurrentChat?.ViewModel.Messages.Clear();
+
+                await NoteService.ShowAsync("Chat has been reset.", 1500);
+            }
+            else
+            {
+                await NoteService.ShowAsync("You need to select a session.", 1500);
+            }
         }
 
-        private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        [RelayCommand]
+        public void NewSession()
         {
-            ScrollViewer scrollViewer = (ScrollViewer)sender;
+            ChatSession session = ChatSession.Create("New session");
+            ChatSessionModel sessionModel = new ChatSessionModel(session);
 
-            if (SendCommand.IsRunning)
-                scrollViewer.ScrollToEnd();
+            ChatStorageService.SaveSession(session);
+            ViewModel.Sessions.Add(sessionModel);
+        }
+
+        [RelayCommand]
+        public void DeleteSession(ChatSessionModel session)
+        {
+            ChatStorageService.DeleteSession(session.Id);
+            ViewModel.Sessions.Remove(session);
+        }
+
+        private void ChatSessions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ViewModel.SelectedSession != null)
+            {
+                ViewModel.CurrentChat = ChatPageService.GetPage(ViewModel.SelectedSession.Id);
+            }
+        }
+
+
+        /// <summary>
+        /// 实在没办法绑定了, 只能订阅事件了
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuItem_DeleteSession_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuItem item && item.CommandParameter is ChatSessionModel session)
+                DeleteSession(session);
         }
     }
 }

@@ -19,11 +19,14 @@ namespace OpenGptChat.Services
     internal class ApplicationHostService : IHostedService
     {
         public ApplicationHostService(
-            ConfigurationService config)
+            ChatStorageService chatStorageService,
+            ConfigurationService configurationService)
         {
-            ConfigurationService = config;
+            ChatStorageService = chatStorageService;
+            ConfigurationService = configurationService;
         }
 
+        public ChatStorageService ChatStorageService { get; }
         public ConfigurationService ConfigurationService { get; }
 
         public Task StartAsync(CancellationToken cancellationToken)

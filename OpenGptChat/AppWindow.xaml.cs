@@ -3,6 +3,7 @@ using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,15 +31,15 @@ namespace OpenGptChat
         {
             ViewModel = viewModel;
             NoteService = noteService;
-            InitializeComponent();
-
             DataContext = this;
+
+            InitializeComponent();
         }
 
         public NoteService NoteService { get; }
 
         public AppWindowModel ViewModel { get; }
-        public NoteData NoteDataModel => NoteService.Data;
+        public NoteDataModel NoteDataModel => NoteService.Data;
 
         public void Navigate(object content) => appFrame.Navigate(content);
 

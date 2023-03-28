@@ -15,8 +15,11 @@ namespace OpenGptChat.Services
 {
     public class ChatService
     {
-        public ChatService(ConfigurationService configurationService)
+        public ChatService(
+            ChatStorageService chatStorageService,
+            ConfigurationService configurationService)
         {
+            ChatStorageService = chatStorageService;
             ConfigurationService = configurationService;
         }
 
@@ -24,9 +27,7 @@ namespace OpenGptChat.Services
         private string? client_apikey;
         private string? client_apihost;
 
-        private readonly List<ChatPrompt> chatHistory =
-            new List<ChatPrompt>();
-
+        public ChatStorageService ChatStorageService { get; }
 
         public ConfigurationService ConfigurationService { get; }
 
@@ -55,20 +56,28 @@ namespace OpenGptChat.Services
 
         CancellationTokenSource? cancellation;
 
-        public Task ChatAsync(string message, Action<string> messageHandler)
+        public ChatSession NewSession(string name)
+        {
+            ChatSession session = ChatSession.Create(name);
+            ChatStorageService.SaveSession(session);
+
+            return session;
+        }
+
+        public Task<ChatDialogue> ChatAsync(Guid sessionId, string message, Action<string> messageHandler)
         {
             cancellation?.Cancel();
             cancellation = new CancellationTokenSource();
 
-            return ChatCoreAsync(message, messageHandler, cancellation.Token);
+            return ChatCoreAsync(sessionId, message, messageHandler, cancellation.Token);
         }
 
-        public Task ChatAsync(string message, Action<string> messageHandler, CancellationToken token)
+        public Task<ChatDialogue> ChatAsync(Guid sessionId, string message, Action<string> messageHandler, CancellationToken token)
         {
             cancellation?.Cancel();
             cancellation = CancellationTokenSource.CreateLinkedTokenSource(token);
 
-            return ChatCoreAsync(message, messageHandler, cancellation.Token);
+            return ChatCoreAsync(sessionId, message, messageHandler, cancellation.Token);
         }
 
         public void Cancel()
@@ -76,8 +85,10 @@ namespace OpenGptChat.Services
             cancellation?.Cancel();
         }
 
-        private async Task ChatCoreAsync(string message, Action<string> messageHandler, CancellationToken token)
+        private async Task<ChatDialogue> ChatCoreAsync(Guid sessionId, string message, Action<string> messageHandler, CancellationToken token)
         {
+            ChatMessage ask = ChatMessage.Create(sessionId, "user", message);
+
             OpenAIClient client = GetOpenAIClient();
 
             List<ChatPrompt> messages = new List<ChatPrompt>();
@@ -85,8 +96,8 @@ namespace OpenGptChat.Services
             foreach (var sysmsg in ConfigurationService.Configuration.SystemMessages)
                 messages.Add(new ChatPrompt("system", sysmsg));
 
-            foreach (var chatmsg in chatHistory)
-                messages.Add(chatmsg);
+            foreach (var chatmsg in ChatStorageService.GetAllMessages(sessionId))
+                messages.Add(new ChatPrompt(chatmsg.Role, chatmsg.Content));
 
             messages.Add(new ChatPrompt("user", message));
 
@@ -148,13 +159,13 @@ namespace OpenGptChat.Services
 
             await Task.WhenAll(completionTask, cancelTask);
 
-            chatHistory.Add(new ChatPrompt("user", message));
-            chatHistory.Add(new ChatPrompt("assistant", sb.ToString()));
-        }
+            ChatMessage answer = ChatMessage.Create(sessionId, "assistant", sb.ToString());
+            ChatDialogue dialogue = new ChatDialogue(ask, answer);
 
-        public void Clear()
-        {
-            chatHistory.Clear();
+            ChatStorageService.SaveMessage(ask);
+            ChatStorageService.SaveMessage(answer);
+
+            return dialogue;
         }
     }
 }

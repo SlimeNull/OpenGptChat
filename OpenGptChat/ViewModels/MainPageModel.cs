@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using OpenGptChat.Models;
+using OpenGptChat.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,10 +14,14 @@ namespace OpenGptChat.ViewModels
     public partial class MainPageModel : ObservableObject
     {
         [ObservableProperty]
-        private string _inputBoxText = string.Empty;
+        private ObservableCollection<ChatSessionModel> _sessions =
+            new ObservableCollection<ChatSessionModel>();
 
         [ObservableProperty]
-        private ObservableCollection<ChatMessage> _messages = 
-            new ObservableCollection<ChatMessage>();
+        private ChatSessionModel? _selectedSession;
+
+
+        [ObservableProperty]
+        private ChatPage? _currentChat;
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OpenGptChat.Models
 {
-    public class AppConfig : INotifyPropertyChanged
+    public partial class AppConfig : INotifyPropertyChanged
     {
         public string ApiHost { get; set; } = "openaiapi.elecho.top";
         public string ApiKey { get; set; } = string.Empty;
@@ -21,6 +20,7 @@ namespace OpenGptChat.Models
         };
 
         public bool WindowAlwaysOnTop { get; set; } = false;
+        public string ChatStoragePath { get; set; } = "chat.db";
 
         public event PropertyChangedEventHandler? PropertyChanged;
     }

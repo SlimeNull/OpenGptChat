@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
@@ -41,8 +42,10 @@ namespace OpenGptChat
 
                 // 添加基础服务
                 services.AddSingleton<PageService>();
-                services.AddSingleton<ChatService>();
                 services.AddSingleton<NoteService>();
+                services.AddSingleton<ChatService>();
+                services.AddSingleton<ChatPageService>();
+                services.AddSingleton<ChatStorageService>();
                 services.AddSingleton<ConfigurationService>();
                 services.AddSingleton<SmoothScrollingService>();
 
@@ -50,11 +53,15 @@ namespace OpenGptChat
                 services.AddSingleton<AppWindow>();
                 services.AddSingleton<AppWindowModel>();
 
-                // 页面服务
+                // 单例页面服务
                 services.AddSingleton<MainPage>();
                 services.AddSingleton<MainPageModel>();
                 services.AddSingleton<ConfigPage>();
                 services.AddSingleton<ConfigPageModel>();
+
+                // 作用域页面服务
+                services.AddScoped<ChatPage>();
+                services.AddScoped<ChatPageModel>();
 
                 // 配置服务, 将配置与 AppConfig 绑定
                 services.Configure<AppConfig>(

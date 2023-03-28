@@ -6,6 +6,9 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/Generic.xaml"/>
+                <ResourceDictionary Source="/Resources/AnimationStyles.xaml"/>
+                <ResourceDictionary Source="/Resources/ControlStyles/AllInOne.xaml"/>
+                <ResourceDictionary Source="/Converters/SingletonConverters.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -58,10 +58,34 @@ namespace OpenGptChat.Controls
             set { SetValue(UsernameProperty, value); }
         }
 
-        public string Message
+        public string Content
         {
-            get { return (string)GetValue(MessageProperty); }
-            set { SetValue(MessageProperty, value); }
+            get { return (string)GetValue(ContentProperty); }
+            set { SetValue(ContentProperty, value); }
+        }
+
+        public Brush HeaderForeground
+        {
+            get { return (Brush)GetValue(HeaderForegroundProperty); }
+            set { SetValue(HeaderForegroundProperty, value); }
+        }
+
+        public Brush HeaderBackground
+        {
+            get { return (Brush)GetValue(HeaderBackgroundProperty); }
+            set { SetValue(HeaderBackgroundProperty, value); }
+        }
+
+        public Brush ContentForeground
+        {
+            get { return (Brush)GetValue(ContentForegroundProperty); }
+            set { SetValue(ContentForegroundProperty, value); }
+        }
+
+        public Brush ContentBackground
+        {
+            get { return (Brush)GetValue(ContentBackgroundProperty); }
+            set { SetValue(ContentBackgroundProperty, value); }
         }
 
         public CornerRadius CornerRadius
@@ -70,16 +94,42 @@ namespace OpenGptChat.Controls
             set { SetValue(CornerRadiusProperty, value); }
         }
 
+        public bool IsReadonly
+        {
+            get { return (bool)GetValue(IsReadonlyProperty); }
+            set { SetValue(IsReadonlyProperty, value); }
+        }
+
         // Using a DependencyProperty as the backing store for Username.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty UsernameProperty =
-            DependencyProperty.Register("Username", typeof(string), typeof(ChatBubble), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(Username), typeof(string), typeof(ChatBubble), new PropertyMetadata(string.Empty));
 
-        // Using a DependencyProperty as the backing store for Message.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MessageProperty =
-            DependencyProperty.Register("Message", typeof(string), typeof(ChatBubble), new PropertyMetadata(string.Empty));
+        // Using a DependencyProperty as the backing store for Content.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ContentProperty =
+            DependencyProperty.Register(nameof(Content), typeof(string), typeof(ChatBubble), new PropertyMetadata(string.Empty));
+
+        // Using a DependencyProperty as the backing store for HeaderForeground.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HeaderForegroundProperty =
+            DependencyProperty.Register(nameof(HeaderForeground), typeof(Brush), typeof(ChatBubble), new PropertyMetadata(Brushes.Gray));
+
+        // Using a DependencyProperty as the backing store for HeaderBackground.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HeaderBackgroundProperty =
+            DependencyProperty.Register(nameof(HeaderBackground), typeof(Brush), typeof(ChatBubble), new PropertyMetadata(Brushes.Transparent));
+
+        // Using a DependencyProperty as the backing store for ContentForeground.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ContentForegroundProperty =
+            DependencyProperty.Register(nameof(ContentForeground), typeof(Brush), typeof(ChatBubble), new PropertyMetadata(Brushes.Black));
+
+        // Using a DependencyProperty as the backing store for ContentBackground.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ContentBackgroundProperty =
+            DependencyProperty.Register(nameof(ContentBackground), typeof(Brush), typeof(ChatBubble), new PropertyMetadata(Brushes.White));
 
         // Using a DependencyProperty as the backing store for CornerRadius.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(ChatBubble), new PropertyMetadata(new CornerRadius(0)));
+            DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(ChatBubble), new PropertyMetadata(new CornerRadius(0)));
+
+        // Using a DependencyProperty as the backing store for IsReadonly.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsReadonlyProperty =
+            DependencyProperty.Register(nameof(IsReadonly), typeof(bool), typeof(ChatBubble), new PropertyMetadata(true));
     }
 }

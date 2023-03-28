@@ -5,23 +5,21 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OpenGptChat.Views"
       xmlns:controls="clr-namespace:OpenGptChat.Controls"
+      xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:vm="clr-namespace:OpenGptChat.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="450"
+      d:DesignHeight="600" d:DesignWidth="880"
       d:DataContext="{d:DesignInstance Type=local:MainPage}" d:Background="White"
       
-      Title="MainPage"
-      Style="{DynamicResource AnimatedPageStyle}"
-      FocusManager.FocusedElement="{Binding ElementName=inputBox}">
+      Title="MainPage" Style="{DynamicResource AnimatedPageStyle}">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
-            <RowDefinition Height="130"/>
         </Grid.RowDefinitions>
 
-        <Grid >
+        <Grid>
             <Border Padding="5" BorderThickness="0 0 0 1" BorderBrush="Gray">
                 <Grid>
                     <TextBlock Text="Chat"  FontSize="{DynamicResource ExtremLargeFontSize}"/>
@@ -40,35 +38,91 @@
             </Border>
         </Grid>
 
-        <ScrollViewer Name="messageScrollViewer" Grid.Row="1" ScrollChanged="ScrollViewer_ScrollChanged">
-            <ItemsControl ItemsSource="{Binding ViewModel.Messages}" Padding="10 10 10 20">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <controls:ChatBubble HorizontalAlignment="{Binding SelfAlignment}" HorizontalContentAlignment="{Binding SelfAlignment}"
-                                             CornerRadius="{Binding SelfCornorRadius}" Username="{Binding Username}" Message="{Binding Message}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="2">
-            <TextBox Name="inputBox"
-                     Padding="5" FontSize="14" BorderThickness="0 1 0 0" AcceptsReturn="True" TextWrapping="Wrap"
-                     Text="{Binding ViewModel.InputBoxText,UpdateSourceTrigger=PropertyChanged}">
-                <TextBox.InputBindings>
-                    <KeyBinding Modifiers="Ctrl" Key="Return" Command="{Binding SendCommand}"/>
-                </TextBox.InputBindings>
-            </TextBox>
-            <Button Content="Send" Command="{Binding SendCommand}" ToolTip="Send message (Ctrl + Enter)"
-                    VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Padding="10,5">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="3"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <ScrollViewer Name="sessionsScrollViewer">
+                    <ListBox HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectedIndex="0"
+                             ItemsSource="{Binding ViewModel.Sessions}" SelectedItem="{Binding ViewModel.SelectedSession}"
+                             Margin="0" Padding="0" BorderThickness="0" SelectionChanged="ChatSessions_SelectionChanged">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource AnimatedListItemStyle}">
+                                <Setter Property="Background" Value="#fbfcfd"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBoxItem">
+                                            <Border Background="{TemplateBinding Background}" Padding="5">
+                                                <ContentPresenter/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#f5f5f5"/>
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter Property="Background" Value="#e7e8e9"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Background="Transparent">
+                                    <StackPanel.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Edit" Command="{Binding StartEditCommand}"/>
+                                            <MenuItem Header="Delete" Click="MenuItem_DeleteSession_Click" CommandParameter="{Binding}"/>
+                                        </ContextMenu>
+                                    </StackPanel.ContextMenu>
+                                    <TextBox BorderThickness="1" Background="Transparent" Padding="0"
+                                             IsReadOnly="{Binding IsReadOnly}" IsHitTestVisible="{Binding IsEditing}"
+                                             Text="{Binding Name}" FontSize="{DynamicResource NormalFontSize}">
+                                        <behaviors:Interaction.Triggers>
+                                            <behaviors:EventTrigger EventName="LostFocus">
+                                                <behaviors:InvokeCommandAction Command="{Binding EndEditCommand}"/>
+                                            </behaviors:EventTrigger>
+                                        </behaviors:Interaction.Triggers>
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsReadOnly" Value="False">
+                                                        <Setter Property="BorderBrush" Value="#569de5"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBox.Style>
+                                        
+                                    </TextBox>
+
+                                    <TextBlock HorizontalAlignment="Stretch" Background="Transparent"
+                                               Padding="3 0" TextTrimming="WordEllipsis" FontSize="{DynamicResource SmallFontSize}">
+                                        <Run Text="{Binding PageModel.LastMessage.DisplayName,Mode=OneWay}"/>
+                                        <Run Text="{Binding PageModel.LastMessage.Content,Mode=OneWay,Converter={StaticResource SingleLineTextConverter}}"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+
+                <Button Grid.Row="1" Content="New Session" BorderThickness="0" Padding="0 3" Command="{Binding NewSessionCommand}"/>
+            </Grid>
+
+            <GridSplitter VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="3" Background="Transparent"/>
+
+            <Frame Grid.Column="1" Content="{Binding ViewModel.CurrentChat}" NavigationUIVisibility="Hidden"/>
         </Grid>
-
-        <GridSplitter Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="3" Background="Transparent"/>
     </Grid>
 </Page>

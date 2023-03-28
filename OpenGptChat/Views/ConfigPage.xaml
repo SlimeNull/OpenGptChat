@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OpenGptChat.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="450" d:Background="White" d:DataContext="{d:DesignInstance Type=local:ConfigPage}"
+      d:DesignHeight="650" d:DesignWidth="880" d:Background="White" d:DataContext="{d:DesignInstance Type=local:ConfigPage}"
       Title="ConfigPage" Style="{DynamicResource AnimatedPageStyle}">
 
     <Grid>
@@ -34,7 +34,7 @@
         </Grid>
 
         <ScrollViewer Grid.Row="1" Name="configurationScrollViewer">
-            <StackPanel Margin="10">
+            <StackPanel Margin="10" MaxWidth="600">
                 <StackPanel Margin="0 5">
                     <TextBlock Text="API Key:" Margin="0 0 0 5"/>
                     <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.ApiKey}"/>

@@ -10,7 +10,7 @@ namespace OpenGptChat.Services
 {
     public class NoteService
     {
-        public NoteData Data { get; } = new NoteData();
+        public NoteDataModel Data { get; } = new NoteDataModel();
 
         private CancellationTokenSource? cancellation;
 

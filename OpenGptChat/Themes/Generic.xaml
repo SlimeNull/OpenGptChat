@@ -12,19 +12,6 @@
 
     <CircleEase x:Key="ease" EasingMode="EaseOut"/>
 
-    <Style x:Key="AnimatedPageStyle" TargetType="Page">
-        <Style.Triggers>
-            <EventTrigger RoutedEvent="Loaded">
-                <BeginStoryboard>
-                    <Storyboard>
-                        <ThicknessAnimation Storyboard.TargetProperty="Margin" EasingFunction="{StaticResource ease}"
-                                            From="0 5 0 0" To="0" Duration="0:0:0.200"/>
-                    </Storyboard>
-                </BeginStoryboard>
-            </EventTrigger>
-        </Style.Triggers>
-    </Style>
-
     <Style TargetType="{x:Type controls:NoteControl}">
         <Setter Property="Template">
             <Setter.Value>
@@ -45,50 +32,16 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:ChatBubble}">
-                    <StackPanel Margin="0 5">
-                        <StackPanel.Resources>
-                            <CircleEase x:Key="ease" EasingMode="EaseOut"/>
-                        </StackPanel.Resources>
-                        <StackPanel.Style>
-                            <Style TargetType="StackPanel">
-                                <Setter Property="RenderTransform">
-                                    <Setter.Value>
-                                        <TranslateTransform x:Name="Translate" X="0"/>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <EventTrigger RoutedEvent="Loaded">
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" EasingFunction="{StaticResource ease}"
-                                                     From="0" To="1" Duration="0:0:0.200"/>
-                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Y" EasingFunction="{StaticResource ease}"
-                                                     From="5" To="0" Duration="0:0:0.200"/>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
-                                    <EventTrigger RoutedEvent="Unloaded">
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" EasingFunction="{StaticResource ease}"
-                                                     From="1" To="0" Duration="0:0:0.200"/>
-                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Y" EasingFunction="{StaticResource ease}"
-                                                     From="0" To="5" Duration="0:0:0.200"/>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </StackPanel.Style>
-
+                    <StackPanel Margin="0 5" Background="{TemplateBinding Background}">
                         <TextBox HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Text="{TemplateBinding Username}"
-                                 FontSize="{DynamicResource SmallFontSize}" Foreground="Gray"
-                                 IsReadOnly="True" BorderThickness="0" Background="Transparent" TextWrapping="Wrap"/>
-                        <Border x:Name="chatBubble" HorizontalAlignment="Stretch" 
-                            BorderBrush="Gray" BorderThickness="1" CornerRadius="{TemplateBinding CornerRadius}" Padding="5">
+                                 FontSize="{DynamicResource SmallFontSize}" Foreground="{TemplateBinding HeaderForeground}" Background="{TemplateBinding HeaderBackground}"
+                                 IsReadOnly="True" BorderThickness="0" TextWrapping="Wrap"/>
+                        <Border x:Name="chatBubble" HorizontalAlignment="Stretch" Background="{TemplateBinding ContentBackground}"
+                            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="5">
                             <StackPanel HorizontalAlignment="Stretch">
-                                <TextBox HorizontalAlignment="Stretch" Text="{TemplateBinding Message}" IsReadOnly="True" 
-                                         BorderThickness="0" Background="Transparent" TextWrapping="Wrap"/>
+                                <TextBox HorizontalAlignment="Stretch"  InputMethod.IsInputMethodEnabled="True"
+                                         Text="{Binding Content,RelativeSource={RelativeSource Mode=TemplatedParent}}" IsReadOnly="{TemplateBinding IsReadonly}" 
+                                         BorderThickness="0" Background="Transparent" TextWrapping="Wrap" AcceptsReturn="True" Foreground="{TemplateBinding ContentForeground}"/>
                             </StackPanel>
                         </Border>
                     </StackPanel>
@@ -96,4 +49,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
 </ResourceDictionary>

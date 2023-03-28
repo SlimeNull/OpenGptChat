@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OpenGptChat.ViewModels
 {
-    public partial class NoteData : ObservableObject
+    public partial class NoteDataModel : ObservableObject
     {
         [ObservableProperty]
         private string _text = string.Empty;
