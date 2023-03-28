@@ -104,7 +104,7 @@
                     </Border>
                 </StackPanel>
 
-                <StackPanel Margin="0, 30, 0, 5">
+                <StackPanel Margin="0 30 0 5">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -114,6 +114,23 @@
                         <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" IsChecked="{Binding ConfigurationService.Configuration.WindowAlwaysOnTop}"/>
                     </Grid>
                     
+                </StackPanel>
+
+                <StackPanel Margin="0 30 0 5">
+                    <TextBlock>
+                        Hotkey Tips:
+                    </TextBlock>
+                    <StackPanel Margin="5">
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Margin" Value="0 5 0 0"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock>Ctrl+W: Close application</TextBlock>
+                        <TextBlock>Ctrl+H: Hide application</TextBlock>
+                        <TextBlock>Ctrl+Shift+H: Show application (Global hotkey)</TextBlock>
+                        <TextBlock>Ctrl+Enter: Send message (Input box)</TextBlock>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

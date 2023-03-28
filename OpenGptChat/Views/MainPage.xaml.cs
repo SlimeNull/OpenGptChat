@@ -50,10 +50,9 @@ namespace OpenGptChat.Views
             foreach (var session in ChatStorageService.GetAllSessions())
                 ViewModel.Sessions.Add(new ChatSessionModel(session));
 
-#if DEBUG
             if (ViewModel.Sessions.Count == 0)
-                ViewModel.Sessions.Add(new ChatSessionModel(ChatService.NewSession("New session")));
-#endif
+                NewSession();
+
             InitializeComponent();
 
             smoothScrollingService.Register(sessionsScrollViewer);
