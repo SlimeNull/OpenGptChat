@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,15 +8,14 @@ using System.Threading.Tasks;
 
 namespace OpenGptChat.Models
 {
-    public class ValueWrapper<T> : INotifyPropertyChanged
+    public partial class ValueWrapper<T> : ObservableObject
     {
         public ValueWrapper(T value)
         {
             Value = value;
         }
 
-        public T Value { get; set; }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
+        [ObservableProperty]
+        private T _value;
     }
 }
