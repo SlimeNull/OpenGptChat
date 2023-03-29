@@ -14,27 +14,20 @@ namespace OpenGptChat.Services
             ConfigurationService configurationService)
         {
             ConfigurationService = configurationService;
-
-            Database = new LiteDatabase(
-                new ConnectionString()
-                {
-                    Filename = configurationService.Configuration.ChatStoragePath,
-                    
-                });
-
-            ChatSessions = Database.GetCollection<ChatSession>();
-            ChatMessages = Database.GetCollection<ChatMessage>();
         }
 
-        private ILiteCollection<ChatSession> ChatSessions { get; }
-        private ILiteCollection<ChatMessage> ChatMessages { get; }
+        private ILiteCollection<ChatSession>? ChatSessions { get; set; }
+        private ILiteCollection<ChatMessage>? ChatMessages { get; set; }
 
 
-        public LiteDatabase Database { get; }
+        public LiteDatabase? Database { get; private set; }
         public ConfigurationService ConfigurationService { get; }
 
         public IEnumerable<ChatSession> GetAllSessions()
         {
+            if (ChatSessions == null)
+                throw new InvalidOperationException("Not initialized");
+
             return ChatSessions.FindAll();
         }
 
@@ -47,6 +40,9 @@ namespace OpenGptChat.Services
 
         public ChatStorageService SaveSession(ChatSession session)
         {
+            if (ChatSessions == null)
+                throw new InvalidOperationException("Not initialized");
+
             if (!ChatSessions.Update(session.Id, session))
                 ChatSessions.Insert(session.Id, session);
 
@@ -55,11 +51,17 @@ namespace OpenGptChat.Services
 
         public bool DeleteSession(Guid id)
         {
+            if (ChatSessions == null)
+                throw new InvalidOperationException("Not initialized");
+
             return ChatSessions.DeleteMany(session => session.Id == id) > 0;
         }
 
         public IEnumerable<ChatMessage> GetAllMessages(Guid sessionId)
         {
+            if (ChatMessages == null)
+                throw new InvalidOperationException("Not initialized");
+
             return ChatMessages.Query()
                 .Where(msg => msg.SessionId == sessionId)
                 .OrderBy(msg => msg.Timestamp)
@@ -75,6 +77,9 @@ namespace OpenGptChat.Services
 
         public ChatStorageService SaveMessage(ChatMessage message)
         {
+            if (ChatMessages == null)
+                throw new InvalidOperationException("Not initialized");
+
             if (!ChatMessages.Update(message.Id, message))
                 ChatMessages.Insert(message.Id, message);
 
@@ -83,9 +88,25 @@ namespace OpenGptChat.Services
 
         public bool ClearMessage(Guid sessionId)
         {
+            if (ChatMessages == null)
+                throw new InvalidOperationException("Not initialized");
+
             return ChatMessages.DeleteMany(msg => msg.SessionId == sessionId) > 0;
         }
 
+
+        public void Initialize()
+        {
+            Database = new LiteDatabase(
+                new ConnectionString()
+                {
+                    Filename = ConfigurationService.Configuration.ChatStoragePath,
+
+                });
+
+            ChatSessions = Database.GetCollection<ChatSession>();
+            ChatMessages = Database.GetCollection<ChatMessage>();
+        }
 
 
         bool disposed = false;
@@ -94,7 +115,7 @@ namespace OpenGptChat.Services
             if (disposed)
                 return;
 
-            Database.Dispose();
+            Database?.Dispose();
             disposed = true;
         }
     }

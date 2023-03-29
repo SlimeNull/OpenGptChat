@@ -11,5 +11,15 @@ namespace OpenGptChat.Utilities
     {
         [DllImport("User32.dll")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("User32.dll")]
+        public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        /// <summary>
+        /// ShowWindow(hWnd, SW_NORMAL). SW_NORMAL: 1
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <returns></returns>
+        public static bool ShowWindowNormal(IntPtr hWnd) => ShowWindow(hWnd, 5);
     }
 }

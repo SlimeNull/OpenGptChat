@@ -49,6 +49,9 @@ namespace OpenGptChat.ViewModels
         private static ChatStorageService ChatStorageService { get; } =
             App.GetService<ChatStorageService>();
 
+
+
+        // 用于将数据同步到数据存储
         protected override void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             base.OnPropertyChanged(e);
@@ -72,7 +75,7 @@ namespace OpenGptChat.ViewModels
 
 
 
-        #region Layout properties
+        #region 布局用的一些属性
 
         public string DisplayName => string.Equals(_role, "user", StringComparison.CurrentCultureIgnoreCase) ? "Me" : "Bot";
 
@@ -86,16 +89,13 @@ namespace OpenGptChat.ViewModels
 
 
 
-        #region Layout commands
+        #region 页面用的一些指令
 
         [RelayCommand]
         public void Copy()
         {
             Clipboard.SetText(_content);
         }
-
-
-
 
         [RelayCommand]
         public void StartEdit()

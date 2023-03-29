@@ -47,14 +47,17 @@ namespace OpenGptChat.Views
             ConfigurationService = configurationService;
             DataContext = this;
 
+            // 从存储中将所有会话添加进去
             foreach (var session in ChatStorageService.GetAllSessions())
                 ViewModel.Sessions.Add(new ChatSessionModel(session));
 
+            // 如果没有会话, 则创建一个
             if (ViewModel.Sessions.Count == 0)
                 NewSession();
 
             InitializeComponent();
 
+            // 为滚动查看器注册平滑滚动
             smoothScrollingService.Register(sessionsScrollViewer);
         }
 
@@ -68,12 +71,19 @@ namespace OpenGptChat.Views
 
 
 
+        /// <summary>
+        /// 转到配置页面
+        /// </summary>
         [RelayCommand]
         public void GoToConfigPage()
         {
             PageService.Navigate<ConfigPage>();
         }
 
+        /// <summary>
+        /// 重置聊天
+        /// </summary>
+        /// <returns></returns>
         [RelayCommand]
         public async Task ResetChat()
         {
@@ -93,6 +103,9 @@ namespace OpenGptChat.Views
             }
         }
 
+        /// <summary>
+        /// 新建会话
+        /// </summary>
         [RelayCommand]
         public void NewSession()
         {
@@ -103,18 +116,30 @@ namespace OpenGptChat.Views
             ViewModel.Sessions.Add(sessionModel);
         }
 
+        /// <summary>
+        /// 删除会话
+        /// </summary>
+        /// <param name="session"></param>
         [RelayCommand]
         public void DeleteSession(ChatSessionModel session)
         {
+            ChatPageService.RemovePage(session.Id);
             ChatStorageService.DeleteSession(session.Id);
             ViewModel.Sessions.Remove(session);
         }
 
+        /// <summary>
+        /// 当会话选择变更的时候
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChatSessions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ViewModel.SelectedSession != null)
             {
-                ViewModel.CurrentChat = ChatPageService.GetPage(ViewModel.SelectedSession.Id);
+                // 将页面中当前显示的聊天页面切换到对应页面
+                ViewModel.CurrentChat = 
+                    ChatPageService.GetPage(ViewModel.SelectedSession.Id);
             }
         }
 

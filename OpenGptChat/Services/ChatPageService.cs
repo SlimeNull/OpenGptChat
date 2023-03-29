@@ -5,6 +5,9 @@ using OpenGptChat.Views;
 
 namespace OpenGptChat.Services
 {
+    /// <summary>
+    /// 聊天页面服务
+    /// </summary>
     public class ChatPageService
     {
         private Dictionary<Guid, ChatPage> pages =
@@ -33,6 +36,11 @@ namespace OpenGptChat.Services
             }
 
             return chatPage;
+        }
+
+        public bool RemovePage(Guid sessionId)
+        {
+            return pages.Remove(sessionId);
         }
     }
 }

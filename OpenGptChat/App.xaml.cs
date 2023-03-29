@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -26,6 +27,11 @@ namespace OpenGptChat
     /// </summary>
     public partial class App : Application
     {
+        static App()
+        {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+        }
+
         private static readonly IHost host = Host
             .CreateDefaultBuilder()
             .ConfigureAppConfiguration(config =>
@@ -81,6 +87,13 @@ namespace OpenGptChat
 
         protected override async void OnStartup(StartupEventArgs e)
         {
+            // 确认程序是单例?
+            if (!EnsureAppSingletion())
+            {
+                Application.Current.Shutdown();
+                return;
+            }
+
             await host.StartAsync();
         }
 
@@ -89,6 +102,44 @@ namespace OpenGptChat
             await host.StopAsync();
 
             host.Dispose();
+        }
+
+
+        /// <summary>
+        /// 确认程序是单例运行的
+        /// </summary>
+        /// <returns></returns>
+        public bool EnsureAppSingletion()
+        {
+            // 拿到当前线程
+            Process currentProcess = Process.GetCurrentProcess();
+
+            // 找与当前线程同名的线程
+            Process[] processes =
+                Process.GetProcessesByName(currentProcess.ProcessName);
+
+            // 循环
+            foreach (Process process in processes)
+            {
+                // 如果线程与当前线程 ID 一样, 跳过
+                if (process.Id == currentProcess.Id)
+                    continue;
+
+                // 取主窗口并置顶, 成功了就返回 false (表示当前程序不是单例的)
+                IntPtr mainWindowHandle = process.MainWindowHandle;
+                if (mainWindowHandle != IntPtr.Zero &&
+                    NativeMethods.ShowWindowNormal(mainWindowHandle) &&
+                    NativeMethods.SetForegroundWindow(mainWindowHandle))
+                    return false;
+            }
+
+            // 这说明没有找到合适的进程, 返回 true (表示当前程序是第一个启动的实例)
+            return true;
+        }
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show($"{e.ExceptionObject}", "UnhandledException", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
