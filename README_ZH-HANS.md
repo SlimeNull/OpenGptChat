@@ -26,5 +26,9 @@ OpenAI API 使用API密钥进行身份验证。请前往您的[API 密钥](https
 ## 您可以学到什么？
 
 1. 学习 WPF 中的 **Binding**、**Command**、**Template**、**Style**、**Trigger**、**Animation**
-2. 在 WPF 项目中使用 `CommunityToolkit.Mvvm`
-3. 使用 `Microsoft.Extensions.Hosting` 进行依赖注入和配置
+2. 使用 `LiteDB` 保存数据而无需编写 SQL 语句.
+3. 使用 `CommunityToolkit.Mvvm` 以便捷实现可绑定数据与命令.
+4. 使用 `Microsoft.Extensions.Hosting` 进行服务管理, 配置与依赖注入
+5. 使用 `Hardcodet.NotifyIcon.Wpf` 在 WPF 程序中创建通知图标.
+6. 使用 `Microsoft.Xaml.Behaviors.Wpf` 在 WPF 程序中添加更多操作方式.
+7. 使用 `EleCho.GlobalHotkey.Windows.Wpf` 在 WPF 程序中处理全局热键.

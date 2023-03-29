@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OpenGptChat.Services
 {
-    public class ChatStorageService
+    public class ChatStorageService : IDisposable
     {
         public ChatStorageService(
             ConfigurationService configurationService)
@@ -19,6 +19,7 @@ namespace OpenGptChat.Services
                 new ConnectionString()
                 {
                     Filename = configurationService.Configuration.ChatStoragePath,
+                    
                 });
 
             ChatSessions = Database.GetCollection<ChatSession>();
@@ -83,6 +84,18 @@ namespace OpenGptChat.Services
         public bool ClearMessage(Guid sessionId)
         {
             return ChatMessages.DeleteMany(msg => msg.SessionId == sessionId) > 0;
+        }
+
+
+
+        bool disposed = false;
+        public void Dispose()
+        {
+            if (disposed)
+                return;
+
+            Database.Dispose();
+            disposed = true;
         }
     }
 }

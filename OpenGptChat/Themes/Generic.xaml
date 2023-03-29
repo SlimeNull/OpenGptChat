@@ -39,7 +39,7 @@
                         <Border x:Name="chatBubble" HorizontalAlignment="Stretch" Background="{TemplateBinding ContentBackground}"
                             BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="5">
                             <StackPanel HorizontalAlignment="Stretch">
-                                <TextBox HorizontalAlignment="Stretch"  InputMethod.IsInputMethodEnabled="True"
+                                <TextBox HorizontalAlignment="Stretch"
                                          Text="{Binding Content,RelativeSource={RelativeSource Mode=TemplatedParent}}" IsReadOnly="{TemplateBinding IsReadonly}" 
                                          BorderThickness="0" Background="Transparent" TextWrapping="Wrap" AcceptsReturn="True" Foreground="{TemplateBinding ContentForeground}"/>
                             </StackPanel>

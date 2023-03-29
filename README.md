@@ -26,5 +26,9 @@ The OpenAI API uses API keys for authentication. Visit your [API Keys](https://p
 ## What you can learn?
 
 1. Learn **Binding**, **Command**, **Template**, **Style**, **Trigger**, **Animation** in WPF.
-2. Use `CommunityToolkit.Mvvm` in WPF project.
-3. Use `Microsoft.Extensions.Hosting` for DependencyInjection, Configuration.
+2. Use `LiteDB` to save data without SQL.
+3. Use `CommunityToolkit.Mvvm` in WPF project.
+4. Use `Microsoft.Extensions.Hosting` for DependencyInjection, Configuration.
+5. Use `Hardcodet.NotifyIcon.Wpf` to create a notify icon in WPF applciation.
+6. Use `Microsoft.Xaml.Behaviors.Wpf` to add more operation functions in WPF application.
+7. Use `EleCho.GlobalHotkey.Windows.Wpf` to handle global hotkey in WPF applciation.

@@ -95,6 +95,9 @@
                                                 <behaviors:InvokeCommandAction Command="{Binding EndEditCommand}"/>
                                             </behaviors:EventTrigger>
                                         </behaviors:Interaction.Triggers>
+                                        <TextBox.InputBindings>
+                                            <KeyBinding Key="Return" Command="{Binding EndEditCommand}"/>
+                                        </TextBox.InputBindings>
                                         <TextBox.Style>
                                             <Style TargetType="TextBox">
                                                 <Setter Property="BorderBrush" Value="Transparent"/>

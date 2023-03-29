@@ -6,9 +6,12 @@ using OpenGptChat.Utilities;
 using OpenGptChat.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -21,31 +24,64 @@ namespace OpenGptChat.Services
     {
         public ApplicationHostService(
             LanguageService languageService,
+            ChatStorageService chatStorageService,
             ConfigurationService configurationService)
         {
             LanguageService = languageService;
+            ChatStorageService = chatStorageService;
             ConfigurationService = configurationService;
         }
 
         public LanguageService LanguageService { get; }
+        public ChatStorageService ChatStorageService { get; }
         public ConfigurationService ConfigurationService { get; }
+
+
+
+        /// <summary>
+        /// 确认程序是单例运行的
+        /// </summary>
+        /// <returns></returns>
+        public bool EnsureAppSingletion()
+        {
+            Process currentProcess = Process.GetCurrentProcess();
+
+            Process[] processes = 
+                Process.GetProcessesByName(currentProcess.ProcessName);
+
+            foreach (Process process in processes)
+            {
+                IntPtr mainWindowHandle = process.MainWindowHandle;
+                if (mainWindowHandle != IntPtr.Zero && NativeMethods.SetForegroundWindow(mainWindowHandle))
+                    return false;
+            }
+
+            return true;
+        }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
+            // 单例
+            if (!EnsureAppSingletion())
+                Environment.Exit(-1);
+
+            // 配置文件
             if (!File.Exists(GlobalValues.JsonConfigurationFilePath))
                 ConfigurationService.Save();
 
+            // 本地化
             CultureInfo language = CultureInfo.CurrentCulture;
             if (!string.IsNullOrWhiteSpace(ConfigurationService.Configuration.Language))
                 language = new CultureInfo(ConfigurationService.Configuration.Language);
-
             LanguageService.SetLanguage(language);
 
+            // 启动主窗体
             if (!App.Current.Windows.OfType<AppWindow>().Any())
             {
                 AppWindow window = App.GetService<AppWindow>();
                 window.Show();
 
+                // 导航到主页
                 window.Navigate(App.GetService<MainPage>());
             }
 
@@ -54,6 +90,8 @@ namespace OpenGptChat.Services
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
+            ChatStorageService.Dispose();
+
             return Task.CompletedTask;
         }
     }
