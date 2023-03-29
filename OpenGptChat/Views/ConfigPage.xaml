@@ -139,16 +139,6 @@
 
                 <StackPanel Margin="0 30 0 5">
                     <TextBlock>
-                        <Run Text="{DynamicResource StrLanguage}"/>
-                        <Run Text=":"/>
-                    </TextBlock>
-                    <ListBox BorderThickness="0"
-                             ItemsSource="{Binding LanguageService.Languages}" SelectedItem="{Binding LanguageService.CurrentLanguage}">
-                        
-                    </ListBox>
-                </StackPanel>
-                <StackPanel Margin="0 5 0 5">
-                    <TextBlock>
                         <Run Text="{DynamicResource StrHotkeyTips}"/>
                         <Run Text=":"/>
                     </TextBlock>
@@ -181,6 +171,23 @@
                             <Run>)</Run>
                         </TextBlock>
                     </StackPanel>
+                </StackPanel>
+
+                <StackPanel Margin="0 5 0 5">
+                    <TextBlock>
+                        <Run Text="{DynamicResource StrLanguage}"/>
+                        <Run Text=":"/>
+                    </TextBlock>
+                    <ListBox BorderThickness="0"
+                             ItemsSource="{Binding LanguageService.Languages}" SelectedItem="{Binding LanguageService.CurrentLanguage}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding DisplayName,Mode=OneWay}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
