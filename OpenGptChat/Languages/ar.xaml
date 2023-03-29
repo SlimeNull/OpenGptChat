@@ -1,0 +1,53 @@
+﻿<!--Translated by ChatGPT-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="_base.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--اسم الصفحة-->
+    <s:String x:Key="StrChat">الدردشة</s:String>
+    <s:String x:Key="StrConfiguration">الإعدادات</s:String>
+
+    <!--أسماء الإعدادات-->
+    <s:String x:Key="StrAPIKey">مفتاح واجهة برمجة التطبيقات</s:String>
+    <s:String x:Key="StrAPIHost">مضيف واجهة برمجة التطبيقات</s:String>
+    <s:String x:Key="StrAPIGPTModel">نموذج GPT لواجهة برمجة التطبيقات</s:String>
+    <s:String x:Key="StrAPITimeout">وقت انتهاء صلاحية واجهة برمجة التطبيقات</s:String>
+    <s:String x:Key="StrTemperature">درجة الحرارة</s:String>
+    <s:String x:Key="StrSystemMessages">رسائل النظام</s:String>
+    <s:String x:Key="StrApply">تطبيق</s:String>
+    <s:String x:Key="StrWindowAlwaysOnTop">نافذة دائمًا في المقدمة</s:String>
+
+    <s:String x:Key="StrLanguage">اللغة</s:String>
+
+    <!--وصف مفاتيح الاختصار-->
+    <s:String x:Key="StrHotkeyTips">تلميحات مفتاح الاختصار</s:String>
+    <s:String x:Key="StrCloseApplication">إغلاق التطبيق</s:String>
+    <s:String x:Key="StrHideApplication">إخفاء التطبيق</s:String>
+    <s:String x:Key="StrShowApplication">عرض التطبيق</s:String>
+    <s:String x:Key="StrSendMessage">إرسال رسالة</s:String>
+
+    <s:String x:Key="StrGlobalHotkey">مفتاح الاختصار العالمي</s:String>
+    <s:String x:Key="StrInputBox">مربع الإدخال</s:String>
+
+
+    <!--أزرار-->
+    <s:String x:Key="StrSend">إرسال</s:String>
+    <s:String x:Key="StrSave">حفظ</s:String>
+    <s:String x:Key="StrNewSession">جلسة جديدة</s:String>
+
+    <!--تلميحات الأدوات-->
+    <s:String x:Key="StrAboutOpenGptChat">حول OpenGptChat</s:String>
+    <s:String x:Key="StrGoBackToMainPage">العودة إلى الصفحة الرئيسية</s:String>
+    <s:String x:Key="StrResetChat">إعادة تعيين الدردشة</s:String>
+    <s:String x:Key="StrGoToConfigurationPage">الانتقال إلى صفحة الإعدادات</s:String>
+
+    <!--قائمة-->
+    <s:String x:Key="StrCopy">نسخ</s:String>
+    <s:String x:Key="StrEdit">تحرير</s:String>
+    <s:String x:Key="StrDelete">حذف</s:String>
+
+</ResourceDictionary>

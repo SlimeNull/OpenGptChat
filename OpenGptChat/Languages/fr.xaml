@@ -1,0 +1,53 @@
+﻿<!--Translated by ChatGPT-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="_base.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--Nom de la page-->
+    <s:String x:Key="StrChat">Chat</s:String>
+    <s:String x:Key="StrConfiguration">Configuration</s:String>
+
+    <!--Nom de la configuration-->
+    <s:String x:Key="StrAPIKey">Clé API</s:String>
+    <s:String x:Key="StrAPIHost">Hôte API</s:String>
+    <s:String x:Key="StrAPIGPTModel">Modèle d'API GPT</s:String>
+    <s:String x:Key="StrAPITimeout">Délai d'attente de l'API</s:String>
+    <s:String x:Key="StrTemperature">Température</s:String>
+    <s:String x:Key="StrSystemMessages">Messages système</s:String>
+    <s:String x:Key="StrApply">Appliquer</s:String>
+    <s:String x:Key="StrWindowAlwaysOnTop">Fenêtre toujours au premier plan</s:String>
+
+    <s:String x:Key="StrLanguage">Langue</s:String>
+
+    <!--Description du raccourci clavier-->
+    <s:String x:Key="StrHotkeyTips">Conseils de raccourci clavier</s:String>
+    <s:String x:Key="StrCloseApplication">Fermer l'application</s:String>
+    <s:String x:Key="StrHideApplication">Cacher l'application</s:String>
+    <s:String x:Key="StrShowApplication">Afficher l'application</s:String>
+    <s:String x:Key="StrSendMessage">Envoyer un message</s:String>
+
+    <s:String x:Key="StrGlobalHotkey">Raccourci clavier global</s:String>
+    <s:String x:Key="StrInputBox">Boîte de saisie</s:String>
+
+
+    <!--Boutons-->
+    <s:String x:Key="StrSend">Envoyer</s:String>
+    <s:String x:Key="StrSave">Sauvegarder</s:String>
+    <s:String x:Key="StrNewSession">Nouvelle session</s:String>
+
+    <!--Conseils d'outils-->
+    <s:String x:Key="StrAboutOpenGptChat">À propos de OpenGptChat</s:String>
+    <s:String x:Key="StrGoBackToMainPage">Retour à la page principale</s:String>
+    <s:String x:Key="StrResetChat">Réinitialiser la conversation</s:String>
+    <s:String x:Key="StrGoToConfigurationPage">Aller à la page de configuration</s:String>
+
+    <!--Menu-->
+    <s:String x:Key="StrCopy">Copier</s:String>
+    <s:String x:Key="StrEdit">Modifier</s:String>
+    <s:String x:Key="StrDelete">Supprimer</s:String>
+
+</ResourceDictionary>
