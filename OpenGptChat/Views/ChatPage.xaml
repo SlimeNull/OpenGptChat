@@ -42,8 +42,8 @@
                             </behaviors:Interaction.Triggers>
                             <controls:ChatBubble.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Copy" Command="{Binding CopyCommand}"/>
-                                    <MenuItem Header="Edit" Command="{Binding StartEditCommand}"/>
+                                    <MenuItem Header="{DynamicResource StrCopy}" Command="{Binding CopyCommand}"/>
+                                    <MenuItem Header="{DynamicResource StrEdit}" Command="{Binding StartEditCommand}"/>
                                 </ContextMenu>
                             </controls:ChatBubble.ContextMenu>
                         </controls:ChatBubble>
@@ -60,7 +60,7 @@
                     <KeyBinding Modifiers="Ctrl" Key="Return" Command="{Binding SendCommand}"/>
                 </TextBox.InputBindings>
             </TextBox>
-            <Button Content="Send" Command="{Binding SendCommand}" ToolTip="Send message (Ctrl + Enter)"
+            <Button Content="{DynamicResource StrSend}" Command="{Binding SendCommand}" ToolTip="Send message (Ctrl + Enter)"
                     VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10" Padding="10,5">
                 <Button.Resources>
                     <Style TargetType="Border">

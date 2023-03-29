@@ -6,6 +6,7 @@ using OpenGptChat.Utilities;
 using OpenGptChat.Views;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,20 +20,26 @@ namespace OpenGptChat.Services
     internal class ApplicationHostService : IHostedService
     {
         public ApplicationHostService(
-            ChatStorageService chatStorageService,
+            LanguageService languageService,
             ConfigurationService configurationService)
         {
-            ChatStorageService = chatStorageService;
+            LanguageService = languageService;
             ConfigurationService = configurationService;
         }
 
-        public ChatStorageService ChatStorageService { get; }
+        public LanguageService LanguageService { get; }
         public ConfigurationService ConfigurationService { get; }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
             if (!File.Exists(GlobalValues.JsonConfigurationFilePath))
                 ConfigurationService.Save();
+
+            CultureInfo language = CultureInfo.CurrentCulture;
+            if (!string.IsNullOrWhiteSpace(ConfigurationService.Configuration.Language))
+                language = new CultureInfo(ConfigurationService.Configuration.Language);
+
+            LanguageService.SetLanguage(language);
 
             if (!App.Current.Windows.OfType<AppWindow>().Any())
             {

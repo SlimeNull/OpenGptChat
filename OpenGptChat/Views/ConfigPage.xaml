@@ -17,16 +17,16 @@
         <Grid>
             <Border Padding="5" BorderThickness="0 0 0 1" BorderBrush="Gray">
                 <Grid>
-                    <TextBlock Text="Configuration"  FontSize="{DynamicResource ExtremLargeFontSize}"/>
+                    <TextBlock Text="{DynamicResource StrConfiguration}"  FontSize="{DynamicResource ExtremLargeFontSize}"/>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                         <StackPanel.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="3"/>
                             </Style>
                         </StackPanel.Resources>
-                        <Button Content="📄" BorderThickness="0" Padding="3" Margin="0 0 3 0" ToolTip="About OpenChat"
+                        <Button Content="📄" BorderThickness="0" Padding="3" Margin="0 0 3 0" ToolTip="{DynamicResource StrAboutOpenGptChat}"
                                 Command="{Binding AboutOpenChatCommand}"/>
-                        <Button Content="🏠︎" BorderThickness="0" Padding="3" ToolTip="Go back to Main page"
+                        <Button Content="🏠︎" BorderThickness="0" Padding="3" ToolTip="{DynamicResource StrGoBackToMainPage}"
                                 Command="{Binding GoToMainPageCommand}"/>
                     </StackPanel>
                 </Grid>
@@ -36,29 +36,47 @@
         <ScrollViewer Grid.Row="1" Name="configurationScrollViewer">
             <StackPanel Margin="10" MaxWidth="600">
                 <StackPanel Margin="0 5">
-                    <TextBlock Text="API Key:" Margin="0 0 0 5"/>
+                    <TextBlock Margin="0 0 0 5">
+                        <Run Text="{DynamicResource StrAPIKey}"/>
+                        <Run Text=":"/>
+                    </TextBlock>
                     <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.ApiKey}"/>
                 </StackPanel>
                 <StackPanel Margin="0 5">
-                    <TextBlock Text="API GPT Model:" Margin="0 0 0 5"/>
-                    <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.ApiGptModel}"/>
-                </StackPanel>
-                <StackPanel Margin="0 5">
-                    <TextBlock Text="API Host:" Margin="0 0 0 5"/>
+                    <TextBlock Margin="0 0 0 5">
+                        <Run Text="{DynamicResource StrAPIHost}"/>
+                        <Run Text=":"/>
+                    </TextBlock>
                     <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.ApiHost}"/>
                 </StackPanel>
                 <StackPanel Margin="0 5">
-                    <TextBlock Text="API Timeout:" Margin="0 0 0 5"/>
+                    <TextBlock Margin="0 0 0 5">
+                        <Run Text="{DynamicResource StrAPIGPTModel}"/>
+                        <Run Text=":"/>
+                    </TextBlock>
+                    <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.ApiGptModel}"/>
+                </StackPanel>
+                <StackPanel Margin="0 5">
+                    <TextBlock Margin="0 0 0 5">
+                        <Run Text="{DynamicResource StrAPITimeout}"/>
+                        <Run Text=":"/>
+                    </TextBlock>
                     <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.ApiTimeout}"/>
                 </StackPanel>
                 <StackPanel Margin="0 5">
-                    <TextBlock Text="Temperature:" Margin="0 0 0 5"/>
+                    <TextBlock Margin="0 0 0 5">
+                        <Run Text="{DynamicResource StrTemperature}"/>
+                        <Run Text=":"/>
+                    </TextBlock>
                     <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.Temerature}"/>
                 </StackPanel>
 
                 <StackPanel Margin="0 5">
                     <Grid>
-                        <TextBlock Text="System messages:" Margin="0 0 0 5"/>
+                        <TextBlock Margin="0 0 0 5">
+                            <Run Text="{DynamicResource StrSystemMessages}"/>
+                            <Run Text=":"/>
+                        </TextBlock>
 
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                             <StackPanel.Resources>
@@ -89,7 +107,7 @@
 
                             <Button Content=" - " Command="{Binding RemoveSystemMessageCommand}" ToolTip="Remove a system message"/>
                             <Button Content=" + " Command="{Binding AddSystemMessageCommand}" ToolTip="Add a system message"/>
-                            <Button Content="Apply" Command="{Binding ApplySystemMessagesCommand}" ToolTip="Apply system messages"/>
+                            <Button Content="{DynamicResource StrApply}" Command="{Binding ApplySystemMessagesCommand}" ToolTip="Apply system messages"/>
                         </StackPanel>
                     </Grid>
                     <Border MinHeight="30"
@@ -110,15 +128,29 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Window always on top:"/>
+                        <TextBlock>
+                            <Run Text="{DynamicResource StrWindowAlwaysOnTop}"/>
+                            <Run Text=":"/>
+                        </TextBlock>
                         <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" IsChecked="{Binding ConfigurationService.Configuration.WindowAlwaysOnTop}"/>
                     </Grid>
-                    
+
                 </StackPanel>
 
                 <StackPanel Margin="0 30 0 5">
                     <TextBlock>
-                        Hotkey Tips:
+                        <Run Text="{DynamicResource StrLanguage}"/>
+                        <Run Text=":"/>
+                    </TextBlock>
+                    <ListBox BorderThickness="0"
+                             ItemsSource="{Binding LanguageService.Languages}" SelectedItem="{Binding LanguageService.CurrentLanguage}">
+                        
+                    </ListBox>
+                </StackPanel>
+                <StackPanel Margin="0 5 0 5">
+                    <TextBlock>
+                        <Run Text="{DynamicResource StrHotkeyTips}"/>
+                        <Run Text=":"/>
                     </TextBlock>
                     <StackPanel Margin="5">
                         <StackPanel.Resources>
@@ -126,16 +158,34 @@
                                 <Setter Property="Margin" Value="0 5 0 0"/>
                             </Style>
                         </StackPanel.Resources>
-                        <TextBlock>Ctrl+W: Close application</TextBlock>
-                        <TextBlock>Ctrl+H: Hide application</TextBlock>
-                        <TextBlock>Ctrl+Shift+H: Show application (Global hotkey)</TextBlock>
-                        <TextBlock>Ctrl+Enter: Send message (Input box)</TextBlock>
+                        <TextBlock>
+                            <Run>Ctrl+W:</Run>
+                            <Run Text="{DynamicResource StrCloseApplication}"/>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run>Ctrl+H:</Run>
+                            <Run Text="{DynamicResource StrHideApplication}"/>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run>Ctrl+Shift+H:</Run>
+                            <Run Text="{DynamicResource StrShowApplication}"/>
+                            <Run>(</Run>
+                            <Run Text="{DynamicResource StrGlobalHotkey}"/>
+                            <Run>)</Run>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run>Ctrl+Enter:</Run>
+                            <Run Text="{DynamicResource StrSendMessage}"/>
+                            <Run>(</Run>
+                            <Run Text="{DynamicResource StrInputBox}"/>
+                            <Run>)</Run>
+                        </TextBlock>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
 
-        <Button Grid.Row="1" Content="Save" Command="{Binding SaveConfigurationCommand}" ToolTip="Save configuration"
+        <Button Grid.Row="1" Content="{DynamicResource StrSave}" Command="{Binding SaveConfigurationCommand}" ToolTip="Save configuration"
                 HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="25 10" Padding="10,5">
             <Button.Resources>
                 <Style TargetType="Border">

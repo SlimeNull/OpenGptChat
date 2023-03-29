@@ -1,0 +1,52 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="base.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--頁面名稱-->
+    <s:String x:Key="StrChat">聊天</s:String>
+    <s:String x:Key="StrConfiguration">配置</s:String>
+
+    <!--配置名稱-->
+    <s:String x:Key="StrAPIKey">API 密鑰</s:String>
+    <s:String x:Key="StrAPIHost">API 主機</s:String>
+    <s:String x:Key="StrAPIGPTModel">API GPT 模型</s:String>
+    <s:String x:Key="StrAPITimeout">API 超時時間</s:String>
+    <s:String x:Key="StrTemperature">溫度</s:String>
+    <s:String x:Key="StrSystemMessages">系統消息</s:String>
+    <s:String x:Key="StrApply">應用</s:String>
+    <s:String x:Key="StrWindowAlwaysOnTop">窗口置頂</s:String>
+
+    <s:String x:Key="StrLanguage">語言</s:String>
+
+    <!--熱鍵描述-->
+    <s:String x:Key="StrHotkeyTips">熱鍵提示</s:String>
+    <s:String x:Key="StrCloseApplication">關閉程式</s:String>
+    <s:String x:Key="StrHideApplication">隱藏程式</s:String>
+    <s:String x:Key="StrShowApplication">顯示程式</s:String>
+    <s:String x:Key="StrSendMessage">發送消息</s:String>
+
+    <s:String x:Key="StrGlobalHotkey">全局熱鍵</s:String>
+    <s:String x:Key="StrInputBox">輸入框</s:String>
+
+
+    <!--按鈕-->
+    <s:String x:Key="StrSend">發送</s:String>
+    <s:String x:Key="StrSave">保存</s:String>
+    <s:String x:Key="StrNewSession">新建會話</s:String>
+
+    <!--工具提示-->
+    <s:String x:Key="StrAboutOpenGptChat">關於OpenGptChat</s:String>
+    <s:String x:Key="StrGoBackToMainPage">返回到主頁面</s:String>
+    <s:String x:Key="StrResetChat">重置聊天</s:String>
+    <s:String x:Key="StrGoToConfigurationPage">轉到配置頁面</s:String>
+
+    <!--菜单-->
+    <s:String x:Key="StrCopy">複製</s:String>
+    <s:String x:Key="StrEdit">編輯</s:String>
+    <s:String x:Key="StrDelete">刪除</s:String>
+    
+    
+</ResourceDictionary>

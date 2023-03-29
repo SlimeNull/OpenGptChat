@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -6,22 +7,36 @@ using System.Threading.Tasks;
 
 namespace OpenGptChat.Models
 {
-    public partial class AppConfig : INotifyPropertyChanged
+    public partial class AppConfig : ObservableObject
     {
-        public string ApiHost { get; set; } = "openaiapi.elecho.top";
-        public string ApiKey { get; set; } = string.Empty;
-        public string ApiGptModel { get; set; } = "gpt-3.5-turbo";
-        public int ApiTimeout { get; set; } = 5000;
-        public double Temerature { get; set; } = 1;
+        [ObservableProperty]
+        private string _apiHost = "openaiapi.elecho.top";
 
-        public string[] SystemMessages { get; set; } = new string[]
+        [ObservableProperty]
+        private string _apiKey = string.Empty;
+
+        [ObservableProperty]
+        private string _apiGptModel = "gpt-3.5-turbo";
+
+        [ObservableProperty]
+        private int _apiTimeout = 5000;
+
+        [ObservableProperty]
+        private double _temerature = 1;
+
+        [ObservableProperty]
+        private string[] _systemMessages = new string[]
         {
 
         };
 
-        public bool WindowAlwaysOnTop { get; set; } = false;
-        public string ChatStoragePath { get; set; } = "chat.db";
+        [ObservableProperty]
+        private string _language = string.Empty;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        [ObservableProperty]
+        private bool _windowAlwaysOnTop = false;
+
+        [ObservableProperty]
+        private string _chatStoragePath = "chat.db";
     }
 }

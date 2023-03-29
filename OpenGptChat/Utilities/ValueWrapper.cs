@@ -12,7 +12,7 @@ namespace OpenGptChat.Models
     {
         public ValueWrapper(T value)
         {
-            Value = value;
+            _value = value;
         }
 
         [ObservableProperty]

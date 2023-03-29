@@ -48,6 +48,7 @@ namespace OpenGptChat
                 services.AddSingleton<ChatStorageService>();
                 services.AddSingleton<ConfigurationService>();
                 services.AddSingleton<SmoothScrollingService>();
+                services.AddSingleton<LanguageService>();
 
                 // 窗体服务
                 services.AddSingleton<AppWindow>();

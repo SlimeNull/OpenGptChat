@@ -4,6 +4,7 @@ using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -29,12 +30,14 @@ namespace OpenGptChat.Views
             ConfigPageModel viewModel,
             PageService pageService,
             NoteService noteService,
+            LanguageService languageService,
             ConfigurationService configurationService,
             SmoothScrollingService smoothScrollingService)
         {
             ViewModel = viewModel;
             PageService = pageService;
             NoteService = noteService;
+            LanguageService = languageService;
             ConfigurationService = configurationService;
             DataContext = this;
 
@@ -48,6 +51,7 @@ namespace OpenGptChat.Views
         public ConfigPageModel ViewModel { get; }
         public PageService PageService { get; }
         public NoteService NoteService { get; }
+        public LanguageService LanguageService { get; }
         public ConfigurationService ConfigurationService { get; }
 
 
@@ -117,6 +121,9 @@ namespace OpenGptChat.Views
         [RelayCommand]
         public Task SaveConfiguration()
         {
+            ConfigurationService.Configuration.Language =
+                LanguageService.CurrentLanguage.ToString();
+
             ConfigurationService.Save();
             return NoteService.ShowAsync("Configuration saved", 2000);
         }

@@ -43,12 +43,6 @@ namespace OpenGptChat.Views
             InitializeComponent();
 
             smoothScrollingService.Register(messageScrollViewer);
-
-            if (DesignerProperties.GetIsInDesignMode(this))
-            {
-                ViewModel.Messages.Add(new ChatMessageModel("user", "你好吗"));
-                ViewModel.Messages.Add(new ChatMessageModel("assistant", "我很好, 谢谢你"));
-            }
         }
 
         public ChatPageModel ViewModel { get; }
