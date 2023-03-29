@@ -55,6 +55,9 @@ namespace OpenGptChat
         {
             this.Show();
 
+            if (this.WindowState == WindowState.Minimized)
+                this.WindowState = WindowState.Normal;
+
             if (!this.IsActive)
                 this.Activate();
         }
