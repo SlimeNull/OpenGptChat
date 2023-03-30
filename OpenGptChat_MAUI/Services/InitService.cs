@@ -24,6 +24,8 @@ namespace OpenGptChat_MAUI.Services
 
 
             Debug.WriteLine(GlobalValues.JsonConfigurationFilePath);
+            Debug.WriteLine(GlobalValues.DatabasePath);
+
 
             // 如果不存在配置文件则保存一波
             if (!File.Exists(GlobalValues.JsonConfigurationFilePath))

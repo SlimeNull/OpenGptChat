@@ -1,5 +1,6 @@
 ﻿using LiteDB;
 using OpenGptChat_MAUI.Models;
+using OpenGptChat_MAUI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,7 +101,7 @@ namespace OpenGptChat_MAUI.Services
             Database = new LiteDatabase(
                 new ConnectionString()
                 {
-                    Filename = ConfigurationService.Configuration.ChatStoragePath,
+                    Filename = GlobalValues.DatabasePath
 
                 });
 
