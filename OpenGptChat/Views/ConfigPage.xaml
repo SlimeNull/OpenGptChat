@@ -183,7 +183,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>
-                                    <Run Text="{Binding DisplayName,Mode=OneWay}"/>
+                                    <Run Text="{Binding NativeName,Mode=OneWay}"/>
                                 </TextBlock>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
