@@ -2,40 +2,45 @@
 <ContentPage
     x:Class="OpenGptChat_MAUI.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <Grid>
-        <AbsoluteLayout>
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:OpenGptChat_MAUI.ViewModels"
+    x:DataType="vm:MainPageModel">
+    <Grid RowDefinitions="Auto,*">
 
+        <Grid
+            Grid.Row="0"
+            BackgroundColor="#10A37F"
+            HeightRequest="50"
+            RowDefinitions="*,Auto">
             <Grid
-                AbsoluteLayout.LayoutBounds="0, 0, 1,0.0625 "
-                AbsoluteLayout.LayoutFlags="SizeProportional"
-                BackgroundColor="#10A37F"
-                RowDefinitions="*,Auto">
-                <Grid
-                    Grid.Row="0"
-                    Margin="10,12"
-                    ColumnDefinitions="Auto,*,Auto">
-                    <ImageButton Grid.Column="0" Source="toolbar.png" />
-                    <ImageButton Grid.Column="2" Source="plus.png" />
-                </Grid>
-                <Grid Grid.Row="1" Margin="-2,0">
-                    <Line
-                        Grid.Row="1"
-                        HeightRequest="3"
-                        Stroke="Black"
-                        StrokeThickness="3"
-                        X2="{Binding Source={RelativeSource AncestorType={x:Type Grid}, AncestorLevel=1}, Path=Width}" />
-                </Grid>
-
-
+                Grid.Row="0"
+                Margin="10,12"
+                ColumnDefinitions="Auto,*,Auto">
+                <ImageButton
+                    Grid.Column="0"
+                    IsEnabled="True"
+                    Source="toolbar.png" />
+                <ImageButton
+                    Grid.Column="2"
+                    Command="{Binding GoToSettingsCommand}"
+                    IsEnabled="True"
+                    Source="settings.png" />
 
             </Grid>
+            <Grid Grid.Row="1" Margin="-2,0">
+                <Line
+                    Grid.Row="1"
+                    HeightRequest="3"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    X2="{Binding Source={RelativeSource AncestorType={x:Type Grid}, AncestorLevel=1}, Path=Width}" />
+            </Grid>
+        </Grid>
 
 
-        </AbsoluteLayout>
 
 
-        <Grid RowDefinitions="*,Auto">
+        <Grid Grid.Row="1" RowDefinitions="*,Auto">
             <Grid Grid.Row="0">
                 <ScrollView>
                     <VerticalStackLayout
@@ -64,7 +69,7 @@
 
                         <Button
                             x:Name="CounterBtn"
-                            Clicked="OnCounterClicked"
+                            Command="{Binding GoToSettingsCommand}"
                             HorizontalOptions="Center"
                             SemanticProperties.Hint="Counts the number of times you click"
                             Text="Click me" />

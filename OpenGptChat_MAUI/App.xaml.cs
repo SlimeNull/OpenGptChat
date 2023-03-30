@@ -10,7 +10,6 @@ namespace OpenGptChat_MAUI
 
             MainPage = new AppShell();
 
-
             
         }
 
