@@ -16,7 +16,7 @@ namespace OpenGptChat.Services
                 { new CultureInfo("en"), new ResourceDictionary() { Source = new Uri("/Languages/en.xaml", UriKind.Relative) } },
                 { new CultureInfo("zh-hans"), new ResourceDictionary() { Source = new Uri("/Languages/zh-hans.xaml", UriKind.Relative) } },
                 { new CultureInfo("zh-hant"), new ResourceDictionary() { Source = new Uri("/Languages/zh-hant.xaml", UriKind.Relative) } },
-                { new CultureInfo("ja-JP"), new ResourceDictionary() { Source = new Uri("/Languages/ja-JP.xaml", UriKind.Relative) } },
+                { new CultureInfo("ja"), new ResourceDictionary() { Source = new Uri("/Languages/ja.xaml", UriKind.Relative) } },
                 { new CultureInfo("ar"), new ResourceDictionary() { Source = new Uri("/Languages/ar.xaml", UriKind.Relative) } },
                 { new CultureInfo("es"), new ResourceDictionary() { Source = new Uri("/Languages/es.xaml", UriKind.Relative) } },
                 { new CultureInfo("fr"), new ResourceDictionary() { Source = new Uri("/Languages/fr.xaml", UriKind.Relative) } },
