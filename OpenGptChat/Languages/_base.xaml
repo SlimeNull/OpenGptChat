@@ -16,7 +16,7 @@
     <s:String x:Key="StrApply">Apply</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">Window always on top</s:String>
 
-    <s:String x:Key="StrLanguage">Language</s:String>
+    <s:String x:Key="StrLanguage">Languages</s:String>
 
     <!--hotkey descriptions-->
     <s:String x:Key="StrHotkeyTips">Hotkety Tips</s:String>
