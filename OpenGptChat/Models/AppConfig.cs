@@ -10,7 +10,7 @@ namespace OpenGptChat.Models
     public partial class AppConfig : ObservableObject
     {
         [ObservableProperty]
-        private string _apiHost = "openaiapi.elecho.top";
+        private string _apiHost = "openaiapi.elecho.org";
 
         [ObservableProperty]
         private string _apiKey = string.Empty;

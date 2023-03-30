@@ -106,27 +106,30 @@ namespace OpenGptChat
 
 
         /// <summary>
-        /// 确认程序是单例运行的
+        /// 确认程序是单例运行的 / Confirm that the program is running as a singleton.
         /// </summary>
         /// <returns></returns>
         public bool EnsureAppSingletion()
         {
-            // 拿到当前线程
+            // 拿到当前线程 / Get the current thread.
             Process currentProcess = Process.GetCurrentProcess();
 
-            // 找与当前线程同名的线程
+            // 找与当前线程同名的线程 / Find a thread with the same name as the current thread.
             Process[] processes =
                 Process.GetProcessesByName(currentProcess.ProcessName);
 
-            // 循环
+            // 循环 / Looping.
             foreach (Process process in processes)
             {
-                // 如果线程与当前线程 ID 一样, 跳过
+                // 如果线程与当前线程 ID 一样, 跳过 / Skip if the thread has the same ID as the current thread.
                 if (process.Id == currentProcess.Id)
                     continue;
 
                 // 取主窗口并置顶, 成功了就返回 false (表示当前程序不是单例的)
-                IntPtr mainWindowHandle = process.MainWindowHandle;
+                // Retrieve and bring the main window to the top. Return false if successful (indicating that the current program is not a singleton).
+                IntPtr mainWindowHandle =
+                    NativeMethods.GetProcessMainWindowHandle(process.Id);
+
                 if (mainWindowHandle != IntPtr.Zero &&
                     NativeMethods.ShowWindowNormal(mainWindowHandle) &&
                     NativeMethods.SetForegroundWindow(mainWindowHandle))
@@ -134,6 +137,7 @@ namespace OpenGptChat
             }
 
             // 这说明没有找到合适的进程, 返回 true (表示当前程序是第一个启动的实例)
+            // This indicates that a suitable process was not found. Return true (indicating that the current program is the first instance to be launched).
             return true;
         }
 

@@ -6,8 +6,9 @@
       xmlns:local="clr-namespace:OpenGptChat.Views"
       xmlns:controls="clr-namespace:OpenGptChat.Controls"
       xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
-      mc:Ignorable="d"  Loaded="Page_Loaded"
-      d:DesignHeight="600" d:DesignWidth="730" d:Background="White" d:DataContext="{d:DesignInstance Type=local:ChatPage}"
+      mc:Ignorable="d"
+      d:DesignHeight="600" d:DesignWidth="730" 
+      d:Background="White" d:DataContext="{d:DesignInstance Type=local:ChatPage}"
       Title="ChatPage">
 
     <Grid>
@@ -16,17 +17,25 @@
             <RowDefinition Height="130"/>
         </Grid.RowDefinitions>
 
-        <ScrollViewer Name="messageScrollViewer" ScrollChanged="ScrollViewer_ScrollChanged">
+        <ScrollViewer Name="messageScrollViewer">
+            <behaviors:Interaction.Triggers>
+                <behaviors:EventTrigger EventName="Loaded">
+                    <behaviors:CallMethodAction MethodName="ScrollToEnd"/>
+                </behaviors:EventTrigger>
+                <behaviors:EventTrigger EventName="ScrollChanged">
+                    <behaviors:InvokeCommandAction Command="{Binding ScrollToEndWhileReceivingCommand}" />
+                </behaviors:EventTrigger>
+            </behaviors:Interaction.Triggers>
             <ItemsControl ItemsSource="{Binding ViewModel.Messages}" Padding="10 10 10 20">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <controls:ChatBubble HorizontalAlignment="{Binding SelfAlignment}" HorizontalContentAlignment="{Binding SelfAlignment}" CornerRadius="{Binding SelfCornorRadius}" 
                                              Username="{Binding DisplayName}" Content="{Binding Content,Mode=TwoWay}" IsReadonly="{Binding IsReadOnly}"
-                                             BorderThickness="1" ContentBackground="White">
+                                             BorderThickness="1" ContentBackground="#f2f2f2">
                             <controls:ChatBubble.Style>
                                 <Style TargetType="controls:ChatBubble" BasedOn="{StaticResource AnimatedChatBubble}">
                                     <Setter Property="HeaderForeground" Value="Gray"/>
-                                    <Setter Property="BorderBrush" Value="Gray"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
                                     <Style.Triggers>
                                         <Trigger Property="IsReadonly" Value="False">
                                             <Setter Property="HeaderForeground" Value="#569de5"/>
