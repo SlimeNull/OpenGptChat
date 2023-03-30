@@ -17,6 +17,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -105,40 +106,75 @@ namespace OpenGptChat
         }
 
 
+        public static IRelayCommand ShowAppCommand =
+            new RelayCommand(ShowApp);
+        public static IRelayCommand HideAppCommand =
+            new RelayCommand(HideApp);
+        public static IRelayCommand CloseAppCommand =
+            new RelayCommand(CloseApp);
+
+        public static void ShowApp()
+        {
+            Window mainWindow = Application.Current.MainWindow;
+            if (mainWindow == null)
+                return;
+
+            mainWindow.Show();
+
+            if (mainWindow.WindowState == WindowState.Minimized)
+                mainWindow.WindowState = WindowState.Normal;
+
+            if (!mainWindow.IsActive)
+                mainWindow.Activate();
+        }
+
+        public static void HideApp()
+        {
+            Window mainWindow = Application.Current.MainWindow;
+            if (mainWindow == null)
+                return;
+
+            mainWindow.Hide();
+        }
+
+        public static void CloseApp()
+        {
+            Application.Current.Shutdown();
+        }
+
+
         /// <summary>
         /// 确认程序是单例运行的 / Confirm that the program is running as a singleton.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>当前程序是否是单例, 如果 false, 那么应该立即中止程序</returns>
         public bool EnsureAppSingletion()
         {
-            // 拿到当前线程 / Get the current thread.
-            Process currentProcess = Process.GetCurrentProcess();
+            EventWaitHandle singletonEvent = new EventWaitHandle(false, EventResetMode.AutoReset, "SlimeNull/OpenGptChat", out bool createdNew);
 
-            // 找与当前线程同名的线程 / Find a thread with the same name as the current thread.
-            Process[] processes =
-                Process.GetProcessesByName(currentProcess.ProcessName);
-
-            // 循环 / Looping.
-            foreach (Process process in processes)
+            //throw new NotImplementedException();
+            if (createdNew)
             {
-                // 如果线程与当前线程 ID 一样, 跳过 / Skip if the thread has the same ID as the current thread.
-                if (process.Id == currentProcess.Id)
-                    continue;
+                Task.Run(() =>
+                {
+                    while (true)
+                    {
+                        // wait for the second instance of OpenGptChat
+                        singletonEvent.WaitOne();
 
-                // 取主窗口并置顶, 成功了就返回 false (表示当前程序不是单例的)
-                // Retrieve and bring the main window to the top. Return false if successful (indicating that the current program is not a singleton).
-                IntPtr mainWindowHandle =
-                    NativeMethods.GetProcessMainWindowHandle(process.Id);
+                        Dispatcher.Invoke(() =>
+                        {
+                            ShowApp();
+                        });
+                    }
+                });
 
-                if (mainWindowHandle != IntPtr.Zero &&
-                    NativeMethods.ShowWindowNormal(mainWindowHandle) &&
-                    NativeMethods.SetForegroundWindow(mainWindowHandle))
-                    return false;
+                return true;
             }
-
-            // 这说明没有找到合适的进程, 返回 true (表示当前程序是第一个启动的实例)
-            // This indicates that a suitable process was not found. Return true (indicating that the current program is the first instance to be launched).
-            return true;
+            else
+            {
+                singletonEvent.Set();
+                return false;
+            }
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
