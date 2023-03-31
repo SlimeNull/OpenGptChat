@@ -1,0 +1,56 @@
+﻿<!--Translated by ChatGPT-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="_base.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Название страницы -->
+    <s:String x:Key="StrChat">Чат</s:String>
+    <s:String x:Key="StrConfiguration">Конфигурация</s:String>
+
+    <!-- Название настроек -->
+    <s:String x:Key="StrAPIKey">Ключ API</s:String>
+    <s:String x:Key="StrAPIHost">Хост API</s:String>
+    <s:String x:Key="StrAPIGPTModel">Модель API GPT</s:String>
+    <s:String x:Key="StrAPITimeout">Время ожидания API</s:String>
+    <s:String x:Key="StrTemperature">Температура</s:String>
+    <s:String x:Key="StrSystemMessages">Системные сообщения</s:String>
+    <s:String x:Key="StrApply">Применить</s:String>
+    <s:String x:Key="StrWindowAlwaysOnTop">Окно всегда сверху</s:String>
+
+    <s:String x:Key="StrLanguage">Язык</s:String>
+    <s:String x:Key="StrColorMode">Режим цвета</s:String>
+
+    <!-- Описание горячих клавиш -->
+    <s:String x:Key="StrHotkeyTips">Подсказки по горячим клавишам</s:String>
+    <s:String x:Key="StrCloseApplication">Закрыть приложение</s:String>
+    <s:String x:Key="StrHideApplication">Скрыть приложение</s:String>
+    <s:String x:Key="StrShowApplication">Показать приложение</s:String>
+    <s:String x:Key="StrSendMessage">Отправить сообщение</s:String>
+
+    <s:String x:Key="StrGlobalHotkey">Глобальные горячие клавиши</s:String>
+    <s:String x:Key="StrInputBox">Поле ввода</s:String>
+
+
+    <!-- Кнопки -->
+    <s:String x:Key="StrSend">Отправить</s:String>
+    <s:String x:Key="StrSave">Сохранить</s:String>
+    <s:String x:Key="StrNewSession">Новая сессия</s:String>
+
+    <!-- Подсказки для инструментов -->
+    <s:String x:Key="StrAboutOpenGptChat">О OpenGptChat</s:String>
+    <s:String x:Key="StrGoBackToMainPage">Вернуться на главную страницу</s:String>
+    <s:String x:Key="StrResetChat">Сбросить чат</s:String>
+    <s:String x:Key="StrGoToConfigurationPage">Перейти на страницу конфигурации</s:String>
+
+    <!-- Меню -->
+    <s:String x:Key="StrCopy">Копировать</s:String>
+    <s:String x:Key="StrEdit">Редактировать</s:String>
+    <s:String x:Key="StrDelete">Удалить</s:String>
+
+
+
+</ResourceDictionary>

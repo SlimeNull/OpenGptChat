@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="_ColorModeBase.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Brush x:Key="GeneralBackground">#1f1f1f</Brush>
+    <Brush x:Key="GeneralBorder">#3d3d3d</Brush>
+
+    <Brush x:Key="BoxBackground">#383838</Brush>
+    <Brush x:Key="BoxHoverBackground">#383838</Brush>
+    <Brush x:Key="BoxPressBackground">#333333</Brush>
+    <Brush x:Key="BoxFocusedBackground">#1f1f1f</Brush>
+    <Brush x:Key="BoxDisabledBackground">#383838</Brush>
+    <Brush x:Key="BoxBorder">#424242</Brush>
+    <Brush x:Key="BoxHoverBorder">#999999</Brush>
+    <Brush x:Key="BoxPressBorder">#999999</Brush>
+    <Brush x:Key="BoxFocusedBorder">#999999</Brush>
+    <Brush x:Key="BoxDisabledBorder">#424242</Brush>
+
+    <Brush x:Key="TextBoxBackground">#1f1f1f</Brush>
+    <Brush x:Key="TextBoxHoverBackground">#212121</Brush>
+    <Brush x:Key="TextBoxPressBackground">#2f2f2f</Brush>
+    <Brush x:Key="TextBoxFocusedBackground">#1f1f1f</Brush>
+    <Brush x:Key="TextBoxDisabledBackground">#383838</Brush>
+    <Brush x:Key="TextBoxBorder">#424242</Brush>
+    <Brush x:Key="TextBoxHoverBorder">#666666</Brush>
+    <Brush x:Key="TextBoxPressBorder">#666666</Brush>
+    <Brush x:Key="TextBoxFocusedBorder">#555555</Brush>
+    <Brush x:Key="TextBoxDisabledBorder">#424242</Brush>
+
+    <Brush x:Key="ControlBackground">#2e2e2e</Brush>
+    <Brush x:Key="ControlHoverBackground">#3a3a3a</Brush>
+    <Brush x:Key="ControlPressBackground">#333333</Brush>
+    <Brush x:Key="ControlDisabledBackground">#1f1f1f</Brush>
+    <Brush x:Key="ControlBorder">#666666</Brush>
+    <Brush x:Key="ControlHoverBorder">#777777</Brush>
+    <Brush x:Key="ControlPressBorder">#777777</Brush>
+    <Brush x:Key="ControlDisabledBorder">#303030</Brush>
+
+    <Brush x:Key="ScrollBackground">#2e2e2e</Brush>
+    <Brush x:Key="ScrollHoverBackground">#2e2e2e</Brush>
+    <Brush x:Key="ScrollPressBackground">#2e2e2e</Brush>
+    <Brush x:Key="ScrollForeground">#4d4d4d</Brush>
+    <Brush x:Key="ScrollHoverForeground">#666666</Brush>
+    <Brush x:Key="ScrollPressForeground">#999999</Brush>
+    <Brush x:Key="ScrollBorder">#2e2e2e</Brush>
+    <Brush x:Key="ScrollHoverBorder">#2e2e2e</Brush>
+    <Brush x:Key="ScrollPressBorder">#2e2e2e</Brush>
+
+    <Brush x:Key="ChatBubbleBackground">#333333</Brush>
+    <Brush x:Key="ChatBubbleBorder">#999999</Brush>
+
+    <Brush x:Key="FontForeground">#dddddd</Brush>
+    <Brush x:Key="FontForegroundLight">#d6d6d6</Brush>
+
+    <Brush x:Key="SessionHoverBackground">#2d2d2d</Brush>
+    <Brush x:Key="SessionSelectedBackgroun">#3d3d3d</Brush>
+
+</ResourceDictionary>

@@ -1,29 +1,19 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using OpenGptChat.Models;
-using OpenGptChat.Services;
-using OpenGptChat.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using CommunityToolkit.Mvvm.Input;
+using OpenGptChat.Abstraction;
+using OpenGptChat.Models;
+using OpenGptChat.Services;
+using OpenGptChat.ViewModels;
 
 namespace OpenGptChat.Views
 {
     /// <summary>
     /// Interaction logic for ChatPage.xaml
     /// </summary>
-    public partial class ChatPage : Page
+    public partial class ChatPage : Page, IChatPage
     {
         public ChatPage(
             ChatPageModel viewModel,
@@ -100,8 +90,11 @@ namespace OpenGptChat.Views
 
                         if (!responseAdded)
                         {
-                            ViewModel.Messages.Add(responseMessageModel);
                             responseAdded = true;
+                            Dispatcher.Invoke(() =>
+                            {
+                                ViewModel.Messages.Add(responseMessageModel);
+                            });
                         }
                     });
 
@@ -124,16 +117,11 @@ namespace OpenGptChat.Views
             Clipboard.SetText(text);
         }
 
-        private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        [RelayCommand]
+        public void ScrollToEndWhileReceiving()
         {
-            ScrollViewer scrollViewer = (ScrollViewer)sender;
-
             if (SendCommand.IsRunning)
-                scrollViewer.ScrollToEnd();
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
+                messageScrollViewer.ScrollToEnd();
         }
     }
 }

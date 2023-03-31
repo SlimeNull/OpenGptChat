@@ -1,0 +1,56 @@
+﻿<!--Translated by ChatGPT-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="_base.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--ページ名-->
+    <s:String x:Key="StrChat">チャット</s:String>
+    <s:String x:Key="StrConfiguration">設定</s:String>
+
+    <!--設定項目名-->
+    <s:String x:Key="StrAPIKey">APIキー</s:String>
+    <s:String x:Key="StrAPIHost">APIホスト</s:String>
+    <s:String x:Key="StrAPIGPTModel">API GPTモデル</s:String>
+    <s:String x:Key="StrAPITimeout">APIタイムアウト</s:String>
+    <s:String x:Key="StrTemperature">温度</s:String>
+    <s:String x:Key="StrSystemMessages">システムメッセージ</s:String>
+    <s:String x:Key="StrApply">適用</s:String>
+    <s:String x:Key="StrWindowAlwaysOnTop">常に最前面に表示</s:String>
+
+    <s:String x:Key="StrLanguage">言語</s:String>
+    <s:String x:Key="StrColorMode">カラーモード</s:String>
+
+    <!--ホットキーの説明-->
+    <s:String x:Key="StrHotkeyTips">ホットキーのヒント</s:String>
+    <s:String x:Key="StrCloseApplication">アプリを閉じる</s:String>
+    <s:String x:Key="StrHideApplication">アプリを非表示</s:String>
+    <s:String x:Key="StrShowApplication">アプリを表示</s:String>
+    <s:String x:Key="StrSendMessage">メッセージを送信</s:String>
+
+    <s:String x:Key="StrGlobalHotkey">グローバルホットキー</s:String>
+    <s:String x:Key="StrInputBox">入力ボックス</s:String>
+
+
+    <!--ボタン-->
+    <s:String x:Key="StrSend">送信</s:String>
+    <s:String x:Key="StrSave">保存</s:String>
+    <s:String x:Key="StrNewSession">新しいセッション</s:String>
+
+    <!--ツールチップ-->
+    <s:String x:Key="StrAboutOpenGptChat">OpenGptChatについて</s:String>
+    <s:String x:Key="StrGoBackToMainPage">メインページに戻る</s:String>
+    <s:String x:Key="StrResetChat">チャットをリセット</s:String>
+    <s:String x:Key="StrGoToConfigurationPage">設定ページに移動</s:String>
+
+    <!--メニュー-->
+    <s:String x:Key="StrCopy">コピー</s:String>
+    <s:String x:Key="StrEdit">編集</s:String>
+    <s:String x:Key="StrDelete">削除</s:String>
+
+
+
+</ResourceDictionary>

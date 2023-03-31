@@ -1,6 +1,5 @@
 using System.Reflection;
 using System.Windows;
-using OpenGptChat.Utilities;
 
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located

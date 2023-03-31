@@ -1,35 +1,24 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using System.Windows;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
+using OpenGptChat.Abstraction;
 using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace OpenGptChat
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class AppWindow : Window
+    public partial class AppWindow : Window, IAppWindow
     {
         public AppWindow(
             AppWindowModel viewModel,
+            PageService pageService,
             NoteService noteService)
         {
             ViewModel = viewModel;
+            PageService = pageService;
             NoteService = noteService;
             DataContext = this;
 
@@ -39,9 +28,9 @@ namespace OpenGptChat
         public NoteService NoteService { get; }
 
         public AppWindowModel ViewModel { get; }
-        public NoteDataModel NoteDataModel => NoteService.Data;
+        public PageService PageService { get; }
 
-        public void Navigate(object content) => appFrame.Navigate(content);
+        public NoteDataModel NoteDataModel => NoteService.Data;
 
 
         [RelayCommand]
@@ -77,6 +66,12 @@ namespace OpenGptChat
         private void NoteControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
             NoteService.Close();
+        }
+
+        public void Navigate<TPage>() where TPage : class
+        {
+            appFrame.Navigate(
+                PageService.GetPage<TPage>());
         }
     }
 }
