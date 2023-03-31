@@ -10,7 +10,7 @@
         xmlns:hotkey="clr-namespace:EleCho.GlobalHotkey.Windows.Wpf;assembly=EleCho.GlobalHotkey.Windows.Wpf"
         d:DataContext="{d:DesignInstance Type=local:AppWindow}"
         mc:Ignorable="d" Icon="assets/images/openai.png" 
-        Title="{x:Static utils:GlobalValues.AppName}"  FontSize="{DynamicResource NormalFontSize}"
+        Title="{Binding ViewModel.ApplicationTitle}"  FontSize="{DynamicResource NormalFontSize}"
         Height="600" Width="880" Background="White"
         Topmost="{Binding ViewModel.Configuration.WindowAlwaysOnTop}">
     <Window.Resources>

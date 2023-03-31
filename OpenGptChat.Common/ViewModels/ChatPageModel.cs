@@ -27,6 +27,6 @@ namespace OpenGptChat.ViewModels
         private ObservableCollection<ChatMessageModel> _messages =
             new ObservableCollection<ChatMessageModel>();
 
-        public ChatMessageModel? LastMessage => _messages.Count > 0 ? _messages.Last() : null;
+        public ChatMessageModel? LastMessage => Messages.Count > 0 ? Messages.Last() : null;
     }
 }

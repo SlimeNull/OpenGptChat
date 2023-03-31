@@ -7,6 +7,6 @@ namespace OpenGptChat.Abstraction
         public AppWindowModel ViewModel { get; }
 
         public void Show();
-        public void Navigate(object content);
+        public void Navigate<TPage>() where TPage : class;
     }
 }

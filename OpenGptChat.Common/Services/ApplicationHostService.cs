@@ -63,10 +63,8 @@ namespace OpenGptChat.Services
                 IAppWindow window = ServiceProvider.GetService<IAppWindow>() ?? throw new InvalidOperationException("Cannot find MainWindow service");
                 window.Show();
 
-                IMainPage mainPage = ServiceProvider.GetService<IMainPage>() ?? throw new InvalidOperationException("Cannot find MainPage service");
-
                 // 导航到主页
-                window.Navigate(mainPage);
+                window.Navigate<IMainPage>();
             }
 
             return Task.CompletedTask;

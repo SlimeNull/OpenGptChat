@@ -26,10 +26,15 @@ namespace OpenGptChat.Services
         /// 将主窗口的页面切换到指定页面 / Switch the main window's page to the specified page.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public T GetPage<T>()
-            where T : IPage
+        public T? GetPage<T>()
+            where T : class
         {
             return ServiceProvider.GetService<T>() ?? throw new InvalidOperationException("Cannot find specified Page service");
+        }
+
+        public FrameworkElement? GetPage(Type type)
+        {
+            return ServiceProvider.GetService(type) as FrameworkElement;
         }
     }
 }

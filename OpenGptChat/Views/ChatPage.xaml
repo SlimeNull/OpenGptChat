@@ -35,7 +35,7 @@
                             <controls:ChatBubble.Style>
                                 <Style TargetType="controls:ChatBubble" BasedOn="{StaticResource AnimatedChatBubble}">
                                     <Setter Property="HeaderForeground" Value="Gray"/>
-                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                    <Setter Property="BorderBrush" Value="#cdcdcd"/>
                                     <Style.Triggers>
                                         <Trigger Property="IsReadonly" Value="False">
                                             <Setter Property="HeaderForeground" Value="#569de5"/>

@@ -101,8 +101,11 @@ namespace OpenGptChat.Views
 
                         if (!responseAdded)
                         {
-                            ViewModel.Messages.Add(responseMessageModel);
                             responseAdded = true;
+                            Dispatcher.Invoke(() =>
+                            {
+                                ViewModel.Messages.Add(responseMessageModel);
+                            });
                         }
                     });
 

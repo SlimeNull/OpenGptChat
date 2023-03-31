@@ -84,8 +84,7 @@ namespace OpenGptChat.Views
         [RelayCommand]
         public void GoToConfigPage()
         {
-            AppWindow.Navigate(
-                PageService.GetPage<IConfigPage>());
+            AppWindow.Navigate<IConfigPage>();
         }
 
         /// <summary>

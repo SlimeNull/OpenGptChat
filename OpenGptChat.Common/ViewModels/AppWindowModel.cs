@@ -17,6 +17,8 @@ namespace OpenGptChat.ViewModels
             ConfigurationService = configurationService;
         }
 
+        public string ApplicationTitle { get; } = nameof(OpenGptChat);
+
         public ConfigurationService ConfigurationService { get; }
 
         public AppConfig Configuration => ConfigurationService.Configuration;

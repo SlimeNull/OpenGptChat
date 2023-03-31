@@ -37,7 +37,7 @@
                                  FontSize="{DynamicResource SmallFontSize}" Foreground="{TemplateBinding HeaderForeground}" Background="{TemplateBinding HeaderBackground}"
                                  IsReadOnly="True" BorderThickness="0" TextWrapping="Wrap"/>
                         <Border x:Name="chatBubble" HorizontalAlignment="Stretch" Background="{TemplateBinding ContentBackground}"
-                            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="8">
+                            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="5">
                             <StackPanel HorizontalAlignment="Stretch">
                                 <TextBox HorizontalAlignment="Stretch"
                                          Text="{Binding Content,RelativeSource={RelativeSource Mode=TemplatedParent}}" IsReadOnly="{TemplateBinding IsReadonly}" 

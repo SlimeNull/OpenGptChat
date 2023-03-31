@@ -1,8 +1,17 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using OpenGptChat.FluentDesign.Models;
+using OpenGptChat.Abstraction;
 using OpenGptChat.FluentDesign.Services;
+using OpenGptChat.FluentDesign.Views.Pages;
+using OpenGptChat.FluentDesign.Views.Windows;
+using OpenGptChat.Models;
+using OpenGptChat.Services;
+using OpenGptChat.Utilities;
+using OpenGptChat.ViewModels;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -17,46 +26,63 @@ namespace OpenGptChat.FluentDesign
     /// </summary>
     public partial class App
     {
-        // The.NET Generic Host provides dependency injection, configuration, logging, and other services.
-        // https://docs.microsoft.com/dotnet/core/extensions/generic-host
-        // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
-        // https://docs.microsoft.com/dotnet/core/extensions/configuration
-        // https://docs.microsoft.com/dotnet/core/extensions/logging
+        static App()
+        {
+            GlobalServices.InitServices(_host.Services);
+        }
+
         private static readonly IHost _host = Host
             .CreateDefaultBuilder()
-            .ConfigureAppConfiguration(c => { c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)); })
+            .ConfigureAppConfiguration(config =>
+            {
+                // 支持使用 JSON 文件以及环境变量进行配置
+                config
+                    .AddJsonFile(GlobalValues.JsonConfigurationFilePath, true, true)
+                    .AddEnvironmentVariables();
+            })
             .ConfigureServices((context, services) =>
             {
-                // App Host
+                // 程序托管服务
                 services.AddHostedService<ApplicationHostService>();
 
-                // Page resolver service
-                services.AddSingleton<IPageService, PageService>();
+                // 添加基础服务
+                services.AddSingleton<NoteService>();
+                services.AddSingleton<ChatService>();
+                services.AddSingleton<ChatPageService>();
+                services.AddSingleton<ChatStorageService>();
+                services.AddSingleton<ConfigurationService>();
+                services.AddSingleton<SmoothScrollingService>();
+                services.AddSingleton<LanguageService>();
 
-                // Theme manipulation
-                services.AddSingleton<IThemeService, ThemeService>();
+                // 替换掉的基础服务
+                services.AddSingleton<IPageService, FluentPageService>();
 
-                // TaskBar manipulation
-                services.AddSingleton<ITaskBarService, TaskBarService>();
+                // 页面
+                services.AddSingleton<AppWindow>();
+                services.AddSingleton<MainPage>();
+                services.AddSingleton<ConfigPage>();
+                services.AddSingleton<IAppWindow>(services => services.GetService<AppWindow>()!);
+                services.AddSingleton<IMainPage>(services => services.GetService<MainPage>()!);
+                services.AddSingleton<IConfigPage>(services => services.GetService<ConfigPage>()!);
 
-                // Service containing navigation, same as INavigationWindow... but without window
-                services.AddSingleton<INavigationService, NavigationService>();
+                services.AddSingleton<AppWindowModel>();
+                services.AddSingleton<MainPageModel>();
+                services.AddSingleton<ConfigPageModel>();
 
-                // Main window with navigation
-                services.AddScoped<INavigationWindow, Views.Windows.MainWindow>();
-                services.AddScoped<ViewModels.MainWindowViewModel>();
+                // 作用域页面服务
+                services.AddScoped<ChatPage>();
+                services.AddScoped<IChatPage>(services => services.GetService<ChatPage>()!);
 
-                // Views and ViewModels
-                services.AddScoped<Views.Pages.DashboardPage>();
-                services.AddScoped<ViewModels.DashboardViewModel>();
-                services.AddScoped<Views.Pages.DataPage>();
-                services.AddScoped<ViewModels.DataViewModel>();
-                services.AddScoped<Views.Pages.SettingsPage>();
-                services.AddScoped<ViewModels.SettingsViewModel>();
+                services.AddScoped<ChatPageModel>();
 
-                // Configuration
-                services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
-            }).Build();
+                // 配置服务, 将配置与 AppConfig 绑定
+                services.Configure<AppConfig>(
+                    o =>
+                    {
+                        context.Configuration.Bind(o);
+                    });
+            })
+            .Build();
 
         /// <summary>
         /// Gets registered service.
@@ -66,7 +92,7 @@ namespace OpenGptChat.FluentDesign
         public static T GetService<T>()
             where T : class
         {
-            return _host.Services.GetService(typeof(T)) as T;
+            return _host.Services.GetService<T>() ?? throw new ArgumentException("Cannot find service with specified type");
         }
 
         /// <summary>

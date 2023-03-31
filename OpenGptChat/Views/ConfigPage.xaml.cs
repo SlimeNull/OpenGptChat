@@ -76,8 +76,7 @@ namespace OpenGptChat.Views
         [RelayCommand]
         public void GoToMainPage()
         {
-            AppWindow.Navigate(
-                PageService.GetPage<IMainPage>());
+            AppWindow.Navigate<IMainPage>();
         }
 
         [RelayCommand]
@@ -117,7 +116,7 @@ namespace OpenGptChat.Views
         [RelayCommand]
         public void RemoveSystemMessage()
         {
-            if(ViewModel.SystemMessages.Count > 0)
+            if (ViewModel.SystemMessages.Count > 0)
             {
                 ViewModel.SystemMessages.RemoveAt(ViewModel.SystemMessages.Count - 1);
             }

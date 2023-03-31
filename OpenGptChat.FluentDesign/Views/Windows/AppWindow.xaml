@@ -1,5 +1,5 @@
 ﻿<ui:UiWindow
-    x:Class="OpenGptChat.FluentDesign.Views.Windows.MainWindow"
+    x:Class="OpenGptChat.FluentDesign.Views.Windows.AppWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,7 +10,7 @@
     Title="{Binding ViewModel.ApplicationTitle, Mode=OneWay}"
     Width="1100"
     Height="650"
-    d:DataContext="{d:DesignInstance local:MainWindow,
+    d:DataContext="{d:DesignInstance local:AppWindow,
                                      IsDesignTimeCreatable=True}"
     d:Background="{DynamicResource ApplicationBackgroundBrush}"
     Foreground="{DynamicResource TextFillColorPrimaryBrush}"
@@ -24,13 +24,20 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        
+        
 
         <ui:NavigationCompact
             x:Name="RootNavigation"
-            Grid.Column="0"
-            Footer="{Binding ViewModel.NavigationFooter, Mode=TwoWay}"
-            Frame="{Binding ElementName=RootFrame, Mode=OneWay}"
-            Items="{Binding ViewModel.NavigationItems, Mode=TwoWay}" />
+            Grid.Column="0" Navigated="">
+            
+            <ui:NavigationCompact.Items>
+                <ui:NavigationItem Content="MainPage" PageType="{x:Type pages:MainPage}"/>
+            </ui:NavigationCompact.Items>
+            <ui:NavigationCompact.Footer>
+                <ui:NavigationItem Content="ConfigPage" PageType="{x:Type pages:ConfigPage}"/>
+            </ui:NavigationCompact.Footer>
+        </ui:NavigationCompact>
 
         <ui:TitleBar
             Title="{Binding ViewModel.ApplicationTitle, Mode=OneWay}"

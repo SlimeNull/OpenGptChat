@@ -28,9 +28,11 @@ namespace OpenGptChat
     {
         public AppWindow(
             AppWindowModel viewModel,
+            PageService pageService,
             NoteService noteService)
         {
             ViewModel = viewModel;
+            PageService = pageService;
             NoteService = noteService;
             DataContext = this;
 
@@ -40,9 +42,9 @@ namespace OpenGptChat
         public NoteService NoteService { get; }
 
         public AppWindowModel ViewModel { get; }
-        public NoteDataModel NoteDataModel => NoteService.Data;
+        public PageService PageService { get; }
 
-        public void Navigate(object content) => appFrame.Navigate(content);
+        public NoteDataModel NoteDataModel => NoteService.Data;
 
 
         [RelayCommand]
@@ -78,6 +80,12 @@ namespace OpenGptChat
         private void NoteControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
             NoteService.Close();
+        }
+
+        public void Navigate<TPage>() where TPage : class
+        {
+            appFrame.Navigate(
+                PageService.GetPage<TPage>());
         }
     }
 }
