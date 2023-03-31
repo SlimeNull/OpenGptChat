@@ -6,12 +6,15 @@
       xmlns:local="clr-namespace:OpenGptChat.Views"
       xmlns:controls="clr-namespace:OpenGptChat.Controls"
       xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:utilities="clr-namespace:OpenGptChat.Utilities"
       xmlns:vm="clr-namespace:OpenGptChat.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="880"
       d:DataContext="{d:DesignInstance Type=local:MainPage}" d:Background="White"
-      
       Title="MainPage" Style="{DynamicResource AnimatedPageStyle}">
+    <Page.Resources>
+        <utilities:BindingProxy x:Key="PageSelf" Data="{Binding}"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -54,8 +57,12 @@
                 <ScrollViewer Name="sessionsScrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <ListBox HorizontalAlignment="Stretch" SelectedIndex="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          ItemsSource="{Binding ViewModel.Sessions}" SelectedItem="{Binding ViewModel.SelectedSession}"
-                         Margin="0" Padding="0" BorderThickness="0" Background="#fbfcfd"
-                         SelectionChanged="ChatSessions_SelectionChanged">
+                         Margin="0" Padding="0" BorderThickness="0">
+                        <behaviors:Interaction.Triggers>
+                            <behaviors:EventTrigger EventName="SelectionChanged">
+                                <behaviors:InvokeCommandAction Command="{Binding SwitchPageToCurrentSessionCommand}"/>
+                            </behaviors:EventTrigger>
+                        </behaviors:Interaction.Triggers>
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem" BasedOn="{StaticResource AnimatedListItemStyle}">
                                 <Setter Property="Background" Value="#fbfcfd"/>
@@ -67,10 +74,10 @@
                                             </Border>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="#f5f5f5"/>
+                                                    <Setter Property="Background" Value="#f6f6f6"/>
                                                 </Trigger>
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter Property="Background" Value="#e7e8e9"/>
+                                                    <Setter Property="Background" Value="#ececec"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
@@ -80,13 +87,15 @@
                         </ListBox.ItemContainerStyle>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Background="Transparent">
-                                    <StackPanel.ContextMenu>
-                                        <ContextMenu>
-                                            <MenuItem Header="{DynamicResource StrEdit}" Command="{Binding StartEditCommand}"/>
-                                            <MenuItem Header="{DynamicResource StrDelete}" Click="MenuItem_DeleteSession_Click" CommandParameter="{Binding}"/>
-                                        </ContextMenu>
-                                    </StackPanel.ContextMenu>
+                                <DataTemplate.Resources>
+                                    <ContextMenu x:Key="SessionContextMenu">
+                                        <MenuItem Header="{DynamicResource StrEdit}" Command="{Binding StartEditCommand}"/>
+                                        <MenuItem Header="{DynamicResource StrDelete}"
+                                                  Command="{Binding Data.DeleteSessionCommand,Source={StaticResource PageSelf}}"
+                                                  CommandParameter="{Binding}"/>
+                                    </ContextMenu>
+                                </DataTemplate.Resources>
+                                <StackPanel Background="Transparent" ContextMenu="{StaticResource SessionContextMenu}">
                                     <TextBox BorderThickness="1" Background="Transparent" Padding="0"
                                              IsReadOnly="{Binding IsReadOnly}" IsHitTestVisible="{Binding IsEditing}"
                                              Text="{Binding Name}" FontSize="{DynamicResource NormalFontSize}">

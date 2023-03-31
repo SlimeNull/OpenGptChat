@@ -17,9 +17,9 @@
         <BooleanToVisibilityConverter x:Key="bool2visbility"/>
     </Window.Resources>
     <Window.InputBindings>
-        <KeyBinding Modifiers="Ctrl" Key="W" Command="{Binding CloseAppCommand}"/>
-        <KeyBinding Modifiers="Ctrl" Key="H" Command="{Binding HideAppCommand}"/>
-        <KeyBinding Modifiers="Ctrl+Shift" Key="H" Command="{Binding ShowAppCommand}"
+        <KeyBinding Modifiers="Ctrl" Key="W" Command="{x:Static local:App.CloseAppCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="H" Command="{x:Static local:App.HideAppCommand}"/>
+        <KeyBinding Modifiers="Ctrl+Shift" Key="H" Command="{x:Static local:App.ShowAppCommand}"
                     hotkey:GlobalHotkey.IsRegistered="True"/>
     </Window.InputBindings>
 
@@ -46,8 +46,8 @@
         <tb:TaskbarIcon Name="appIcon"
                         IconSource="assets/images/openai.ico"
                         ToolTipText="OpenChat"
-                        LeftClickCommand="{Binding ShowAppCommand}"
-                        DoubleClickCommand="{Binding ShowAppCommand}"
+                        LeftClickCommand="{x:Static local:App.ShowAppCommand}"
+                        DoubleClickCommand="{x:Static local:App.ShowAppCommand}"
                         DataContext="{Binding}">
             
             <tb:TaskbarIcon.TrayToolTip>
@@ -66,10 +66,10 @@
                             <Setter Property="Background" Value="Transparent"/>
                         </Style>
                     </ContextMenu.Resources>
-                        
-                    <MenuItem Header="Show" Command="{Binding ShowAppCommand}"/>
-                    <MenuItem Header="Hide" Command="{Binding HideAppCommand}"/>
-                    <MenuItem Header="Close" Command="{Binding CloseAppCommand}"/>
+
+                    <MenuItem Header="Show" Command="{x:Static local:App.ShowAppCommand}"/>
+                    <MenuItem Header="Hide" Command="{x:Static local:App.HideAppCommand}"/>
+                    <MenuItem Header="Close" Command="{x:Static local:App.CloseAppCommand}"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
             

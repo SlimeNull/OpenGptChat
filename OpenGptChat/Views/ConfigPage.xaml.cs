@@ -54,6 +54,20 @@ namespace OpenGptChat.Views
         public LanguageService LanguageService { get; }
         public ConfigurationService ConfigurationService { get; }
 
+        private void LoadSystemMessagesCore()
+        {
+            ViewModel.SystemMessages.Clear();
+            foreach (var msg in ConfigurationService.Configuration.SystemMessages)
+                ViewModel.SystemMessages.Add(new ValueWrapper<string>(msg));
+        }
+
+        private void ApplySystemMessagesCore()
+        {
+            ConfigurationService.Configuration.SystemMessages = ViewModel.SystemMessages
+                .Select(wraper => wraper.Value)
+                .ToArray();
+        }
+
 
         [RelayCommand]
         public void GoToMainPage()
@@ -73,20 +87,6 @@ namespace OpenGptChat.Views
                 Repository: https://github.com/SlimeNull/{nameof(OpenGptChat)}
                 """,
                 $"About {nameof(OpenGptChat)}", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void LoadSystemMessagesCore()
-        {
-            ViewModel.SystemMessages.Clear();
-            foreach (var msg in ConfigurationService.Configuration.SystemMessages)
-                ViewModel.SystemMessages.Add(new ValueWrapper<string>(msg));
-        }
-
-        private void ApplySystemMessagesCore()
-        {
-            ConfigurationService.Configuration.SystemMessages = ViewModel.SystemMessages
-                .Select(wraper => wraper.Value)
-                .ToArray();
         }
 
         [RelayCommand]

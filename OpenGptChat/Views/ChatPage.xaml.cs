@@ -124,16 +124,11 @@ namespace OpenGptChat.Views
             Clipboard.SetText(text);
         }
 
-        private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        [RelayCommand]
+        public void ScrollToEndWhileReceiving()
         {
-            ScrollViewer scrollViewer = (ScrollViewer)sender;
-
             if (SendCommand.IsRunning)
-                scrollViewer.ScrollToEnd();
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
+                messageScrollViewer.ScrollToEnd();
         }
     }
 }

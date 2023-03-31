@@ -57,6 +57,9 @@ namespace OpenGptChat.Views
 
             InitializeComponent();
 
+            // 切换到指定页面
+            SwitchPageToCurrentSession();
+
             // 为滚动查看器注册平滑滚动
             smoothScrollingService.Register(sessionsScrollViewer);
         }
@@ -128,31 +131,16 @@ namespace OpenGptChat.Views
             ViewModel.Sessions.Remove(session);
         }
 
-        /// <summary>
-        /// 当会话选择变更的时候
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ChatSessions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        [RelayCommand]
+        public void SwitchPageToCurrentSession()
         {
             if (ViewModel.SelectedSession != null)
             {
                 // 将页面中当前显示的聊天页面切换到对应页面
-                ViewModel.CurrentChat = 
+                ViewModel.CurrentChat =
                     ChatPageService.GetPage(ViewModel.SelectedSession.Id);
             }
-        }
-
-
-        /// <summary>
-        /// 实在没办法绑定了, 只能订阅事件了
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MenuItem_DeleteSession_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is MenuItem item && item.CommandParameter is ChatSessionModel session)
-                DeleteSession(session);
         }
     }
 }
