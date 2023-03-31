@@ -1,7 +1,10 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using OpenGptChat.Abstraction;
 using OpenGptChat.Models;
@@ -9,18 +12,6 @@ using OpenGptChat.Services;
 using OpenGptChat.Utilities;
 using OpenGptChat.ViewModels;
 using OpenGptChat.Views;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace OpenGptChat
 {
@@ -57,7 +48,10 @@ namespace OpenGptChat
                 services.AddSingleton<ChatStorageService>();
                 services.AddSingleton<ConfigurationService>();
                 services.AddSingleton<SmoothScrollingService>();
+
+                // 适应
                 services.AddSingleton<LanguageService>();
+                services.AddSingleton<ColorModeService>();
                 
                 services.AddSingleton<IAppWindow, AppWindow>();
                 services.AddSingleton<IMainPage, MainPage>();

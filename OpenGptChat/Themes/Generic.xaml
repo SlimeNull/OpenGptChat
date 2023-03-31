@@ -12,6 +12,7 @@
 
     <CircleEase x:Key="ease" EasingMode="EaseOut"/>
 
+
     <Style TargetType="{x:Type controls:NoteControl}">
         <Setter Property="Template">
             <Setter.Value>

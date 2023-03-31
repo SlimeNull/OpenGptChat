@@ -10,21 +10,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <SolidColorBrush x:Key="ScrollBar.Static.Background" Color="#F0F0F0"/>
-    <SolidColorBrush x:Key="ScrollBar.Static.Border" Color="#F0F0F0"/>
-    <SolidColorBrush x:Key="ScrollBar.Static.Glyph" Color="#606060"/>
-    <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#CDCDCD"/>
-    <SolidColorBrush x:Key="ScrollBar.MouseOver.Background" Color="#DADADA"/>
-    <SolidColorBrush x:Key="ScrollBar.MouseOver.Border" Color="#DADADA"/>
-    <SolidColorBrush x:Key="ScrollBar.MouseOver.Glyph" Color="#000000"/>
-    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#A6A6A6"/>
-    <SolidColorBrush x:Key="ScrollBar.Pressed.Background" Color="#606060"/>
-    <SolidColorBrush x:Key="ScrollBar.Pressed.Border" Color="#606060"/>
-    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#606060"/>
-    <SolidColorBrush x:Key="ScrollBar.Pressed.Glyph" Color="#FFFFFF"/>
-    <SolidColorBrush x:Key="ScrollBar.Disabled.Background" Color="#F0F0F0"/>
-    <SolidColorBrush x:Key="ScrollBar.Disabled.Border" Color="#F0F0F0"/>
-    <SolidColorBrush x:Key="ScrollBar.Disabled.Glyph" Color="#BFBFBF"/>
+    
     <Style x:Key="RepeatButtonTransparent" TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -49,22 +35,22 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
-                    <Border x:Name="border" Background="{StaticResource ScrollBar.Static.Background}" BorderBrush="{StaticResource ScrollBar.Static.Border}" BorderThickness="1" SnapsToDevicePixels="true">
+                    <Border x:Name="border" Background="{DynamicResource ScrollBackground}" BorderBrush="{StaticResource ScrollBorder}" BorderThickness="1" SnapsToDevicePixels="true">
                         <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource ScrollBar.MouseOver.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ScrollBar.MouseOver.Border}"/>
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource ScrollHoverBackground}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource ScrollHoverBorder}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource ScrollBar.Pressed.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ScrollBar.Pressed.Border}"/>
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource ScrollPressBackground}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource ScrollPressBorder}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="contentPresenter" Value="0.56"/>
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource ScrollBar.Disabled.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ScrollBar.Disabled.Border}"/>
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource ScrollDisabledBackground}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource ScrollDisabledBorder}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -77,13 +63,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Rectangle x:Name="rectangle" Fill="{StaticResource ScrollBar.Static.Thumb}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True" Width="{TemplateBinding Width}"/>
+                    <Rectangle x:Name="rectangle" Fill="{DynamicResource ScrollForeground}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True" Width="{TemplateBinding Width}"/>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ScrollBar.MouseOver.Thumb}"/>
+                            <Setter Property="Fill" TargetName="rectangle" Value="{DynamicResource ScrollHoverForeground}"/>
                         </Trigger>
                         <Trigger Property="IsDragging" Value="true">
-                            <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ScrollBar.Pressed.Thumb}"/>
+                            <Setter Property="Fill" TargetName="rectangle" Value="{DynamicResource ScrollPressForeground}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -96,13 +82,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Rectangle x:Name="rectangle" Fill="{StaticResource ScrollBar.Static.Thumb}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True" Width="{TemplateBinding Width}"/>
+                    <Rectangle x:Name="rectangle" Fill="{DynamicResource ScrollForeground}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True" Width="{TemplateBinding Width}"/>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ScrollBar.MouseOver.Thumb}"/>
+                            <Setter Property="Fill" TargetName="rectangle" Value="{DynamicResource ScrollHoverForeground}"/>
                         </Trigger>
                         <Trigger Property="IsDragging" Value="true">
-                            <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ScrollBar.Pressed.Thumb}"/>
+                            <Setter Property="Fill" TargetName="rectangle" Value="{DynamicResource ScrollPressForeground}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -112,8 +98,8 @@
     <Style TargetType="{x:Type ScrollBar}">
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
-        <Setter Property="Background" Value="{StaticResource ScrollBar.Static.Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ScrollBar.Static.Border}"/>
+        <Setter Property="Background" Value="{DynamicResource ScrollBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ScrollBorder}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="BorderThickness" Value="1,0"/>
         <Setter Property="Width" Value="8"/>

@@ -1,14 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using OpenGptChat.Abstraction;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenGptChat.ViewModels
 {
@@ -42,10 +37,10 @@ namespace OpenGptChat.ViewModels
             nameof(IsReadOnly))]
         private bool _isEditing = false;
 
-        public bool IsReadOnly => !_isEditing;
+        public bool IsReadOnly => !IsEditing;
 
 
-        public IChatPage Page => ChatPageService.GetPage(_id);
+        public IChatPage Page => ChatPageService.GetPage(Id);
         public ChatPageModel PageModel => Page.ViewModel;
 
 
@@ -62,7 +57,7 @@ namespace OpenGptChat.ViewModels
             {
                 Storage = Storage with
                 {
-                    Name = _name
+                    Name = Name
                 };
 
                 ChatStorageService.SaveSession(Storage);

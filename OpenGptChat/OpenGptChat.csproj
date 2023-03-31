@@ -12,6 +12,7 @@
 
   <PropertyGroup>
     <Version>1.1.4</Version>
+    <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>

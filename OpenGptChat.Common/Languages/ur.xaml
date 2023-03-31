@@ -22,6 +22,7 @@
     <s:String x:Key="StrWindowAlwaysOnTop">ہمیشہ اوپر سے دکھائی دیں</s:String>
 
     <s:String x:Key="StrLanguage">زبان</s:String>
+    <s:String x:Key="StrColorMode">رنگ موڈ</s:String>
 
     <!--ہاٹ کی نکات-->
     <s:String x:Key="StrHotkeyTips">ہاٹ کی ہدایات</s:String>

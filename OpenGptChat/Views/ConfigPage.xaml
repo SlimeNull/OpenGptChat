@@ -5,7 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OpenGptChat.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="880" d:Background="White" d:DataContext="{d:DesignInstance Type=local:ConfigPage}"
+      d:DesignHeight="650" d:DesignWidth="880" 
+      d:Background="White" d:DataContext="{d:DesignInstance Type=local:ConfigPage}"
+      Foreground="{DynamicResource FontForeground}" Background="{DynamicResource GeneralBackground}"
       Title="ConfigPage" Style="{DynamicResource AnimatedPageStyle}">
 
     <Grid>
@@ -79,43 +81,20 @@
                         </TextBlock>
 
                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                            <StackPanel.Resources>
-                                <Style TargetType="Button">
-                                    <Setter Property="HorizontalAlignment" Value="Right"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                    <Setter Property="Margin" Value="3 0 0 0"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Background="{TemplateBinding Background}" Padding="2 1" CornerRadius="2">
-                                                    <ContentPresenter Content="{TemplateBinding Content}"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#bee6fd"/>
-                                        </Trigger>
-                                        <Trigger Property="IsPressed" Value="True">
-                                            <Setter Property="Background" Value="#c4e5f6"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </StackPanel.Resources>
-
-                            <Button Content=" - " Command="{Binding RemoveSystemMessageCommand}" ToolTip="Remove a system message"/>
-                            <Button Content=" + " Command="{Binding AddSystemMessageCommand}" ToolTip="Add a system message"/>
-                            <Button Content="{DynamicResource StrApply}" Command="{Binding ApplySystemMessagesCommand}" ToolTip="Apply system messages"/>
+                            <Button Content=" - " BorderThickness="0" Padding="3 0"
+                                    Command="{Binding RemoveSystemMessageCommand}" ToolTip="Remove a system message"/>
+                            <Button Content=" + " BorderThickness="0" Margin="5 0 0 0" Padding="3 0"
+                                    Command="{Binding AddSystemMessageCommand}" ToolTip="Add a system message"/>
+                            <Button Content="{DynamicResource StrApply}" BorderThickness="0" Margin="5 0 0 0" Padding="3 0"
+                                    Command="{Binding ApplySystemMessagesCommand}" ToolTip="Apply system messages"/>
                         </StackPanel>
                     </Grid>
-                    <Border MinHeight="30"
-                    BorderThickness="1" BorderBrush="Gray" Padding="5" CornerRadius="5">
+                    <Border MinHeight="10"
+                            BorderThickness="1" BorderBrush="{DynamicResource BoxBorder}" Padding="5">
                         <ItemsControl ItemsSource="{Binding ViewModel.SystemMessages}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBox Padding="5 3" Text="{Binding Value}" TextWrapping="Wrap"/>
+                                    <TextBox Padding="5 3" Margin="0 1"  Text="{Binding Value}" TextWrapping="Wrap"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -171,6 +150,16 @@
                             <Run>)</Run>
                         </TextBlock>
                     </StackPanel>
+                </StackPanel>
+
+                <StackPanel Margin="0 5 0 5">
+                    <TextBlock>
+                        <Run Text="{DynamicResource StrColorMode}"/>
+                        <Run Text=":"/>
+                    </TextBlock>
+                    <ListBox BorderThickness="0"
+                             ItemsSource="{Binding ColorModeService.ColorModes}" SelectedItem="{Binding ColorModeService.CurrentMode}">
+                    </ListBox>
                 </StackPanel>
 
                 <StackPanel Margin="0 5 0 5">

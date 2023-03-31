@@ -22,6 +22,7 @@
     <s:String x:Key="StrWindowAlwaysOnTop">Окно всегда сверху</s:String>
 
     <s:String x:Key="StrLanguage">Язык</s:String>
+    <s:String x:Key="StrColorMode">Режим цвета</s:String>
 
     <!-- Описание горячих клавиш -->
     <s:String x:Key="StrHotkeyTips">Подсказки по горячим клавишам</s:String>

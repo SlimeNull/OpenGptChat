@@ -1,6 +1,4 @@
 ﻿using OpenGptChat.ViewModels;
-using System.Windows;
-using System.Windows.Controls;
 
 namespace OpenGptChat.Abstraction
 {

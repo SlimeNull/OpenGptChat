@@ -1,9 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OpenGptChat.Common.Models;
 
 namespace OpenGptChat.Models
 {
@@ -32,6 +28,9 @@ namespace OpenGptChat.Models
 
         [ObservableProperty]
         private string _language = string.Empty;
+
+        [ObservableProperty]
+        private ColorMode _colorMode = ColorMode.Auto;
 
         [ObservableProperty]
         private bool _windowAlwaysOnTop = false;

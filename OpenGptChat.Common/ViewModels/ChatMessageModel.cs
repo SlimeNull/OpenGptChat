@@ -1,16 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.ComponentModel;
+using System.Windows;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Media;
 
 namespace OpenGptChat.ViewModels
 {
@@ -43,7 +36,7 @@ namespace OpenGptChat.ViewModels
             nameof(IsReadOnly))]
         private bool _isEditing = false;
 
-        public bool IsReadOnly => !_isEditing;
+        public bool IsReadOnly => !IsEditing;
 
 
         private static ChatStorageService ChatStorageService { get; } =
@@ -61,8 +54,8 @@ namespace OpenGptChat.ViewModels
             {
                 Storage = Storage with
                 {
-                    Role = _role,
-                    Content = _content
+                    Role = Role,
+                    Content = Content
                 };
 
                 ChatStorageService.SaveMessage(Storage);
@@ -77,7 +70,7 @@ namespace OpenGptChat.ViewModels
 
         #region 布局用的一些属性
 
-        public string DisplayName => string.Equals(_role, "user", StringComparison.CurrentCultureIgnoreCase) ? "Me" : "Bot";
+        public string DisplayName => string.Equals(Role, "user", StringComparison.CurrentCultureIgnoreCase) ? "Me" : "Bot";
 
         public bool IsMe => "Me".Equals(DisplayName, StringComparison.CurrentCultureIgnoreCase);
 
@@ -94,7 +87,7 @@ namespace OpenGptChat.ViewModels
         [RelayCommand]
         public void Copy()
         {
-            Clipboard.SetText(_content);
+            Clipboard.SetText(Content);
         }
 
         [RelayCommand]

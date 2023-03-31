@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using System.Windows;
 
 namespace OpenGptChat.Services
 {
+
+
     public class LanguageService
     {
         private static string resourceUriPrefix = "pack://application:,,,/OpenGptChat.Common;component";
@@ -28,6 +25,20 @@ namespace OpenGptChat.Services
 
         private static CultureInfo defaultLanguage =
             new CultureInfo("en");
+
+        public LanguageService(
+            ConfigurationService configurationService)
+        {
+            // 如果配置文件里面有置顶语言, 则设置语言
+            CultureInfo language = CultureInfo.CurrentCulture;
+            if (!string.IsNullOrWhiteSpace(configurationService.Configuration.Language))
+                language = new CultureInfo(configurationService.Configuration.Language);
+
+            SetLanguage(language);
+        }
+
+
+
 
         private CultureInfo currentLanguage =
             defaultLanguage;

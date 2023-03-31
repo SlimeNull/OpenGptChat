@@ -1,11 +1,5 @@
-﻿using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
-using OpenGptChat;
-using OpenGptChat.Abstraction;
-using OpenGptChat.Utilities;
 
 namespace OpenGptChat.Services
 {

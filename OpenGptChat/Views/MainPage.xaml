@@ -11,7 +11,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="880"
       d:DataContext="{d:DesignInstance Type=local:MainPage}" d:Background="White"
-      Title="MainPage" Style="{DynamicResource AnimatedPageStyle}">
+      Title="MainPage" Background="{DynamicResource GeneralBackground}" Style="{DynamicResource AnimatedPageStyle}">
     <Page.Resources>
         <utilities:BindingProxy x:Key="PageSelf" Data="{Binding}"/>
     </Page.Resources>
@@ -23,19 +23,22 @@
         </Grid.RowDefinitions>
 
         <Grid>
-            <Border Padding="5" BorderThickness="0 0 0 1" BorderBrush="Gray">
+            <Border Padding="5" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource GeneralBorder}">
                 <Grid>
-                    <TextBlock Text="{DynamicResource StrChat}"  FontSize="{DynamicResource ExtremLargeFontSize}"/>
+                    <TextBlock Text="{DynamicResource StrChat}"
+                               FontSize="{DynamicResource ExtremLargeFontSize}" Foreground="{DynamicResource FontForeground}"/>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                         <StackPanel.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="3"/>
                             </Style>
                         </StackPanel.Resources>
-                        <Button Content="♻" BorderThickness="0" Padding="3" Margin="0 0 3 0" ToolTip="{DynamicResource StrResetChat}"
-                                Command="{Binding ResetChatCommand}"/>
-                        <Button Content="⚙︎" BorderThickness="0" Padding="3" ToolTip="{DynamicResource StrGoToConfigurationPage}"
-                                Command="{Binding GoToConfigPageCommand}"/>
+                        <Button Content="♻" BorderThickness="0" Padding="3" Margin="0 0 3 0"
+                                Foreground="{DynamicResource FontForeground}" Background="{DynamicResource ControlBackground}"
+                                Command="{Binding ResetChatCommand}"  ToolTip="{DynamicResource StrResetChat}"/>
+                        <Button Content="⚙︎" BorderThickness="0" Padding="3"
+                                Foreground="{DynamicResource FontForeground}" Background="{DynamicResource ControlBackground}"
+                                Command="{Binding GoToConfigPageCommand}" ToolTip="{DynamicResource StrGoToConfigurationPage}"/>
                     </StackPanel>
                 </Grid>
             </Border>
@@ -57,7 +60,7 @@
                 <ScrollViewer Name="sessionsScrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <ListBox HorizontalAlignment="Stretch" SelectedIndex="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          ItemsSource="{Binding ViewModel.Sessions}" SelectedItem="{Binding ViewModel.SelectedSession}"
-                         Margin="0" Padding="0" BorderThickness="0">
+                         Margin="0" Padding="0" BorderThickness="0" Background="{DynamicResource GeneralBackground}">
                         <behaviors:Interaction.Triggers>
                             <behaviors:EventTrigger EventName="SelectionChanged">
                                 <behaviors:InvokeCommandAction Command="{Binding SwitchPageToCurrentSessionCommand}"/>
@@ -65,7 +68,7 @@
                         </behaviors:Interaction.Triggers>
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem" BasedOn="{StaticResource AnimatedListItemStyle}">
-                                <Setter Property="Background" Value="#fbfcfd"/>
+                                <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="ListBoxItem">
@@ -74,10 +77,10 @@
                                             </Border>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="#f6f6f6"/>
+                                                    <Setter Property="Background" Value="{DynamicResource SessionHoverBackground}"/>
                                                 </Trigger>
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter Property="Background" Value="#ececec"/>
+                                                    <Setter Property="Background" Value="{DynamicResource SessionSelectedBackgroun}"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
@@ -96,7 +99,8 @@
                                     </ContextMenu>
                                 </DataTemplate.Resources>
                                 <StackPanel Background="Transparent" ContextMenu="{StaticResource SessionContextMenu}">
-                                    <TextBox BorderThickness="1" Background="Transparent" Padding="0"
+                                    <TextBox BorderThickness="1" Padding="0"
+                                             Foreground="{DynamicResource FontForeground}"  Background="Transparent" 
                                              IsReadOnly="{Binding IsReadOnly}" IsHitTestVisible="{Binding IsEditing}"
                                              Text="{Binding Name}" FontSize="{DynamicResource NormalFontSize}">
                                         <behaviors:Interaction.Triggers>
@@ -120,7 +124,7 @@
 
                                     </TextBox>
 
-                                    <TextBlock HorizontalAlignment="Stretch" Background="Transparent" Foreground="Gray"
+                                    <TextBlock HorizontalAlignment="Stretch" Background="Transparent" Foreground="{DynamicResource FontForegroundLight}"
                                                Padding="3 0" TextTrimming="CharacterEllipsis" FontSize="{DynamicResource SmallFontSize}">
                                         <Run Text="{Binding PageModel.LastMessage.DisplayName,Mode=OneWay}"/>
                                         <Run Text="{Binding PageModel.LastMessage.Content,Mode=OneWay,Converter={StaticResource SingleLineTextConverter}}"/>
@@ -131,10 +135,13 @@
                     </ListBox>
                 </ScrollViewer>
 
-                <Button Grid.Row="1" Content="{DynamicResource StrNewSession}" BorderThickness="0" Padding="0 3" Command="{Binding NewSessionCommand}"/>
+                <Button Grid.Row="1"  BorderThickness="0" Padding="0 3"
+                        Foreground="{DynamicResource FontForeground}" Background="{DynamicResource ControlBackground}"
+                        Content="{DynamicResource StrNewSession}"
+                        Command="{Binding NewSessionCommand}"/>
             </Grid>
 
-            <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Gray"/>
+            <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource GeneralBorder}"/>
 
             <Frame Grid.Column="2" Content="{Binding ViewModel.CurrentChat}" NavigationUIVisibility="Hidden"/>
         </Grid>

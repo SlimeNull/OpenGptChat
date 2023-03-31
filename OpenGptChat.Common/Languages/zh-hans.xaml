@@ -20,6 +20,7 @@
     <s:String x:Key="StrWindowAlwaysOnTop">窗口置顶</s:String>
 
     <s:String x:Key="StrLanguage">语言</s:String>
+    <s:String x:Key="StrColorMode">色彩模式</s:String>
 
     <!--热键描述-->
     <s:String x:Key="StrHotkeyTips">热键提示</s:String>

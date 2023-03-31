@@ -11,7 +11,8 @@
         d:DataContext="{d:DesignInstance Type=local:AppWindow}"
         mc:Ignorable="d" Icon="assets/images/openai.png" 
         Title="{Binding ViewModel.ApplicationTitle}"  FontSize="{DynamicResource NormalFontSize}"
-        Height="600" Width="880" Background="White"
+        Height="600" Width="880" 
+        Foreground="{DynamicResource FontForeground}" Background="{DynamicResource GeneralBackground}"
         Topmost="{Binding ViewModel.Configuration.WindowAlwaysOnTop}">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="bool2visbility"/>
@@ -27,12 +28,12 @@
         <Frame Name="appFrame" NavigationUIVisibility="Hidden"/>
 
         <controls:NoteControl x:Name="appNote"
-                              Text="{Binding NoteDataModel.Text}" Show="{Binding NoteDataModel.Show}" Background="White" MouseDown="NoteControl_MouseDown"
+                              Text="{Binding NoteDataModel.Text}" Show="{Binding NoteDataModel.Show}" Background="{DynamicResource BoxBackground}" MouseDown="NoteControl_MouseDown"
                               VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50 0" BorderThickness="1 0 1 1" Visibility="Hidden">
 
             <controls:NoteControl.Style>
                 <Style TargetType="controls:NoteControl">
-                    <Setter Property="BorderBrush" Value="Gray"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource BoxBorder}"/>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="IndianRed"/>

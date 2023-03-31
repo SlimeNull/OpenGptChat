@@ -1,23 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.IO;
+using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using OpenGptChat.Abstraction;
-using OpenGptChat.Models;
 using OpenGptChat.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace OpenGptChat.Services
 {
@@ -25,18 +11,17 @@ namespace OpenGptChat.Services
     {
         public ApplicationHostService(
             IServiceProvider serviceProvider,
-            LanguageService languageService,
             ChatStorageService chatStorageService,
-            ConfigurationService configurationService)
+            ConfigurationService configurationService,
+            LanguageService languageService,     // just for initialize these services
+            ColorModeService colorModeService)
         {
             ServiceProvider = serviceProvider;
-            LanguageService = languageService;
             ChatStorageService = chatStorageService;
             ConfigurationService = configurationService;
         }
 
         public IServiceProvider ServiceProvider { get; }
-        public LanguageService LanguageService { get; }
         public ChatStorageService ChatStorageService { get; }
         public ConfigurationService ConfigurationService { get; }
 
@@ -47,12 +32,6 @@ namespace OpenGptChat.Services
             // 如果不存在配置文件则保存一波
             if (!File.Exists(GlobalValues.JsonConfigurationFilePath))
                 ConfigurationService.Save();
-
-            // 如果配置文件里面有置顶语言, 则设置语言
-            CultureInfo language = CultureInfo.CurrentCulture;
-            if (!string.IsNullOrWhiteSpace(ConfigurationService.Configuration.Language))
-                language = new CultureInfo(ConfigurationService.Configuration.Language);
-            LanguageService.SetLanguage(language);
 
             // 初始化服务
             ChatStorageService.Initialize();

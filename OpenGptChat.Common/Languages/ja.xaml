@@ -22,6 +22,7 @@
     <s:String x:Key="StrWindowAlwaysOnTop">常に最前面に表示</s:String>
 
     <s:String x:Key="StrLanguage">言語</s:String>
+    <s:String x:Key="StrColorMode">カラーモード</s:String>
 
     <!--ホットキーの説明-->
     <s:String x:Key="StrHotkeyTips">ホットキーのヒント</s:String>

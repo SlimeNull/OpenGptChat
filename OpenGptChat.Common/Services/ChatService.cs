@@ -1,16 +1,8 @@
-﻿using Microsoft.Extensions.Options;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using OpenAI;
 using OpenAI.Chat;
-using OpenAI.Models;
 using OpenGptChat.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Threading;
 
 namespace OpenGptChat.Services
 {

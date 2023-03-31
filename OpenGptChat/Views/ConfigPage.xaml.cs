@@ -1,24 +1,13 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using CommunityToolkit.Mvvm.Input;
 using OpenGptChat.Abstraction;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace OpenGptChat.Views
 {
@@ -33,6 +22,7 @@ namespace OpenGptChat.Views
             PageService pageService,
             NoteService noteService,
             LanguageService languageService,
+            ColorModeService colorModeService,
             ConfigurationService configurationService,
             SmoothScrollingService smoothScrollingService)
         {
@@ -41,6 +31,7 @@ namespace OpenGptChat.Views
             PageService = pageService;
             NoteService = noteService;
             LanguageService = languageService;
+            ColorModeService = colorModeService;
             ConfigurationService = configurationService;
             DataContext = this;
 
@@ -56,6 +47,7 @@ namespace OpenGptChat.Views
         public PageService PageService { get; }
         public NoteService NoteService { get; }
         public LanguageService LanguageService { get; }
+        public ColorModeService ColorModeService { get; }
         public ConfigurationService ConfigurationService { get; }
 
         private void LoadSystemMessagesCore()
@@ -127,6 +119,8 @@ namespace OpenGptChat.Views
         {
             ConfigurationService.Configuration.Language =
                 LanguageService.CurrentLanguage.ToString();
+            ConfigurationService.Configuration.ColorMode =
+                ColorModeService.CurrentMode;
 
             ConfigurationService.Save();
             return NoteService.ShowAsync("Configuration saved", 2000);
