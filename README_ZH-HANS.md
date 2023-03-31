@@ -8,7 +8,7 @@
 
 </div>
 
-![预览](assets/preview2.png)
+![预览](assets/preview3.png)
 
 ## 功能
 

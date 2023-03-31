@@ -8,7 +8,7 @@ A simple chat client based on [Open AI Chat completion API](https://platform.ope
 
 </div>
 
-![Preview](assets/preview2.png)
+![Preview](assets/preview3.png)
 
 ## Features
 
