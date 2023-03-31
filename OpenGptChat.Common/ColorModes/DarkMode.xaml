@@ -30,12 +30,12 @@
     <Brush x:Key="TextBoxDisabledBorder">#424242</Brush>
 
     <Brush x:Key="ControlBackground">#2e2e2e</Brush>
-    <Brush x:Key="ControlHoverBackground">#3d3d3d</Brush>
-    <Brush x:Key="ControlPressBackground">#383838</Brush>
+    <Brush x:Key="ControlHoverBackground">#3a3a3a</Brush>
+    <Brush x:Key="ControlPressBackground">#333333</Brush>
     <Brush x:Key="ControlDisabledBackground">#1f1f1f</Brush>
-    <Brush x:Key="ControlBorder">#999999</Brush>
-    <Brush x:Key="ControlHoverBorder">#999999</Brush>
-    <Brush x:Key="ControlPressBorder">#999999</Brush>
+    <Brush x:Key="ControlBorder">#666666</Brush>
+    <Brush x:Key="ControlHoverBorder">#777777</Brush>
+    <Brush x:Key="ControlPressBorder">#777777</Brush>
     <Brush x:Key="ControlDisabledBorder">#303030</Brush>
 
     <Brush x:Key="ScrollBackground">#2e2e2e</Brush>

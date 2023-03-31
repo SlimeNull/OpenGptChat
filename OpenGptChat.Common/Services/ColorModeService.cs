@@ -71,13 +71,10 @@ namespace OpenGptChat.Services
 
         public void SwitchToAuto()
         {
-            var themeColor = SystemParameters.WindowGlassColor;
-            var brightness = ColorHelper.GetBrightness(themeColor.R, themeColor.G, themeColor.B);
-
-            if (brightness > .3)
-                SwitchTo(brightMode);
-            else
+            if (SystemHelper.IsDarkTheme())
                 SwitchTo(darkMode);
+            else
+                SwitchTo(brightMode);
 
             currentMode = ColorMode.Auto;
         }

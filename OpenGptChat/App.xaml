@@ -7,7 +7,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/Generic.xaml"/>
                 <ResourceDictionary Source="/Resources/AnimationStyles.xaml"/>
-                <ResourceDictionary Source="/Resources/ControlStyles/AllInOne.xaml"/>
+                <ResourceDictionary Source="/Resources/ControlStyles/All.xaml"/>
                 <ResourceDictionary Source="/Converters/SingletonConverters.xaml"/>
 
                 <ResourceDictionary Source="pack://application:,,,/OpenGptChat.Common;component/ColorModes/BrightMode.xaml"/>
