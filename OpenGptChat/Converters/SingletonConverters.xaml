@@ -1,6 +1,0 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:OpenGptChat.Converters;assembly=OpenGptChat.Common">
-    <local:SingleLineTextConverter x:Key="SingleLineTextConverter"/>
-    <local:OnlyTakeOneMultiValueConverter x:Key="OnlyTakeOneMultiValueConverter"/>
-</ResourceDictionary>

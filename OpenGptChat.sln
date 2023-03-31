@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGptChat", "OpenGptChat\OpenGptChat.csproj", "{B1C41956-C1C8-4B45-A9FC-8E329093D5F4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ED3DC91F-6239-4D51-9229-FA2B49A7FA11}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
@@ -12,15 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README_ZH-HANT.md = README_ZH-HANT.md
 	EndProjectSection
 EndProject
-
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maui", "Maui", "{6A8A086D-F764-45FC-9C77-D1EF1F16D2C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGptChat_MAUI", "OpenGptChat_MAUI\OpenGptChat_MAUI.csproj", "{73C9D0C7-AE15-4048-B4B0-BDAB634714AC}"
-
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGptChat.FluentDesign", "OpenGptChat.FluentDesign\OpenGptChat.FluentDesign.csproj", "{C6576979-1B22-4537-B1F4-12ECD2DBB748}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGptChat_MAUI", "OpenGptChat_MAUI\OpenGptChat_MAUI.csproj", "{73C9D0C7-AE15-4048-B4B0-BDAB634714AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGptChat.Common", "OpenGptChat.Common\OpenGptChat.Common.csproj", "{58CE2D85-8567-4824-A373-07319F15E062}"
-
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGptChat.Common", "OpenGptChat.Common\OpenGptChat.Common.csproj", "{58CE2D85-8567-4824-A373-07319F15E062}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,27 +22,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B1C41956-C1C8-4B45-A9FC-8E329093D5F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1C41956-C1C8-4B45-A9FC-8E329093D5F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1C41956-C1C8-4B45-A9FC-8E329093D5F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1C41956-C1C8-4B45-A9FC-8E329093D5F4}.Release|Any CPU.Build.0 = Release|Any CPU
-
 		{73C9D0C7-AE15-4048-B4B0-BDAB634714AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{73C9D0C7-AE15-4048-B4B0-BDAB634714AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73C9D0C7-AE15-4048-B4B0-BDAB634714AC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{73C9D0C7-AE15-4048-B4B0-BDAB634714AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73C9D0C7-AE15-4048-B4B0-BDAB634714AC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{73C9D0C7-AE15-4048-B4B0-BDAB634714AC}.Release|Any CPU.Deploy.0 = Release|Any CPU
-
-		{C6576979-1B22-4537-B1F4-12ECD2DBB748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6576979-1B22-4537-B1F4-12ECD2DBB748}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6576979-1B22-4537-B1F4-12ECD2DBB748}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6576979-1B22-4537-B1F4-12ECD2DBB748}.Release|Any CPU.Build.0 = Release|Any CPU
 		{58CE2D85-8567-4824-A373-07319F15E062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{58CE2D85-8567-4824-A373-07319F15E062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58CE2D85-8567-4824-A373-07319F15E062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58CE2D85-8567-4824-A373-07319F15E062}.Release|Any CPU.Build.0 = Release|Any CPU
-
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
