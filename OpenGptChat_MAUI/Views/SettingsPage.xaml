@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="OpenGptChat_MAUI.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:OpenGptChat_MAUI.ViewModels"
+    x:DataType="vm:SettingsPageModel">
+    <Grid RowDefinitions="Auto,*">
+
+        <Grid
+            Grid.Row="0"
+            BackgroundColor="#10A37F"
+            HeightRequest="50"
+            RowDefinitions="*,Auto">
+            <Grid
+                Grid.Row="0"
+                Margin="10,12"
+                ColumnDefinitions="Auto,*">
+                <ImageButton
+                    Grid.Column="0"
+                    Command="{Binding BackCommand}"
+                    Source="back_btn.png" />
+                <Label
+                    Grid.Column="1"
+                    Margin="0,0,40,0"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="配置页面"
+                    VerticalTextAlignment="Center" />
+
+
+            </Grid>
+            <Grid Grid.Row="1" Margin="-2,0">
+                <Line
+                    Grid.Row="1"
+                    HeightRequest="3"
+                    Stroke="Black"
+                    StrokeThickness="3"
+                    X2="{Binding Source={RelativeSource AncestorType={x:Type Grid}, AncestorLevel=1}, Path=Width}" />
+            </Grid>
+        </Grid>
+
+
+
+
+        <Grid Grid.Row="1" RowDefinitions="*,Auto">
+            <VerticalStackLayout Spacing="10">
+                <Entry />
+                <Entry />
+                <Entry />
+                <Entry />
+                <Entry />
+            </VerticalStackLayout>
+        </Grid>
+
+    </Grid>
+</ContentPage>
