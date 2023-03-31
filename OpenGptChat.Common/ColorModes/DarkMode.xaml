@@ -48,8 +48,8 @@
     <Brush x:Key="ScrollHoverBorder">#2e2e2e</Brush>
     <Brush x:Key="ScrollPressBorder">#2e2e2e</Brush>
 
-    <Brush x:Key="ChatBubbleBackground">#333333</Brush>
-    <Brush x:Key="ChatBubbleBorder">#999999</Brush>
+    <Brush x:Key="ChatBubbleBackground">#2e2e2e</Brush>
+    <Brush x:Key="ChatBubbleBorder">#424242</Brush>
 
     <Brush x:Key="FontForeground">#dddddd</Brush>
     <Brush x:Key="FontForegroundLight">#d6d6d6</Brush>
