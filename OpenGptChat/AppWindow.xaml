@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OpenGptChat"
         xmlns:controls="clr-namespace:OpenGptChat.Controls"
         xmlns:tb="http://www.hardcodet.net/taskbar"
-        xmlns:utils="clr-namespace:OpenGptChat.Utilities"
+        xmlns:utils="clr-namespace:OpenGptChat.Utilities;assembly=OpenGptChat.Common"
         xmlns:hotkey="clr-namespace:EleCho.GlobalHotkey.Windows.Wpf;assembly=EleCho.GlobalHotkey.Windows.Wpf"
         d:DataContext="{d:DesignInstance Type=local:AppWindow}"
         mc:Ignorable="d" Icon="assets/images/openai.png" 
@@ -25,11 +25,11 @@
 
     <Grid>
         <Frame Name="appFrame" NavigationUIVisibility="Hidden"/>
-        
+
         <controls:NoteControl x:Name="appNote"
                               Text="{Binding NoteDataModel.Text}" Show="{Binding NoteDataModel.Show}" Background="White" MouseDown="NoteControl_MouseDown"
                               VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50 0" BorderThickness="1 0 1 1" Visibility="Hidden">
-            
+
             <controls:NoteControl.Style>
                 <Style TargetType="controls:NoteControl">
                     <Setter Property="BorderBrush" Value="Gray"/>
@@ -40,22 +40,22 @@
                     </Style.Triggers>
                 </Style>
             </controls:NoteControl.Style>
-            
+
         </controls:NoteControl>
-        
+
         <tb:TaskbarIcon Name="appIcon"
                         IconSource="assets/images/openai.ico"
                         ToolTipText="OpenChat"
                         LeftClickCommand="{x:Static local:App.ShowAppCommand}"
                         DoubleClickCommand="{x:Static local:App.ShowAppCommand}"
                         DataContext="{Binding}">
-            
+
             <tb:TaskbarIcon.TrayToolTip>
                 <Border Background="#eff3f5" BorderBrush="#eaeaea" BorderThickness="1" CornerRadius="3" Padding="5">
                     <TextBlock Text="OpenChat"/>
                 </Border>
             </tb:TaskbarIcon.TrayToolTip>
-            
+
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
                     <ContextMenu.Resources>
@@ -72,7 +72,7 @@
                     <MenuItem Header="Close" Command="{x:Static local:App.CloseAppCommand}"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
-            
+
         </tb:TaskbarIcon>
     </Grid>
 </Window>

@@ -47,7 +47,7 @@ namespace OpenGptChat.ViewModels
 
 
         private static ChatStorageService ChatStorageService { get; } =
-            App.GetService<ChatStorageService>();
+            GlobalServices.GetService<ChatStorageService>();
 
 
 

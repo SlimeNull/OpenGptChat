@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OpenGptChat.Utilities
 {
-    internal class ChatSystemMessages
+    public class ChatSystemMessages
     {
         public static string CatGirl =
             """

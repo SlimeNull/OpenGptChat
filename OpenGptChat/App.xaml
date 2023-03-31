@@ -9,8 +9,8 @@
                 <ResourceDictionary Source="/Resources/AnimationStyles.xaml"/>
                 <ResourceDictionary Source="/Resources/ControlStyles/AllInOne.xaml"/>
                 <ResourceDictionary Source="/Converters/SingletonConverters.xaml"/>
-                <ResourceDictionary x:Name="LanguageResource" Source="/Languages/en.xaml"/>
 
+                <ResourceDictionary Source="pack://application:,,,/OpenGptChat.Common;component/Languages/en.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using OpenGptChat.Abstraction;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
@@ -23,7 +24,7 @@ namespace OpenGptChat.Views
     /// <summary>
     /// Interaction logic for ChatPage.xaml
     /// </summary>
-    public partial class ChatPage : Page
+    public partial class ChatPage : Page, IChatPage
     {
         public ChatPage(
             ChatPageModel viewModel,

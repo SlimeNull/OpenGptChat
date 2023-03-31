@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
-using OpenGptChat.Views;
+using OpenGptChat.Abstraction;
 
 namespace OpenGptChat.Services
 {
@@ -10,8 +10,8 @@ namespace OpenGptChat.Services
     /// </summary>
     public class ChatPageService
     {
-        private Dictionary<Guid, ChatPage> pages =
-            new Dictionary<Guid, ChatPage>();
+        private Dictionary<Guid, IChatPage> pages =
+            new Dictionary<Guid, IChatPage>();
 
 
         public ChatPageService(
@@ -22,13 +22,13 @@ namespace OpenGptChat.Services
 
         public IServiceProvider Services { get; }
 
-        public ChatPage GetPage(Guid sessionId)
+        public IChatPage GetPage(Guid sessionId)
         {
-            if (!pages.TryGetValue(sessionId, out ChatPage? chatPage))
+            if (!pages.TryGetValue(sessionId, out IChatPage? chatPage))
             {
                 using (var scope = Services.CreateScope())
                 {
-                    chatPage = scope.ServiceProvider.GetRequiredService<ChatPage>();
+                    chatPage = scope.ServiceProvider.GetRequiredService<IChatPage>();
                     chatPage.InitSession(sessionId);
 
                     pages[sessionId] = chatPage;

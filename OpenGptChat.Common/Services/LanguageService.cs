@@ -10,18 +10,20 @@ namespace OpenGptChat.Services
 {
     public class LanguageService
     {
+        private static string resourceUriPrefix = "pack://application:,,,/OpenGptChat.Common;component";
+
         private static Dictionary<CultureInfo, ResourceDictionary> languageResources =
             new Dictionary<CultureInfo, ResourceDictionary>()
             {
-                { new CultureInfo("en"), new ResourceDictionary() { Source = new Uri("/Languages/en.xaml", UriKind.Relative) } },
-                { new CultureInfo("zh-hans"), new ResourceDictionary() { Source = new Uri("/Languages/zh-hans.xaml", UriKind.Relative) } },
-                { new CultureInfo("zh-hant"), new ResourceDictionary() { Source = new Uri("/Languages/zh-hant.xaml", UriKind.Relative) } },
-                { new CultureInfo("ja"), new ResourceDictionary() { Source = new Uri("/Languages/ja.xaml", UriKind.Relative) } },
-                { new CultureInfo("ar"), new ResourceDictionary() { Source = new Uri("/Languages/ar.xaml", UriKind.Relative) } },
-                { new CultureInfo("es"), new ResourceDictionary() { Source = new Uri("/Languages/es.xaml", UriKind.Relative) } },
-                { new CultureInfo("fr"), new ResourceDictionary() { Source = new Uri("/Languages/fr.xaml", UriKind.Relative) } },
-                { new CultureInfo("ru"), new ResourceDictionary() { Source = new Uri("/Languages/ru.xaml", UriKind.Relative) } },
-                { new CultureInfo("ur"), new ResourceDictionary() { Source = new Uri("/Languages/ur.xaml", UriKind.Relative) } },
+                { new CultureInfo("en"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/en.xaml" ) } },
+                { new CultureInfo("zh-hans"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/zh-hans.xaml" ) } },
+                { new CultureInfo("zh-hant"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/zh-hant.xaml" ) } },
+                { new CultureInfo("ja"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/ja.xaml" ) } },
+                { new CultureInfo("ar"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/ar.xaml" ) } },
+                { new CultureInfo("es"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/es.xaml" ) } },
+                { new CultureInfo("fr"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/fr.xaml" ) } },
+                { new CultureInfo("ru"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/ru.xaml" ) } },
+                { new CultureInfo("ur"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/ur.xaml" ) } },
             };
 
         private static CultureInfo defaultLanguage =

@@ -2,7 +2,10 @@
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
 using OpenGptChat;
+using OpenGptChat.Abstraction;
+using OpenGptChat.Utilities;
 
 namespace OpenGptChat.Services
 {
@@ -11,21 +14,22 @@ namespace OpenGptChat.Services
     /// </summary>
     public class PageService
     {
-        private readonly AppWindow mainWindow;
-
-        public PageService(AppWindow mainWindow)
+        public PageService(
+            IServiceProvider serviceProvider)
         {
-            this.mainWindow = mainWindow;
+            ServiceProvider = serviceProvider;
         }
+
+        public IServiceProvider ServiceProvider { get; }
 
         /// <summary>
         /// 将主窗口的页面切换到指定页面 / Switch the main window's page to the specified page.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public void Navigate<T>()
-            where T : FrameworkElement
+        public T GetPage<T>()
+            where T : IPage
         {
-            mainWindow.Navigate(App.GetService<T>());
+            return ServiceProvider.GetService<T>() ?? throw new InvalidOperationException("Cannot find specified Page service");
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace OpenGptChat.Utilities
 {
-    internal class JsonHelper
+    public class JsonHelper
     {
         public static JsonSerializerOptions ConfigurationOptions { get; } =
             new JsonSerializerOptions()

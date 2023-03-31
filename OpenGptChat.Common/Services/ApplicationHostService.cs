@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using OpenGptChat.Abstraction;
 using OpenGptChat.Models;
 using OpenGptChat.Utilities;
-using OpenGptChat.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,18 +21,21 @@ using System.Windows;
 
 namespace OpenGptChat.Services
 {
-    internal class ApplicationHostService : IHostedService
+    public class ApplicationHostService : IHostedService
     {
         public ApplicationHostService(
+            IServiceProvider serviceProvider,
             LanguageService languageService,
             ChatStorageService chatStorageService,
             ConfigurationService configurationService)
         {
+            ServiceProvider = serviceProvider;
             LanguageService = languageService;
             ChatStorageService = chatStorageService;
             ConfigurationService = configurationService;
         }
 
+        public IServiceProvider ServiceProvider { get; }
         public LanguageService LanguageService { get; }
         public ChatStorageService ChatStorageService { get; }
         public ConfigurationService ConfigurationService { get; }
@@ -54,13 +58,15 @@ namespace OpenGptChat.Services
             ChatStorageService.Initialize();
 
             // 启动主窗体
-            if (!App.Current.Windows.OfType<AppWindow>().Any())
+            if (!Application.Current.Windows.OfType<IAppWindow>().Any())
             {
-                AppWindow window = App.GetService<AppWindow>();
+                IAppWindow window = ServiceProvider.GetService<IAppWindow>() ?? throw new InvalidOperationException("Cannot find MainWindow service");
                 window.Show();
 
+                IMainPage mainPage = ServiceProvider.GetService<IMainPage>() ?? throw new InvalidOperationException("Cannot find MainPage service");
+
                 // 导航到主页
-                window.Navigate(App.GetService<MainPage>());
+                window.Navigate(mainPage);
             }
 
             return Task.CompletedTask;

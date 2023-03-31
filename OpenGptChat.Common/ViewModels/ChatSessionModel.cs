@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using OpenGptChat.Abstraction;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
-using OpenGptChat.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,14 +45,14 @@ namespace OpenGptChat.ViewModels
         public bool IsReadOnly => !_isEditing;
 
 
-        public ChatPage Page => ChatPageService.GetPage(_id);
+        public IChatPage Page => ChatPageService.GetPage(_id);
         public ChatPageModel PageModel => Page.ViewModel;
 
 
         private static ChatPageService ChatPageService { get; } =
-            App.GetService<ChatPageService>();
+            GlobalServices.GetService<ChatPageService>();
         private static ChatStorageService ChatStorageService { get; } =
-            App.GetService<ChatStorageService>();
+            GlobalServices.GetService<ChatStorageService>();
 
         protected override void OnPropertyChanged(PropertyChangedEventArgs e)
         {

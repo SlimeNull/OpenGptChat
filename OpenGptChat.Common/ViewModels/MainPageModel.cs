@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using OpenGptChat.Abstraction;
 using OpenGptChat.Models;
-using OpenGptChat.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,6 +22,6 @@ namespace OpenGptChat.ViewModels
 
 
         [ObservableProperty]
-        private ChatPage? _currentChat;
+        private IChatPage? _currentChat;
     }
 }

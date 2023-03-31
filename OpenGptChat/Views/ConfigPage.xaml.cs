@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using OpenGptChat.Abstraction;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
@@ -24,9 +25,10 @@ namespace OpenGptChat.Views
     /// <summary>
     /// Interaction logic for ConfigPage.xaml
     /// </summary>
-    public partial class ConfigPage : Page
+    public partial class ConfigPage : Page, IConfigPage
     {
         public ConfigPage(
+            IAppWindow appWindow,
             ConfigPageModel viewModel,
             PageService pageService,
             NoteService noteService,
@@ -34,6 +36,7 @@ namespace OpenGptChat.Views
             ConfigurationService configurationService,
             SmoothScrollingService smoothScrollingService)
         {
+            AppWindow = appWindow;
             ViewModel = viewModel;
             PageService = pageService;
             NoteService = noteService;
@@ -48,6 +51,7 @@ namespace OpenGptChat.Views
             smoothScrollingService.Register(configurationScrollViewer);
         }
 
+        public IAppWindow AppWindow { get; }
         public ConfigPageModel ViewModel { get; }
         public PageService PageService { get; }
         public NoteService NoteService { get; }
@@ -72,7 +76,8 @@ namespace OpenGptChat.Views
         [RelayCommand]
         public void GoToMainPage()
         {
-            PageService.Navigate<MainPage>();
+            AppWindow.Navigate(
+                PageService.GetPage<IMainPage>());
         }
 
         [RelayCommand]

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OpenGptChat.Utilities
 {
-    internal class GlobalValues
+    public class GlobalValues
     {
         public static string AppName => nameof(OpenGptChat);
 

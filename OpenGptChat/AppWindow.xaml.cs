@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using OpenGptChat.Abstraction;
 using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
 using System;
@@ -23,7 +24,7 @@ namespace OpenGptChat
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class AppWindow : Window
+    public partial class AppWindow : Window, IAppWindow
     {
         public AppWindow(
             AppWindowModel viewModel,
