@@ -131,7 +131,7 @@
                                             <s:String x:Key="SessionMessageNameFormat">{0}:</s:String>
                                         </TextBlock.Resources>
                                         <Run Text="{Binding PageModel.LastMessage.DisplayName,Mode=OneWay,StringFormat={StaticResource SessionMessageNameFormat}}"/>
-                                        <Run Text="{Binding PageModel.LastMessage.Content,Mode=OneWay,Converter={StaticResource SingleLineTextConverter}}"/>
+                                        <Run Text="{Binding PageModel.LastMessage.Content,Mode=OneWay,Converter={StaticResource SingleLineTextConverter},FallbackValue=Empty}"/>
                                     </TextBlock>
                                 </StackPanel>
                             </DataTemplate>

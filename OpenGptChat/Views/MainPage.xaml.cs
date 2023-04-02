@@ -113,11 +113,24 @@ namespace OpenGptChat.Views
         /// </summary>
         /// <param name="session"></param>
         [RelayCommand]
-        public void DeleteSession(ChatSessionModel session)
+        public async Task DeleteSession(ChatSessionModel session)
         {
+            if (ViewModel.Sessions.Count == 1)
+            {
+                await NoteService.ShowAsync("You can't delete the last session.", 1500);
+                return;
+            }
+
+            int index = 
+                ViewModel.Sessions.IndexOf(session);
+            int newIndex =
+                Math.Max(0, index - 1);
+
             ChatPageService.RemovePage(session.Id);
             ChatStorageService.DeleteSession(session.Id);
             ViewModel.Sessions.Remove(session);
+
+            ViewModel.SelectedSession = ViewModel.Sessions[newIndex];
         }
 
 
