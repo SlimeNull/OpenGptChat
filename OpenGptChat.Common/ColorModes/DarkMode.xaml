@@ -52,7 +52,7 @@
     <Brush x:Key="ChatBubbleBorder">#424242</Brush>
 
     <Brush x:Key="FontForeground">#dddddd</Brush>
-    <Brush x:Key="FontForegroundLight">#d6d6d6</Brush>
+    <Brush x:Key="FontForegroundLight">#888888</Brush>
 
     <Brush x:Key="SessionHoverBackground">#2d2d2d</Brush>
     <Brush x:Key="SessionSelectedBackgroun">#3d3d3d</Brush>
