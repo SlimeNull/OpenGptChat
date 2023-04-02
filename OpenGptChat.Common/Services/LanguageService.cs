@@ -21,6 +21,7 @@ namespace OpenGptChat.Services
                 { new CultureInfo("fr"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/fr.xaml" ) } },
                 { new CultureInfo("ru"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/ru.xaml" ) } },
                 { new CultureInfo("ur"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/ur.xaml" ) } },
+                { new CultureInfo("tr"), new ResourceDictionary() { Source = new Uri($"{resourceUriPrefix}/Languages/tr.xaml" ) } },
             };
 
         private static CultureInfo defaultLanguage =

@@ -1,16 +1,18 @@
 <div align=center>
 
 # OpenGptChat 
-# knnuznr tarafından Türkçeleştirilmiştir.
 
-[![TR-TR](https://img.shields.io/badge/TR-TR-red)](readme_tr.md)  / [![release date](https://img.shields.io/github/release-date/SlimeNull/OpenGptChat)](https://github.com/knnuznr/OpenGptChat/releases) [![stars](https://img.shields.io/github/stars/knnuznr/OpenGptChat?style=flat)](https://github.com/SlimeNull/OpenGptChat/pulse)
+knnuznr tarafından Türkçeleştirilmiştir.
+
+[![EN-US](https://img.shields.io/badge/EN-US-blue)](README.md) [![ZH-HANS](https://img.shields.io/badge/中文-简体-red)](README_ZH-HANS.md) [![ZH-HANT](https://img.shields.io/badge/中文-繁体-red)](README_ZH-HANT.md) [![ZH-HANT](https://img.shields.io/badge/TR-TR-red)](README_tr.md) / [![release date](https://img.shields.io/github/release-date/SlimeNull/OpenGptChat)](https://github.com/knnuznr/OpenGptChat/releases) [![stars](https://img.shields.io/github/stars/knnuznr/OpenGptChat?style=flat)](https://github.com/SlimeNull/OpenGptChat/pulse)
 
  
 ChatGPT'ye dayalı basit bir sohbet uygulaması (https://platform.openai.com/docs/guides/chat).
 
+![Preview](assets/preview3_dark_tr.png)
+
 </div>
 
-![Preview](https://user-images.githubusercontent.com/70298812/229292651-ab2a8f39-da99-433c-9c8d-0c75dc0570e8.png)
 
 
 ## Özellikler
