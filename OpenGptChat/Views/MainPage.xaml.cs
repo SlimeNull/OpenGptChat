@@ -106,6 +106,8 @@ namespace OpenGptChat.Views
 
             ChatStorageService.SaveSession(session);
             ViewModel.Sessions.Add(sessionModel);
+
+            ViewModel.SelectedSession = sessionModel;
         }
 
         /// <summary>
