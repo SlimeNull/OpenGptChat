@@ -13,6 +13,7 @@
   <PropertyGroup>
     <Version>1.1.5.4</Version>
     <ImplicitUsings>disable</ImplicitUsings>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
