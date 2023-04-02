@@ -9,7 +9,7 @@ knnuznr tarafından Türkçeleştirilmiştir.
  
 ChatGPT'ye dayalı basit bir sohbet uygulaması (https://platform.openai.com/docs/guides/chat).
 
-![Preview](assets/preview3_dark_tr.png)
+![Preview](assets/preview3_tr.png)
 
 </div>
 
