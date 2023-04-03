@@ -10,8 +10,8 @@
                 <ResourceDictionary Source="/Resources/ControlStyles/All.xaml"/>
                 <ResourceDictionary Source="/Converters/SingletonConverters.xaml"/>
 
-                <ResourceDictionary Source="pack://application:,,,/OpenGptChat.Common;component/ColorModes/BrightMode.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/OpenGptChat.Common;component/Languages/en.xaml"/>
+                <ResourceDictionary Source="/ColorModes/LightMode.xaml"/>
+                <ResourceDictionary Source="/Languages/en.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -6,7 +6,6 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OpenGptChat.Abstraction;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.Utilities;
@@ -23,7 +22,6 @@ namespace OpenGptChat
         static App()
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            GlobalServices.InitServices(host.Services);
         }
 
         private static readonly IHost host = Host
@@ -53,16 +51,16 @@ namespace OpenGptChat
                 services.AddSingleton<LanguageService>();
                 services.AddSingleton<ColorModeService>();
                 
-                services.AddSingleton<IAppWindow, AppWindow>();
-                services.AddSingleton<IMainPage, MainPage>();
-                services.AddSingleton<IConfigPage, ConfigPage>();
+                services.AddSingleton<AppWindow>();
+                services.AddSingleton<MainPage>();
+                services.AddSingleton<ConfigPage>();
 
                 services.AddSingleton<AppWindowModel>();
                 services.AddSingleton<MainPageModel>();
                 services.AddSingleton<ConfigPageModel>();
 
                 // 作用域页面服务
-                services.AddScoped<IChatPage, ChatPage>();
+                services.AddScoped<ChatPage>();
                 services.AddScoped<ChatPageModel>();
 
                 // 配置服务, 将配置与 AppConfig 绑定

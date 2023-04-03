@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.Input;
-using OpenGptChat.Abstraction;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
@@ -13,7 +12,7 @@ namespace OpenGptChat.Views
     /// <summary>
     /// Interaction logic for ChatPage.xaml
     /// </summary>
-    public partial class ChatPage : Page, IChatPage
+    public partial class ChatPage : Page
     {
         public ChatPage(
             ChatPageModel viewModel,

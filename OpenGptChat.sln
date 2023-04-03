@@ -13,12 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README_ZH-HANT.md = README_ZH-HANT.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maui", "Maui", "{6A8A086D-F764-45FC-9C77-D1EF1F16D2C2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGptChat.FluentDesign", "OpenGptChat.FluentDesign\OpenGptChat.FluentDesign.csproj", "{C6576979-1B22-4537-B1F4-12ECD2DBB748}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGptChat.Common", "OpenGptChat.Common\OpenGptChat.Common.csproj", "{58CE2D85-8567-4824-A373-07319F15E062}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,14 +23,6 @@ Global
 		{B1C41956-C1C8-4B45-A9FC-8E329093D5F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1C41956-C1C8-4B45-A9FC-8E329093D5F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1C41956-C1C8-4B45-A9FC-8E329093D5F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6576979-1B22-4537-B1F4-12ECD2DBB748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6576979-1B22-4537-B1F4-12ECD2DBB748}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6576979-1B22-4537-B1F4-12ECD2DBB748}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6576979-1B22-4537-B1F4-12ECD2DBB748}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58CE2D85-8567-4824-A373-07319F15E062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58CE2D85-8567-4824-A373-07319F15E062}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58CE2D85-8567-4824-A373-07319F15E062}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58CE2D85-8567-4824-A373-07319F15E062}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

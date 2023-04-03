@@ -32,10 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OpenGptChat.Common\OpenGptChat.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Assets\Images\openai.ico" />
     <Resource Include="Assets\Images\openai.png" />
   </ItemGroup>

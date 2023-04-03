@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:OpenGptChat.Views"
       xmlns:controls="clr-namespace:OpenGptChat.Controls"
       xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
-      xmlns:utilities="clr-namespace:OpenGptChat.Utilities;assembly=OpenGptChat.Common"
+      xmlns:utilities="clr-namespace:OpenGptChat.Utilities"
       xmlns:vm="clr-namespace:OpenGptChat.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="880"
