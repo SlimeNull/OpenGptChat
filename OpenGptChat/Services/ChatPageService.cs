@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using OpenGptChat.Views;
+using OpenGptChat.Views.Pages;
 
 namespace OpenGptChat.Services
 {
@@ -12,7 +13,6 @@ namespace OpenGptChat.Services
     {
         private Dictionary<Guid, ChatPage> pages =
             new Dictionary<Guid, ChatPage>();
-
 
         public ChatPageService(
             IServiceProvider services)

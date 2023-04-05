@@ -7,7 +7,7 @@ using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
 
-namespace OpenGptChat.Views
+namespace OpenGptChat.Views.Pages
 {
     /// <summary>
     /// Interaction logic for ChatPage.xaml
@@ -46,6 +46,7 @@ namespace OpenGptChat.Views
         {
             SessionId = sessionId;
 
+            ViewModel.Messages.Clear();
             foreach (var msg in ChatStorageService.GetAllMessages(SessionId))
                 ViewModel.Messages.Add(
                     new ChatMessageModel(msg));

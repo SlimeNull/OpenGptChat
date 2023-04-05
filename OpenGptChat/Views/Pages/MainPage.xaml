@@ -1,10 +1,10 @@
-﻿<Page x:Class="OpenGptChat.Views.MainPage"
+﻿<Page x:Class="OpenGptChat.Views.Pages.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:s="clr-namespace:System;assembly=mscorlib"
-      xmlns:local="clr-namespace:OpenGptChat.Views"
+      xmlns:local="clr-namespace:OpenGptChat.Views.Pages"
       xmlns:controls="clr-namespace:OpenGptChat.Controls"
       xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:utilities="clr-namespace:OpenGptChat.Utilities"
@@ -94,6 +94,7 @@
                                 <DataTemplate.Resources>
                                     <ContextMenu x:Key="SessionContextMenu">
                                         <MenuItem Header="{DynamicResource StrEdit}" Command="{Binding StartEditCommand}"/>
+                                        <MenuItem Header="{DynamicResource StrConfig}" Command="{Binding ConfigCommand}"/>
                                         <MenuItem Header="{DynamicResource StrDelete}"
                                                   Command="{Binding Data.DeleteSessionCommand,Source={StaticResource PageSelf}}"
                                                   CommandParameter="{Binding}"/>

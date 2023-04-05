@@ -17,6 +17,7 @@
     <s:String x:Key="StrAPIGPTModel">API GPT ماڈل</s:String>
     <s:String x:Key="StrAPITimeout">API ٹائم آؤٹ</s:String>
     <s:String x:Key="StrTemperature">درجہ حرارت</s:String>
+    <s:String x:Key="StrEnableChatContext">ٹریفک کے ساتھ چیٹ کو ممکن بنائیں</s:String>
     <s:String x:Key="StrSystemMessages">نظامی پیغامات</s:String>
     <s:String x:Key="StrApply">لاگو کریں</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">ہمیشہ اوپر سے دکھائی دیں</s:String>
@@ -36,6 +37,8 @@
 
 
     <!--بٹن-->
+    <s:String x:Key="StrAccept">قبول کرنا</s:String>
+    <s:String x:Key="StrCancel">منسوخ کریں</s:String>
     <s:String x:Key="StrSend">بھیجیں</s:String>
     <s:String x:Key="StrSave">محفوظ کریں</s:String>
     <s:String x:Key="StrNewSession">نیا سیشن</s:String>
@@ -49,8 +52,14 @@
     <!--مینو-->
     <s:String x:Key="StrCopy">کاپی</s:String>
     <s:String x:Key="StrEdit">ترمیم</s:String>
+    <s:String x:Key="StrConfig">ترتیب دینا</s:String>
     <s:String x:Key="StrDelete">حذف کریں</s:String>
 
+    <!--متن-->
+    <s:String x:Key="StrAuto">خود کار</s:String>
+    <s:String x:Key="StrYes">جی ہاں</s:String>
+    <s:String x:Key="StrNo">نہیں</s:String>
+    <s:String x:Key="StrOk">تھیک ہے</s:String>
 
 
 </ResourceDictionary>

@@ -6,7 +6,7 @@ using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
 
-namespace OpenGptChat.Views
+namespace OpenGptChat.Views.Pages
 {
     /// <summary>
     /// Interaction logic for MainPage.xaml
@@ -59,7 +59,6 @@ namespace OpenGptChat.Views
         public ChatPageService ChatPageService { get; }
         public ChatStorageService ChatStorageService { get; }
         public ConfigurationService ConfigurationService { get; }
-
 
 
         /// <summary>

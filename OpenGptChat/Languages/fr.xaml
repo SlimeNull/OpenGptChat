@@ -17,6 +17,7 @@
     <s:String x:Key="StrAPIGPTModel">Modèle d'API GPT</s:String>
     <s:String x:Key="StrAPITimeout">Délai d'attente de l'API</s:String>
     <s:String x:Key="StrTemperature">Température</s:String>
+    <s:String x:Key="StrEnableChatContext">Activer le contexte de discussion</s:String>
     <s:String x:Key="StrSystemMessages">Messages système</s:String>
     <s:String x:Key="StrApply">Appliquer</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">Fenêtre toujours au premier plan</s:String>
@@ -36,6 +37,8 @@
 
 
     <!--Boutons-->
+    <s:String x:Key="StrAccept">Accepter</s:String>
+    <s:String x:Key="StrCancel">Annuler</s:String>
     <s:String x:Key="StrSend">Envoyer</s:String>
     <s:String x:Key="StrSave">Sauvegarder</s:String>
     <s:String x:Key="StrNewSession">Nouvelle session</s:String>
@@ -48,7 +51,15 @@
 
     <!--Menu-->
     <s:String x:Key="StrCopy">Copier</s:String>
+    <s:String x:Key="StrConfig">Configure</s:String>
     <s:String x:Key="StrEdit">Modifier</s:String>
     <s:String x:Key="StrDelete">Supprimer</s:String>
 
+    <!--Texte-->
+    <s:String x:Key="StrAuto">Automatique</s:String>
+    <s:String x:Key="StrYes">Oui</s:String>
+    <s:String x:Key="StrNo">Non</s:String>
+    <s:String x:Key="StrOk">OK</s:String>
+    
+    
 </ResourceDictionary>

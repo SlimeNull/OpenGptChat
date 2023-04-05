@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
+using System.Xml.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.Views;
+using OpenGptChat.Views.Dialogs;
+using OpenGptChat.Views.Pages;
 
 namespace OpenGptChat.ViewModels
 {
@@ -19,12 +24,27 @@ namespace OpenGptChat.ViewModels
         public ChatSessionModel(ChatSession storage)
         {
             Storage = storage;
-
-            _id = storage.Id;
-            _name = storage.Name;
+            SetupStorage(storage);
         }
 
-        public ChatSession? Storage { get; set; }
+        private void SetupStorage(ChatSession storage)
+        {
+            _id = storage.Id;
+            _name = storage.Name;
+            _enableChatContext = storage.EnableChatContext;
+            _systemMessages = storage.SystemMessages.WrapCollection();
+        }
+
+        public ChatSession? Storage
+        {
+            get => storage; set
+            {
+                storage = value;
+
+                if (value != null)
+                    SetupStorage(value);
+            }
+        }
 
 
         [ObservableProperty]
@@ -34,9 +54,20 @@ namespace OpenGptChat.ViewModels
         private string _name = string.Empty;
 
         [ObservableProperty]
+        private bool? _enableChatContext = null;
+
+        [ObservableProperty]
+        private ObservableCollection<ValueWrapper<string>> _systemMessages
+            = new ObservableCollection<ValueWrapper<string>>();
+
+
+
+
+        [ObservableProperty]
         [NotifyPropertyChangedFor(
             nameof(IsReadOnly))]
         private bool _isEditing = false;
+        private ChatSession? storage;
 
         public bool IsReadOnly => !IsEditing;
 
@@ -54,15 +85,7 @@ namespace OpenGptChat.ViewModels
         {
             base.OnPropertyChanged(e);
 
-            if (Storage != null)
-            {
-                Storage = Storage with
-                {
-                    Name = Name
-                };
-
-                ChatStorageService.SaveSession(Storage);
-            }
+            SyncStorage();
         }
 
         [RelayCommand]
@@ -75,6 +98,35 @@ namespace OpenGptChat.ViewModels
         public void EndEdit()
         {
             IsEditing = false;
+        }
+
+        [RelayCommand]
+        public void Config()
+        {
+            ChatSessionConfigDialog dialog =
+                new ChatSessionConfigDialog(this);
+
+            if (Application.Current.MainWindow is Window window)
+                dialog.Owner = window;
+
+            if (dialog.ShowDialog() ?? false)
+                SyncStorage();
+        }
+
+        [RelayCommand]
+        public void SyncStorage()
+        {
+            if (Storage != null)
+            {
+                Storage = Storage with
+                {
+                    Name = Name,
+                    EnableChatContext = EnableChatContext,
+                    SystemMessages = SystemMessages.UnwrapToArray()
+                };
+
+                ChatStorageService.SaveSession(Storage);
+            }
         }
     }
 }

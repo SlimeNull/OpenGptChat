@@ -85,6 +85,9 @@ namespace OpenGptChat.Services
 
         private async Task<ChatDialogue> ChatCoreAsync(Guid sessionId, string message, Action<string> messageHandler, CancellationToken token)
         {
+            ChatSession? session = 
+                ChatStorageService.GetSession(sessionId);
+
             ChatMessage ask = ChatMessage.Create(sessionId, "user", message);
 
             OpenAIClient client = GetOpenAIClient();
@@ -94,8 +97,13 @@ namespace OpenGptChat.Services
             foreach (var sysmsg in ConfigurationService.Configuration.SystemMessages)
                 messages.Add(new ChatPrompt("system", sysmsg));
 
-            foreach (var chatmsg in ChatStorageService.GetAllMessages(sessionId))
-                messages.Add(new ChatPrompt(chatmsg.Role, chatmsg.Content));
+            if (session != null)
+                foreach (var sysmsg in session.SystemMessages)
+                    messages.Add(new ChatPrompt("system", sysmsg));
+
+            if (session?.EnableChatContext ?? ConfigurationService.Configuration.EnableChatContext)
+                foreach (var chatmsg in ChatStorageService.GetAllMessages(sessionId))
+                    messages.Add(new ChatPrompt(chatmsg.Role, chatmsg.Content));
 
             messages.Add(new ChatPrompt("user", message));
 

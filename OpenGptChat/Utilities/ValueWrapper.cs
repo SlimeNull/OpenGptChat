@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace OpenGptChat.Models
 {

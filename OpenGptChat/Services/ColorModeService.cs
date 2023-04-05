@@ -36,22 +36,8 @@ namespace OpenGptChat.Services
 
         private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
         {
-            SwitchTo(CurrentMode);
-        }
-
-        private IntPtr MessageHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-        {
-            if (msg != 0x0015)
-            {
-                handled = false;
-                return IntPtr.Zero;
-            }
-
-            string? section =
-                Marshal.PtrToStringAuto(lParam);
-
-
-            return IntPtr.Zero;
+            if (e.Category == UserPreferenceCategory.General)
+                SwitchTo(CurrentMode);
         }
 
         public void Init()

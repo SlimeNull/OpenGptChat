@@ -21,6 +21,9 @@ namespace OpenGptChat.Models
         private double _temerature = 1;
 
         [ObservableProperty]
+        private bool _enableChatContext = true;
+
+        [ObservableProperty]
         private string[] _systemMessages = new string[]
         {
 

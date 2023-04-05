@@ -17,6 +17,7 @@
     <s:String x:Key="StrAPIGPTModel">API GPTモデル</s:String>
     <s:String x:Key="StrAPITimeout">APIタイムアウト</s:String>
     <s:String x:Key="StrTemperature">温度</s:String>
+    <s:String x:Key="StrEnableChatContext">チャットコンテキストを有効にする</s:String>
     <s:String x:Key="StrSystemMessages">システムメッセージ</s:String>
     <s:String x:Key="StrApply">適用</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">常に最前面に表示</s:String>
@@ -36,6 +37,8 @@
 
 
     <!--ボタン-->
+    <s:String x:Key="StrAccept">承認する</s:String>
+    <s:String x:Key="StrCancel">キャンセル</s:String>
     <s:String x:Key="StrSend">送信</s:String>
     <s:String x:Key="StrSave">保存</s:String>
     <s:String x:Key="StrNewSession">新しいセッション</s:String>
@@ -49,8 +52,13 @@
     <!--メニュー-->
     <s:String x:Key="StrCopy">コピー</s:String>
     <s:String x:Key="StrEdit">編集</s:String>
+    <s:String x:Key="StrConfig">設定</s:String>
     <s:String x:Key="StrDelete">削除</s:String>
 
-
+    <!--テキスト-->
+    <s:String x:Key="StrAuto">自動</s:String>
+    <s:String x:Key="StrYes">はい</s:String>
+    <s:String x:Key="StrNo">いいえ</s:String>
+    <s:String x:Key="StrOk">OK</s:String>
 
 </ResourceDictionary>

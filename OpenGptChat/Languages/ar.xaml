@@ -17,6 +17,7 @@
     <s:String x:Key="StrAPIGPTModel">نموذج GPT لواجهة برمجة التطبيقات</s:String>
     <s:String x:Key="StrAPITimeout">وقت انتهاء صلاحية واجهة برمجة التطبيقات</s:String>
     <s:String x:Key="StrTemperature">درجة الحرارة</s:String>
+    <s:String x:Key="StrEnableChatContext">تمكين سياق الدردشة</s:String>
     <s:String x:Key="StrSystemMessages">رسائل النظام</s:String>
     <s:String x:Key="StrApply">تطبيق</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">نافذة دائمًا في المقدمة</s:String>
@@ -36,6 +37,9 @@
 
 
     <!--أزرار-->
+    <s:String x:Key="StrAccept">قبول</s:String>
+    <s:String x:Key="StrCancel">إلغاء</s:String>
+
     <s:String x:Key="StrSend">إرسال</s:String>
     <s:String x:Key="StrSave">حفظ</s:String>
     <s:String x:Key="StrNewSession">جلسة جديدة</s:String>
@@ -48,7 +52,14 @@
 
     <!--قائمة-->
     <s:String x:Key="StrCopy">نسخ</s:String>
+    <s:String x:Key="StrConfig">تهيئة</s:String>
     <s:String x:Key="StrEdit">تحرير</s:String>
     <s:String x:Key="StrDelete">حذف</s:String>
+
+    <!--النص-->
+    <s:String x:Key="StrAuto">تلقائي</s:String>
+    <s:String x:Key="StrYes">نعم</s:String>
+    <s:String x:Key="StrNo">لا</s:String>
+    <s:String x:Key="StrOk">موافق</s:String>
 
 </ResourceDictionary>

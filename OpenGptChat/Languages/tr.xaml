@@ -1,7 +1,12 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<!--土耳其语-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:s="clr-namespace:System;assembly=mscorlib">
-    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="_base.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
     <!--Page names-->
     <s:String x:Key="StrChat">Sohbet</s:String>
     <s:String x:Key="StrConfiguration">Ayarlar</s:String>
@@ -12,6 +17,7 @@
     <s:String x:Key="StrAPIHost">API Sunucusu</s:String>
     <s:String x:Key="StrAPITimeout">API Zaman aşımı</s:String>
     <s:String x:Key="StrTemperature">Temperature</s:String>
+    <s:String x:Key="StrEnableChatContext">Sohbet bağlamını etkinleştir</s:String>
     <s:String x:Key="StrSystemMessages">Sistem Mesajı</s:String>
     <s:String x:Key="StrApply">Uygula</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">Pencere her zaman üstte</s:String>
@@ -31,23 +37,30 @@
 
 
     <!--Button-->
+    <s:String x:Key="StrAccept">Kabul etmek</s:String>
+    <s:String x:Key="StrCancel">İptal etmek</s:String>
     <s:String x:Key="StrSend">Gönder</s:String>
     <s:String x:Key="StrSave">Kaydet</s:String>
     <s:String x:Key="StrNewSession">Yeni Sohbet</s:String>
 
-    
-    
+
+
     <!--ToolTip-->
     <s:String x:Key="StrAboutOpenGptChat">OpenGptChat Hakkında</s:String>
     <s:String x:Key="StrGoBackToMainPage">Ana Sayfaya Dön</s:String>
     <s:String x:Key="StrResetChat">Sohbeti Temizle</s:String>
     <s:String x:Key="StrGoToConfigurationPage">Ayarlar Sayfasına Git</s:String>
-    
+
     <!--Menu-->
     <s:String x:Key="StrCopy">Kopyala</s:String>
     <s:String x:Key="StrEdit">Düzenle</s:String>
+    <s:String x:Key="StrConfig">Konfigürasyon</s:String>
     <s:String x:Key="StrDelete">Sil</s:String>
-    
-    <s:Boolean x:Key="IsLanguageResource">True</s:Boolean>
+
+    <!--Metin-->
+    <s:String x:Key="StrAuto">Otomatik</s:String>
+    <s:String x:Key="StrYes">Evet</s:String>
+    <s:String x:Key="StrNo">Hayır</s:String>
+    <s:String x:Key="StrOk">Tamam</s:String>
 
 </ResourceDictionary>

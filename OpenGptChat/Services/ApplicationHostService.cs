@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OpenGptChat.Utilities;
 using OpenGptChat.Views;
+using OpenGptChat.Views.Pages;
 
 namespace OpenGptChat.Services
 {

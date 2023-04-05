@@ -7,6 +7,7 @@
         xmlns:controls="clr-namespace:OpenGptChat.Controls"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         xmlns:utils="clr-namespace:OpenGptChat.Utilities"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:hotkey="clr-namespace:EleCho.GlobalHotkey.Windows.Wpf;assembly=EleCho.GlobalHotkey.Windows.Wpf"
         d:DataContext="{d:DesignInstance Type=local:AppWindow}"
         mc:Ignorable="d" Icon="assets/images/openai.png" 
@@ -28,8 +29,14 @@
         <Frame Name="appFrame" NavigationUIVisibility="Hidden"/>
 
         <controls:NoteControl x:Name="appNote"
-                              Text="{Binding NoteDataModel.Text}" Show="{Binding NoteDataModel.Show}" Background="{DynamicResource BoxBackground}" MouseDown="NoteControl_MouseDown"
+                              Text="{Binding NoteService.Data.Text}" Show="{Binding NoteService.Data.Show}" Background="{DynamicResource BoxBackground}"
                               VerticalAlignment="Top" HorizontalAlignment="Center" Margin="50 0" BorderThickness="1 0 1 1" Visibility="Hidden">
+
+            <behaviors:Interaction.Triggers>
+                <behaviors:EventTrigger EventName="MouseDown">
+                    <behaviors:CallMethodAction TargetObject="{Binding NoteService}" MethodName="Close"/>
+                </behaviors:EventTrigger>
+            </behaviors:Interaction.Triggers>
 
             <controls:NoteControl.Style>
                 <Style TargetType="controls:NoteControl">

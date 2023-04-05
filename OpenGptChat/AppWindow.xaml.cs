@@ -35,43 +35,6 @@ namespace OpenGptChat
         public LanguageService LanguageService { get; }
         public ColorModeService ColorModeService { get; }
 
-        public NoteDataModel NoteDataModel => NoteService.Data;
-
-
-        [RelayCommand]
-        public void CloseNote()
-        {
-            NoteService.Close();
-        }
-
-        [RelayCommand]
-        public void ShowApp()
-        {
-            this.Show();
-
-            if (this.WindowState == WindowState.Minimized)
-                this.WindowState = WindowState.Normal;
-
-            if (!this.IsActive)
-                this.Activate();
-        }
-
-        [RelayCommand]
-        public void HideApp()
-        {
-            this.Hide();
-        }
-
-        [RelayCommand]
-        public void CloseApp()
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void NoteControl_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            NoteService.Close();
-        }
 
         public void Navigate<TPage>() where TPage : class
         {

@@ -1,4 +1,4 @@
-﻿<!--Translated by ChatGPT-->
+﻿<!--Translated by ChatGPT, 俄语-->
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -17,6 +17,7 @@
     <s:String x:Key="StrAPIGPTModel">Модель API GPT</s:String>
     <s:String x:Key="StrAPITimeout">Время ожидания API</s:String>
     <s:String x:Key="StrTemperature">Температура</s:String>
+    <s:String x:Key="StrEnableChatContext">Включить контекст чата</s:String>
     <s:String x:Key="StrSystemMessages">Системные сообщения</s:String>
     <s:String x:Key="StrApply">Применить</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">Окно всегда сверху</s:String>
@@ -36,6 +37,8 @@
 
 
     <!-- Кнопки -->
+    <s:String x:Key="StrAccept">Принять</s:String>
+    <s:String x:Key="StrCancel">Отменить</s:String>
     <s:String x:Key="StrSend">Отправить</s:String>
     <s:String x:Key="StrSave">Сохранить</s:String>
     <s:String x:Key="StrNewSession">Новая сессия</s:String>
@@ -49,8 +52,13 @@
     <!-- Меню -->
     <s:String x:Key="StrCopy">Копировать</s:String>
     <s:String x:Key="StrEdit">Редактировать</s:String>
+    <s:String x:Key="StrConfig">Настройка</s:String>
     <s:String x:Key="StrDelete">Удалить</s:String>
 
-
+    <!--Текст-->
+    <s:String x:Key="StrAuto">Авто</s:String>
+    <s:String x:Key="StrYes">Да</s:String>
+    <s:String x:Key="StrNo">Нет</s:String>
+    <s:String x:Key="StrOk">ОК</s:String>
 
 </ResourceDictionary>

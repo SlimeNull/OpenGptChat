@@ -17,6 +17,7 @@
     <s:String x:Key="StrAPIGPTModel">API GPT 模型</s:String>
     <s:String x:Key="StrAPITimeout">API 超時時間</s:String>
     <s:String x:Key="StrTemperature">溫度</s:String>
+    <s:String x:Key="StrEnableChatContext">啟用聊天上下文</s:String>
     <s:String x:Key="StrSystemMessages">系統訊息</s:String>
     <s:String x:Key="StrApply">應用</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">視窗置頂</s:String>
@@ -36,6 +37,9 @@
 
 
     <!--按鈕-->
+    <s:String x:Key="StrAccept">接受</s:String>
+    <s:String x:Key="StrCancel">取消</s:String>
+
     <s:String x:Key="StrSend">發送</s:String>
     <s:String x:Key="StrSave">儲存</s:String>
     <s:String x:Key="StrNewSession">新建對話</s:String>
@@ -48,7 +52,14 @@
 
     <!--菜單-->
     <s:String x:Key="StrCopy">複製</s:String>
+    <s:String x:Key="StrConfig">配置</s:String>
     <s:String x:Key="StrEdit">編輯</s:String>
     <s:String x:Key="StrDelete">刪除</s:String>
+
+    <!--文本-->
+    <s:String x:Key="StrAuto">自動</s:String>
+    <s:String x:Key="StrYes">是</s:String>
+    <s:String x:Key="StrNo">否</s:String>
+    <s:String x:Key="StrOk">確定</s:String>
 
 </ResourceDictionary>

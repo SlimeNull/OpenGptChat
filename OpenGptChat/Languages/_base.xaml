@@ -12,6 +12,7 @@
     <s:String x:Key="StrAPIHost">API Host</s:String>
     <s:String x:Key="StrAPITimeout">API Timeout</s:String>
     <s:String x:Key="StrTemperature">Temperature</s:String>
+    <s:String x:Key="StrEnableChatContext">Enable chat context</s:String>
     <s:String x:Key="StrSystemMessages">System messages</s:String>
     <s:String x:Key="StrApply">Apply</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">Window always on top</s:String>
@@ -31,11 +32,13 @@
 
 
     <!--Button-->
+    <s:String x:Key="StrAccept">Accept</s:String>
+    <s:String x:Key="StrCancel">Cancel</s:String>
+    
     <s:String x:Key="StrSend">Send</s:String>
     <s:String x:Key="StrSave">Save</s:String>
     <s:String x:Key="StrNewSession">New Session</s:String>
 
-    
     
     <!--ToolTip-->
     <s:String x:Key="StrAboutOpenGptChat">About OpenGptChat</s:String>
@@ -45,9 +48,19 @@
     
     <!--Menu-->
     <s:String x:Key="StrCopy">Copy</s:String>
+    <s:String x:Key="StrConfig">Config</s:String>
     <s:String x:Key="StrEdit">Edit</s:String>
     <s:String x:Key="StrDelete">Delete</s:String>
     
+    <!--Text-->
+    <s:String x:Key="StrAuto">Auto</s:String>
+    <s:String x:Key="StrYes">Yes</s:String>
+    <s:String x:Key="StrNo">No</s:String>
+    <s:String x:Key="StrOk">Ok</s:String>
+
+
+
+
     <s:Boolean x:Key="IsLanguageResource">True</s:Boolean>
 
 </ResourceDictionary>

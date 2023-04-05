@@ -8,7 +8,7 @@ using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
 
-namespace OpenGptChat.Views
+namespace OpenGptChat.Views.Pages
 {
     /// <summary>
     /// Interaction logic for ConfigPage.xaml

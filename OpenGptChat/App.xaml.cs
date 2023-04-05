@@ -11,6 +11,8 @@ using OpenGptChat.Services;
 using OpenGptChat.Utilities;
 using OpenGptChat.ViewModels;
 using OpenGptChat.Views;
+using OpenGptChat.Views.Dialogs;
+using OpenGptChat.Views.Pages;
 
 namespace OpenGptChat
 {
@@ -59,7 +61,7 @@ namespace OpenGptChat
                 services.AddSingleton<MainPageModel>();
                 services.AddSingleton<ConfigPageModel>();
 
-                // 作用域页面服务
+                // 作用域服务
                 services.AddScoped<ChatPage>();
                 services.AddScoped<ChatPageModel>();
 
@@ -143,7 +145,6 @@ namespace OpenGptChat
         {
             EventWaitHandle singletonEvent = new EventWaitHandle(false, EventResetMode.AutoReset, "SlimeNull/OpenGptChat", out bool createdNew);
 
-            //throw new NotImplementedException();
             if (createdNew)
             {
                 Task.Run(() =>

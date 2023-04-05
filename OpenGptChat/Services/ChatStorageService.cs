@@ -20,6 +20,14 @@ namespace OpenGptChat.Services
         public LiteDatabase? Database { get; private set; }
         public ConfigurationService ConfigurationService { get; }
 
+        public ChatSession? GetSession(Guid id)
+        {
+            if (ChatSessions == null)
+                throw new InvalidOperationException("Not initialized");
+
+            return ChatSessions.FindOne(session => session.Id == id);
+        }
+
         public IEnumerable<ChatSession> GetAllSessions()
         {
             if (ChatSessions == null)
