@@ -170,7 +170,7 @@
                         <Run Text="{DynamicResource StrColorMode}"/>
                         <Run Text=":"/>
                     </TextBlock>
-                    <ListBox BorderThickness="0"
+                    <ListBox BorderThickness="0" d:ItemsSource="{d:SampleData ItemCount=5}"
                              ItemsSource="{Binding ColorModeService.ColorModes}" SelectedItem="{Binding ColorModeService.CurrentMode}">
                     </ListBox>
                 </StackPanel>
@@ -180,7 +180,7 @@
                         <Run Text="{DynamicResource StrLanguage}"/>
                         <Run Text=":"/>
                     </TextBlock>
-                    <ListBox BorderThickness="0"
+                    <ListBox BorderThickness="0" d:ItemsSource="{d:SampleData ItemCount=5}"
                              ItemsSource="{Binding LanguageService.Languages}" SelectedItem="{Binding LanguageService.CurrentLanguage}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>

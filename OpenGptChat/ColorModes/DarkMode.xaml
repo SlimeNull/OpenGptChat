@@ -7,7 +7,7 @@
     <Brush x:Key="GeneralBackground">#1f1f1f</Brush>
     <Brush x:Key="GeneralBorder">#3d3d3d</Brush>
 
-    <Brush x:Key="BoxBackground">#383838</Brush>
+    <Brush x:Key="BoxBackground">#282828</Brush>
     <Brush x:Key="BoxHoverBackground">#383838</Brush>
     <Brush x:Key="BoxPressBackground">#333333</Brush>
     <Brush x:Key="BoxFocusedBackground">#1f1f1f</Brush>

@@ -3,6 +3,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Window.xaml"/>
         <ResourceDictionary Source="Page.xaml"/>
+        <ResourceDictionary Source="ToolTip.xaml"/>
         <ResourceDictionary Source="TextBlock.xaml"/>
         <ResourceDictionary Source="Menu.xaml"/>
         <ResourceDictionary Source="ContextMenu.xaml"/>
