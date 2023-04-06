@@ -1,10 +1,16 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Window.xaml"/>
+        <ResourceDictionary Source="Page.xaml"/>
+        <ResourceDictionary Source="TextBlock.xaml"/>
+        <ResourceDictionary Source="Menu.xaml"/>
+        <ResourceDictionary Source="ContextMenu.xaml"/>
         <ResourceDictionary Source="ScrollBar.xaml"/>
         <ResourceDictionary Source="Button.xaml"/>
         <ResourceDictionary Source="TextBox.xaml"/>
         <ResourceDictionary Source="ListBox.xaml"/>
         <ResourceDictionary Source="CheckBox.xaml"/>
+        <ResourceDictionary Source="ComboBox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

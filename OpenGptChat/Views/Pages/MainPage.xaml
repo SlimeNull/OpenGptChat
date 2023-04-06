@@ -12,7 +12,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="880"
       d:DataContext="{d:DesignInstance Type=local:MainPage}" d:Background="White"
-      Title="MainPage" Background="{DynamicResource GeneralBackground}" Style="{DynamicResource AnimatedPageStyle}">
+      Title="MainPage" Style="{DynamicResource AnimatedPageStyle}">
     <Page.Resources>
         <utilities:BindingProxy x:Key="PageSelf" Data="{Binding}"/>
     </Page.Resources>
@@ -61,7 +61,7 @@
                 <ScrollViewer Name="sessionsScrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <ListBox HorizontalAlignment="Stretch" SelectedIndex="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          ItemsSource="{Binding ViewModel.Sessions}" SelectedItem="{Binding ViewModel.SelectedSession}"
-                         Margin="0" Padding="0" BorderThickness="0" Background="{DynamicResource GeneralBackground}">
+                         Margin="0" Padding="0" BorderThickness="0" Background="{DynamicResource GeneralBackground}" d:ItemsSource="{d:SampleData ItemCount=5}">
                         <behaviors:Interaction.Triggers>
                             <behaviors:EventTrigger EventName="SelectionChanged">
                                 <behaviors:InvokeCommandAction Command="{Binding SwitchPageToCurrentSessionCommand}"/>

@@ -54,6 +54,9 @@ namespace OpenGptChat.Services
 
         private ColorMode currentMode = 
             ColorMode.Auto;
+        private ColorMode currentActualMode =
+            SystemHelper.IsDarkTheme() ? ColorMode.Dark : ColorMode.Light;
+
         public ColorMode CurrentMode
         {
             get => currentMode;
@@ -62,6 +65,7 @@ namespace OpenGptChat.Services
                 SwitchTo(value);
             }
         }
+        public ColorMode CurrentActualMode => currentActualMode;
 
         private void SwitchTo(ResourceDictionary colorModeResource)
         {
@@ -94,20 +98,37 @@ namespace OpenGptChat.Services
             }
         }
 
+        public void ApplyThemeForWindow(Window window)
+        {
+            IntPtr hwnd =
+                    new WindowInteropHelper(window).Handle;
+
+            if (hwnd != IntPtr.Zero)
+            {
+                NativeMethods.EnableDarkModeForWindow(hwnd, CurrentActualMode == ColorMode.Dark);
+            }
+            else
+            {
+                EventHandler? handler = null;
+
+                handler = (s, args) =>
+                {
+                    if (s is Window _window)
+                        ApplyThemeForWindow(_window);
+
+                    window.SourceInitialized -= handler;
+                };
+
+                window.SourceInitialized += handler;
+            }
+        }
+
         private void SwitchToLightModeCore(bool setField)
         {
             SwitchTo(lightMode);
 
             if (setField)
-                currentMode = ColorMode.Light;
-
-            if (Application.Current.MainWindow is Window window)
-            {
-                IntPtr hwnd =
-                    new WindowInteropHelper(window).Handle;
-
-                NativeMethods.EnableDarkModeForWindow(hwnd, false);
-            }
+                ChangeColorModeAndNotify(ColorMode.Light, ColorMode.Light);
         }
 
         private void SwitchToDarkModeCore(bool setField)
@@ -115,36 +136,68 @@ namespace OpenGptChat.Services
             SwitchTo(darkMode);
 
             if (setField)
-                currentMode = ColorMode.Dark;
+                ChangeColorModeAndNotify(ColorMode.Dark, ColorMode.Dark);
+        }
 
-            if (Application.Current.MainWindow is Window window)
-            {
-                IntPtr hwnd =
-                    new WindowInteropHelper(window).Handle;
+        private void ChangeColorModeAndNotify(ColorMode colorMode, ColorMode actualColorMode)
+        {
+            if (actualColorMode == ColorMode.Auto)
+                throw new ArgumentException($"{nameof(actualColorMode)} cannot be 'Auto'", nameof(actualColorMode));
 
-                NativeMethods.EnableDarkModeForWindow(hwnd, true);
-            }
+            bool notify = colorMode != currentMode || actualColorMode != currentActualMode;
+
+            currentMode = colorMode;
+            currentActualMode = actualColorMode;
+
+            if (notify)
+                ColorModeChanged?.Invoke(this, new ColorModeChangedEventArgs(colorMode, actualColorMode));
         }
 
 
         public void SwitchToAuto()
         {
-            if (SystemHelper.IsDarkTheme())
+            bool isDarkMode =
+                SystemHelper.IsDarkTheme();
+
+            if (isDarkMode)
                 SwitchToDarkModeCore(false);
             else
                 SwitchToLightModeCore(false);
 
-            currentMode = ColorMode.Auto;
+            ChangeColorModeAndNotify(ColorMode.Auto, isDarkMode ? ColorMode.Dark : ColorMode.Light);
+
+            foreach (Window window in Application.Current.Windows)
+                ApplyThemeForWindow(window);
         }
 
         public void SwitchToLightMode()
         {
             SwitchToLightModeCore(true);
+
+            foreach (Window window in Application.Current.Windows)
+                ApplyThemeForWindow(window);
         }
 
         public void SwitchToDarkMode()
         {
             SwitchToDarkModeCore(true);
+
+            foreach (Window window in Application.Current.Windows)
+                ApplyThemeForWindow(window);
         }
+
+        public event EventHandler<ColorModeChangedEventArgs>? ColorModeChanged;
+    }
+
+    public class ColorModeChangedEventArgs : EventArgs
+    {
+        public ColorModeChangedEventArgs(ColorMode colorMode, ColorMode actualColorMode)
+        {
+            ColorMode = colorMode;
+            ActualColorMode = actualColorMode;
+        }
+
+        public ColorMode ColorMode { get; }
+        public ColorMode ActualColorMode { get; }
     }
 }

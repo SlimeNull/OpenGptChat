@@ -6,9 +6,15 @@
         xmlns:s="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:OpenGptChat.Views.Dialogs"
         xmlns:converters="clr-namespace:OpenGptChat.Converters"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:mybehaviors="clr-namespace:OpenGptChat.Behaviors"
         mc:Ignorable="d" WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
         d:DataContext="{d:DesignInstance Type=local:ChatSessionConfigDialog}"
-        Title="ChatSessionConfigDialog" Height="550" Width="400">
+        Title="ChatSessionConfigDialog" Height="550" Width="400" Background="{DynamicResource GeneralBackground}">
+    <behaviors:Interaction.Behaviors>
+        <mybehaviors:WindowStyleManagerBehavior/>
+    </behaviors:Interaction.Behaviors>
+    
     <Grid>
         <Grid>
             <ScrollViewer VerticalScrollBarVisibility="Auto">

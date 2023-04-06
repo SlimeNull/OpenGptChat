@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Markup;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -82,6 +87,7 @@ namespace OpenGptChat
 
         protected override async void OnStartup(StartupEventArgs e)
         {
+
             // 确认程序是单例?
             if (!EnsureAppSingletion())
             {

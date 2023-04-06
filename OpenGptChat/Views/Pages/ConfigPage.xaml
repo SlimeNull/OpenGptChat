@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="880" 
       d:Background="White" d:DataContext="{d:DesignInstance Type=local:ConfigPage}"
-      Foreground="{DynamicResource FontForeground}" Background="{DynamicResource GeneralBackground}"
       Title="ConfigPage" Style="{DynamicResource AnimatedPageStyle}">
 
     <Grid>
