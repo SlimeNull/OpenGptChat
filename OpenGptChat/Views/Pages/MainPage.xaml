@@ -17,6 +17,10 @@
         <utilities:BindingProxy x:Key="PageSelf" Data="{Binding}"/>
     </Page.Resources>
 
+    <Page.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="R" Command="{Binding ResetChatCommand}"/>
+    </Page.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

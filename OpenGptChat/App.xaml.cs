@@ -105,6 +105,8 @@ namespace OpenGptChat
             host.Dispose();
         }
 
+        public static string AppName => nameof(OpenGptChat);
+
 
         public static IRelayCommand ShowAppCommand =
             new RelayCommand(ShowApp);
