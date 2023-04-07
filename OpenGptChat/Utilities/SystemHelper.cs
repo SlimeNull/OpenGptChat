@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
 
-namespace OpenGptChat.Common.Utilities
+namespace OpenGptChat.Utilities
 {
     public static class SystemHelper
     {

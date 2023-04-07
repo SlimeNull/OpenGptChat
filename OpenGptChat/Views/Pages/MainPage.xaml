@@ -19,6 +19,12 @@
 
     <Page.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="R" Command="{Binding ResetChatCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="N" Command="{Binding NewSessionCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="W" Command="{Binding DeleteCurrentSessionCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="K" Command="{Binding SwitchToPreviousSessionCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="J" Command="{Binding SwitchToNextSessionCommand}"/>
+        <KeyBinding Modifiers="Ctrl+Shift" Key="Tab" Command="{Binding CycleSwitchToPreviousSessionCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Tab" Command="{Binding CycleSwitchToNextSessionCommand}"/>
     </Page.InputBindings>
 
     <Grid>
@@ -40,7 +46,14 @@
                         </StackPanel.Resources>
                         <Button Content="♻" BorderThickness="0" Padding="3" Margin="0 0 3 0"
                                 Foreground="{DynamicResource FontForeground}" Background="{DynamicResource ControlBackground}"
-                                Command="{Binding ResetChatCommand}"  ToolTip="{DynamicResource StrResetChat}"/>
+                                Command="{Binding ResetChatCommand}">
+                            <Button.ToolTip>
+                                <TextBlock>
+                                    <Run Text="{DynamicResource StrResetChat}"/>
+                                    <Run Text="(Ctrl+R)"/>
+                                </TextBlock>
+                            </Button.ToolTip>
+                        </Button>
                         <Button Content="⚙︎" BorderThickness="0" Padding="3"
                                 Foreground="{DynamicResource FontForeground}" Background="{DynamicResource ControlBackground}"
                                 Command="{Binding GoToConfigPageCommand}" ToolTip="{DynamicResource StrGoToConfigurationPage}"/>
@@ -147,7 +160,14 @@
                 <Button Grid.Row="1"  BorderThickness="0" Padding="0 3"
                         Foreground="{DynamicResource FontForeground}" Background="{DynamicResource ControlBackground}"
                         Content="{DynamicResource StrNewSession}"
-                        Command="{Binding NewSessionCommand}"/>
+                        Command="{Binding NewSessionCommand}">
+                    <Button.ToolTip>
+                        <TextBlock>
+                            <Run Text="{DynamicResource StrNewSession}"/>
+                            <Run Text="(Ctrl+N)"/>
+                        </TextBlock>
+                    </Button.ToolTip>
+                </Button>
             </Grid>
 
             <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource GeneralBorder}"/>

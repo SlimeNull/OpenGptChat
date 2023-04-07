@@ -32,6 +32,13 @@
     <s:String x:Key="StrShowApplication">برطرف کرنے کے لئے درخواست دیں</s:String>
     <s:String x:Key="StrSendMessage">پیغام بھیجیں</s:String>
 
+    <s:String x:Key="StrSwitchToNextSession">اگلا سیشن کے لئے سوئچ کریں</s:String>
+    <s:String x:Key="StrSwitchToPreviousSession">پچھلا سیشن کے لئے سوئچ کریں</s:String>
+    <s:String x:Key="StrCycleSwitchToNextSession">دورہ کے ذریعہ اگلے سیشن پر پلٹیں</s:String>
+    <s:String x:Key="StrCycleSwitchToPreviousSession">دورہ کے ذریعہ پچھلے سیشن پر پلٹیں</s:String>
+    <s:String x:Key="StrCreateNewSession">نیا اجلاس بنائیں</s:String>
+    <s:String x:Key="StrRemoveCurrentSession">موجودہ سیشن ہٹا دیں</s:String>
+
     <s:String x:Key="StrGlobalHotkey">عالمی ہاٹ کی</s:String>
     <s:String x:Key="StrInputBox">ان پٹ باکس</s:String>
 

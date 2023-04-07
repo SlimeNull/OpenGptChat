@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Interop;
 using Microsoft.Win32;
 using OpenGptChat.Common.Models;
-using OpenGptChat.Common.Utilities;
+using OpenGptChat.Utilities;
 
 namespace OpenGptChat.Services
 {

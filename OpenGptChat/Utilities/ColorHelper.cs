@@ -1,4 +1,4 @@
-﻿namespace OpenGptChat.Common.Utilities
+﻿namespace OpenGptChat.Utilities
 {
     public static class ColorHelper
     {

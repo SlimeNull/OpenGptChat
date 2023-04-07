@@ -32,6 +32,13 @@
     <s:String x:Key="StrShowApplication">Показать приложение</s:String>
     <s:String x:Key="StrSendMessage">Отправить сообщение</s:String>
 
+    <s:String x:Key="StrSwitchToNextSession">Переключить на следующий сеанс</s:String>
+    <s:String x:Key="StrSwitchToPreviousSession">Переключить на предыдущий сеанс</s:String>
+    <s:String x:Key="StrCycleSwitchToNextSession">Переключаться на следующий сеанс циклически</s:String>
+    <s:String x:Key="StrCycleSwitchToPreviousSession">Переключаться на предыдущий сеанс циклически</s:String>
+    <s:String x:Key="StrCreateNewSession">Создать новую сессию</s:String>
+    <s:String x:Key="StrRemoveCurrentSession">Удалить текущую сессию</s:String>
+
     <s:String x:Key="StrGlobalHotkey">Глобальные горячие клавиши</s:String>
     <s:String x:Key="StrInputBox">Поле ввода</s:String>
 

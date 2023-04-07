@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
+using OpenGptChat.Utilities;
 using OpenGptChat.Views;
 using OpenGptChat.Views.Dialogs;
 using OpenGptChat.Views.Pages;

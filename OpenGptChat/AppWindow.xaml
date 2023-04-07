@@ -20,7 +20,6 @@
         <BooleanToVisibilityConverter x:Key="bool2visbility"/>
     </Window.Resources>
     <Window.InputBindings>
-        <KeyBinding Modifiers="Ctrl" Key="W" Command="{x:Static local:App.CloseAppCommand}"/>
         <KeyBinding Modifiers="Ctrl" Key="H" Command="{x:Static local:App.HideAppCommand}"/>
         <KeyBinding Modifiers="Ctrl+Shift" Key="H" Command="{x:Static local:App.ShowAppCommand}"
                     hotkey:GlobalHotkey.IsRegistered="True"/>

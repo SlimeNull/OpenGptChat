@@ -32,6 +32,13 @@
     <s:String x:Key="StrShowApplication">アプリを表示</s:String>
     <s:String x:Key="StrSendMessage">メッセージを送信</s:String>
 
+    <s:String x:Key="StrSwitchToNextSession">次のセッションに切り替える</s:String>
+    <s:String x:Key="StrSwitchToPreviousSession">前のセッションに切り替える</s:String>
+    <s:String x:Key="StrCycleSwitchToNextSession">次のセッションに循環的に切り替える</s:String>
+    <s:String x:Key="StrCycleSwitchToPreviousSession">前のセッションに循環的に切り替える</s:String>
+    <s:String x:Key="StrCreateNewSession">新しいセッションを作成する</s:String>
+    <s:String x:Key="StrRemoveCurrentSession">現在のセッションを削除する</s:String>
+
     <s:String x:Key="StrGlobalHotkey">グローバルホットキー</s:String>
     <s:String x:Key="StrInputBox">入力ボックス</s:String>
 

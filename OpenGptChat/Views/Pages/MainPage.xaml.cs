@@ -133,6 +133,84 @@ namespace OpenGptChat.Views.Pages
             ViewModel.SelectedSession = ViewModel.Sessions[newIndex];
         }
 
+        [RelayCommand]
+        public void SwitchToNextSession()
+        {
+            int nextIndex;
+            int lastIndex = ViewModel.Sessions.Count - 1;
+
+            if (ViewModel.SelectedSession != null)
+                nextIndex = ViewModel.Sessions.IndexOf(ViewModel.SelectedSession) + 1;
+            else
+                nextIndex = 0;
+
+            nextIndex = Math.Clamp(nextIndex, 0, lastIndex);
+
+            ViewModel.SelectedSession = 
+                ViewModel.Sessions[nextIndex];
+        }
+
+        [RelayCommand]
+        public void SwitchToPreviousSession()
+        {
+            int previousIndex;
+            int lastIndex = ViewModel.Sessions.Count - 1;
+
+            if (ViewModel.SelectedSession != null)
+                previousIndex = ViewModel.Sessions.IndexOf(ViewModel.SelectedSession) - 1;
+            else
+                previousIndex = 0;
+
+            previousIndex = Math.Clamp(previousIndex, 0, lastIndex);
+
+            ViewModel.SelectedSession =
+                ViewModel.Sessions[previousIndex];
+        }
+
+
+        [RelayCommand]
+        public void CycleSwitchToNextSession()
+        {
+            int nextIndex;
+            int lastIndex = ViewModel.Sessions.Count - 1;
+
+            if (ViewModel.SelectedSession != null)
+                nextIndex = ViewModel.Sessions.IndexOf(ViewModel.SelectedSession) + 1;
+            else
+                nextIndex = 0;
+
+            if (nextIndex > lastIndex)
+                nextIndex = 0;
+
+            ViewModel.SelectedSession =
+                ViewModel.Sessions[nextIndex];
+        }
+
+        [RelayCommand]
+        public void CycleSwitchToPreviousSession()
+        {
+            int previousIndex;
+            int lastIndex = ViewModel.Sessions.Count - 1;
+
+            if (ViewModel.SelectedSession != null)
+                previousIndex = ViewModel.Sessions.IndexOf(ViewModel.SelectedSession) - 1;
+            else
+                previousIndex = 0;
+
+            if (previousIndex < 0)
+                previousIndex = lastIndex;
+
+            ViewModel.SelectedSession =
+                ViewModel.Sessions[previousIndex];
+        }
+
+        [RelayCommand]
+        public void DeleteCurrentSession()
+        {
+            if (ViewModel.SelectedSession != null)
+                DeleteSession(ViewModel.SelectedSession);
+        }
+
 
         [RelayCommand]
         public void SwitchPageToCurrentSession()

@@ -31,6 +31,13 @@
     <s:String x:Key="StrHideApplication">إخفاء التطبيق</s:String>
     <s:String x:Key="StrShowApplication">عرض التطبيق</s:String>
     <s:String x:Key="StrSendMessage">إرسال رسالة</s:String>
+    
+    <s:String x:Key="StrSwitchToNextSession">التبديل إلى الجلسة التالية</s:String>
+    <s:String x:Key="StrSwitchToPreviousSession">التبديل إلى الجلسة السابقة</s:String>
+    <s:String x:Key="StrCycleSwitchToNextSession">دورة التبديل إلى الجلسة التالية</s:String>
+    <s:String x:Key="StrCycleSwitchToPreviousSession">دورة التبديل إلى الجلسة السابقة</s:String>
+    <s:String x:Key="StrCreateNewSession">إنشاء جلسة جديدة</s:String>
+    <s:String x:Key="StrRemoveCurrentSession">إزالة الجلسة الحالية</s:String>
 
     <s:String x:Key="StrGlobalHotkey">مفتاح الاختصار العالمي</s:String>
     <s:String x:Key="StrInputBox">مربع الإدخال</s:String>

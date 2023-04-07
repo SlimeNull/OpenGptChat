@@ -31,6 +31,13 @@
     <s:String x:Key="StrHideApplication">Ocultar la aplicación</s:String>
     <s:String x:Key="StrShowApplication">Mostrar la aplicación</s:String>
     <s:String x:Key="StrSendMessage">Enviar mensaje</s:String>
+    
+    <s:String x:Key="StrSwitchToNextSession">Cambiar a la siguiente sesión</s:String>
+    <s:String x:Key="StrSwitchToPreviousSession">Cambiar a la sesión anterior</s:String>
+    <s:String x:Key="StrCycleSwitchToNextSession">Cambiar cíclicamente a la siguiente sesión</s:String>
+    <s:String x:Key="StrCycleSwitchToPreviousSession">Cambiar cíclicamente a la sesión anterior</s:String>
+    <s:String x:Key="StrCreateNewSession">Crear una nueva sesión</s:String>
+    <s:String x:Key="StrRemoveCurrentSession">Eliminar la sesión actual</s:String>
 
     <s:String x:Key="StrGlobalHotkey">Tecla de acceso rápido global</s:String>
     <s:String x:Key="StrInputBox">Cuadro de entrada</s:String>

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using OpenGptChat.Models;
 
-namespace OpenGptChat.Models
+namespace OpenGptChat.Utilities
 {
     public static class ValueWrapperExtensions
     {
@@ -34,4 +35,4 @@ namespace OpenGptChat.Models
                 .ToArray();
         }
     }
-}
+} 

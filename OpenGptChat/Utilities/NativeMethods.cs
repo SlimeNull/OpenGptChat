@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenGptChat.Common.Utilities
+namespace OpenGptChat.Utilities
 {
     public static class NativeMethods
     {

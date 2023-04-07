@@ -134,35 +134,68 @@
                         <Run Text="{DynamicResource StrHotkeyTips}"/>
                         <Run Text=":"/>
                     </TextBlock>
-                    <StackPanel Margin="5">
-                        <StackPanel.Resources>
+                    <Grid Margin="5">
+                        <Grid.Resources>
                             <Style TargetType="TextBlock">
                                 <Setter Property="Margin" Value="0 5 0 0"/>
                             </Style>
-                        </StackPanel.Resources>
-                        <TextBlock>
-                            <Run>Ctrl+W:</Run>
-                            <Run Text="{DynamicResource StrCloseApplication}"/>
-                        </TextBlock>
-                        <TextBlock>
-                            <Run>Ctrl+H:</Run>
-                            <Run Text="{DynamicResource StrHideApplication}"/>
-                        </TextBlock>
-                        <TextBlock>
-                            <Run>Ctrl+Shift+H:</Run>
-                            <Run Text="{DynamicResource StrShowApplication}"/>
-                            <Run>(</Run>
-                            <Run Text="{DynamicResource StrGlobalHotkey}"/>
-                            <Run>)</Run>
-                        </TextBlock>
-                        <TextBlock>
-                            <Run>Ctrl+Enter:</Run>
-                            <Run Text="{DynamicResource StrSendMessage}"/>
-                            <Run>(</Run>
-                            <Run Text="{DynamicResource StrInputBox}"/>
-                            <Run>)</Run>
-                        </TextBlock>
-                    </StackPanel>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        
+                        <UniformGrid Grid.Column="0" Columns="1" Margin="0 0 20 0">
+                            <TextBlock>Ctrl+H:</TextBlock>
+                            <TextBlock>Ctrl+Shift+H:</TextBlock>
+                            <TextBlock>Ctrl+Enter:</TextBlock>
+                            <TextBlock>Ctrl+R:</TextBlock>
+                            <TextBlock>Ctrl+N:</TextBlock>
+                            <TextBlock>Ctrl+W:</TextBlock>
+                            <TextBlock>Ctrl+J:</TextBlock>
+                            <TextBlock>Ctrl+K:</TextBlock>
+                            <TextBlock>Ctrl+Tab:</TextBlock>
+                            <TextBlock>Ctrl+Shift+Tab:</TextBlock>
+                        </UniformGrid>
+                        <UniformGrid Grid.Column="1" Columns="1">
+                            <TextBlock>
+                                <Run Text="{DynamicResource StrHideApplication}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="{DynamicResource StrShowApplication}"/>
+                                <Run>(</Run>
+                                <Run Text="{DynamicResource StrGlobalHotkey}"/>
+                                <Run>)</Run>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="{DynamicResource StrSendMessage}"/>
+                                <Run>(</Run>
+                                <Run Text="{DynamicResource StrInputBox}"/>
+                                <Run>)</Run>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="{DynamicResource StrResetChat}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="{DynamicResource StrCreateNewSession}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="{DynamicResource StrRemoveCurrentSession}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="{DynamicResource StrSwitchToNextSession}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="{DynamicResource StrSwitchToPreviousSession}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="{DynamicResource StrCycleSwitchToNextSession}"/>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="{DynamicResource StrCycleSwitchToPreviousSession}"/>
+                            </TextBlock>
+                        </UniformGrid>
+                    </Grid>
                 </StackPanel>
 
                 <StackPanel Margin="0 5 0 5">

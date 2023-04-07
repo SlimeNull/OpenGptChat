@@ -32,6 +32,14 @@
     <s:String x:Key="StrShowApplication">Afficher l'application</s:String>
     <s:String x:Key="StrSendMessage">Envoyer un message</s:String>
 
+    <s:String x:Key="StrSwitchToNextSession">Passer à la session suivante</s:String>
+    <s:String x:Key="StrSwitchToPreviousSession">Passer à la session précédente</s:String>
+    <s:String x:Key="StrCycleSwitchToNextSession">Passer cycliquement à la session suivante</s:String>
+    <s:String x:Key="StrCycleSwitchToPreviousSession">Passer cycliquement à la session précédente</s:String>
+    <s:String x:Key="StrCreateNewSession">Créer une nouvelle session</s:String>
+    <s:String x:Key="StrRemoveCurrentSession">Supprimer la session actuelle</s:String>
+
+
     <s:String x:Key="StrGlobalHotkey">Raccourci clavier global</s:String>
     <s:String x:Key="StrInputBox">Boîte de saisie</s:String>
 

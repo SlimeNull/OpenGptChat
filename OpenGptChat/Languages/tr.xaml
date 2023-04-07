@@ -32,6 +32,13 @@
     <s:String x:Key="StrShowApplication">Uygulamayı Göster</s:String>
     <s:String x:Key="StrSendMessage">Mesaj Gönder</s:String>
 
+    <s:String x:Key="StrSwitchToNextSession">Sonraki oturuma geçiş yap</s:String>
+    <s:String x:Key="StrSwitchToPreviousSession">Önceki oturuma geçiş yap</s:String>
+    <s:String x:Key="StrCycleSwitchToNextSession">Sonraki seansa döngüsel olarak geçiş yap</s:String>
+    <s:String x:Key="StrCycleSwitchToPreviousSession">Önceki seansa döngüsel olarak geçiş yap</s:String>
+    <s:String x:Key="StrCreateNewSession">Yeni bir oturum oluştur</s:String>
+    <s:String x:Key="StrRemoveCurrentSession">Mevcut oturumu kaldır</s:String>
+
     <s:String x:Key="StrGlobalHotkey">Global kısayol</s:String>
     <s:String x:Key="StrInputBox">Giriş Kutusu</s:String>
 
