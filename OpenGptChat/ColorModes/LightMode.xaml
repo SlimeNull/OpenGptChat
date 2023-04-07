@@ -9,19 +9,23 @@
 
     <Brush x:Key="BoxBackground">#ffffff</Brush>
     <Brush x:Key="BoxHoverBackground">#ffffff</Brush>
+    <Brush x:Key="BoxPressBackground">#ffffff</Brush>
     <Brush x:Key="BoxFocusedBackground">#ffffff</Brush>
     <Brush x:Key="BoxDisabledBackground">#ffffff</Brush>
     <Brush x:Key="BoxBorder">#abadb3</Brush>
     <Brush x:Key="BoxHoverBorder">#7eb4ea</Brush>
+    <Brush x:Key="BoxPressBorder">#abadb3</Brush>
     <Brush x:Key="BoxFocusedBorder">#569de5</Brush>
     <Brush x:Key="BoxDisabledBorder">#abadb3</Brush>
 
     <Brush x:Key="TextBoxBackground">#ffffff</Brush>
     <Brush x:Key="TextBoxHoverBackground">#ffffff</Brush>
+    <Brush x:Key="TextBoxPressBackground">#ffffff</Brush>
     <Brush x:Key="TextBoxFocusedBackground">#ffffff</Brush>
     <Brush x:Key="TextBoxDisabledBackground">#ffffff</Brush>
     <Brush x:Key="TextBoxBorder">#abadb3</Brush>
     <Brush x:Key="TextBoxHoverBorder">#7eb4ea</Brush>
+    <Brush x:Key="TextBoxPressBorder">#abadb3</Brush>
     <Brush x:Key="TextBoxFocusedBorder">#569de5</Brush>
     <Brush x:Key="TextBoxDisabledBorder">#abadb3</Brush>
 
