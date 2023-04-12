@@ -26,6 +26,7 @@
     <s:String x:Key="StrHideApplication">Hide application</s:String>
     <s:String x:Key="StrShowApplication">Show application</s:String>
     <s:String x:Key="StrSendMessage">Send message</s:String>
+    <s:String x:Key="StrCancelSendingMessage">Cancel sending message</s:String>
     
     <s:String x:Key="StrSwitchToNextSession">Switch to next session</s:String>
     <s:String x:Key="StrSwitchToPreviousSession">Switch to previous session</s:String>

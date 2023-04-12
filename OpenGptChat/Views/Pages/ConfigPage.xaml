@@ -149,6 +149,7 @@
                             <TextBlock>Ctrl+H:</TextBlock>
                             <TextBlock>Ctrl+Shift+H:</TextBlock>
                             <TextBlock>Ctrl+Enter:</TextBlock>
+                            <TextBlock>Ctrl+Shift+Enter:</TextBlock>
                             <TextBlock>Ctrl+R:</TextBlock>
                             <TextBlock>Ctrl+N:</TextBlock>
                             <TextBlock>Ctrl+W:</TextBlock>
@@ -169,6 +170,12 @@
                             </TextBlock>
                             <TextBlock>
                                 <Run Text="{DynamicResource StrSendMessage}"/>
+                                <Run>(</Run>
+                                <Run Text="{DynamicResource StrInputBox}"/>
+                                <Run>)</Run>
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="{DynamicResource StrCancelSendingMessage}"/>
                                 <Run>(</Run>
                                 <Run Text="{DynamicResource StrInputBox}"/>
                                 <Run>)</Run>

@@ -92,20 +92,20 @@ namespace OpenGptChat.Services
 
             OpenAIClient client = GetOpenAIClient();
 
-            List<ChatPrompt> messages = new List<ChatPrompt>();
+            List<Message> messages = new List<Message>();
 
             foreach (var sysmsg in ConfigurationService.Configuration.SystemMessages)
-                messages.Add(new ChatPrompt("system", sysmsg));
+                messages.Add(new Message(Role.System, sysmsg));
 
             if (session != null)
                 foreach (var sysmsg in session.SystemMessages)
-                    messages.Add(new ChatPrompt("system", sysmsg));
+                    messages.Add(new Message(Role.System, sysmsg));
 
             if (session?.EnableChatContext ?? ConfigurationService.Configuration.EnableChatContext)
                 foreach (var chatmsg in ChatStorageService.GetAllMessages(sessionId))
-                    messages.Add(new ChatPrompt(chatmsg.Role, chatmsg.Content));
+                    messages.Add(new Message(Enum.Parse<Role>(chatmsg.Role, true), chatmsg.Content));
 
-            messages.Add(new ChatPrompt("user", message));
+            messages.Add(new Message(Role.User, message));
 
             string modelName =
                 ConfigurationService.Configuration.ApiGptModel;

@@ -3,4 +3,5 @@
                     xmlns:local="clr-namespace:OpenGptChat.Converters">
     <local:SingleLineTextConverter x:Key="SingleLineTextConverter"/>
     <local:OnlyTakeOneMultiValueConverter x:Key="OnlyTakeOneMultiValueConverter"/>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 </ResourceDictionary>

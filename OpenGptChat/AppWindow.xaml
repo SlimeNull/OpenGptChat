@@ -9,7 +9,7 @@
         xmlns:utils="clr-namespace:OpenGptChat.Utilities"
         xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:mybehaviors="clr-namespace:OpenGptChat.Behaviors"
-        xmlns:hotkey="clr-namespace:EleCho.GlobalHotkey.Windows.Wpf;assembly=EleCho.GlobalHotkey.Windows.Wpf"
+        xmlns:hotkey="https://wpf.elecho.org/globalhotkey"
         d:DataContext="{d:DesignInstance Type=local:AppWindow}"
         mc:Ignorable="d" Icon="assets/images/openai.png" 
         Title="{Binding ViewModel.ApplicationTitle}"  FontSize="{DynamicResource NormalFontSize}"

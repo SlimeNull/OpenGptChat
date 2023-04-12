@@ -60,7 +60,7 @@ namespace OpenGptChat.Views.Pages
 
 
         [RelayCommand]
-        public async Task SendAsync()
+        public async Task ChatAsync()
         {
             if (string.IsNullOrWhiteSpace(ViewModel.InputBoxText))
             {
@@ -110,14 +110,45 @@ namespace OpenGptChat.Views.Pages
                 requestMessageModel.Storage = dialogue.Ask;
                 responseMessageModel.Storage = dialogue.Answer;
             }
+            catch (TaskCanceledException)
+            {
+                Rollback(requestMessageModel, responseMessageModel, input);
+            }
             catch (Exception ex)
             {
                 _ = NoteService.ShowAsync($"{ex.GetType().Name}: {ex.Message}", 3000);
+
+                Rollback(requestMessageModel, responseMessageModel, input);
+            }
+
+            void Rollback(
+                ChatMessageModel requestMessageModel,
+                ChatMessageModel responseMessageModel,
+                string originInput)
+            {
                 ViewModel.Messages.Remove(requestMessageModel);
                 ViewModel.Messages.Remove(responseMessageModel);
 
-                ViewModel.InputBoxText = input;
+                if (string.IsNullOrWhiteSpace(ViewModel.InputBoxText))
+                    ViewModel.InputBoxText = input;
+                else
+                    ViewModel.InputBoxText = $"{input} {ViewModel.InputBoxText}";
             }
+        }
+
+        [RelayCommand]
+        public void Cancel()
+        {
+            ChatService.Cancel();
+        }
+
+        [RelayCommand]
+        public void ChatOrCancel()
+        {
+            if (ChatCommand.IsRunning)
+                ChatService.Cancel();
+            else
+                ChatCommand.Execute(null);
         }
 
         [RelayCommand]
@@ -144,7 +175,7 @@ namespace OpenGptChat.Views.Pages
         [RelayCommand]
         public void ScrollToEndWhileReceiving()
         {
-            if (SendCommand.IsRunning && autoScrollToEnd)
+            if (ChatCommand.IsRunning && autoScrollToEnd)
                 messageScrollViewer.ScrollToEnd();
         }
     }
