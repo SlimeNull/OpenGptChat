@@ -1,10 +1,12 @@
-﻿using System;
+﻿    using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
+using OpenGptChat.Utilities;
 using OpenGptChat.ViewModels;
 
 namespace OpenGptChat.Views.Pages
@@ -31,6 +33,8 @@ namespace OpenGptChat.Views.Pages
 
             InitializeComponent();
 
+            messageScrollViewer.PreviewMouseWheel += CloseAutoScrollWhileMouseWheel;
+            messageScrollViewer.ScrollChanged += EnableAutoScrollWhileAtEnd;
             smoothScrollingService.Register(messageScrollViewer);
         }
 
@@ -41,6 +45,7 @@ namespace OpenGptChat.Views.Pages
         public ConfigurationService ConfigurationService { get; }
 
         public Guid SessionId { get; private set; }
+
 
         public void InitSession(Guid sessionId)
         {
@@ -69,6 +74,10 @@ namespace OpenGptChat.Views.Pages
                 return;
             }
 
+
+            // 发个消息, 将自动滚动打开, 如果已经在底部, 则将自动滚动打开
+            if (messageScrollViewer.IsAtEnd())
+                autoScrollToEnd = true;
 
 
             string input = ViewModel.InputBoxText.Trim();
@@ -117,10 +126,25 @@ namespace OpenGptChat.Views.Pages
             Clipboard.SetText(text);
         }
 
+
+
+        bool autoScrollToEnd = false;
+
+        private void CloseAutoScrollWhileMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            autoScrollToEnd = false;
+        }
+
+        private void EnableAutoScrollWhileAtEnd(object sender, ScrollChangedEventArgs e)
+        {
+            if (messageScrollViewer.IsAtEnd())
+                autoScrollToEnd = true;
+        }
+
         [RelayCommand]
         public void ScrollToEndWhileReceiving()
         {
-            if (SendCommand.IsRunning)
+            if (SendCommand.IsRunning && autoScrollToEnd)
                 messageScrollViewer.ScrollToEnd();
         }
     }
