@@ -4,7 +4,7 @@
 
 knnuznr tarafından Türkçeleştirilmiştir.
 
-[![EN-US](https://img.shields.io/badge/EN-US-blue)](README.md) [![ZH-HANS](https://img.shields.io/badge/中文-简体-red)](README_ZH-HANS.md) [![ZH-HANT](https://img.shields.io/badge/中文-繁体-red)](README_ZH-HANT.md) [![ZH-HANT](https://img.shields.io/badge/TR-TR-red)](README_tr.md) / [![release date](https://img.shields.io/github/release-date/SlimeNull/OpenGptChat)](https://github.com/knnuznr/OpenGptChat/releases) [![stars](https://img.shields.io/github/stars/knnuznr/OpenGptChat?style=flat)](https://github.com/SlimeNull/OpenGptChat/pulse)
+[![EN-US](https://img.shields.io/badge/EN-US-blue)](README.md) [![ZH-HANS](https://img.shields.io/badge/中文-简体-red)](README_ZH-HANS.md) [![ZH-HANT](https://img.shields.io/badge/中文-繁体-red)](README_ZH-HANT.md) [![ZH-HANT](https://img.shields.io/badge/TR-TR-red)](README_TR.md) / [![release date](https://img.shields.io/github/release-date/SlimeNull/OpenGptChat)](https://github.com/knnuznr/OpenGptChat/releases) [![stars](https://img.shields.io/github/stars/knnuznr/OpenGptChat?style=flat)](https://github.com/SlimeNull/OpenGptChat/pulse)
 
  
 ChatGPT'ye dayalı basit bir sohbet uygulaması (https://platform.openai.com/docs/guides/chat).
