@@ -31,6 +31,7 @@
     <s:String x:Key="StrHideApplication">Скрыть приложение</s:String>
     <s:String x:Key="StrShowApplication">Показать приложение</s:String>
     <s:String x:Key="StrSendMessage">Отправить сообщение</s:String>
+    <s:String x:Key="StrCancelSendingMessage">Отменить отправку сообщения</s:String>
 
     <s:String x:Key="StrSwitchToNextSession">Переключить на следующий сеанс</s:String>
     <s:String x:Key="StrSwitchToPreviousSession">Переключить на предыдущий сеанс</s:String>

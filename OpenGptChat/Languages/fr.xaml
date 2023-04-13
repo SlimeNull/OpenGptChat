@@ -31,6 +31,7 @@
     <s:String x:Key="StrHideApplication">Cacher l'application</s:String>
     <s:String x:Key="StrShowApplication">Afficher l'application</s:String>
     <s:String x:Key="StrSendMessage">Envoyer un message</s:String>
+    <s:String x:Key="StrCancelSendingMessage">Annuler l'envoi du message</s:String>
 
     <s:String x:Key="StrSwitchToNextSession">Passer à la session suivante</s:String>
     <s:String x:Key="StrSwitchToPreviousSession">Passer à la session précédente</s:String>

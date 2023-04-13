@@ -31,6 +31,7 @@
     <s:String x:Key="StrHideApplication">アプリを非表示</s:String>
     <s:String x:Key="StrShowApplication">アプリを表示</s:String>
     <s:String x:Key="StrSendMessage">メッセージを送信</s:String>
+    <s:String x:Key="StrCancelSendingMessage">メッセージの送信をキャンセル</s:String>
 
     <s:String x:Key="StrSwitchToNextSession">次のセッションに切り替える</s:String>
     <s:String x:Key="StrSwitchToPreviousSession">前のセッションに切り替える</s:String>

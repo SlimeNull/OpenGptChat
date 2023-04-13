@@ -38,6 +38,15 @@
     <Brush x:Key="ControlPressBorder">#777777</Brush>
     <Brush x:Key="ControlDisabledBorder">#303030</Brush>
 
+    <Brush x:Key="LightControlBackground">#1e1e1e</Brush>
+    <Brush x:Key="LightControlHoverBackground">#2a2a2a</Brush>
+    <Brush x:Key="LightControlPressBackground">#131313</Brush>
+    <Brush x:Key="LightControlDisabledBackground">#0f0f0f</Brush>
+    <Brush x:Key="LightControlBorder">#464646</Brush>
+    <Brush x:Key="LightControlHoverBorder">#575757</Brush>
+    <Brush x:Key="LightControlPressBorder">#575757</Brush>
+    <Brush x:Key="LightControlDisabledBorder">#101010</Brush>
+
     <Brush x:Key="ScrollBackground">#2e2e2e</Brush>
     <Brush x:Key="ScrollHoverBackground">#2e2e2e</Brush>
     <Brush x:Key="ScrollPressBackground">#2e2e2e</Brush>

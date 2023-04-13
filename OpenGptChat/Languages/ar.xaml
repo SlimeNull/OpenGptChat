@@ -31,7 +31,8 @@
     <s:String x:Key="StrHideApplication">إخفاء التطبيق</s:String>
     <s:String x:Key="StrShowApplication">عرض التطبيق</s:String>
     <s:String x:Key="StrSendMessage">إرسال رسالة</s:String>
-    
+    <s:String x:Key="StrCancelSendingMessage">إلغاء إرسال الرسالة</s:String>
+
     <s:String x:Key="StrSwitchToNextSession">التبديل إلى الجلسة التالية</s:String>
     <s:String x:Key="StrSwitchToPreviousSession">التبديل إلى الجلسة السابقة</s:String>
     <s:String x:Key="StrCycleSwitchToNextSession">دورة التبديل إلى الجلسة التالية</s:String>

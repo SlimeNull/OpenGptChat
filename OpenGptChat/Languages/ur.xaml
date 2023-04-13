@@ -31,6 +31,7 @@
     <s:String x:Key="StrHideApplication">برطرف کرنے کے لئے درخواست دیں</s:String>
     <s:String x:Key="StrShowApplication">برطرف کرنے کے لئے درخواست دیں</s:String>
     <s:String x:Key="StrSendMessage">پیغام بھیجیں</s:String>
+    <s:String x:Key="StrCancelSendingMessage">پیغام بھیجنے سے منسوخ کریں</s:String>
 
     <s:String x:Key="StrSwitchToNextSession">اگلا سیشن کے لئے سوئچ کریں</s:String>
     <s:String x:Key="StrSwitchToPreviousSession">پچھلا سیشن کے لئے سوئچ کریں</s:String>

@@ -31,6 +31,7 @@
     <s:String x:Key="StrHideApplication">Uygulamayı Gizle</s:String>
     <s:String x:Key="StrShowApplication">Uygulamayı Göster</s:String>
     <s:String x:Key="StrSendMessage">Mesaj Gönder</s:String>
+    <s:String x:Key="StrCancelSendingMessage">Mesaj göndermeyi iptal et</s:String>
 
     <s:String x:Key="StrSwitchToNextSession">Sonraki oturuma geçiş yap</s:String>
     <s:String x:Key="StrSwitchToPreviousSession">Önceki oturuma geçiş yap</s:String>

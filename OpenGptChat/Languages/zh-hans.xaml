@@ -29,7 +29,8 @@
     <s:String x:Key="StrHideApplication">隐藏程序</s:String>
     <s:String x:Key="StrShowApplication">显示程序</s:String>
     <s:String x:Key="StrSendMessage">发送消息</s:String>
-    
+    <s:String x:Key="StrCancelSendingMessage">取消发送消息</s:String>
+
     <s:String x:Key="StrSwitchToNextSession">切换到下一个会话</s:String>
     <s:String x:Key="StrSwitchToPreviousSession">切换到上一个会话</s:String>
     <s:String x:Key="StrCycleSwitchToNextSession">循环切换到下一个会话</s:String>
