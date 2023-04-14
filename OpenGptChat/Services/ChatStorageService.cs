@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using LiteDB;
 using OpenGptChat.Models;
+using OpenGptChat.Utilities;
 
 namespace OpenGptChat.Services
 {
@@ -105,8 +107,9 @@ namespace OpenGptChat.Services
             Database = new LiteDatabase(
                 new ConnectionString()
                 {
-                    Filename = ConfigurationService.Configuration.ChatStoragePath,
-
+                    Filename = Path.Combine(
+                        FileSystemUtils.GetEntryPointFolder(),
+                        ConfigurationService.Configuration.ChatStoragePath),
                 });
 
             ChatSessions = Database.GetCollection<ChatSession>();

@@ -35,9 +35,13 @@ namespace OpenGptChat
             .CreateDefaultBuilder()
             .ConfigureAppConfiguration(config =>
             {
+                string path = Path.Combine(
+                    FileSystemUtils.GetEntryPointFolder(),
+                    GlobalValues.JsonConfigurationFilePath);
+
                 // 支持使用 JSON 文件以及环境变量进行配置
                 config
-                    .AddJsonFile(GlobalValues.JsonConfigurationFilePath, true, true)
+                    .AddJsonFile(path, true, true)
                     .AddEnvironmentVariables();
             })
             .ConfigureServices((context, services) =>
