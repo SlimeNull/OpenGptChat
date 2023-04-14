@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenAI.Chat;
+using System;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -43,7 +44,16 @@ namespace OpenAI
             if (!response.IsSuccessStatusCode)
             {
                 var responseAsString = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                throw new HttpRequestException(message: $"{methodName} Failed! HTTP status code: {response.StatusCode} | Response body: {responseAsString}", null, statusCode: response.StatusCode);
+                var responseJson = JsonSerializer.Deserialize<ChatResponse>(responseAsString);
+
+                var e = new HttpRequestException(message: $"{methodName} Failed! HTTP status code: {response.StatusCode} | Response body: {responseAsString}", null, statusCode: response.StatusCode);
+
+                if (responseJson?.Error is { } error)
+                {
+                    e.Data.Add("Error", error);
+                }
+
+                throw e;
             }
         }
 

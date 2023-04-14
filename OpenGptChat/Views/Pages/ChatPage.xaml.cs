@@ -1,9 +1,13 @@
 ﻿    using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using OpenAI.Chat;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.Utilities;
@@ -117,6 +121,22 @@ namespace OpenGptChat.Views.Pages
             catch (Exception ex)
             {
                 _ = NoteService.ShowAsync($"{ex.GetType().Name}: {ex.Message}", 3000);
+
+                var chatError = ex.Data.Cast<DictionaryEntry>()
+                    .Where(v => v.Key as string is "Error")
+                    .Select(v => v.Value as ChatError)
+                    .FirstOrDefault();
+
+                if (chatError != null)
+                {
+                    if (chatError.Code == "context_length_exceeded")
+                    {
+                        if (ViewModel.Messages.Count > 0)
+                        {
+                            Console.WriteLine("token reaches the upper limit");
+                        }
+                    }
+                }
 
                 Rollback(requestMessageModel, responseMessageModel, input);
             }
