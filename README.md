@@ -12,7 +12,7 @@ A simple chat client based on [Open AI Chat completion API](https://platform.ope
 
 ## Features
 
-1. Real-time response. By using HTTP Stream, the program can display every character on the screen as soon as the server responds, without waiting for the entire response to complete.
+1. Real-time response. By using SSE (Server-Sent Events), the program can display every character on the screen as soon as the server responds, without waiting for the entire response to complete.
 2. Multiple sessions. You can create multiple sessions on the left side of the program, each with its own chat content, which are independent of each other and can be switched freely.
 3. Multiple languages. When you first start the program, it will detect your system language. If it is a supported language, the program will automatically switch to the corresponding language. You can also manually switch in the settings.
 4. Hot updates. The configuration information you change in the settings page will take effect immediately in the program, without the need to save the configuration and restart the program, including the "always on top" option and language settings.
