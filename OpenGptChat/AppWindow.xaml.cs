@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
 using CommunityToolkit.Mvvm.Input;
 using OpenGptChat.Services;
 using OpenGptChat.ViewModels;
@@ -45,6 +46,10 @@ namespace OpenGptChat
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
+
+            // 给入口点的主窗口句柄赋值 (用于异常展示)
+            EntryPoint.MainWindowHandle = 
+                new WindowInteropHelper(this).Handle;
 
             // 窗体句柄创建啦, 我可以搞事情辣!
             LanguageService.Init();

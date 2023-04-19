@@ -64,13 +64,13 @@ namespace OpenGptChat.Views.Pages
         {
             if (string.IsNullOrWhiteSpace(ViewModel.InputBoxText))
             {
-                _ = NoteService.ShowAsync("Empty message", 1500);
+                _ = NoteService.ShowAndWaitAsync("Empty message", 1500);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(ConfigurationService.Configuration.ApiKey))
             {
-                await NoteService.ShowAsync("You can't use OpenChat now, because you haven't set your api key yet", 3000);
+                await NoteService.ShowAndWaitAsync("You can't use OpenChat now, because you haven't set your api key yet", 3000);
                 return;
             }
 
@@ -116,7 +116,7 @@ namespace OpenGptChat.Views.Pages
             }
             catch (Exception ex)
             {
-                _ = NoteService.ShowAsync($"{ex.GetType().Name}: {ex.Message}", 3000);
+                _ = NoteService.ShowAndWaitAsync($"{ex.GetType().Name}: {ex.Message}", 3000);
 
                 Rollback(requestMessageModel, responseMessageModel, input);
             }

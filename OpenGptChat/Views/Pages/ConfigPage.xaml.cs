@@ -88,14 +88,14 @@ namespace OpenGptChat.Views.Pages
         public Task LoadSystemMessages()
         {
             LoadSystemMessagesCore();
-            return NoteService.ShowAsync("System messages loaded", 1500);
+            return NoteService.ShowAndWaitAsync("System messages loaded", 1500);
         }
 
         [RelayCommand]
         public Task ApplySystemMessages()
         {
             ApplySystemMessagesCore();
-            return NoteService.ShowAsync("System messages applied", 1500);
+            return NoteService.ShowAndWaitAsync("System messages applied", 1500);
         }
 
         [RelayCommand]
@@ -122,7 +122,7 @@ namespace OpenGptChat.Views.Pages
                 ColorModeService.CurrentMode;
 
             ConfigurationService.Save();
-            return NoteService.ShowAsync("Configuration saved", 2000);
+            return NoteService.ShowAndWaitAsync("Configuration saved", 2000);
         }
     }
 }

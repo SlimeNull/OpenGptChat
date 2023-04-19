@@ -30,12 +30,20 @@ namespace OpenGptChat.Services
             catch (TaskCanceledException) { }
         }
 
-        public Task ShowAsync(string msg, int timeout)
+        public Task ShowAndWaitAsync(string msg, int timeout)
         {
             cancellation?.Cancel();
             cancellation = new CancellationTokenSource();
 
             return ShowCoreAsync(msg, timeout, cancellation.Token);
+        }
+
+        public void Show(string msg, int timeout)
+        {
+            cancellation?.Cancel();
+            cancellation = new CancellationTokenSource();
+
+            _ = ShowCoreAsync(msg, timeout, cancellation.Token);
         }
 
         public void Show(string msg)

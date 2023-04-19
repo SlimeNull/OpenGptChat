@@ -30,10 +30,12 @@ namespace OpenGptChat.ViewModels
 
         private void SetupStorage(ChatSession storage)
         {
+#pragma warning disable MVVMTK0034 // Direct field reference to [ObservableProperty] backing field
             _id = storage.Id;
             _name = storage.Name;
             _enableChatContext = storage.EnableChatContext;
             _systemMessages = storage.SystemMessages.WrapCollection();
+#pragma warning restore MVVMTK0034 // Direct field reference to [ObservableProperty] backing field
         }
 
         public ChatSession? Storage

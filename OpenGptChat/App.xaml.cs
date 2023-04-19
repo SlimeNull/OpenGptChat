@@ -26,11 +26,6 @@ namespace OpenGptChat
     /// </summary>
     public partial class App : Application
     {
-        static App()
-        {
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-        }
-
         private static readonly IHost host = Host
             .CreateDefaultBuilder()
             .ConfigureAppConfiguration(config =>
@@ -180,11 +175,6 @@ namespace OpenGptChat
                 singletonEvent.Set();
                 return false;
             }
-        }
-
-        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            MessageBox.Show($"{e.ExceptionObject}", "UnhandledException", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

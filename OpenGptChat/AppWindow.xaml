@@ -56,17 +56,10 @@
 
         <tb:TaskbarIcon Name="appIcon"
                         IconSource="assets/images/openai.ico"
-                        ToolTipText="{x:Static local:App.AppName}"
+                        ToolTipText="{x:Null}"
                         LeftClickCommand="{x:Static local:App.ShowAppCommand}"
                         DoubleClickCommand="{x:Static local:App.ShowAppCommand}"
                         DataContext="{Binding}">
-
-            <tb:TaskbarIcon.TrayToolTip>
-                <Border Background="{DynamicResource GeneralBackground}" 
-                        BorderBrush="{DynamicResource GeneralBorder}" BorderThickness="1" CornerRadius="3" Padding="5">
-                    <TextBlock Text="{x:Static local:App.AppName}"/>
-                </Border>
-            </tb:TaskbarIcon.TrayToolTip>
 
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>

@@ -14,6 +14,7 @@
     <Version>1.1.5.14</Version>
     <ImplicitUsings>disable</ImplicitUsings>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <StartupObject>OpenGptChat.EntryPoint</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

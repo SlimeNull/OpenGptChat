@@ -85,11 +85,11 @@ namespace OpenGptChat.Views.Pages
                 ChatStorageService.ClearMessage(sessionId);
                 ViewModel.CurrentChat?.ViewModel.Messages.Clear();
 
-                await NoteService.ShowAsync("Chat has been reset.", 1500);
+                await NoteService.ShowAndWaitAsync("Chat has been reset.", 1500);
             }
             else
             {
-                await NoteService.ShowAsync("You need to select a session.", 1500);
+                await NoteService.ShowAndWaitAsync("You need to select a session.", 1500);
             }
         }
 
@@ -113,11 +113,11 @@ namespace OpenGptChat.Views.Pages
         /// </summary>
         /// <param name="session"></param>
         [RelayCommand]
-        public async Task DeleteSession(ChatSessionModel session)
+        public void DeleteSession(ChatSessionModel session)
         {
             if (ViewModel.Sessions.Count == 1)
             {
-                await NoteService.ShowAsync("You can't delete the last session.", 1500);
+                NoteService.Show("You can't delete the last session.", 1500);
                 return;
             }
 
