@@ -42,6 +42,11 @@ namespace OpenAI.Chat
         [JsonPropertyName("choices")]
         public IReadOnlyList<Choice> Choices { get; private set; }
 
+        [JsonInclude]
+        [JsonPropertyName("error")]
+        public ChatError? Error { get; set; }
+
+
         [JsonIgnore]
         public Choice? FirstChoice => Choices.FirstOrDefault();
     }
