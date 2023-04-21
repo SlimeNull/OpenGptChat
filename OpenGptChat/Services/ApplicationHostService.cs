@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OpenGptChat.Markdown;
 using OpenGptChat.Utilities;
 using OpenGptChat.Views;
 using OpenGptChat.Views.Pages;
@@ -38,6 +40,20 @@ namespace OpenGptChat.Services
 
             // 初始化服务
             ChatStorageService.Initialize();
+
+            // 初始化 Markdown 渲染
+            MarkdownWpfRenderer.LinkNavigate += (s, e) =>
+            {
+                try
+                {
+                    if (e.Link != null)
+                        Process.Start("Explorer.exe", new string[] { e.Link });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Cannot open link: {ex}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            };
 
             // 启动主窗体
             if (!Application.Current.Windows.OfType<AppWindow>().Any())

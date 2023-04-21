@@ -11,6 +11,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OpenGptChat.Markdown;
 using OpenGptChat.Models;
 using OpenGptChat.Services;
 using OpenGptChat.Utilities;
@@ -68,6 +69,9 @@ namespace OpenGptChat
                 // 作用域服务
                 services.AddScoped<ChatPage>();
                 services.AddScoped<ChatPageModel>();
+
+                // 瞬态服务
+                services.AddTransient<MarkdownWpfRenderer>();
 
                 // 配置服务, 将配置与 AppConfig 绑定
                 services.Configure<AppConfig>(

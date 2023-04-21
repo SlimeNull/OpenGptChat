@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:md="clr-namespace:OpenGptChat.Markdown">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="_ColorModeBase.xaml"/>
     </ResourceDictionary.MergedDictionaries>
@@ -65,5 +66,39 @@
 
     <Brush x:Key="SessionHoverBackground">#2d2d2d</Brush>
     <Brush x:Key="SessionSelectedBackgroun">#3d3d3d</Brush>
+
+
+
+
+
+
+
+
+
+
+
+    <Brush x:Key="{x:Static md:MarkdownResKey.MainForeground}">#dddddd</Brush>
+    <Brush x:Key="{x:Static md:MarkdownResKey.MainBackground}">Transparent</Brush>
+    <Brush x:Key="{x:Static md:MarkdownResKey.MainBorder}">#3d3d3d</Brush>
+
+    <Brush x:Key="{x:Static md:MarkdownResKey.CodeBlockForeground}">#dddddd</Brush>
+    <Brush x:Key="{x:Static md:MarkdownResKey.CodeBlockBackground}">#202020</Brush>
+    <Brush x:Key="{x:Static md:MarkdownResKey.CodeBlockBorder}">#202020</Brush>
+
+    <Brush x:Key="{x:Static md:MarkdownResKey.CodeInlineForeground}">#dddddd</Brush>
+    <Brush x:Key="{x:Static md:MarkdownResKey.CodeInlineBackground}">#202020</Brush>
+    <Brush x:Key="{x:Static md:MarkdownResKey.CodeInlineBorder}">#202020</Brush>
+
+    <Brush x:Key="{x:Static md:MarkdownResKey.QuoteBlockForeground}">#dddddd</Brush>
+    <Brush x:Key="{x:Static md:MarkdownResKey.QuoteBlockBackground}">Transparent</Brush>
+    <Brush x:Key="{x:Static md:MarkdownResKey.QuoteBlockBorder}">#202020</Brush>
+
+    <Brush x:Key="{x:Static md:MarkdownResKey.TableForeground}">#dddddd</Brush>
+    <Brush x:Key="{x:Static md:MarkdownResKey.TableBackground}">#363b40</Brush>
+    <Brush x:Key="{x:Static md:MarkdownResKey.TableStripe}">Transparent</Brush>
+    <Brush x:Key="{x:Static md:MarkdownResKey.TableBorder}">#3d3d3d</Brush>
+
+
+    <Brush x:Key="{x:Static md:MarkdownResKey.ThematicBreak}">#c5c5c5</Brush>
 
 </ResourceDictionary>
