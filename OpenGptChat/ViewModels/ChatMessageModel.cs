@@ -30,7 +30,11 @@ namespace OpenGptChat.ViewModels
         private string _role = "user";
 
         [ObservableProperty]
+        [NotifyPropertyChangedFor(
+            nameof(SingleLineContent))]
         private string _content = string.Empty;
+
+        public string SingleLineContent => Content.Replace('\n', ' ');
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(

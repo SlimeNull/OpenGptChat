@@ -78,6 +78,11 @@ namespace OpenGptChat.Services
             return ChatCoreAsync(sessionId, message, messageHandler, cancellation.Token);
         }
 
+        public Task<string> GetTitleAsync(Guid sessionId, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Cancel()
         {
             cancellation?.Cancel();

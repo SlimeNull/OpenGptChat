@@ -11,6 +11,7 @@ using ColorCode.Common;
 using ColorCode.Parsing;
 using ColorCode.Styling;
 using Markdig.Extensions.Tables;
+using Markdig.Extensions.TaskLists;
 using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
 using OpenGptChat.Common.Models;
@@ -123,7 +124,10 @@ namespace OpenGptChat.Markdown
 
         private FrameworkElement RenderContainerBlock(ContainerBlock containerBlock)
         {
-            StackPanel documentElement = new StackPanel();
+            StackPanel documentElement = new StackPanel()
+            {
+                Margin = new Thickness(0, 0, 0, NormalSize)
+            };
 
             foreach (var renderedBlock in RenderBlocks(containerBlock))
                 documentElement.Children.Add(renderedBlock);
@@ -136,6 +140,7 @@ namespace OpenGptChat.Markdown
             Border tableElement = new Border()
             {
                 BorderThickness = new Thickness(0, 0, 1, 1),
+                Margin = new Thickness(0, 0, 0, NormalSize)
             };
 
             Grid tableContentElement = new Grid();
@@ -183,6 +188,8 @@ namespace OpenGptChat.Markdown
                     cellElement
                         .BindTableBorder();
 
+                    cellContentElement.Margin = new Thickness(0);
+
                     if (rowIndex % 2 == 1)
                         cellElement.BindTableStripe();
 
@@ -210,7 +217,7 @@ namespace OpenGptChat.Markdown
 
             Border listElement = new Border()
             {
-                Margin = new Thickness(NormalSize / 2, 0, 0, NormalSize / 2)
+                Margin = new Thickness(NormalSize / 2, 0, 0, NormalSize)
             };
 
             Grid listContentElement = new Grid();
@@ -237,10 +244,17 @@ namespace OpenGptChat.Markdown
             }
 
             int index = 0;
+            FrameworkElement? lastRenderedItemBlock = null;
             foreach (var itemBlock in listBlock)
             {
                 if (RenderBlock(itemBlock) is FrameworkElement renderedItemBlock)
                 {
+                    lastRenderedItemBlock = renderedItemBlock;
+                    renderedItemBlock.Margin = renderedItemBlock.Margin with
+                    {
+                        Bottom = renderedItemBlock.Margin.Bottom / 4
+                    };
+
                     TextBlock marker = new TextBlock();
                     Grid.SetRow(marker, index);
                     Grid.SetColumn(marker, 0);
@@ -257,6 +271,12 @@ namespace OpenGptChat.Markdown
                 }
             }
 
+            if (lastRenderedItemBlock != null)
+                lastRenderedItemBlock.Margin = lastRenderedItemBlock.Margin with
+                {
+                    Bottom = 0
+                };
+
             return listElement;
         }
 
@@ -266,7 +286,7 @@ namespace OpenGptChat.Markdown
             {
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 Height = 1,
-                Margin = new Thickness(0, 0, 0, 6)
+                Margin = new Thickness(0, 0, 0, NormalSize)
             };
 
             thematicBreakElement
@@ -288,7 +308,7 @@ namespace OpenGptChat.Markdown
             Border codeElement = new Border()
             {
                 CornerRadius = new CornerRadius(3),
-                Margin = new Thickness(0, 0, 0, NormalSize / 2)
+                Margin = new Thickness(0, 0, 0, NormalSize)
             };
 
             TextBlock codeContentElement = new TextBlock()
@@ -335,7 +355,7 @@ namespace OpenGptChat.Markdown
             Border codeElement = new Border()
             {
                 CornerRadius = new CornerRadius(3),
-                Margin = new Thickness(0, 0, 0, NormalSize / 2)
+                Margin = new Thickness(0, 0, 0, NormalSize)
             };
 
             TextBlock codeContentElement = new TextBlock()
@@ -373,7 +393,7 @@ namespace OpenGptChat.Markdown
                 BorderThickness = new Thickness(NormalSize / 3, 0, 0, 0),
                 CornerRadius = new CornerRadius(NormalSize / 4),
                 Padding = new Thickness(NormalSize / 2, 0, 0, 0),
-                Margin = new Thickness(0, 0, 0, NormalSize / 2),
+                Margin = new Thickness(0, 0, 0, NormalSize),
             };
 
             StackPanel quoteContentPanel = new StackPanel();
@@ -392,34 +412,25 @@ namespace OpenGptChat.Markdown
 
         public FrameworkElement RenderHeadingBlock(HeadingBlock headingBlock)
         {
-            double? fontSize = headingBlock.Level switch
+            double fontSize = headingBlock.Level switch
             {
                 1 => Heading1Size,
                 2 => Heading2Size,
                 3 => Heading3Size,
                 4 => Heading4Size,
-                _ => null
+                _ => NormalSize 
             };
 
             TextBlock headingElement = new TextBlock()
             {
+                FontSize = fontSize,
                 FontWeight = FontWeights.Medium,
-                // Margin 后面计算
+                Margin = new Thickness(0, 0, 0, NormalSize)
             };
 
             headingElement
                 .BindMainForeground()
                 .BindMainBackground();
-
-            if (fontSize.HasValue)
-            {
-                headingElement.FontSize = fontSize.Value;
-                headingElement.Margin = new Thickness(0, 0, 0, fontSize.Value / 2);
-            }
-            else
-            {
-                headingElement.Margin = new Thickness(0, 0, 0, headingElement.FontSize / 2);
-            }
 
             if (headingBlock.Inline != null)
                 headingElement.Inlines.AddRange(
@@ -433,7 +444,7 @@ namespace OpenGptChat.Markdown
             TextBlock paragraphElement = new TextBlock()
             {
                 TextWrapping = TextWrapping.Wrap,
-                Margin = new Thickness(0, 0, 0, NormalSize / 2),
+                Margin = new Thickness(0, 0, 0, NormalSize),
 
                 FontSize = NormalSize,
             };
@@ -507,10 +518,23 @@ namespace OpenGptChat.Markdown
             {
                 return RenderContainerInline(containerInline);
             }
+            else if (inline is TaskList taskListInline)
+            {
+                return RenderTaskListInline(taskListInline);
+            }
             else
             {
                 return new WpfDocs.Run();
             }
+        }
+
+        private WpfDocs.Inline RenderTaskListInline(TaskList taskListInline)
+        {
+            return new CheckBox()
+            {
+                IsChecked = taskListInline.Checked,
+                IsEnabled = false,
+            }.WrapWithContainer();
         }
 
         private WpfDocs.Inline RenderAutolinkInline(AutolinkInline autolinkInline)
