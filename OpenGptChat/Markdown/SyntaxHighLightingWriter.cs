@@ -74,12 +74,12 @@ namespace OpenGptChat.Markdown
             }
         }
 
-        private void CreateSpan(string Text, Scope? scope)
+        private void CreateSpan(string text, Scope? scope)
         {
             var span = new Span();
             var run = new Run
             {
-                Text = Text
+                Text = text
             };
 
             // Styles and writes the text to the span.
@@ -90,16 +90,16 @@ namespace OpenGptChat.Markdown
             InlineCollection?.Add(span);
         }
 
-        private void StyleRun(Run Run, Scope Scope)
+        private void StyleRun(Run run, Scope scope)
         {
             string? foreground = null;
             string? background = null;
             bool italic = false;
             bool bold = false;
 
-            if (Styles.Contains(Scope.Name))
+            if (Styles.Contains(scope.Name))
             {
-                ColorCode.Styling.Style style = Styles[Scope.Name];
+                ColorCode.Styling.Style style = Styles[scope.Name];
 
                 foreground = style.Foreground;
                 background = style.Background;
@@ -108,15 +108,21 @@ namespace OpenGptChat.Markdown
             }
 
             if (!string.IsNullOrWhiteSpace(foreground))
-                Run.Foreground = BrushConverter.ConvertFromString(foreground) as Brush;
+            {
+                try
+                {
+                    run.Foreground = BrushConverter.ConvertFromString(foreground) as Brush;
+                }
+                catch { }
+            }
 
             //Background isn't supported, but a workaround could be created.
 
             if (italic)
-                Run.FontStyle = FontStyles.Italic;
+                run.FontStyle = FontStyles.Italic;
 
             if (bold)
-                Run.FontWeight = FontWeights.Bold;
+                run.FontWeight = FontWeights.Bold;
         }
 
         private void GetStyleInsertionsForCapturedStyle(Scope scope, ICollection<TextInsertion> styleInsertions)

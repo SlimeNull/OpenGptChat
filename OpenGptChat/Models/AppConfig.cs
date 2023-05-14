@@ -39,6 +39,9 @@ namespace OpenGptChat.Models
         private bool _windowAlwaysOnTop = false;
 
         [ObservableProperty]
+        private bool _disableChatAnimation = false;
+
+        [ObservableProperty]
         private string _chatStoragePath = "AppChatStorage.db";
     }
 }

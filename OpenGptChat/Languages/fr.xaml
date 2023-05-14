@@ -21,6 +21,7 @@
     <s:String x:Key="StrSystemMessages">Messages système</s:String>
     <s:String x:Key="StrApply">Appliquer</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">Fenêtre toujours au premier plan</s:String>
+    <s:String x:Key="StrDisableChatAnimation">Désactiver l'animation de chat</s:String>
 
     <s:String x:Key="StrLanguage">Langue</s:String>
     <s:String x:Key="StrColorMode">Mode de couleur</s:String>

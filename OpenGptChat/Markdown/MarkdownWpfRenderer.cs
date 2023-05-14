@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Security.Policy;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -20,7 +21,6 @@ using WpfDocs = System.Windows.Documents;
 
 namespace OpenGptChat.Markdown
 {
-
     public class MarkdownWpfRenderer
     {
         public double Heading1Size = 24;
@@ -38,24 +38,63 @@ namespace OpenGptChat.Markdown
 
         public static event EventHandler<MarkdownLinkNavigateEventArgs>? LinkNavigate;
 
-        public FrameworkElement RenderDocument(MarkdownDocument document)
+        public FrameworkElement RenderDocument(MarkdownDocument document, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new FrameworkElement();
+
+            if (document == null)
+                return new FrameworkElement();
+
             StackPanel documentElement = new StackPanel();
 
-            foreach (var renderedBlock in RenderBlocks(document))
+            foreach (var renderedBlock in RenderBlocks(document, cancellationToken))
+            {
+                if (cancellationToken.IsCancellationRequested)
+                    break;
+
                 documentElement.Children.Add(renderedBlock);
+            }
 
             return documentElement;
         }
 
-        public List<FrameworkElement> RenderBlocks(IEnumerable<Block> blocks)
+        public void RenderDocumentTo(ContentControl target, MarkdownDocument document, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return;
+
+            if (document == null)
+                return;
+
+            StackPanel documentElement = new StackPanel();
+            target.Content = documentElement;
+
+            foreach (var renderedBlock in RenderBlocks(document, cancellationToken))
+            {
+                if (cancellationToken.IsCancellationRequested)
+                    break;
+
+                documentElement.Children.Add(renderedBlock);
+            }
+
+            return;
+        }
+
+        public List<FrameworkElement> RenderBlocks(IEnumerable<Block> blocks, CancellationToken cancellationToken)
+        {
+            if (cancellationToken.IsCancellationRequested)
+                return new List<FrameworkElement>();
+
             List<FrameworkElement> elements = new List<FrameworkElement>();
             FrameworkElement? tailElement = null;
 
             foreach (var block in blocks)
             {
-                FrameworkElement? renderedBlock = RenderBlock(block);
+                if (cancellationToken.IsCancellationRequested)
+                    break;
+
+                FrameworkElement? renderedBlock = RenderBlock(block, cancellationToken);
 
                 if (renderedBlock != null)
                 {
@@ -73,48 +112,50 @@ namespace OpenGptChat.Markdown
             return elements;
         }
 
-        public FrameworkElement RenderBlock(Block block)
+        public FrameworkElement RenderBlock(Block block, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new FrameworkElement();
 
             if (block is ParagraphBlock paragraphBlock)
             {
-                return RenderParagraphBlock(paragraphBlock);
+                return RenderParagraphBlock(paragraphBlock, cancellationToken);
             }
             else if (block is HeadingBlock headingBlock)
             {
-                return RenderHeadingBlock(headingBlock);
+                return RenderHeadingBlock(headingBlock, cancellationToken);
             }
             else if (block is QuoteBlock quoteBlock)
             {
-                return RenderQuoteBlock(quoteBlock);
+                return RenderQuoteBlock(quoteBlock, cancellationToken);
             }
             else if (block is FencedCodeBlock fencedCodeBlock)
             {
-                return RenderFencedCodeBlock(fencedCodeBlock);
+                return RenderFencedCodeBlock(fencedCodeBlock, cancellationToken);
             }
             else if (block is CodeBlock codeBlock)
             {
-                return RenderCodeBlock(codeBlock);
+                return RenderCodeBlock(codeBlock, cancellationToken);
             }
             else if (block is HtmlBlock htmlBlock)
             {
-                return RenderHtmlBlock(htmlBlock);
+                return RenderHtmlBlock(htmlBlock, cancellationToken);
             }
             else if (block is ThematicBreakBlock thematicBreakBlock)
             {
-                return RenderThematicBreakBlock(thematicBreakBlock);
+                return RenderThematicBreakBlock(thematicBreakBlock, cancellationToken);
             }
             else if (block is ListBlock listBlock)
             {
-                return RenderListBlock(listBlock);
+                return RenderListBlock(listBlock, cancellationToken);
             }
             else if (block is Table table)
             {
-                return RenderTable(table);
+                return RenderTable(table, cancellationToken);
             }
             else if (block is ContainerBlock containerBlock)
             {
-                return RenderContainerBlock(containerBlock);
+                return RenderContainerBlock(containerBlock, cancellationToken);
             }
             else
             {
@@ -122,21 +163,32 @@ namespace OpenGptChat.Markdown
             }
         }
 
-        private FrameworkElement RenderContainerBlock(ContainerBlock containerBlock)
+        public FrameworkElement RenderContainerBlock(ContainerBlock containerBlock, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new FrameworkElement();
+
             StackPanel documentElement = new StackPanel()
             {
                 Margin = new Thickness(0, 0, 0, NormalSize)
             };
 
-            foreach (var renderedBlock in RenderBlocks(containerBlock))
+            foreach (var renderedBlock in RenderBlocks(containerBlock, cancellationToken))
+            {
+                if (cancellationToken.IsCancellationRequested)
+                    return new FrameworkElement();
+
                 documentElement.Children.Add(renderedBlock);
+            }
 
             return documentElement;
         }
 
-        public FrameworkElement RenderTable(Table table)
+        public FrameworkElement RenderTable(Table table, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new FrameworkElement();
+
             Border tableElement = new Border()
             {
                 BorderThickness = new Thickness(0, 0, 1, 1),
@@ -151,15 +203,23 @@ namespace OpenGptChat.Markdown
                 .BindTableBorder();
 
             foreach (var col in table.ColumnDefinitions)
+            {
+                if (cancellationToken.IsCancellationRequested)
+                    return new FrameworkElement();
+
                 tableContentElement.ColumnDefinitions.Add(
                     new ColumnDefinition()
                     {
                         Width = GridLength.Auto
                     });
+            }
 
             int rowIndex = 0;
             foreach (var block in table)
             {
+                if (cancellationToken.IsCancellationRequested)
+                    return new FrameworkElement();
+
                 if (block is not TableRow row)
                     continue;
 
@@ -182,7 +242,7 @@ namespace OpenGptChat.Markdown
                     };
 
                     FrameworkElement cellContentElement =
-                        RenderBlock(cell);
+                        RenderBlock(cell, cancellationToken);
 
                     cellElement.Child = cellContentElement;
                     cellElement
@@ -207,8 +267,11 @@ namespace OpenGptChat.Markdown
             return tableElement;
         }
 
-        public FrameworkElement RenderListBlock(ListBlock listBlock)
+        public FrameworkElement RenderListBlock(ListBlock listBlock, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new FrameworkElement();
+
             int itemCount = listBlock.Count;
 
             Func<int, string> markerTextGetter = listBlock.IsOrdered ?
@@ -236,6 +299,9 @@ namespace OpenGptChat.Markdown
 
             for (int i = 0; i < itemCount; i++)
             {
+                if (cancellationToken.IsCancellationRequested)
+                    return new FrameworkElement();
+
                 listContentElement.RowDefinitions.Add(
                     new RowDefinition()
                     {
@@ -247,7 +313,10 @@ namespace OpenGptChat.Markdown
             FrameworkElement? lastRenderedItemBlock = null;
             foreach (var itemBlock in listBlock)
             {
-                if (RenderBlock(itemBlock) is FrameworkElement renderedItemBlock)
+                if (cancellationToken.IsCancellationRequested)
+                    return new FrameworkElement();
+
+                if (RenderBlock(itemBlock, cancellationToken) is FrameworkElement renderedItemBlock)
                 {
                     lastRenderedItemBlock = renderedItemBlock;
                     renderedItemBlock.Margin = renderedItemBlock.Margin with
@@ -260,6 +329,7 @@ namespace OpenGptChat.Markdown
                     Grid.SetColumn(marker, 0);
                     marker.Text = markerTextGetter.Invoke(index);
                     marker.Margin = new Thickness(0, 0, NormalSize / 2, 0);
+                    marker.TextAlignment = TextAlignment.Right;
 
                     Grid.SetRow(renderedItemBlock, index);
                     Grid.SetColumn(renderedItemBlock, 1);
@@ -280,8 +350,11 @@ namespace OpenGptChat.Markdown
             return listElement;
         }
 
-        public FrameworkElement RenderThematicBreakBlock(ThematicBreakBlock thematicBreakBlock)
+        public FrameworkElement RenderThematicBreakBlock(ThematicBreakBlock thematicBreakBlock, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new FrameworkElement();
+
             Border thematicBreakElement = new Border()
             {
                 HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -295,15 +368,21 @@ namespace OpenGptChat.Markdown
             return thematicBreakElement;
         }
 
-        public FrameworkElement RenderHtmlBlock(HtmlBlock htmlBlock)
+        public FrameworkElement RenderHtmlBlock(HtmlBlock htmlBlock, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new FrameworkElement();
+
             return new TextBlock();
         }
 
-        public FrameworkElement RenderFencedCodeBlock(FencedCodeBlock fencedCodeBlock)
+        public FrameworkElement RenderFencedCodeBlock(FencedCodeBlock fencedCodeBlock, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new FrameworkElement();
+
             if (string.IsNullOrWhiteSpace(fencedCodeBlock.Info))
-                return RenderCodeBlock(fencedCodeBlock);
+                return RenderCodeBlock(fencedCodeBlock, cancellationToken);
 
             Border codeElement = new Border()
             {
@@ -331,7 +410,7 @@ namespace OpenGptChat.Markdown
 
             if (fencedCodeBlock.Inline != null)
                 codeContentElement.Inlines.AddRange(
-                    RenderInlines(fencedCodeBlock.Inline));
+                    RenderInlines(fencedCodeBlock.Inline, cancellationToken));
 
             var language = ColorCode.Languages.FindById(fencedCodeBlock.Info);
 
@@ -350,8 +429,11 @@ namespace OpenGptChat.Markdown
             return codeElement;
         }
 
-        public FrameworkElement RenderCodeBlock(CodeBlock codeBlock)
+        public FrameworkElement RenderCodeBlock(CodeBlock codeBlock, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new FrameworkElement();
+
             Border codeElement = new Border()
             {
                 CornerRadius = new CornerRadius(3),
@@ -378,7 +460,7 @@ namespace OpenGptChat.Markdown
 
             if (codeBlock.Inline != null)
                 codeContentElement.Inlines.AddRange(
-                    RenderInlines(codeBlock.Inline));
+                    RenderInlines(codeBlock.Inline, cancellationToken));
 
             codeContentElement.Inlines.Add(
                 new WpfDocs.Run(codeBlock.Lines.ToString()));
@@ -386,8 +468,11 @@ namespace OpenGptChat.Markdown
             return codeElement;
         }
 
-        public FrameworkElement RenderQuoteBlock(QuoteBlock quoteBlock)
+        public FrameworkElement RenderQuoteBlock(QuoteBlock quoteBlock, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new FrameworkElement();
+
             Border quoteElement = new Border()
             {
                 BorderThickness = new Thickness(NormalSize / 3, 0, 0, 0),
@@ -404,21 +489,24 @@ namespace OpenGptChat.Markdown
                 .BindQuoteBlockBackground()
                 .BindQuoteBlockBorder();
 
-            foreach (var renderedBlock in RenderBlocks(quoteBlock))
+            foreach (var renderedBlock in RenderBlocks(quoteBlock, cancellationToken))
                 quoteContentPanel.Children.Add(renderedBlock);
 
             return quoteElement;
         }
 
-        public FrameworkElement RenderHeadingBlock(HeadingBlock headingBlock)
+        public FrameworkElement RenderHeadingBlock(HeadingBlock headingBlock, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new FrameworkElement();
+
             double fontSize = headingBlock.Level switch
             {
                 1 => Heading1Size,
                 2 => Heading2Size,
                 3 => Heading3Size,
                 4 => Heading4Size,
-                _ => NormalSize 
+                _ => NormalSize
             };
 
             TextBlock headingElement = new TextBlock()
@@ -434,13 +522,16 @@ namespace OpenGptChat.Markdown
 
             if (headingBlock.Inline != null)
                 headingElement.Inlines.AddRange(
-                    RenderInlines(headingBlock.Inline));
+                    RenderInlines(headingBlock.Inline, cancellationToken));
 
             return headingElement;
         }
 
-        public FrameworkElement RenderParagraphBlock(ParagraphBlock paragraphBlock)
+        public FrameworkElement RenderParagraphBlock(ParagraphBlock paragraphBlock, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new FrameworkElement();
+
             TextBlock paragraphElement = new TextBlock()
             {
                 TextWrapping = TextWrapping.Wrap,
@@ -455,7 +546,7 @@ namespace OpenGptChat.Markdown
 
             if (paragraphBlock.Inline != null)
                 paragraphElement.Inlines.AddRange(
-                    RenderInlines(paragraphBlock.Inline));
+                    RenderInlines(paragraphBlock.Inline, cancellationToken));
 
             return paragraphElement;
         }
@@ -465,62 +556,73 @@ namespace OpenGptChat.Markdown
 
 
 
-        public List<WpfDocs.Inline> RenderInlines(IEnumerable<Inline> inlines)
+        public List<WpfDocs.Inline> RenderInlines(IEnumerable<Inline> inlines, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new List<WpfDocs.Inline>();
+
             List<WpfDocs.Inline> inlineElements = new List<WpfDocs.Inline>();
 
             foreach (var inline in inlines)
-                if (RenderInline(inline) is WpfDocs.Inline wpfInline)
+                if (RenderInline(inline, cancellationToken) is WpfDocs.Inline wpfInline)
+                {
+                    if (cancellationToken.IsCancellationRequested)
+                        break;
+
                     inlineElements.Add(wpfInline);
+                }
 
             return inlineElements;
         }
 
-        public WpfDocs.Inline RenderInline(Inline inline)
+        public WpfDocs.Inline RenderInline(Inline inline, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new WpfDocs.Run();
+
             if (inline is LiteralInline literalInline)
             {
-                return RenderLiteralInline(literalInline);
+                return RenderLiteralInline(literalInline, cancellationToken);
             }
             else if (inline is LinkInline linkInline)
             {
-                return RenderLinkInline(linkInline);
+                return RenderLinkInline(linkInline, cancellationToken);
             }
             else if (inline is LineBreakInline lineBreakInline)
             {
-                return RenderLineBreakInline(lineBreakInline);
+                return RenderLineBreakInline(lineBreakInline, cancellationToken);
             }
             else if (inline is HtmlInline htmlInline)
             {
-                return RenderHtmlInline(htmlInline);
+                return RenderHtmlInline(htmlInline, cancellationToken);
             }
             else if (inline is HtmlEntityInline htmlEntityInline)
             {
-                return RenderHtmlEntityInline(htmlEntityInline);
+                return RenderHtmlEntityInline(htmlEntityInline, cancellationToken);
             }
             else if (inline is EmphasisInline emphasisInline)
             {
-                return RenderEmphasisInline(emphasisInline);
+                return RenderEmphasisInline(emphasisInline, cancellationToken);
             }
             else if (inline is CodeInline codeInline)
             {
-                return RenderCodeInline(codeInline);
+                return RenderCodeInline(codeInline, cancellationToken);
             }
             else if (inline is AutolinkInline autolinkInline)
             {
-                return RenderAutolinkInline(autolinkInline);
+                return RenderAutolinkInline(autolinkInline, cancellationToken);
             }
             else if (inline is DelimiterInline delimiterInline)
             {
-                return RenderDelimiterInline(delimiterInline);
+                return RenderDelimiterInline(delimiterInline, cancellationToken);
             }
             else if (inline is ContainerInline containerInline)
             {
-                return RenderContainerInline(containerInline);
+                return RenderContainerInline(containerInline, cancellationToken);
             }
             else if (inline is TaskList taskListInline)
             {
-                return RenderTaskListInline(taskListInline);
+                return RenderTaskListInline(taskListInline, cancellationToken);
             }
             else
             {
@@ -528,8 +630,11 @@ namespace OpenGptChat.Markdown
             }
         }
 
-        private WpfDocs.Inline RenderTaskListInline(TaskList taskListInline)
+        public WpfDocs.Inline RenderTaskListInline(TaskList taskListInline, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new WpfDocs.Run();
+
             return new CheckBox()
             {
                 IsChecked = taskListInline.Checked,
@@ -537,13 +642,19 @@ namespace OpenGptChat.Markdown
             }.WrapWithContainer();
         }
 
-        private WpfDocs.Inline RenderAutolinkInline(AutolinkInline autolinkInline)
+        public WpfDocs.Inline RenderAutolinkInline(AutolinkInline autolinkInline, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new WpfDocs.Run();
+
             return new WpfDocs.Run(autolinkInline.Url);
         }
 
-        private WpfDocs.Inline RenderCodeInline(CodeInline codeInline)
+        public WpfDocs.Inline RenderCodeInline(CodeInline codeInline, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new WpfDocs.Run();
+
             Border border = new Border()
             {
                 CornerRadius = new CornerRadius(3),
@@ -564,18 +675,24 @@ namespace OpenGptChat.Markdown
             return border.WrapWithContainer();
         }
 
-        private WpfDocs.Inline RenderContainerInline(ContainerInline containerInline)
+        public WpfDocs.Inline RenderContainerInline(ContainerInline containerInline, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new WpfDocs.Run();
+
             WpfDocs.Span span = new WpfDocs.Span();
 
             span.Inlines.AddRange(
-                RenderInlines(containerInline));
+                RenderInlines(containerInline, cancellationToken));
 
             return span;
         }
 
-        private WpfDocs.Inline RenderEmphasisInline(EmphasisInline emphasisInline)
+        public WpfDocs.Inline RenderEmphasisInline(EmphasisInline emphasisInline, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new WpfDocs.Run();
+
             WpfDocs.Span span = new WpfDocs.Span();
 
             switch (emphasisInline.DelimiterChar)
@@ -606,33 +723,47 @@ namespace OpenGptChat.Markdown
             }
 
             span.Inlines.AddRange(
-                RenderInlines(emphasisInline));
+                RenderInlines(emphasisInline, cancellationToken));
 
             return span;
         }
 
-        private WpfDocs.Inline RenderHtmlEntityInline(HtmlEntityInline htmlEntityInline)
+        public WpfDocs.Inline RenderHtmlEntityInline(HtmlEntityInline htmlEntityInline, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new WpfDocs.Run();
+
             return new WpfDocs.Run(htmlEntityInline.Transcoded.ToString());
         }
 
-        private WpfDocs.Inline RenderHtmlInline(HtmlInline htmlInline)
+        public WpfDocs.Inline RenderHtmlInline(HtmlInline htmlInline, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new WpfDocs.Run();
+
             return new WpfDocs.Run();
         }
 
-        private WpfDocs.Inline RenderLineBreakInline(LineBreakInline lineBreakInline)
+        public WpfDocs.Inline RenderLineBreakInline(LineBreakInline lineBreakInline, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new WpfDocs.Run();
+
             return new WpfDocs.Run("\n");
         }
 
-        private WpfDocs.Inline RenderDelimiterInline(DelimiterInline delimiterInline)
+        public WpfDocs.Inline RenderDelimiterInline(DelimiterInline delimiterInline, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new WpfDocs.Run();
+
             return new WpfDocs.Run(delimiterInline.ToLiteral());
         }
 
-        private WpfDocs.Inline RenderLinkInline(LinkInline linkInline)
+        public WpfDocs.Inline RenderLinkInline(LinkInline linkInline, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new WpfDocs.Run();
 
             Uri? uri = null;
 
@@ -659,7 +790,7 @@ namespace OpenGptChat.Markdown
 
                 if (linkContent != null)
                     link.Inlines.Add(linkContent);
-                if (RenderContainerInline(linkInline) is WpfDocs.Inline extraInline)
+                if (RenderContainerInline(linkInline, cancellationToken) is WpfDocs.Inline extraInline)
                     link.Inlines.Add(extraInline);
 
                 link.Click += (s, e) =>
@@ -671,8 +802,11 @@ namespace OpenGptChat.Markdown
             }
         }
 
-        private WpfDocs.Inline RenderLiteralInline(LiteralInline literalInline)
+        public WpfDocs.Inline RenderLiteralInline(LiteralInline literalInline, CancellationToken cancellationToken)
         {
+            if (cancellationToken.IsCancellationRequested)
+                return new WpfDocs.Run();
+
             return new WpfDocs.Run(literalInline.Content.ToString());
         }
 
@@ -684,12 +818,12 @@ namespace OpenGptChat.Markdown
 
 
 
-        private FontFamily GetNormalTextFontFamily()
+        public FontFamily GetNormalTextFontFamily()
         {
             return new FontFamily("-apple-system,BlinkMacSystemFont,Segoe UI Adjusted,Segoe UI,Liberation Sans,sans-serif");
         }
 
-        private FontFamily GetCodeTextFontFamily()
+        public FontFamily GetCodeTextFontFamily()
         {
             return new FontFamily("ui-monospace,Cascadia Code,Segoe UI Mono,Liberation Mono,Menlo,Monaco,Consolas,monospace");
         }

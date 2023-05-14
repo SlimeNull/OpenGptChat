@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.1.6.2</Version>
+    <Version>1.1.6.3</Version>
     <ImplicitUsings>disable</ImplicitUsings>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <StartupObject>OpenGptChat.EntryPoint</StartupObject>
@@ -31,10 +31,7 @@
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageReference Include="EleCho.GlobalHotkey.Windows.Wpf" Version="1.0.1.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\OpenAI-DotNet\OpenAI-DotNet.csproj" />
+    <PackageReference Include="OpenAI-DotNet" Version="6.8.0" />
   </ItemGroup>
 
   <ItemGroup>

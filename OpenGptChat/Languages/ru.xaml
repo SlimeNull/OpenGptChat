@@ -21,6 +21,7 @@
     <s:String x:Key="StrSystemMessages">Системные сообщения</s:String>
     <s:String x:Key="StrApply">Применить</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">Окно всегда сверху</s:String>
+    <s:String x:Key="StrDisableChatAnimation">Отключить анимацию чата</s:String>
 
     <s:String x:Key="StrLanguage">Язык</s:String>
     <s:String x:Key="StrColorMode">Режим цвета</s:String>

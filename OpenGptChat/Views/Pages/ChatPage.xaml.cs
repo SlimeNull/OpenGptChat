@@ -122,22 +122,6 @@ namespace OpenGptChat.Views.Pages
             {
                 _ = NoteService.ShowAndWaitAsync($"{ex.GetType().Name}: {ex.Message}", 3000);
 
-                var chatError = ex.Data.Cast<DictionaryEntry>()
-                    .Where(v => v.Key as string is "Error")
-                    .Select(v => v.Value as ChatError)
-                    .FirstOrDefault();
-
-                if (chatError != null)
-                {
-                    if (chatError.Code == "context_length_exceeded")
-                    {
-                        if (ViewModel.Messages.Count > 0)
-                        {
-                            Console.WriteLine("token reaches the upper limit");
-                        }
-                    }
-                }
-
                 Rollback(requestMessageModel, responseMessageModel, input);
             }
 

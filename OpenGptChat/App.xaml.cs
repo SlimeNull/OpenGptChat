@@ -57,7 +57,7 @@ namespace OpenGptChat
                 // 适应
                 services.AddSingleton<LanguageService>();
                 services.AddSingleton<ColorModeService>();
-                
+
                 services.AddSingleton<AppWindow>();
                 services.AddSingleton<MainPage>();
                 services.AddSingleton<ConfigPage>();
@@ -74,11 +74,10 @@ namespace OpenGptChat
                 services.AddTransient<MarkdownWpfRenderer>();
 
                 // 配置服务, 将配置与 AppConfig 绑定
-                services.Configure<AppConfig>(
-                    o =>
-                    {
-                        context.Configuration.Bind(o);
-                    });
+                services.Configure<AppConfig>(o =>
+                {
+                    context.Configuration.Bind(o);
+                });
             })
             .Build();
 

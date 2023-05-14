@@ -21,6 +21,7 @@
     <s:String x:Key="StrSystemMessages">رسائل النظام</s:String>
     <s:String x:Key="StrApply">تطبيق</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">نافذة دائمًا في المقدمة</s:String>
+    <s:String x:Key="StrDisableChatAnimation">تعطيل الرسوم المتحركة للدردشة</s:String>
 
     <s:String x:Key="StrLanguage">اللغة</s:String>
     <s:String x:Key="StrColorMode">وضع اللون</s:String>

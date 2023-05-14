@@ -15,7 +15,8 @@
                     <Border x:Name="Border"
                             Background="{DynamicResource GeneralBackground}"
                             BorderBrush="{DynamicResource GeneralBorder}"
-                            BorderThickness="1">
+                            BorderThickness="1"
+                            CornerRadius="3">
                         <StackPanel IsItemsHost="True"
                                     KeyboardNavigation.DirectionalNavigation="Cycle" />
                     </Border>

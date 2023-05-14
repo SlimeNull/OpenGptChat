@@ -12,13 +12,15 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="880"
       d:DataContext="{d:DesignInstance Type=local:MainPage}" d:Background="White"
-      Title="MainPage" Style="{DynamicResource AnimatedPageStyle}">
+      Title="MainPage" Style="{DynamicResource AnimatedPageStyle}"
+      FocusVisualStyle="{x:Null}">
     <Page.Resources>
         <utilities:BindingProxy x:Key="PageSelf" Data="{Binding}"/>
     </Page.Resources>
 
     <Page.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="R" Command="{Binding ResetChatCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="T" Command="{Binding NewSessionCommand}"/>
         <KeyBinding Modifiers="Ctrl" Key="N" Command="{Binding NewSessionCommand}"/>
         <KeyBinding Modifiers="Ctrl" Key="W" Command="{Binding DeleteCurrentSessionCommand}"/>
         <KeyBinding Modifiers="Ctrl" Key="K" Command="{Binding SwitchToPreviousSessionCommand}"/>
@@ -164,7 +166,7 @@
                     <Button.ToolTip>
                         <TextBlock>
                             <Run Text="{DynamicResource StrNewSession}"/>
-                            <Run Text="(Ctrl+N)"/>
+                            <Run Text="(Ctrl+T/N)"/>
                         </TextBlock>
                     </Button.ToolTip>
                 </Button>

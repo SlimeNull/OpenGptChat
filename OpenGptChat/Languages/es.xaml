@@ -21,6 +21,7 @@
     <s:String x:Key="StrSystemMessages">Mensajes del sistema</s:String>
     <s:String x:Key="StrApply">Aplicar</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">Ventana siempre arriba</s:String>
+    <s:String x:Key="StrDisableChatAnimation">Desactivar la animación del chat</s:String>
 
     <s:String x:Key="StrLanguage">Idioma</s:String>
     <s:String x:Key="StrColorMode">Modo de color</s:String>

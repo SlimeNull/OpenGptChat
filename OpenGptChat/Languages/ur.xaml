@@ -1,4 +1,4 @@
-﻿<!--Translated by ChatGPT-->
+﻿<!--Translated by ChatGPT, 乌尔都语-->
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -21,6 +21,7 @@
     <s:String x:Key="StrSystemMessages">نظامی پیغامات</s:String>
     <s:String x:Key="StrApply">لاگو کریں</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">ہمیشہ اوپر سے دکھائی دیں</s:String>
+    <s:String x:Key="StrDisableChatAnimation">چیٹ انیمیشن غیر فعال کریں</s:String>
 
     <s:String x:Key="StrLanguage">زبان</s:String>
     <s:String x:Key="StrColorMode">رنگ موڈ</s:String>

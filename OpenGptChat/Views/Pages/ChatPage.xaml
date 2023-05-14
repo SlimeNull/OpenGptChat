@@ -7,10 +7,11 @@
       xmlns:controls="clr-namespace:OpenGptChat.Controls"
       xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:utilities="clr-namespace:OpenGptChat.Utilities"
-      mc:Ignorable="d" FocusVisualStyle="{x:Null}"
+      mc:Ignorable="d"
       d:DesignHeight="600" d:DesignWidth="730" 
       d:Background="White" d:DataContext="{d:DesignInstance Type=local:ChatPage}"
-      Title="ChatPage">
+      Title="ChatPage"
+      FocusVisualStyle="{x:Null}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -30,9 +31,9 @@
             <ItemsControl ItemsSource="{Binding ViewModel.Messages}" Padding="10 10 10 20" d:ItemsSource="{d:SampleData ItemCount=5}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <controls:ChatBubble HorizontalAlignment="{Binding SelfAlignment}" HorizontalContentAlignment="{Binding SelfAlignment}" CornerRadius="{Binding SelfCornorRadius}" 
+                        <controls:ChatBubble BorderThickness="1" CornerRadius="{Binding SelfCornorRadius}" 
+                                             HorizontalAlignment="{Binding SelfAlignment}" HorizontalContentAlignment="{Binding SelfAlignment}"
                                              Username="{Binding DisplayName}" Content="{Binding Content,Mode=TwoWay}" IsReadonly="{Binding IsReadOnly}"
-                                             BorderThickness="1"
                                              ContentForeground="{DynamicResource FontForeground}" ContentBackground="{DynamicResource ChatBubbleBackground}">
                             <controls:ChatBubble.Style>
                                 <Style TargetType="controls:ChatBubble" BasedOn="{StaticResource AnimatedChatBubble}">
@@ -47,6 +48,9 @@
                                 </Style>
                             </controls:ChatBubble.Style>
                             <behaviors:Interaction.Triggers>
+                                <behaviors:EventTrigger EventName="MouseDoubleClick">
+                                    <behaviors:InvokeCommandAction Command="{Binding StartEditCommand}"/>
+                                </behaviors:EventTrigger>
                                 <behaviors:EventTrigger EventName="LostFocus">
                                     <behaviors:InvokeCommandAction Command="{Binding EndEditCommand}"/>
                                 </behaviors:EventTrigger>
@@ -93,23 +97,28 @@
                 </controls:ConditionalControl.ElementWhileFalse>
                 <controls:ConditionalControl.ElementWhileTrue>
                     <Button Content="{DynamicResource StrCancel}" Command="{Binding CancelCommand}"
-                            Margin="10" Padding="10,5" Style="{StaticResource SecondaryButton}">
+                            Margin="10" Padding="10,5" Style="{StaticResource SecondaryButton}" utilities:UiUtils.CornerRadius="3">
                         <Button.ToolTip>
                             <TextBlock>
                                 <Run Text="{DynamicResource StrCancelSendingMessage}"/>
                                 <Run Text="(Ctrl+Shift+Enter)"/>
                             </TextBlock>
                         </Button.ToolTip>
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="3"/>
-                            </Style>
-                        </Button.Resources>
                     </Button>
                 </controls:ConditionalControl.ElementWhileTrue>
             </controls:ConditionalControl>
         </Grid>
 
         <GridSplitter Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="3" Background="Transparent"/>
+
+        <controls:ConditionalControl Condition="{Binding ConfigurationService.Configuration.DisableChatAnimation}">
+            <controls:ConditionalControl.ElementWhileFalse>
+                <controls:ConditionalControl Condition="{Binding ChatCommand.IsRunning}">
+                    <controls:ConditionalControl.ElementWhileTrue>
+                        <controls:LoadingCircle VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Gray" Width="30" Margin="10"/>
+                    </controls:ConditionalControl.ElementWhileTrue>
+                </controls:ConditionalControl>
+            </controls:ConditionalControl.ElementWhileFalse>
+        </controls:ConditionalControl>
     </Grid>
 </Page>

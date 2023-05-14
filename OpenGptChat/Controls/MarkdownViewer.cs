@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Markdig;
+using Markdig.Syntax;
 using OpenGptChat.Markdown;
 
 namespace OpenGptChat.Controls
@@ -23,8 +25,6 @@ namespace OpenGptChat.Controls
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(MarkdownViewer), new FrameworkPropertyMetadata(typeof(MarkdownViewer)));
         }
-
-
 
         public string Content
         {
@@ -49,30 +49,60 @@ namespace OpenGptChat.Controls
             DependencyProperty.Register(nameof(RenderedContent), typeof(FrameworkElement), typeof(MarkdownViewer), new PropertyMetadata(null));
 
 
+        private async Task RenderProcess(CancellationToken cancellationToken)
+        {
+            try
+            {
+                if (cancellationToken.IsCancellationRequested)
+                    return;
+
+                string content = Content;
+
+                MarkdownDocument? doc =
+                    await Task.Run(() =>
+                    {
+                        var doc = Markdig.Markdown.Parse(
+                            content,
+                            new MarkdownPipelineBuilder()
+                                .UseEmphasisExtras()
+                                .UseGridTables()
+                                .UsePipeTables()
+                                .UseTaskLists()
+                                .UseAutoLinks()
+                                .Build());
+
+                        return doc;
+                    });
+
+                var renderer =
+                    App.GetService<MarkdownWpfRenderer>();
+
+                ContentControl contentControl =
+                    new ContentControl();
+
+                RenderedContent = contentControl;
+
+                renderer.RenderDocumentTo(contentControl, doc, cancellationToken);
+            }
+            catch { }
+        }
+
+        Task? renderProcessTask;
+        CancellationTokenSource? renderProcessCancellation;
 
         private static void ContentChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is not MarkdownViewer markdownViewer)
                 return;
 
-            var doc = Markdig.Markdown.Parse(
-                markdownViewer.Content,
-                new MarkdownPipelineBuilder()
-                    .UseEmphasisExtras()
-                    .UseGridTables()
-                    .UsePipeTables()
-                    .UseTaskLists()
-                    .UseAutoLinks()
-                    .Build());
+            if (markdownViewer.renderProcessCancellation is CancellationTokenSource cancellation)
+                cancellation.Cancel();
 
-            var renderer =
-                App.GetService<MarkdownWpfRenderer>();
+            cancellation = 
+                markdownViewer.renderProcessCancellation =
+                new CancellationTokenSource();
 
-            var markdownWpfElement =
-                renderer.RenderDocument(doc);
-
-            if (markdownWpfElement != null)
-                markdownViewer.RenderedContent = markdownWpfElement;
+            _ = markdownViewer.RenderProcess(cancellation.Token);
         }
     }
 }

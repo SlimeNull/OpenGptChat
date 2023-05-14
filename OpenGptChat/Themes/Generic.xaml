@@ -112,4 +112,46 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type controls:LoadingCircle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:LoadingCircle">
+                    <Viewbox Stretch="Uniform">
+                        <UniformGrid Width="75" Height="50" Columns="5">
+                            <UniformGrid.Resources>
+                                <Style x:Key="rec" TargetType="Rectangle">
+                                    <Setter Property="Width" Value="10"/>
+                                    <Setter Property="Height" Value="30"/>
+                                    <Setter Property="Margin" Value="2.5 0"/>
+                                </Style>
+                                <PowerEase x:Key="powerEase" Power="3" EasingMode="EaseInOut"/>
+                                <Storyboard x:Key="animation" RepeatBehavior="Forever" Storyboard.TargetProperty="Height">
+                                    <DoubleAnimation Storyboard.TargetName="rec1" To="50" BeginTime="0:0:0.0" Duration="0:0:0.3" EasingFunction="{StaticResource powerEase}" AutoReverse="True"/>
+                                    <DoubleAnimation Storyboard.TargetName="rec2" To="50" BeginTime="0:0:0.12" Duration="0:0:0.3" EasingFunction="{StaticResource powerEase}" AutoReverse="True"/>
+                                    <DoubleAnimation Storyboard.TargetName="rec3" To="50" BeginTime="0:0:0.24" Duration="0:0:0.3" EasingFunction="{StaticResource powerEase}" AutoReverse="True"/>
+                                    <DoubleAnimation Storyboard.TargetName="rec4" To="50" BeginTime="0:0:0.36" Duration="0:0:0.3" EasingFunction="{StaticResource powerEase}" AutoReverse="True"/>
+                                    <DoubleAnimation Storyboard.TargetName="rec5" To="50" BeginTime="0:0:0.48" Duration="0:0:0.3" EasingFunction="{StaticResource powerEase}" AutoReverse="True"/>
+                                </Storyboard>
+                            </UniformGrid.Resources>
+                            <UniformGrid.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard Name="animation" Storyboard="{StaticResource animation}"/>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="Unloaded">
+                                    <StopStoryboard BeginStoryboardName="animation"/>
+                                </EventTrigger>
+                            </UniformGrid.Triggers>
+
+                            <Rectangle Name="rec1" Grid.Column="0" Style="{StaticResource rec}" Fill="{TemplateBinding Foreground}"/>
+                            <Rectangle Name="rec2" Grid.Column="1" Style="{StaticResource rec}" Fill="{TemplateBinding Foreground}"/>
+                            <Rectangle Name="rec3" Grid.Column="2" Style="{StaticResource rec}" Fill="{TemplateBinding Foreground}"/>
+                            <Rectangle Name="rec4" Grid.Column="3" Style="{StaticResource rec}" Fill="{TemplateBinding Foreground}"/>
+                            <Rectangle Name="rec5" Grid.Column="4" Style="{StaticResource rec}" Fill="{TemplateBinding Foreground}"/>
+                        </UniformGrid>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

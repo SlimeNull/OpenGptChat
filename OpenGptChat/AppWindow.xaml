@@ -62,16 +62,7 @@
                         DataContext="{Binding}">
 
             <tb:TaskbarIcon.ContextMenu>
-                <ContextMenu>
-                    <ContextMenu.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                        <Style TargetType="MenuItem">
-                            <Setter Property="Background" Value="Transparent"/>
-                        </Style>
-                    </ContextMenu.Resources>
-
+                <ContextMenu utils:UiUtils.CornerRadius="3">
                     <MenuItem Header="Show" Command="{x:Static local:App.ShowAppCommand}"/>
                     <MenuItem Header="Hide" Command="{x:Static local:App.HideAppCommand}"/>
                     <MenuItem Header="Close" Command="{x:Static local:App.CloseAppCommand}"/>

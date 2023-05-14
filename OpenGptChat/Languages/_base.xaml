@@ -16,6 +16,7 @@
     <s:String x:Key="StrSystemMessages">System messages</s:String>
     <s:String x:Key="StrApply">Apply</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">Window always on top</s:String>
+    <s:String x:Key="StrDisableChatAnimation">Disable chat animation</s:String>
 
     <s:String x:Key="StrLanguage">Language</s:String>
     <s:String x:Key="StrColorMode">Color mode</s:String>

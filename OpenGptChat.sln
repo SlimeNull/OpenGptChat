@@ -8,12 +8,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ED3DC91F-6239-4D51-9229-FA2B49A7FA11}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
-		README_ZH-HANS.md = README_ZH-HANS.md
 		README_TR.md = README_TR.md
+		README_ZH-HANS.md = README_ZH-HANS.md
 		README_ZH-HANT.md = README_ZH-HANT.md
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenAI-DotNet", "OpenAI-DotNet\OpenAI-DotNet.csproj", "{525A26AC-587F-468C-B28E-A2FD410851A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{B1C41956-C1C8-4B45-A9FC-8E329093D5F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1C41956-C1C8-4B45-A9FC-8E329093D5F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1C41956-C1C8-4B45-A9FC-8E329093D5F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{525A26AC-587F-468C-B28E-A2FD410851A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{525A26AC-587F-468C-B28E-A2FD410851A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{525A26AC-587F-468C-B28E-A2FD410851A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{525A26AC-587F-468C-B28E-A2FD410851A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

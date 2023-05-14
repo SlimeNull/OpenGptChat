@@ -1,1 +1,0 @@
-﻿Source Repo: https://github.com/RageAgainstThePixel/OpenAI-DotNet

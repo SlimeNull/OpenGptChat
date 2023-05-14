@@ -4,10 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OpenGptChat.Views.Pages"
+      xmlns:utils="clr-namespace:OpenGptChat.Utilities"
       mc:Ignorable="d" 
       d:DesignHeight="1000" d:DesignWidth="880" 
       d:Background="White" d:DataContext="{d:DesignInstance Type=local:ConfigPage}"
-      Title="ConfigPage" Style="{DynamicResource AnimatedPageStyle}">
+      Title="ConfigPage" Style="{DynamicResource AnimatedPageStyle}"
+      FocusVisualStyle="{x:Null}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -25,6 +27,8 @@
                                 <Setter Property="CornerRadius" Value="3"/>
                             </Style>
                         </StackPanel.Resources>
+                        <ToggleButton Content="📍" BorderThickness="0" Padding="3" Margin="0 0 3 0" ToolTip="{DynamicResource StrWindowAlwaysOnTop}"
+                                      IsChecked="{Binding ConfigurationService.Configuration.WindowAlwaysOnTop}"/>
                         <Button Content="📄" BorderThickness="0" Padding="3" Margin="0 0 3 0" ToolTip="{DynamicResource StrAboutOpenGptChat}"
                                 Command="{Binding AboutOpenChatCommand}"/>
                         <Button Content="🏠︎" BorderThickness="0" Padding="3" ToolTip="{DynamicResource StrGoBackToMainPage}"
@@ -126,7 +130,19 @@
                         </TextBlock>
                         <CheckBox Grid.Column="1" VerticalAlignment="Center" IsChecked="{Binding ConfigurationService.Configuration.WindowAlwaysOnTop}"/>
                     </Grid>
-
+                </StackPanel>
+                <StackPanel Margin="0 5 0 5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock>
+                            <Run Text="{DynamicResource StrDisableChatAnimation}"/>
+                            <Run Text=":"/>
+                        </TextBlock>
+                        <CheckBox Grid.Column="1" VerticalAlignment="Center" IsChecked="{Binding ConfigurationService.Configuration.DisableChatAnimation}"/>
+                    </Grid>
                 </StackPanel>
 
                 <StackPanel Margin="0 30 0 5">
@@ -151,7 +167,7 @@
                             <TextBlock>Ctrl+Enter:</TextBlock>
                             <TextBlock>Ctrl+Shift+Enter:</TextBlock>
                             <TextBlock>Ctrl+R:</TextBlock>
-                            <TextBlock>Ctrl+N:</TextBlock>
+                            <TextBlock>Ctrl+T/N:</TextBlock>
                             <TextBlock>Ctrl+W:</TextBlock>
                             <TextBlock>Ctrl+J:</TextBlock>
                             <TextBlock>Ctrl+K:</TextBlock>
@@ -235,12 +251,6 @@
         </ScrollViewer>
 
         <Button Grid.Row="1" Content="{DynamicResource StrSave}" Command="{Binding SaveConfigurationCommand}" ToolTip="Save configuration"
-                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20 10" Padding="10,5">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="3"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20 10" Padding="10,5" utils:UiUtils.CornerRadius="3"/>
     </Grid>
 </Page>
