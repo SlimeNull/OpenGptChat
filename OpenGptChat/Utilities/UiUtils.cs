@@ -31,10 +31,24 @@ namespace OpenGptChat.Utilities
             if (d is not FrameworkElement ele)
                 return;
 
-            if (GetBorderFromControl(ele) is not Border border)
-                return;
+            void ApplyBorder(FrameworkElement ele)
+            {
+                if (GetBorderFromControl(ele) is not Border border)
+                    return;
 
-            border.CornerRadius = (CornerRadius)e.NewValue;
+                border.CornerRadius = (CornerRadius)e.NewValue;
+            }
+
+            void LoadedOnce(object? sender, RoutedEventArgs _e)
+            {
+                ApplyBorder(ele);
+                ele.Loaded -= LoadedOnce;
+            }
+
+            if (ele.IsLoaded)
+                ApplyBorder(ele);
+            else
+                ele.Loaded += LoadedOnce;
         }
 
         private static Border? GetBorderFromControl(FrameworkElement control)
@@ -46,8 +60,14 @@ namespace OpenGptChat.Utilities
             for (int i = 0; i < childrenCount; i++)
             {
                 DependencyObject child = VisualTreeHelper.GetChild(control, i);
+                if (child is not FrameworkElement childElement)
+                    continue;
+
                 if (child is Border borderChild)
                     return borderChild;
+
+                if (GetBorderFromControl(childElement) is Border childBorderChild)
+                    return childBorderChild;
             }
 
             return null;

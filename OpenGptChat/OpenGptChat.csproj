@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.1.6.3</Version>
+    <Version>1.1.6.4</Version>
     <ImplicitUsings>disable</ImplicitUsings>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <StartupObject>OpenGptChat.EntryPoint</StartupObject>
