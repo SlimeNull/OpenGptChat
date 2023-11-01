@@ -34,7 +34,7 @@ namespace OpenGptChat.ViewModels
             nameof(SingleLineContent))]
         private string _content = string.Empty;
 
-        public string SingleLineContent => Content.Replace('\n', ' ');
+        public string SingleLineContent => (Content ?? string.Empty).Replace('\n', ' ').Replace('\r', ' ');
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(

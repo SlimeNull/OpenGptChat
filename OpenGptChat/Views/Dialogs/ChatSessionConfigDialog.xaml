@@ -66,7 +66,7 @@
                             <ItemsControl ItemsSource="{Binding Session.SystemMessages}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBox Padding="5 3" Margin="0 1"  Text="{Binding Value}" TextWrapping="Wrap"/>
+                                        <TextBox Padding="5 3" Margin="0 1"  Text="{Binding Value}" TextWrapping="Wrap" AcceptsReturn="True"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

@@ -13,8 +13,10 @@
 
     <!--Configuration names-->
     <s:String x:Key="StrAPIKey">API Anahtarı</s:String>
-    <s:String x:Key="StrAPIGPTModel">API GPT Modeli</s:String>
     <s:String x:Key="StrAPIHost">API Sunucusu</s:String>
+    <s:String x:Key="StrOrganization">Organizasyon</s:String>
+    <s:String x:Key="StrAPIGPTModel">API GPT Modeli</s:String>
+    <s:String x:Key="StrModel">Modeli</s:String>
     <s:String x:Key="StrAPITimeout">API Zaman aşımı</s:String>
     <s:String x:Key="StrTemperature">Temperature</s:String>
     <s:String x:Key="StrEnableChatContext">Sohbet bağlamını etkinleştir</s:String>

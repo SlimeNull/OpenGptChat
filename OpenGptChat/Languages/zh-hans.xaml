@@ -12,7 +12,9 @@
     <!--配置名称-->
     <s:String x:Key="StrAPIKey">API 密钥</s:String>
     <s:String x:Key="StrAPIHost">API 主机</s:String>
+    <s:String x:Key="StrOrganization">组织</s:String>
     <s:String x:Key="StrAPIGPTModel">API GPT 模型</s:String>
+    <s:String x:Key="StrModel">模型</s:String>
     <s:String x:Key="StrAPITimeout">API 超时时间</s:String>
     <s:String x:Key="StrTemperature">温度</s:String>
     <s:String x:Key="StrEnableChatContext">启用聊天上下文</s:String>

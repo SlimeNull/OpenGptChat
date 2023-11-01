@@ -14,7 +14,9 @@
     <!--أسماء الإعدادات-->
     <s:String x:Key="StrAPIKey">مفتاح واجهة برمجة التطبيقات</s:String>
     <s:String x:Key="StrAPIHost">مضيف واجهة برمجة التطبيقات</s:String>
+    <s:String x:Key="StrOrganization">منظمة</s:String>
     <s:String x:Key="StrAPIGPTModel">نموذج GPT لواجهة برمجة التطبيقات</s:String>
+    <s:String x:Key="StrModel">نموذج</s:String>
     <s:String x:Key="StrAPITimeout">وقت انتهاء صلاحية واجهة برمجة التطبيقات</s:String>
     <s:String x:Key="StrTemperature">درجة الحرارة</s:String>
     <s:String x:Key="StrEnableChatContext">تمكين سياق الدردشة</s:String>

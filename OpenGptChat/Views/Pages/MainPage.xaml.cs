@@ -16,6 +16,7 @@ namespace OpenGptChat.Views.Pages
         public MainPage(
             AppWindow appWindow,
             MainPageModel viewModel,
+            AppGlobalData appGlobalData,
             PageService pageService,
             NoteService noteService,
             ChatService chatService,
@@ -26,6 +27,7 @@ namespace OpenGptChat.Views.Pages
         {
             AppWindow = appWindow;
             ViewModel = viewModel;
+            AppGlobalData = appGlobalData;
             PageService = pageService;
             NoteService = noteService;
             ChatService = chatService;
@@ -36,10 +38,10 @@ namespace OpenGptChat.Views.Pages
 
             // 从存储中将所有会话添加进去
             foreach (var session in ChatStorageService.GetAllSessions())
-                ViewModel.Sessions.Add(new ChatSessionModel(session));
+                AppGlobalData.Sessions.Add(new ChatSessionModel(session));
 
             // 如果没有会话, 则创建一个
-            if (ViewModel.Sessions.Count == 0)
+            if (AppGlobalData.Sessions.Count == 0)
                 NewSession();
 
             InitializeComponent();
@@ -53,6 +55,7 @@ namespace OpenGptChat.Views.Pages
 
         public AppWindow AppWindow { get; }
         public MainPageModel ViewModel { get; }
+        public AppGlobalData AppGlobalData { get; }
         public PageService PageService { get; }
         public NoteService NoteService { get; }
         public ChatService ChatService { get; }
@@ -77,9 +80,9 @@ namespace OpenGptChat.Views.Pages
         [RelayCommand]
         public async Task ResetChat()
         {
-            if (ViewModel.SelectedSession != null)
+            if (AppGlobalData.SelectedSession != null)
             {
-                Guid sessionId = ViewModel.SelectedSession.Id;
+                Guid sessionId = AppGlobalData.SelectedSession.Id;
 
                 ChatService.Cancel();
                 ChatStorageService.ClearMessage(sessionId);
@@ -99,13 +102,13 @@ namespace OpenGptChat.Views.Pages
         [RelayCommand]
         public void NewSession()
         {
-            ChatSession session = ChatSession.Create("New session");
+            ChatSession session = ChatSession.Create();
             ChatSessionModel sessionModel = new ChatSessionModel(session);
 
             ChatStorageService.SaveSession(session);
-            ViewModel.Sessions.Add(sessionModel);
+            AppGlobalData.Sessions.Add(sessionModel);
 
-            ViewModel.SelectedSession = sessionModel;
+            AppGlobalData.SelectedSession = sessionModel;
         }
 
         /// <summary>
@@ -115,56 +118,56 @@ namespace OpenGptChat.Views.Pages
         [RelayCommand]
         public void DeleteSession(ChatSessionModel session)
         {
-            if (ViewModel.Sessions.Count == 1)
+            if (AppGlobalData.Sessions.Count == 1)
             {
                 NoteService.Show("You can't delete the last session.", 1500);
                 return;
             }
 
             int index = 
-                ViewModel.Sessions.IndexOf(session);
+                AppGlobalData.Sessions.IndexOf(session);
             int newIndex =
                 Math.Max(0, index - 1);
 
             ChatPageService.RemovePage(session.Id);
             ChatStorageService.DeleteSession(session.Id);
-            ViewModel.Sessions.Remove(session);
+            AppGlobalData.Sessions.Remove(session);
 
-            ViewModel.SelectedSession = ViewModel.Sessions[newIndex];
+            AppGlobalData.SelectedSession = AppGlobalData.Sessions[newIndex];
         }
 
         [RelayCommand]
         public void SwitchToNextSession()
         {
             int nextIndex;
-            int lastIndex = ViewModel.Sessions.Count - 1;
+            int lastIndex = AppGlobalData.Sessions.Count - 1;
 
-            if (ViewModel.SelectedSession != null)
-                nextIndex = ViewModel.Sessions.IndexOf(ViewModel.SelectedSession) + 1;
+            if (AppGlobalData.SelectedSession != null)
+                nextIndex = AppGlobalData.Sessions.IndexOf(AppGlobalData.SelectedSession) + 1;
             else
                 nextIndex = 0;
 
             nextIndex = Math.Clamp(nextIndex, 0, lastIndex);
 
-            ViewModel.SelectedSession = 
-                ViewModel.Sessions[nextIndex];
+            AppGlobalData.SelectedSession = 
+                AppGlobalData.Sessions[nextIndex];
         }
 
         [RelayCommand]
         public void SwitchToPreviousSession()
         {
             int previousIndex;
-            int lastIndex = ViewModel.Sessions.Count - 1;
+            int lastIndex = AppGlobalData.Sessions.Count - 1;
 
-            if (ViewModel.SelectedSession != null)
-                previousIndex = ViewModel.Sessions.IndexOf(ViewModel.SelectedSession) - 1;
+            if (AppGlobalData.SelectedSession != null)
+                previousIndex = AppGlobalData.Sessions.IndexOf(AppGlobalData.SelectedSession) - 1;
             else
                 previousIndex = 0;
 
             previousIndex = Math.Clamp(previousIndex, 0, lastIndex);
 
-            ViewModel.SelectedSession =
-                ViewModel.Sessions[previousIndex];
+            AppGlobalData.SelectedSession =
+                AppGlobalData.Sessions[previousIndex];
         }
 
 
@@ -172,54 +175,54 @@ namespace OpenGptChat.Views.Pages
         public void CycleSwitchToNextSession()
         {
             int nextIndex;
-            int lastIndex = ViewModel.Sessions.Count - 1;
+            int lastIndex = AppGlobalData.Sessions.Count - 1;
 
-            if (ViewModel.SelectedSession != null)
-                nextIndex = ViewModel.Sessions.IndexOf(ViewModel.SelectedSession) + 1;
+            if (AppGlobalData.SelectedSession != null)
+                nextIndex = AppGlobalData.Sessions.IndexOf(AppGlobalData.SelectedSession) + 1;
             else
                 nextIndex = 0;
 
             if (nextIndex > lastIndex)
                 nextIndex = 0;
 
-            ViewModel.SelectedSession =
-                ViewModel.Sessions[nextIndex];
+            AppGlobalData.SelectedSession =
+                AppGlobalData.Sessions[nextIndex];
         }
 
         [RelayCommand]
         public void CycleSwitchToPreviousSession()
         {
             int previousIndex;
-            int lastIndex = ViewModel.Sessions.Count - 1;
+            int lastIndex = AppGlobalData.Sessions.Count - 1;
 
-            if (ViewModel.SelectedSession != null)
-                previousIndex = ViewModel.Sessions.IndexOf(ViewModel.SelectedSession) - 1;
+            if (AppGlobalData.SelectedSession != null)
+                previousIndex = AppGlobalData.Sessions.IndexOf(AppGlobalData.SelectedSession) - 1;
             else
                 previousIndex = 0;
 
             if (previousIndex < 0)
                 previousIndex = lastIndex;
 
-            ViewModel.SelectedSession =
-                ViewModel.Sessions[previousIndex];
+            AppGlobalData.SelectedSession =
+                AppGlobalData.Sessions[previousIndex];
         }
 
         [RelayCommand]
         public void DeleteCurrentSession()
         {
-            if (ViewModel.SelectedSession != null)
-                DeleteSession(ViewModel.SelectedSession);
+            if (AppGlobalData.SelectedSession != null)
+                DeleteSession(AppGlobalData.SelectedSession);
         }
 
 
         [RelayCommand]
         public void SwitchPageToCurrentSession()
         {
-            if (ViewModel.SelectedSession != null)
+            if (AppGlobalData.SelectedSession != null)
             {
                 // 将页面中当前显示的聊天页面切换到对应页面
                 ViewModel.CurrentChat =
-                    ChatPageService.GetPage(ViewModel.SelectedSession.Id);
+                    ChatPageService.GetPage(AppGlobalData.SelectedSession.Id);
             }
         }
     }

@@ -12,7 +12,10 @@ namespace OpenGptChat.Models
         private string _apiKey = string.Empty;
 
         [ObservableProperty]
-        private string _apiGptModel = "gpt-3.5-turbo";
+        private string _organization = string.Empty;
+
+        [ObservableProperty]
+        private string _model = "gpt-3.5-turbo";
 
         [ObservableProperty]
         private int _apiTimeout = 5000;
@@ -34,6 +37,9 @@ namespace OpenGptChat.Models
 
         [ObservableProperty]
         private ColorMode _colorMode = ColorMode.Auto;
+
+        [ObservableProperty]
+        private bool _enableTitleGeneration = true;
 
         [ObservableProperty]
         private bool _windowAlwaysOnTop = false;

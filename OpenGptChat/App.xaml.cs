@@ -46,6 +46,7 @@ namespace OpenGptChat
                 services.AddHostedService<ApplicationHostService>();
 
                 // 添加基础服务
+                services.AddSingleton<AppGlobalData>();
                 services.AddSingleton<PageService>();
                 services.AddSingleton<NoteService>();
                 services.AddSingleton<ChatService>();
@@ -53,6 +54,7 @@ namespace OpenGptChat
                 services.AddSingleton<ChatStorageService>();
                 services.AddSingleton<ConfigurationService>();
                 services.AddSingleton<SmoothScrollingService>();
+                services.AddSingleton<TitleGenerationService>();
 
                 // 适应
                 services.AddSingleton<LanguageService>();

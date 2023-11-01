@@ -23,6 +23,7 @@ namespace OpenGptChat.Services
 
         private OpenAIClient? client;
         private string? client_apikey;
+        private string? client_organization;
         private string? client_apihost;
 
         public ChatStorageService ChatStorageService { get; }
@@ -32,22 +33,25 @@ namespace OpenGptChat.Services
         private void NewOpenAIClient(
             [NotNull] out OpenAIClient client, 
             [NotNull] out string client_apikey,
-            [NotNull] out string client_apihost)
+            [NotNull] out string client_apihost,
+            [NotNull] out string client_organization)
         {
             client_apikey = ConfigurationService.Configuration.ApiKey;
             client_apihost = ConfigurationService.Configuration.ApiHost;
+            client_organization = ConfigurationService.Configuration.Organization;
 
             client = new OpenAIClient(
-                new OpenAIAuthentication(ConfigurationService.Configuration.ApiKey),
-                new OpenAIClientSettings(ConfigurationService.Configuration.ApiHost));
+                new OpenAIAuthentication(client_apikey, client_organization),
+                new OpenAIClientSettings(client_apihost));
         }
 
         private OpenAIClient GetOpenAIClient()
         {
             if (client == null ||
                 client_apikey != ConfigurationService.Configuration.ApiKey ||
-                client_apihost != ConfigurationService.Configuration.ApiHost)
-                NewOpenAIClient(out client, out client_apikey, out client_apihost);
+                client_apihost != ConfigurationService.Configuration.ApiHost ||
+                client_organization != ConfigurationService.Configuration.Organization)
+                NewOpenAIClient(out client, out client_apikey, out client_apihost, out client_organization);
 
             return client;
         }
@@ -113,7 +117,7 @@ namespace OpenGptChat.Services
             messages.Add(new Message(Role.User, message));
 
             string modelName =
-                ConfigurationService.Configuration.ApiGptModel;
+                ConfigurationService.Configuration.Model;
             double temperature =
                 ConfigurationService.Configuration.Temerature;
 

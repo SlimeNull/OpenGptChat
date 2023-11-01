@@ -14,7 +14,9 @@
     <!-- Название настроек -->
     <s:String x:Key="StrAPIKey">Ключ API</s:String>
     <s:String x:Key="StrAPIHost">Хост API</s:String>
+    <s:String x:Key="StrOrganization">Организация</s:String>
     <s:String x:Key="StrAPIGPTModel">Модель API GPT</s:String>
+    <s:String x:Key="StrModel">Модель</s:String>
     <s:String x:Key="StrAPITimeout">Время ожидания API</s:String>
     <s:String x:Key="StrTemperature">Температура</s:String>
     <s:String x:Key="StrEnableChatContext">Включить контекст чата</s:String>

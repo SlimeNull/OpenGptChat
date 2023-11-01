@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,17 +22,21 @@ namespace OpenGptChat.Views.Pages
     {
         public ChatPage(
             ChatPageModel viewModel,
+            AppGlobalData appGlobalData,
             NoteService noteService,
             ChatService chatService,
             ChatStorageService chatStorageService,
             ConfigurationService configurationService,
-            SmoothScrollingService smoothScrollingService)
+            SmoothScrollingService smoothScrollingService,
+            TitleGenerationService titleGenerationService)
         {
             ViewModel = viewModel;
+            AppGlobalData = appGlobalData;
             NoteService = noteService;
             ChatService = chatService;
             ChatStorageService = chatStorageService;
             ConfigurationService = configurationService;
+            TitleGenerationService = titleGenerationService;
             DataContext = this;
 
             InitializeComponent();
@@ -42,13 +46,17 @@ namespace OpenGptChat.Views.Pages
             smoothScrollingService.Register(messageScrollViewer);
         }
 
+        private ChatSessionModel? currentSessionModel;
+
         public ChatPageModel ViewModel { get; }
+        public AppGlobalData AppGlobalData { get; }
         public ChatService ChatService { get; }
         public ChatStorageService ChatStorageService { get; }
         public NoteService NoteService { get; }
         public ConfigurationService ConfigurationService { get; }
-
+        public TitleGenerationService TitleGenerationService { get; }
         public Guid SessionId { get; private set; }
+        public ChatSessionModel? CurrentSessionModel => currentSessionModel ??= AppGlobalData.Sessions.FirstOrDefault(session => session.Id == SessionId);
 
 
         public void InitSession(Guid sessionId)
@@ -113,6 +121,18 @@ namespace OpenGptChat.Views.Pages
 
                 requestMessageModel.Storage = dialogue.Ask;
                 responseMessageModel.Storage = dialogue.Answer;
+
+                if (CurrentSessionModel is ChatSessionModel currentSessionModel &&
+                    string.IsNullOrEmpty(currentSessionModel.Name))
+                {
+                    string? title = await TitleGenerationService.GenerateAsync(new []
+                    {
+                        requestMessageModel.Content,
+                        responseMessageModel.Content
+                    });
+
+                    currentSessionModel.Name = title;
+                }
             }
             catch (TaskCanceledException)
             {

@@ -16,12 +16,6 @@ namespace OpenGptChat.ViewModels
 {
     public partial class ChatSessionModel : ObservableObject
     {
-        public ChatSessionModel(Guid id, string name)
-        {
-            _id = id;
-            _name = name;
-        }
-
         public ChatSessionModel(ChatSession storage)
         {
             Storage = storage;
@@ -54,7 +48,7 @@ namespace OpenGptChat.ViewModels
         private Guid _id;
 
         [ObservableProperty]
-        private string _name = string.Empty;
+        private string? _name = string.Empty;
 
         [ObservableProperty]
         private bool? _enableChatContext = null;

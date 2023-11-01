@@ -14,7 +14,9 @@
     <!--設定名稱-->
     <s:String x:Key="StrAPIKey">API 金鑰</s:String>
     <s:String x:Key="StrAPIHost">API 主機</s:String>
+    <s:String x:Key="StrOrganization">組織</s:String>
     <s:String x:Key="StrAPIGPTModel">API GPT 模型</s:String>
+    <s:String x:Key="StrModel">模型</s:String>
     <s:String x:Key="StrAPITimeout">API 超時時間</s:String>
     <s:String x:Key="StrTemperature">溫度</s:String>
     <s:String x:Key="StrEnableChatContext">啟用聊天上下文</s:String>

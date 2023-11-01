@@ -14,7 +14,9 @@
     <!--設定項目名-->
     <s:String x:Key="StrAPIKey">APIキー</s:String>
     <s:String x:Key="StrAPIHost">APIホスト</s:String>
+    <s:String x:Key="StrOrganization">組織</s:String>
     <s:String x:Key="StrAPIGPTModel">API GPTモデル</s:String>
+    <s:String x:Key="StrModel">モデル</s:String>
     <s:String x:Key="StrAPITimeout">APIタイムアウト</s:String>
     <s:String x:Key="StrTemperature">温度</s:String>
     <s:String x:Key="StrEnableChatContext">チャットコンテキストを有効にする</s:String>

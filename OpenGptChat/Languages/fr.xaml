@@ -14,7 +14,9 @@
     <!--Nom de la configuration-->
     <s:String x:Key="StrAPIKey">Clé API</s:String>
     <s:String x:Key="StrAPIHost">Hôte API</s:String>
+    <s:String x:Key="StrOrganization">Organisation</s:String>
     <s:String x:Key="StrAPIGPTModel">Modèle d'API GPT</s:String>
+    <s:String x:Key="StrModel">Modèle</s:String>
     <s:String x:Key="StrAPITimeout">Délai d'attente de l'API</s:String>
     <s:String x:Key="StrTemperature">Température</s:String>
     <s:String x:Key="StrEnableChatContext">Activer le contexte de discussion</s:String>

@@ -56,10 +56,17 @@
                 </StackPanel>
                 <StackPanel Margin="0 5">
                     <TextBlock Margin="0 0 0 5">
-                        <Run Text="{DynamicResource StrAPIGPTModel}"/>
+                        <Run Text="{DynamicResource StrOrganization}"/>
                         <Run Text=":"/>
                     </TextBlock>
-                    <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.ApiGptModel}"/>
+                    <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.Organization}"/>
+                </StackPanel>
+                <StackPanel Margin="0 5">
+                    <TextBlock Margin="0 0 0 5">
+                        <Run Text="{DynamicResource StrModel}"/>
+                        <Run Text=":"/>
+                    </TextBlock>
+                    <TextBox Padding="5 3" Text="{Binding ConfigurationService.Configuration.Model}"/>
                 </StackPanel>
                 <StackPanel Margin="0 5">
                     <TextBlock Margin="0 0 0 5">
@@ -97,14 +104,14 @@
                         <ItemsControl ItemsSource="{Binding ViewModel.SystemMessages}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBox Padding="5 3" Margin="0 1"  Text="{Binding Value}" TextWrapping="Wrap"/>
+                                    <TextBox Padding="5 3" Margin="0 1"  Text="{Binding Value}" TextWrapping="Wrap" AcceptsReturn="True"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </Border>
                 </StackPanel>
 
-                <StackPanel Margin="0 30 0 0">
+                <StackPanel Margin="0 30 0 5">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -116,6 +123,19 @@
                             <Run Text=":"/>
                         </TextBlock>
                         <CheckBox Grid.Column="1" VerticalAlignment="Center" IsChecked="{Binding ConfigurationService.Configuration.EnableChatContext}"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Margin="0 5 0 5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock>
+                            <Run Text="{DynamicResource StrEnableTitleGeneration}"/>
+                            <Run Text=":"/>
+                        </TextBlock>
+                        <CheckBox Grid.Column="1" VerticalAlignment="Center" IsChecked="{Binding ConfigurationService.Configuration.EnableTitleGeneration}"/>
                     </Grid>
                 </StackPanel>
                 <StackPanel Margin="0 5 0 5">

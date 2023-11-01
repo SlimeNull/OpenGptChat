@@ -8,13 +8,16 @@
 
     <!--Configuration names-->
     <s:String x:Key="StrAPIKey">API Key</s:String>
-    <s:String x:Key="StrAPIGPTModel">API GPT Model</s:String>
     <s:String x:Key="StrAPIHost">API Host</s:String>
+    <s:String x:Key="StrOrganization">Organization</s:String>
+    <s:String x:Key="StrAPIGPTModel">API GPT Model</s:String>
+    <s:String x:Key="StrModel">Model</s:String>
     <s:String x:Key="StrAPITimeout">API Timeout</s:String>
     <s:String x:Key="StrTemperature">Temperature</s:String>
     <s:String x:Key="StrEnableChatContext">Enable chat context</s:String>
     <s:String x:Key="StrSystemMessages">System messages</s:String>
     <s:String x:Key="StrApply">Apply</s:String>
+    <s:String x:Key="StrEnableTitleGeneration">Enable title generation</s:String>
     <s:String x:Key="StrWindowAlwaysOnTop">Window always on top</s:String>
     <s:String x:Key="StrDisableChatAnimation">Disable chat animation</s:String>
 

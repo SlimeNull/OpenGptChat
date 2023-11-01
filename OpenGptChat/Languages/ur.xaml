@@ -14,7 +14,9 @@
     <!--ترتیبات کا نام-->
     <s:String x:Key="StrAPIKey">API کلید</s:String>
     <s:String x:Key="StrAPIHost">API میزبان</s:String>
+    <s:String x:Key="StrOrganization">تنظیم</s:String>
     <s:String x:Key="StrAPIGPTModel">API GPT ماڈل</s:String>
+    <s:String x:Key="StrModel">ماڈل</s:String>
     <s:String x:Key="StrAPITimeout">API ٹائم آؤٹ</s:String>
     <s:String x:Key="StrTemperature">درجہ حرارت</s:String>
     <s:String x:Key="StrEnableChatContext">ٹریفک کے ساتھ چیٹ کو ممکن بنائیں</s:String>
