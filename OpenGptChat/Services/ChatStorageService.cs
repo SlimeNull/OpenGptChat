@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using LiteDB;
 using OpenGptChat.Models;
 using OpenGptChat.Utilities;
@@ -62,6 +63,56 @@ namespace OpenGptChat.Services
                 throw new InvalidOperationException("Not initialized");
 
             return ChatSessions.DeleteMany(session => session.Id == id) > 0;
+        }
+
+        public bool DeleteMessage(ChatMessage message)
+        {
+            if (ChatMessages == null)
+                throw new InvalidOperationException("Not initialized");
+
+            return ChatMessages.DeleteMany(msg => msg.Id == message.Id) > 0;
+        }
+
+        public IEnumerable<ChatMessage> GetLastMessages(Guid sessionId, int maxCount)
+        {
+            if (ChatMessages == null)
+                throw new InvalidOperationException("Not initialized");
+
+            return ChatMessages.Query()
+                .Where(msg => msg.SessionId == sessionId)
+                .OrderByDescending(msg => msg.Timestamp)
+                .Limit(maxCount)
+                .ToEnumerable()
+                .Reverse();
+        }
+
+        public IEnumerable<ChatMessage> GetLastMessagesBefore(Guid sessionId, int maxCount, DateTime timestamp)
+        {
+            if (ChatMessages == null)
+                throw new InvalidOperationException("Not initialized");
+
+            return ChatMessages.Query()
+                .Where(msg => msg.SessionId == sessionId)
+                .Where(msg => msg.Timestamp < timestamp)
+                .OrderByDescending(msg => msg.Timestamp)
+                .Limit(maxCount)
+                .ToEnumerable();
+        }
+
+        public int DeleteMessagesBefore(Guid sessionId, DateTime timestamp)
+        {
+            if (ChatMessages == null)
+                throw new InvalidOperationException("Not initialized");
+
+            return ChatMessages.DeleteMany(msg => msg.SessionId == sessionId && msg.Timestamp < timestamp);
+        }
+
+        public int DeleteMessagesAfter(Guid sessionId, DateTime timestamp)
+        {
+            if (ChatMessages == null)
+                throw new InvalidOperationException("Not initialized");
+
+            return ChatMessages.DeleteMany(msg => msg.SessionId == sessionId && msg.Timestamp > timestamp);
         }
 
         public IEnumerable<ChatMessage> GetAllMessages(Guid sessionId)

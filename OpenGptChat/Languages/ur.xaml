@@ -65,6 +65,9 @@
     <s:String x:Key="StrEdit">ترمیم</s:String>
     <s:String x:Key="StrConfig">ترتیب دینا</s:String>
     <s:String x:Key="StrDelete">حذف کریں</s:String>
+    <s:String x:Key="StrThis">یہ</s:String>
+    <s:String x:Key="StrAllAbove">اوپر سب کچھ</s:String>
+    <s:String x:Key="StrAllBelow">نیچے سب کچھ</s:String>
 
     <!--متن-->
     <s:String x:Key="StrAuto">خود کار</s:String>

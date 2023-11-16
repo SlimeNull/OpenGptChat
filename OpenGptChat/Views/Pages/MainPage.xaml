@@ -120,6 +120,11 @@
                                     </ContextMenu>
                                 </DataTemplate.Resources>
                                 <StackPanel Background="Transparent" ContextMenu="{StaticResource SessionContextMenu}">
+                                    <StackPanel.InputBindings>
+                                        <MouseBinding MouseAction="MiddleClick" 
+                                                      Command="{Binding Data.DeleteSessionCommand,Source={StaticResource PageSelf}}"
+                                                      CommandParameter="{Binding}"/>
+                                    </StackPanel.InputBindings>
                                     <TextBox BorderThickness="1" Padding="0"
                                              Foreground="{DynamicResource FontForeground}"  Background="Transparent" 
                                              IsReadOnly="{Binding IsReadOnly}" IsHitTestVisible="{Binding IsEditing}"

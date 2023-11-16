@@ -9,6 +9,14 @@ namespace OpenGptChat.Utilities
 {
     static class ScrollViewerUtils
     {
+        public static bool IsAtTop(this ScrollViewer scrollViewer, int threshold = 5)
+        {
+            if (scrollViewer.VerticalOffset <= threshold)
+                return true;
+
+            return false;
+        }
+
         public static bool IsAtEnd(this ScrollViewer scrollViewer, int threshold = 5)
         {
             if (scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight)

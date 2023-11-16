@@ -1,14 +1,19 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using OpenGptChat.Services;
 
 namespace OpenGptChat.ViewModels
 {
     public partial class ChatPageModel : ObservableObject
     {
-        public ChatPageModel()
+        public ChatPageModel(
+            ChatStorageService chatStorageService)
         {
-            _messages.CollectionChanged += (s, e) =>
+            _chatStorageService = chatStorageService;
+
+            Messages.CollectionChanged += (s, e) =>
             {
                 OnPropertyChanged(nameof(LastMessage));
             };
@@ -16,13 +21,53 @@ namespace OpenGptChat.ViewModels
 
         [ObservableProperty]
         private string _inputBoxText = string.Empty;
+        private readonly ChatStorageService _chatStorageService;
 
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(
-            nameof(LastMessage))]
-        private ObservableCollection<ChatMessageModel> _messages =
-            new ObservableCollection<ChatMessageModel>();
+        public ObservableCollection<ChatMessageModel> Messages { get; } = new();
 
         public ChatMessageModel? LastMessage => Messages.Count > 0 ? Messages.Last() : null;
+
+
+        [RelayCommand]
+        public void DeleteMessage(ChatMessageModel messageModel)
+        {
+            Messages.Remove(messageModel);
+
+            if (messageModel.Storage != null)
+                _chatStorageService.DeleteMessage(messageModel.Storage);
+        }
+
+
+        [RelayCommand]
+        public void DeleteMessagesAbove(ChatMessageModel messageModel)
+        {
+            while (true)
+            {
+                int index = Messages.IndexOf(messageModel);
+                if (index <= 0)
+                    break;
+
+                Messages.RemoveAt(0);
+            }
+
+            if (messageModel.Storage != null)
+                _chatStorageService.DeleteMessagesBefore(messageModel.Storage.SessionId, messageModel.Storage.Timestamp);
+        }
+
+        [RelayCommand]
+        public void DeleteMessagesBelow(ChatMessageModel messageModel)
+        {
+            while (true)
+            {
+                int index = Messages.IndexOf(messageModel);
+                if (index == -1 || index == Messages.Count - 1)
+                    break;
+
+                Messages.RemoveAt(index + 1);
+            }
+
+            if (messageModel.Storage != null)
+                _chatStorageService.DeleteMessagesAfter(messageModel.Storage.SessionId, messageModel.Storage.Timestamp);
+        }
     }
 }

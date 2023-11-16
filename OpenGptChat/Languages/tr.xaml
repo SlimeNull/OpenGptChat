@@ -67,6 +67,9 @@
     <s:String x:Key="StrEdit">Düzenle</s:String>
     <s:String x:Key="StrConfig">Konfigürasyon</s:String>
     <s:String x:Key="StrDelete">Sil</s:String>
+    <s:String x:Key="StrThis">Bu</s:String>
+    <s:String x:Key="StrAllAbove">Üstteki her şey</s:String>
+    <s:String x:Key="StrAllBelow">Altındaki her şey</s:String>
 
     <!--Metin-->
     <s:String x:Key="StrAuto">Otomatik</s:String>

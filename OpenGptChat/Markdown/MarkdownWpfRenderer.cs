@@ -773,6 +773,7 @@ namespace OpenGptChat.Markdown
             if (linkInline.IsImage)
             {
                 Image img = new Image();
+                img.MaxWidth = 200;
 
                 if (uri != null)
                     img.Source = new BitmapImage(uri);

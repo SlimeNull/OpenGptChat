@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using CommunityToolkit.Mvvm.Input;
 using OpenAI.Chat;
 using OpenGptChat.Models;
@@ -41,9 +43,10 @@ namespace OpenGptChat.Views.Pages
 
             InitializeComponent();
 
-            messageScrollViewer.PreviewMouseWheel += CloseAutoScrollWhileMouseWheel;
-            messageScrollViewer.ScrollChanged += EnableAutoScrollWhileAtEnd;
-            smoothScrollingService.Register(messageScrollViewer);
+            messagesScrollViewer.PreviewMouseWheel += CloseAutoScrollWhileMouseWheel;
+            messagesScrollViewer.ScrollChanged += MessageScrolled;
+
+            smoothScrollingService.Register(messagesScrollViewer);
         }
 
         private ChatSessionModel? currentSessionModel;
@@ -64,9 +67,8 @@ namespace OpenGptChat.Views.Pages
             SessionId = sessionId;
 
             ViewModel.Messages.Clear();
-            foreach (var msg in ChatStorageService.GetAllMessages(SessionId))
-                ViewModel.Messages.Add(
-                    new ChatMessageModel(msg));
+            foreach (var msg in ChatStorageService.GetLastMessages(SessionId, 10))
+                ViewModel.Messages.Add(new ChatMessageModel(msg));
         }
 
 
@@ -88,7 +90,7 @@ namespace OpenGptChat.Views.Pages
 
 
             // 发个消息, 将自动滚动打开, 如果已经在底部, 则将自动滚动打开
-            if (messageScrollViewer.IsAtEnd())
+            if (messagesScrollViewer.IsAtEnd())
                 autoScrollToEnd = true;
 
 
@@ -181,8 +183,6 @@ namespace OpenGptChat.Views.Pages
             Clipboard.SetText(text);
         }
 
-
-
         bool autoScrollToEnd = false;
 
         private void CloseAutoScrollWhileMouseWheel(object sender, MouseWheelEventArgs e)
@@ -190,17 +190,38 @@ namespace OpenGptChat.Views.Pages
             autoScrollToEnd = false;
         }
 
-        private void EnableAutoScrollWhileAtEnd(object sender, ScrollChangedEventArgs e)
+        private void MessageScrolled(object sender, ScrollChangedEventArgs e)
         {
-            if (messageScrollViewer.IsAtEnd())
+            if (e.OriginalSource != messagesScrollViewer)
+                return;
+
+            if (messagesScrollViewer.IsAtEnd())
                 autoScrollToEnd = true;
+
+            if (e.VerticalChange != 0 && 
+                messages.IsLoaded && IsLoaded &&
+                messagesScrollViewer.IsAtTop(10) &&
+                ViewModel.Messages.FirstOrDefault()?.Storage?.Timestamp is DateTime timestamp)
+            {
+                foreach (var msg in ChatStorageService.GetLastMessagesBefore(SessionId, 10, timestamp))
+                    ViewModel.Messages.Insert(0, new ChatMessageModel(msg));
+
+                double distanceFromEnd = messagesScrollViewer.ScrollableHeight - messagesScrollViewer.VerticalOffset;
+                Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action<ScrollChangedEventArgs>(e =>
+                {
+                    ScrollViewer sv = (ScrollViewer)e.Source;
+                    sv.ScrollToVerticalOffset(sv.ScrollableHeight - distanceFromEnd);
+                }), e);
+
+                e.Handled = true;
+            }
         }
 
         [RelayCommand]
         public void ScrollToEndWhileReceiving()
         {
             if (ChatCommand.IsRunning && autoScrollToEnd)
-                messageScrollViewer.ScrollToEnd();
+                messagesScrollViewer.ScrollToEnd();
         }
     }
 }

@@ -66,6 +66,9 @@
     <s:String x:Key="StrEdit">Editar</s:String>
     <s:String x:Key="StrConfig">Configuración</s:String>
     <s:String x:Key="StrDelete">Eliminar</s:String>
+    <s:String x:Key="StrThis">Esto</s:String>
+    <s:String x:Key="StrAllAbove">Todo lo de arriba</s:String>
+    <s:String x:Key="StrAllBelow">Todo lo de abajo</s:String>
 
     <!--Texto-->
     <s:String x:Key="StrAuto">Automático</s:String>

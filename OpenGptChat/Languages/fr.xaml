@@ -66,6 +66,9 @@
     <s:String x:Key="StrConfig">Configure</s:String>
     <s:String x:Key="StrEdit">Modifier</s:String>
     <s:String x:Key="StrDelete">Supprimer</s:String>
+    <s:String x:Key="StrThis">Ceci</s:String>
+    <s:String x:Key="StrAllAbove">Tout ci-dessus</s:String>
+    <s:String x:Key="StrAllBelow">Tout ci-dessous</s:String>
 
     <!--Texte-->
     <s:String x:Key="StrAuto">Automatique</s:String>

@@ -65,6 +65,9 @@
     <s:String x:Key="StrEdit">Редактировать</s:String>
     <s:String x:Key="StrConfig">Настройка</s:String>
     <s:String x:Key="StrDelete">Удалить</s:String>
+    <s:String x:Key="StrThis">Это</s:String>
+    <s:String x:Key="StrAllAbove">Все выше</s:String>
+    <s:String x:Key="StrAllBelow">Все ниже</s:String>
 
     <!--Текст-->
     <s:String x:Key="StrAuto">Авто</s:String>

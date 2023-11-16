@@ -66,6 +66,9 @@
     <s:String x:Key="StrConfig">تهيئة</s:String>
     <s:String x:Key="StrEdit">تحرير</s:String>
     <s:String x:Key="StrDelete">حذف</s:String>
+    <s:String x:Key="StrThis">هذا</s:String>
+    <s:String x:Key="StrAllAbove">كل ما فوق</s:String>
+    <s:String x:Key="StrAllBelow">كل ما دون</s:String>
 
     <!--النص-->
     <s:String x:Key="StrAuto">تلقائي</s:String>

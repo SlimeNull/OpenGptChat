@@ -6,6 +6,7 @@
         <ResourceDictionary Source="ToolTip.xaml"/>
         <ResourceDictionary Source="TextBlock.xaml"/>
         <ResourceDictionary Source="Menu.xaml"/>
+        <ResourceDictionary Source="MenuItem.xaml"/>
         <ResourceDictionary Source="ContextMenu.xaml"/>
         <ResourceDictionary Source="ScrollBar.xaml"/>
         <ResourceDictionary Source="Button.xaml"/>

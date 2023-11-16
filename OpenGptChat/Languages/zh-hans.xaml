@@ -65,7 +65,10 @@
     <s:String x:Key="StrConfig">配置</s:String>
     <s:String x:Key="StrEdit">编辑</s:String>
     <s:String x:Key="StrDelete">删除</s:String>
-    
+    <s:String x:Key="StrThis">这个</s:String>
+    <s:String x:Key="StrAllAbove">以上所有</s:String>
+    <s:String x:Key="StrAllBelow">以下所有</s:String>
+
     <!--文本-->
     <s:String x:Key="StrAuto">自动</s:String>
     <s:String x:Key="StrYes">是</s:String>

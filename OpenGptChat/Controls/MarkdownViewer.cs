@@ -49,7 +49,7 @@ namespace OpenGptChat.Controls
             DependencyProperty.Register(nameof(RenderedContent), typeof(FrameworkElement), typeof(MarkdownViewer), new PropertyMetadata(null));
 
 
-        private async Task RenderProcess(CancellationToken cancellationToken)
+        private async Task RenderProcessAsync(CancellationToken cancellationToken)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace OpenGptChat.Controls
                 markdownViewer.renderProcessCancellation =
                 new CancellationTokenSource();
 
-            _ = markdownViewer.RenderProcess(cancellation.Token);
+            _ = markdownViewer.RenderProcessAsync(cancellation.Token);
         }
     }
 }

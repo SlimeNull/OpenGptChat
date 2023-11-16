@@ -13,22 +13,38 @@
       Title="ChatPage"
       FocusVisualStyle="{x:Null}">
 
+    <Page.Resources>
+        <utilities:BindingProxy x:Key="PageProxy" Data="{Binding}"/>
+    </Page.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="130"/>
         </Grid.RowDefinitions>
 
-        <ScrollViewer Name="messageScrollViewer">
+        <ScrollViewer Name="messagesScrollViewer"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VirtualizingPanel.ScrollUnit="Pixel"
+                      VirtualizingPanel.CacheLengthUnit="Pixel">
             <behaviors:Interaction.Triggers>
                 <behaviors:EventTrigger EventName="Loaded">
                     <behaviors:CallMethodAction MethodName="ScrollToEnd"/>
                 </behaviors:EventTrigger>
                 <behaviors:EventTrigger EventName="ScrollChanged">
-                    <behaviors:InvokeCommandAction Command="{Binding ScrollToEndWhileReceivingCommand}" />
+                    <behaviors:InvokeCommandAction Command="{Binding ScrollToEndWhileReceivingCommand}"/>
                 </behaviors:EventTrigger>
             </behaviors:Interaction.Triggers>
-            <ItemsControl ItemsSource="{Binding ViewModel.Messages}" Padding="10 10 10 20" d:ItemsSource="{d:SampleData ItemCount=5}">
+
+            <ItemsControl Name="messages" 
+                          Padding="10 10 10 20" 
+                          ItemsSource="{Binding ViewModel.Messages}"
+                          d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <controls:ChatBubble BorderThickness="1" CornerRadius="{Binding SelfCornorRadius}" 
@@ -59,6 +75,17 @@
                                 <ContextMenu>
                                     <MenuItem Header="{DynamicResource StrCopy}" Command="{Binding CopyCommand}"/>
                                     <MenuItem Header="{DynamicResource StrEdit}" Command="{Binding StartEditCommand}"/>
+                                    <MenuItem Header="{DynamicResource StrDelete}">
+                                        <MenuItem Header="{DynamicResource StrThis}"
+                                                  Command="{Binding Source={StaticResource PageProxy},Path=Data.ViewModel.DeleteMessageCommand}"
+                                                  CommandParameter="{Binding}"/>
+                                        <MenuItem Header="{DynamicResource StrAllAbove}"
+                                                  Command="{Binding Source={StaticResource PageProxy},Path=Data.ViewModel.DeleteMessagesAboveCommand}"
+                                                  CommandParameter="{Binding}"/>
+                                        <MenuItem Header="{DynamicResource StrAllBelow}"
+                                                  Command="{Binding Source={StaticResource PageProxy},Path=Data.ViewModel.DeleteMessagesBelowCommand}"
+                                                  CommandParameter="{Binding}"/>
+                                    </MenuItem>
                                 </ContextMenu>
                             </controls:ChatBubble.ContextMenu>
                         </controls:ChatBubble>

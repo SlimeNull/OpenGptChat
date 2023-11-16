@@ -29,15 +29,23 @@ namespace OpenGptChat.Markdown
 
         }
 
-        public void FormatTextBlock(string sourceCode, ILanguage language, TextBlock textBlock)
+        public void FormatTextBlock(string sourceCode, ILanguage? language, TextBlock textBlock)
         {
             FormatInlines(sourceCode, language, textBlock.Inlines);
         }
 
-        public void FormatInlines(string sourceCode, ILanguage language, WpfDocs.InlineCollection inlines)
+        public void FormatInlines(string sourceCode, ILanguage? language, WpfDocs.InlineCollection inlines)
         {
             this.InlineCollection = inlines;
-            languageParser.Parse(sourceCode, language, Write);
+
+            if (language != null)
+            {
+                languageParser.Parse(sourceCode, language, Write);
+            }
+            else
+            {
+                CreateSpan(sourceCode, null);
+            }
         }
 
         protected override void Write(string parsedSourceCode, IList<Scope> scopes)

@@ -65,6 +65,9 @@
     <s:String x:Key="StrEdit">編集</s:String>
     <s:String x:Key="StrConfig">設定</s:String>
     <s:String x:Key="StrDelete">削除</s:String>
+    <s:String x:Key="StrThis">これ</s:String>
+    <s:String x:Key="StrAllAbove">上記すべて</s:String>
+    <s:String x:Key="StrAllBelow">以下すべて</s:String>
 
     <!--テキスト-->
     <s:String x:Key="StrAuto">自動</s:String>
