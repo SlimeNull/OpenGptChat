@@ -102,7 +102,7 @@ namespace OpenGptChat.Controls
                 markdownViewer.renderProcessCancellation =
                 new CancellationTokenSource();
 
-            _ = markdownViewer.RenderProcessAsync(cancellation.Token);
+            markdownViewer.renderProcessTask = markdownViewer.RenderProcessAsync(cancellation.Token);
         }
     }
 }
