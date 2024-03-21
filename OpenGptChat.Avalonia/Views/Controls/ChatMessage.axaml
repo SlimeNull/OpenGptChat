@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:md="https://github.com/whistyun/Markdown.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="OpenGptChat.Views.Controls.ChatMessage"
+             x:Name="root">
+  <StackPanel Spacing="{CompiledBinding #root.Spacing}">
+    <TextBlock Text="{CompiledBinding #root.Title}"/>
+    <Border BorderThickness="{CompiledBinding #root.MessageBorderThickness}"
+            BorderBrush="{CompiledBinding #root.MessageBorderBrush}"
+            CornerRadius="{CompiledBinding #root.MessageCornerRadius}"
+            Padding="{CompiledBinding #root.MessagePadding}">
+      <md:MarkdownScrollViewer Markdown="{CompiledBinding #root.MessageText}"/>
+    </Border>
+  </StackPanel>
+</UserControl>

@@ -1,0 +1,87 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:md="https://github.com/whistyun/Markdown.Avalonia"
+             xmlns:vm="using:OpenGptChat.ViewModels"
+             xmlns:m="using:OpenGptChat.Models"
+             xmlns:i="using:Avalonia.Xaml.Interactivity"
+             xmlns:my-behaviors="using:OpenGptChat.Behaviors"
+             xmlns:controls="using:OpenGptChat.Views.Controls"
+             mc:Ignorable="d" d:DesignWidth="850" d:DesignHeight="550"
+             x:Class="OpenGptChat.Views.Pages.MainPage"
+             x:DataType="vm:MainPageViewModel">
+
+  <Design.DataContext>
+    <vm:MainPageViewModel/>
+  </Design.DataContext>
+
+  <DockPanel>
+    <Border BorderThickness="0 0 0 1"
+            BorderBrush="Gray"
+            DockPanel.Dock="Top">
+      <Grid ColumnDefinitions="Auto,*,Auto">
+        <TextBlock Grid.Column="0"
+                   Text="Chat"
+                   FontSize="16"
+                   Margin="5"/>
+        <StackPanel Grid.Column="2">
+          <StackPanel.Styles>
+            <Style Selector="Button">
+              <Setter Property="Width" Value="20"/>
+              <Setter Property="Height" Value="20"/>
+              <Setter Property="Padding" Value="0"/>
+            </Style>
+          </StackPanel.Styles>
+          <Button>
+            QWQ
+          </Button>
+        </StackPanel>
+      </Grid>
+    </Border>
+    <ListBox DockPanel.Dock="Left" Width="150"
+             ItemsSource="{CompiledBinding Sessions}"
+             SelectedItem="{CompiledBinding SelectedSession}">
+      <ListBox.ItemTemplate>
+        <DataTemplate x:DataType="m:ChatSession">
+          <StackPanel Spacing="5">
+            <TextBlock Text="{CompiledBinding Title}"/>
+            <TextBlock Text="{CompiledBinding Messages.LastMessage.Overview}"
+                       FontSize="12"
+                       Foreground="Gray"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"/>
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    <Panel DockPanel.Dock="Bottom" Height="150">
+      <TextBox BorderThickness="0 1 0 0"
+               CornerRadius="0"/>
+    </Panel>
+    <Panel>
+      <ScrollViewer>
+        <ItemsControl ItemsSource="{CompiledBinding SelectedSession.Messages}"
+                      Margin="10">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Spacing="10"/>
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="m:ChatMessage">
+              <controls:ChatMessage Title="{CompiledBinding Title}"
+                                    MessageText="{CompiledBinding MessageText}"
+                                    Spacing="3">
+                <i:Interaction.Behaviors>
+                  <my-behaviors:ChatMessageAlignBehavior LeftAlignmentTitle="Bot" 
+                                                         RightAlignmentTitle="Me"/>
+                </i:Interaction.Behaviors>
+              </controls:ChatMessage>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </ScrollViewer>
+    </Panel>
+  </DockPanel>
+</UserControl>
