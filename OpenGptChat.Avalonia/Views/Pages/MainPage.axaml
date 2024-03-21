@@ -23,8 +23,8 @@
             DockPanel.Dock="Top">
       <Grid ColumnDefinitions="Auto,*,Auto" Margin="5 0">
         <TextBlock Grid.Column="0"
+                   Text="{DynamicResource StrChat}"
                    VerticalAlignment="Center"
-                   Text="Chat"
                    FontSize="16"/>
         <StackPanel Grid.Column="2"
                     VerticalAlignment="Center"
@@ -34,12 +34,12 @@
               <Setter Property="Padding" Value="5"/>
             </Style>
           </StackPanel.Styles>
-          <fluent:HyperlinkButton>
+          <fluent:HyperlinkButton ToolTip.Tip="{DynamicResource StrResetChat}">
             <fluent:SymbolIcon Symbol="Refresh"
                                FontSize="17"
                                Foreground="{DynamicResource TextFillColorPrimary}"/>
           </fluent:HyperlinkButton>
-          <fluent:HyperlinkButton>
+          <fluent:HyperlinkButton ToolTip.Tip="{DynamicResource StrGoToConfigurationPage}">
             <fluent:SymbolIcon Symbol="Settings"
                                FontSize="17"
                                Foreground="{DynamicResource TextFillColorPrimary}"/>
@@ -77,18 +77,18 @@
           </ListBox.ItemTemplate>
         </ListBox>
 
-        <fluent:HyperlinkButton 
+        <fluent:HyperlinkButton
           Grid.Row="1"
           VerticalAlignment="Stretch"
           HorizontalAlignment="Stretch"
           BorderThickness="0"
           Background="Transparent"
           Margin="10"
-          Command="{CompiledBinding CreateNewSessionCommand}">
+          Command="{CompiledBinding CreateNewSessionCommand}"
+          ToolTip.Tip="{DynamicResource StrCreateNewSession}">
           <TextBlock HorizontalAlignment="Center"
-                     Foreground="{DynamicResource TextFillColorPrimary}">
-            New session
-          </TextBlock>
+                     Foreground="{DynamicResource TextFillColorPrimary}"
+                     Text="{DynamicResource StrNewSession}"/>
         </fluent:HyperlinkButton>
 
       </Grid>
@@ -141,7 +141,7 @@
                   Height="32"
                   HorizontalAlignment="Right"
                   VerticalAlignment="Bottom"
-                  Content="Send" Margin="5 0 0 0"
+                  Content="{DynamicResource StrSend}" Margin="5 0 0 0"
                   Command="{CompiledBinding SendCommand}"/>
         </Grid>
       </Grid>

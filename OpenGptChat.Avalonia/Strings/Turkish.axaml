@@ -1,0 +1,80 @@
+﻿<!--Translated by ChatGPT and knnuznr, 土耳其语-->
+
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="/Strings/Base.axaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--Page names-->
+    <s:String x:Key="StrChat">Sohbet</s:String>
+    <s:String x:Key="StrConfiguration">Ayarlar</s:String>
+
+    <!--Configuration names-->
+    <s:String x:Key="StrAPIKey">API Anahtarı</s:String>
+    <s:String x:Key="StrAPIHost">API Sunucusu</s:String>
+    <s:String x:Key="StrOrganization">Organizasyon</s:String>
+    <s:String x:Key="StrAPIGPTModel">API GPT Modeli</s:String>
+    <s:String x:Key="StrModel">Modeli</s:String>
+    <s:String x:Key="StrAPITimeout">API Zaman aşımı</s:String>
+    <s:String x:Key="StrTemperature">Temperature</s:String>
+    <s:String x:Key="StrEnableChatContext">Sohbet bağlamını etkinleştir</s:String>
+    <s:String x:Key="StrSystemMessages">Sistem Mesajı</s:String>
+    <s:String x:Key="StrApply">Uygula</s:String>
+    <s:String x:Key="StrWindowAlwaysOnTop">Pencere her zaman üstte</s:String>
+    <s:String x:Key="StrDisableChatAnimation">Sohbet animasyonunu devre dışı bırak</s:String>
+
+    <s:String x:Key="StrLanguage">Dil</s:String>
+    <s:String x:Key="StrColorMode">Renk Modu</s:String>
+
+    <!--hotkey descriptions-->
+    <s:String x:Key="StrHotkeyTips">Kısayol Önerileri</s:String>
+    <s:String x:Key="StrCloseApplication">Uygulamayı Kapat</s:String>
+    <s:String x:Key="StrHideApplication">Uygulamayı Gizle</s:String>
+    <s:String x:Key="StrShowApplication">Uygulamayı Göster</s:String>
+    <s:String x:Key="StrSendMessage">Mesaj Gönder</s:String>
+    <s:String x:Key="StrCancelSendingMessage">Mesaj göndermeyi iptal et</s:String>
+
+    <s:String x:Key="StrSwitchToNextSession">Sonraki oturuma geçiş yap</s:String>
+    <s:String x:Key="StrSwitchToPreviousSession">Önceki oturuma geçiş yap</s:String>
+    <s:String x:Key="StrCycleSwitchToNextSession">Sonraki seansa döngüsel olarak geçiş yap</s:String>
+    <s:String x:Key="StrCycleSwitchToPreviousSession">Önceki seansa döngüsel olarak geçiş yap</s:String>
+    <s:String x:Key="StrCreateNewSession">Yeni bir oturum oluştur</s:String>
+    <s:String x:Key="StrRemoveCurrentSession">Mevcut oturumu kaldır</s:String>
+
+    <s:String x:Key="StrGlobalHotkey">Global kısayol</s:String>
+    <s:String x:Key="StrInputBox">Giriş Kutusu</s:String>
+
+
+    <!--Button-->
+    <s:String x:Key="StrAccept">Kabul etmek</s:String>
+    <s:String x:Key="StrCancel">İptal etmek</s:String>
+    <s:String x:Key="StrSend">Gönder</s:String>
+    <s:String x:Key="StrSave">Kaydet</s:String>
+    <s:String x:Key="StrNewSession">Yeni Sohbet</s:String>
+
+
+
+    <!--ToolTip-->
+    <s:String x:Key="StrAboutOpenGptChat">OpenGptChat Hakkında</s:String>
+    <s:String x:Key="StrGoBackToMainPage">Ana Sayfaya Dön</s:String>
+    <s:String x:Key="StrResetChat">Sohbeti Temizle</s:String>
+    <s:String x:Key="StrGoToConfigurationPage">Ayarlar Sayfasına Git</s:String>
+
+    <!--Menu-->
+    <s:String x:Key="StrCopy">Kopyala</s:String>
+    <s:String x:Key="StrEdit">Düzenle</s:String>
+    <s:String x:Key="StrConfig">Konfigürasyon</s:String>
+    <s:String x:Key="StrDelete">Sil</s:String>
+    <s:String x:Key="StrThis">Bu</s:String>
+    <s:String x:Key="StrAllAbove">Üstteki her şey</s:String>
+    <s:String x:Key="StrAllBelow">Altındaki her şey</s:String>
+
+    <!--Metin-->
+    <s:String x:Key="StrAuto">Otomatik</s:String>
+    <s:String x:Key="StrYes">Evet</s:String>
+    <s:String x:Key="StrNo">Hayır</s:String>
+    <s:String x:Key="StrOk">Tamam</s:String>
+
+</ResourceDictionary>

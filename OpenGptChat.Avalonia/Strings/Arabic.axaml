@@ -1,0 +1,80 @@
+﻿<!--Translated by ChatGPT, 阿拉伯语-->
+
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceInclude Source="/Strings/Base.axaml"/>
+  </ResourceDictionary.MergedDictionaries>
+
+    <!--اسم الصفحة-->
+    <s:String x:Key="StrChat">الدردشة</s:String>
+    <s:String x:Key="StrConfiguration">الإعدادات</s:String>
+
+    <!--أسماء الإعدادات-->
+    <s:String x:Key="StrAPIKey">مفتاح واجهة برمجة التطبيقات</s:String>
+    <s:String x:Key="StrAPIHost">مضيف واجهة برمجة التطبيقات</s:String>
+    <s:String x:Key="StrOrganization">منظمة</s:String>
+    <s:String x:Key="StrAPIGPTModel">نموذج GPT لواجهة برمجة التطبيقات</s:String>
+    <s:String x:Key="StrModel">نموذج</s:String>
+    <s:String x:Key="StrAPITimeout">وقت انتهاء صلاحية واجهة برمجة التطبيقات</s:String>
+    <s:String x:Key="StrTemperature">درجة الحرارة</s:String>
+    <s:String x:Key="StrEnableChatContext">تمكين سياق الدردشة</s:String>
+    <s:String x:Key="StrSystemMessages">رسائل النظام</s:String>
+    <s:String x:Key="StrApply">تطبيق</s:String>
+    <s:String x:Key="StrWindowAlwaysOnTop">نافذة دائمًا في المقدمة</s:String>
+    <s:String x:Key="StrDisableChatAnimation">تعطيل الرسوم المتحركة للدردشة</s:String>
+
+    <s:String x:Key="StrLanguage">اللغة</s:String>
+    <s:String x:Key="StrColorMode">وضع اللون</s:String>
+
+    <!--وصف مفاتيح الاختصار-->
+    <s:String x:Key="StrHotkeyTips">تلميحات مفتاح الاختصار</s:String>
+    <s:String x:Key="StrCloseApplication">إغلاق التطبيق</s:String>
+    <s:String x:Key="StrHideApplication">إخفاء التطبيق</s:String>
+    <s:String x:Key="StrShowApplication">عرض التطبيق</s:String>
+    <s:String x:Key="StrSendMessage">إرسال رسالة</s:String>
+    <s:String x:Key="StrCancelSendingMessage">إلغاء إرسال الرسالة</s:String>
+
+    <s:String x:Key="StrSwitchToNextSession">التبديل إلى الجلسة التالية</s:String>
+    <s:String x:Key="StrSwitchToPreviousSession">التبديل إلى الجلسة السابقة</s:String>
+    <s:String x:Key="StrCycleSwitchToNextSession">دورة التبديل إلى الجلسة التالية</s:String>
+    <s:String x:Key="StrCycleSwitchToPreviousSession">دورة التبديل إلى الجلسة السابقة</s:String>
+    <s:String x:Key="StrCreateNewSession">إنشاء جلسة جديدة</s:String>
+    <s:String x:Key="StrRemoveCurrentSession">إزالة الجلسة الحالية</s:String>
+
+    <s:String x:Key="StrGlobalHotkey">مفتاح الاختصار العالمي</s:String>
+    <s:String x:Key="StrInputBox">مربع الإدخال</s:String>
+
+
+    <!--أزرار-->
+    <s:String x:Key="StrAccept">قبول</s:String>
+    <s:String x:Key="StrCancel">إلغاء</s:String>
+
+    <s:String x:Key="StrSend">إرسال</s:String>
+    <s:String x:Key="StrSave">حفظ</s:String>
+    <s:String x:Key="StrNewSession">جلسة جديدة</s:String>
+
+    <!--تلميحات الأدوات-->
+    <s:String x:Key="StrAboutOpenGptChat">حول OpenGptChat</s:String>
+    <s:String x:Key="StrGoBackToMainPage">العودة إلى الصفحة الرئيسية</s:String>
+    <s:String x:Key="StrResetChat">إعادة تعيين الدردشة</s:String>
+    <s:String x:Key="StrGoToConfigurationPage">الانتقال إلى صفحة الإعدادات</s:String>
+
+    <!--قائمة-->
+    <s:String x:Key="StrCopy">نسخ</s:String>
+    <s:String x:Key="StrConfig">تهيئة</s:String>
+    <s:String x:Key="StrEdit">تحرير</s:String>
+    <s:String x:Key="StrDelete">حذف</s:String>
+    <s:String x:Key="StrThis">هذا</s:String>
+    <s:String x:Key="StrAllAbove">كل ما فوق</s:String>
+    <s:String x:Key="StrAllBelow">كل ما دون</s:String>
+
+    <!--النص-->
+    <s:String x:Key="StrAuto">تلقائي</s:String>
+    <s:String x:Key="StrYes">نعم</s:String>
+    <s:String x:Key="StrNo">لا</s:String>
+    <s:String x:Key="StrOk">موافق</s:String>
+
+</ResourceDictionary>

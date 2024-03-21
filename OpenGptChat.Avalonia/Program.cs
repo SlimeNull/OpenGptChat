@@ -10,14 +10,6 @@ namespace OpenGptChat
         // yet and stuff might break.
         [STAThread]
         public static void Main(string[] args) => BuildAvaloniaApp()
-            .UsePlatformDetect()
-            //.With(new Win32PlatformOptions()
-            //{
-            //    CompositionMode = new[]
-            //    {
-            //        Win32CompositionMode.WinUIComposition,
-            //    }
-            //})
             .StartWithClassicDesktopLifetime(args);
 
         // Avalonia configuration, don't remove; also used by visual designer.

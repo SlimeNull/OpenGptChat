@@ -1,0 +1,79 @@
+﻿<!--Translated by ChatGPT, 乌尔都语-->
+
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="/Strings/Base.axaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--صفحہ کا نام-->
+    <s:String x:Key="StrChat">چیٹ</s:String>
+    <s:String x:Key="StrConfiguration">ترتیبات</s:String>
+
+    <!--ترتیبات کا نام-->
+    <s:String x:Key="StrAPIKey">API کلید</s:String>
+    <s:String x:Key="StrAPIHost">API میزبان</s:String>
+    <s:String x:Key="StrOrganization">تنظیم</s:String>
+    <s:String x:Key="StrAPIGPTModel">API GPT ماڈل</s:String>
+    <s:String x:Key="StrModel">ماڈل</s:String>
+    <s:String x:Key="StrAPITimeout">API ٹائم آؤٹ</s:String>
+    <s:String x:Key="StrTemperature">درجہ حرارت</s:String>
+    <s:String x:Key="StrEnableChatContext">ٹریفک کے ساتھ چیٹ کو ممکن بنائیں</s:String>
+    <s:String x:Key="StrSystemMessages">نظامی پیغامات</s:String>
+    <s:String x:Key="StrApply">لاگو کریں</s:String>
+    <s:String x:Key="StrWindowAlwaysOnTop">ہمیشہ اوپر سے دکھائی دیں</s:String>
+    <s:String x:Key="StrDisableChatAnimation">چیٹ انیمیشن غیر فعال کریں</s:String>
+
+    <s:String x:Key="StrLanguage">زبان</s:String>
+    <s:String x:Key="StrColorMode">رنگ موڈ</s:String>
+
+    <!--ہاٹ کی نکات-->
+    <s:String x:Key="StrHotkeyTips">ہاٹ کی ہدایات</s:String>
+    <s:String x:Key="StrCloseApplication">برطرف کرنے کے لئے درخواست دیں</s:String>
+    <s:String x:Key="StrHideApplication">برطرف کرنے کے لئے درخواست دیں</s:String>
+    <s:String x:Key="StrShowApplication">برطرف کرنے کے لئے درخواست دیں</s:String>
+    <s:String x:Key="StrSendMessage">پیغام بھیجیں</s:String>
+    <s:String x:Key="StrCancelSendingMessage">پیغام بھیجنے سے منسوخ کریں</s:String>
+
+    <s:String x:Key="StrSwitchToNextSession">اگلا سیشن کے لئے سوئچ کریں</s:String>
+    <s:String x:Key="StrSwitchToPreviousSession">پچھلا سیشن کے لئے سوئچ کریں</s:String>
+    <s:String x:Key="StrCycleSwitchToNextSession">دورہ کے ذریعہ اگلے سیشن پر پلٹیں</s:String>
+    <s:String x:Key="StrCycleSwitchToPreviousSession">دورہ کے ذریعہ پچھلے سیشن پر پلٹیں</s:String>
+    <s:String x:Key="StrCreateNewSession">نیا اجلاس بنائیں</s:String>
+    <s:String x:Key="StrRemoveCurrentSession">موجودہ سیشن ہٹا دیں</s:String>
+
+    <s:String x:Key="StrGlobalHotkey">عالمی ہاٹ کی</s:String>
+    <s:String x:Key="StrInputBox">ان پٹ باکس</s:String>
+
+
+    <!--بٹن-->
+    <s:String x:Key="StrAccept">قبول کرنا</s:String>
+    <s:String x:Key="StrCancel">منسوخ کریں</s:String>
+    <s:String x:Key="StrSend">بھیجیں</s:String>
+    <s:String x:Key="StrSave">محفوظ کریں</s:String>
+    <s:String x:Key="StrNewSession">نیا سیشن</s:String>
+
+    <!--ٹول ٹپ-->
+    <s:String x:Key="StrAboutOpenGptChat">OpenGptChat کے بارے میں</s:String>
+    <s:String x:Key="StrGoBackToMainPage">واپسی مرکزی صفحے پر</s:String>
+    <s:String x:Key="StrResetChat">چیٹ ری سیٹ کریں</s:String>
+    <s:String x:Key="StrGoToConfigurationPage">ترتیبات کی صفحہ پر جائیں</s:String>
+
+    <!--مینو-->
+    <s:String x:Key="StrCopy">کاپی</s:String>
+    <s:String x:Key="StrEdit">ترمیم</s:String>
+    <s:String x:Key="StrConfig">ترتیب دینا</s:String>
+    <s:String x:Key="StrDelete">حذف کریں</s:String>
+    <s:String x:Key="StrThis">یہ</s:String>
+    <s:String x:Key="StrAllAbove">اوپر سب کچھ</s:String>
+    <s:String x:Key="StrAllBelow">نیچے سب کچھ</s:String>
+
+    <!--متن-->
+    <s:String x:Key="StrAuto">خود کار</s:String>
+    <s:String x:Key="StrYes">جی ہاں</s:String>
+    <s:String x:Key="StrNo">نہیں</s:String>
+    <s:String x:Key="StrOk">تھیک ہے</s:String>
+
+
+</ResourceDictionary>

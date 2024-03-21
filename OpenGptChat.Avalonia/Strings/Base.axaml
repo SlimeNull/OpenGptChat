@@ -1,0 +1,80 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="using:System">
+  
+  <!--Page names-->
+  <s:String x:Key="StrChat">Chat</s:String>
+  <s:String x:Key="StrConfiguration">Configuration</s:String>
+
+  <!--Configuration names-->
+  <s:String x:Key="StrAPIKey">API Key</s:String>
+  <s:String x:Key="StrAPIHost">API Host</s:String>
+  <s:String x:Key="StrOrganization">Organization</s:String>
+  <s:String x:Key="StrAPIGPTModel">API GPT Model</s:String>
+  <s:String x:Key="StrModel">Model</s:String>
+  <s:String x:Key="StrAPITimeout">API Timeout</s:String>
+  <s:String x:Key="StrTemperature">Temperature</s:String>
+  <s:String x:Key="StrEnableChatContext">Enable chat context</s:String>
+  <s:String x:Key="StrSystemMessages">System messages</s:String>
+  <s:String x:Key="StrApply">Apply</s:String>
+  <s:String x:Key="StrEnableTitleGeneration">Enable title generation</s:String>
+  <s:String x:Key="StrWindowAlwaysOnTop">Window always on top</s:String>
+  <s:String x:Key="StrDisableChatAnimation">Disable chat animation</s:String>
+
+  <s:String x:Key="StrLanguage">Language</s:String>
+  <s:String x:Key="StrColorMode">Color mode</s:String>
+
+  <!--hotkey descriptions-->
+  <s:String x:Key="StrHotkeyTips">Hotkety Tips</s:String>
+  <s:String x:Key="StrCloseApplication">Close application</s:String>
+  <s:String x:Key="StrHideApplication">Hide application</s:String>
+  <s:String x:Key="StrShowApplication">Show application</s:String>
+  <s:String x:Key="StrSendMessage">Send message</s:String>
+  <s:String x:Key="StrCancelSendingMessage">Cancel sending message</s:String>
+
+  <s:String x:Key="StrSwitchToNextSession">Switch to next session</s:String>
+  <s:String x:Key="StrSwitchToPreviousSession">Switch to previous session</s:String>
+  <s:String x:Key="StrCycleSwitchToNextSession">Cycle switch to next session</s:String>
+  <s:String x:Key="StrCycleSwitchToPreviousSession">Cycle switch to previous session</s:String>
+  <s:String x:Key="StrCreateNewSession">Create a new session</s:String>
+  <s:String x:Key="StrRemoveCurrentSession">Remove the current session</s:String>
+
+  <s:String x:Key="StrGlobalHotkey">Global hotkey</s:String>
+  <s:String x:Key="StrInputBox">Input box</s:String>
+
+
+  <!--Button-->
+  <s:String x:Key="StrAccept">Accept</s:String>
+  <s:String x:Key="StrCancel">Cancel</s:String>
+
+  <s:String x:Key="StrSend">Send</s:String>
+  <s:String x:Key="StrSave">Save</s:String>
+  <s:String x:Key="StrNewSession">New Session</s:String>
+
+
+  <!--ToolTip-->
+  <s:String x:Key="StrAboutOpenGptChat">About OpenGptChat</s:String>
+  <s:String x:Key="StrGoBackToMainPage">Go back to Main page</s:String>
+  <s:String x:Key="StrResetChat">Reset chat</s:String>
+  <s:String x:Key="StrGoToConfigurationPage">Go to Configuration page</s:String>
+
+  <!--Menu-->
+  <s:String x:Key="StrCopy">Copy</s:String>
+  <s:String x:Key="StrConfig">Config</s:String>
+  <s:String x:Key="StrEdit">Edit</s:String>
+  <s:String x:Key="StrDelete">Delete</s:String>
+  <s:String x:Key="StrThis">This</s:String>
+  <s:String x:Key="StrAllAbove">All above</s:String>
+  <s:String x:Key="StrAllBelow">All below</s:String>
+
+  <!--Text-->
+  <s:String x:Key="StrAuto">Auto</s:String>
+  <s:String x:Key="StrYes">Yes</s:String>
+  <s:String x:Key="StrNo">No</s:String>
+  <s:String x:Key="StrOk">Ok</s:String>
+
+
+
+
+  <s:Boolean x:Key="IsLanguageResource">True</s:Boolean>
+</ResourceDictionary>

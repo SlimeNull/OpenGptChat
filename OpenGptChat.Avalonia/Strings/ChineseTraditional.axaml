@@ -1,0 +1,79 @@
+﻿<!--Translated by ChatGPT-->
+
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="/Strings/Base.axaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--頁面名稱-->
+    <s:String x:Key="StrChat">聊天</s:String>
+    <s:String x:Key="StrConfiguration">設定</s:String>
+
+    <!--設定名稱-->
+    <s:String x:Key="StrAPIKey">API 金鑰</s:String>
+    <s:String x:Key="StrAPIHost">API 主機</s:String>
+    <s:String x:Key="StrOrganization">組織</s:String>
+    <s:String x:Key="StrAPIGPTModel">API GPT 模型</s:String>
+    <s:String x:Key="StrModel">模型</s:String>
+    <s:String x:Key="StrAPITimeout">API 超時時間</s:String>
+    <s:String x:Key="StrTemperature">溫度</s:String>
+    <s:String x:Key="StrEnableChatContext">啟用聊天上下文</s:String>
+    <s:String x:Key="StrSystemMessages">系統訊息</s:String>
+    <s:String x:Key="StrApply">應用</s:String>
+    <s:String x:Key="StrWindowAlwaysOnTop">視窗置頂</s:String>
+    <s:String x:Key="StrDisableChatAnimation">禁用聊天動畫</s:String>
+
+    <s:String x:Key="StrLanguage">語言</s:String>
+    <s:String x:Key="StrColorMode">色彩模式</s:String>
+
+    <!--熱鍵描述-->
+    <s:String x:Key="StrHotkeyTips">熱鍵提示</s:String>
+    <s:String x:Key="StrCloseApplication">關閉程式</s:String>
+    <s:String x:Key="StrHideApplication">隱藏程式</s:String>
+    <s:String x:Key="StrShowApplication">顯示程式</s:String>
+    <s:String x:Key="StrSendMessage">發送訊息</s:String>
+    <s:String x:Key="StrCancelSendingMessage">取消發送訊息</s:String>
+
+    <s:String x:Key="StrSwitchToNextSession">切換到下一個會話</s:String>
+    <s:String x:Key="StrSwitchToPreviousSession">切換到上一個會話</s:String>
+    <s:String x:Key="StrCycleSwitchToNextSession">循環切換到下一個會話</s:String>
+    <s:String x:Key="StrCycleSwitchToPreviousSession">循環切換到上一個會話</s:String>
+    <s:String x:Key="StrCreateNewSession">創建一個新會話</s:String>
+    <s:String x:Key="StrRemoveCurrentSession">刪除當前會話</s:String>
+
+    <s:String x:Key="StrGlobalHotkey">全域熱鍵</s:String>
+    <s:String x:Key="StrInputBox">輸入框</s:String>
+
+
+    <!--按鈕-->
+    <s:String x:Key="StrAccept">接受</s:String>
+    <s:String x:Key="StrCancel">取消</s:String>
+
+    <s:String x:Key="StrSend">發送</s:String>
+    <s:String x:Key="StrSave">儲存</s:String>
+    <s:String x:Key="StrNewSession">新建對話</s:String>
+
+    <!--工具提示-->
+    <s:String x:Key="StrAboutOpenGptChat">關於 OpenGptChat</s:String>
+    <s:String x:Key="StrGoBackToMainPage">返回主頁面</s:String>
+    <s:String x:Key="StrResetChat">重置聊天</s:String>
+    <s:String x:Key="StrGoToConfigurationPage">前往設定頁面</s:String>
+
+    <!--菜單-->
+    <s:String x:Key="StrCopy">複製</s:String>
+    <s:String x:Key="StrConfig">配置</s:String>
+    <s:String x:Key="StrEdit">編輯</s:String>
+    <s:String x:Key="StrDelete">刪除</s:String>
+    <s:String x:Key="StrThis">這個</s:String>
+    <s:String x:Key="StrAllAbove">以上所有</s:String>
+    <s:String x:Key="StrAllBelow">以下所有</s:String>
+
+    <!--文本-->
+    <s:String x:Key="StrAuto">自動</s:String>
+    <s:String x:Key="StrYes">是</s:String>
+    <s:String x:Key="StrNo">否</s:String>
+    <s:String x:Key="StrOk">確定</s:String>
+
+</ResourceDictionary>
