@@ -3,13 +3,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:md="https://github.com/whistyun/Markdown.Avalonia"
+             xmlns:fluent="using:FluentAvalonia.UI.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="OpenGptChat.Views.Controls.ChatMessage"
              x:Name="root">
   <StackPanel Spacing="{CompiledBinding #root.Spacing}">
     <TextBlock Text="{CompiledBinding #root.Title}"
                HorizontalAlignment="{CompiledBinding #root.HorizontalAlignment}"/>
-    <Border BorderThickness="{CompiledBinding #root.MessageBorderThickness}"
+    
+    <Border Background="{CompiledBinding #root.MessageBackground}" 
+            BorderThickness="{CompiledBinding #root.MessageBorderThickness}"
             BorderBrush="{CompiledBinding #root.MessageBorderBrush}"
             CornerRadius="{CompiledBinding #root.MessageCornerRadius}"
             Padding="{CompiledBinding #root.MessagePadding}">

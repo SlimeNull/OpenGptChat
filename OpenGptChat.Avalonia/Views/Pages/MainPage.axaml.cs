@@ -12,8 +12,6 @@ public partial class MainPage : UserControl
     {
         DataContext = new MainPageViewModel();
 
-        InitializeComponent();
-
 #if DEBUG
         var vm = (MainPageViewModel)DataContext;
 
@@ -65,5 +63,7 @@ public partial class MainPage : UserControl
                 }
             });
 #endif
+
+        InitializeComponent();
     }
 }

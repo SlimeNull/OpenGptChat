@@ -8,7 +8,8 @@
              xmlns:i="using:Avalonia.Xaml.Interactivity"
              xmlns:my-behaviors="using:OpenGptChat.Behaviors"
              xmlns:controls="using:OpenGptChat.Views.Controls"
-             mc:Ignorable="d" d:DesignWidth="850" d:DesignHeight="550"
+             xmlns:fluent="using:FluentAvalonia.UI.Controls"
+             mc:Ignorable="d" d:DesignWidth="850" d:DesignHeight="560"
              x:Class="OpenGptChat.Views.Pages.MainPage"
              x:DataType="vm:MainPageViewModel">
 
@@ -18,70 +19,130 @@
 
   <DockPanel>
     <Border BorderThickness="0 0 0 1"
-            BorderBrush="Gray"
+            BorderBrush="{DynamicResource ControlElevationBorderBrush}"
             DockPanel.Dock="Top">
-      <Grid ColumnDefinitions="Auto,*,Auto">
+      <Grid ColumnDefinitions="Auto,*,Auto" Margin="5 0">
         <TextBlock Grid.Column="0"
+                   VerticalAlignment="Center"
                    Text="Chat"
-                   FontSize="16"
-                   Margin="5"/>
-        <StackPanel Grid.Column="2">
+                   FontSize="16"/>
+        <StackPanel Grid.Column="2" 
+                    VerticalAlignment="Center" 
+                    Orientation="Horizontal">
           <StackPanel.Styles>
-            <Style Selector="Button">
-              <Setter Property="Width" Value="20"/>
-              <Setter Property="Height" Value="20"/>
-              <Setter Property="Padding" Value="0"/>
+            <Style Selector="fluent|HyperlinkButton">
+              <Setter Property="Padding" Value="5"/>
             </Style>
           </StackPanel.Styles>
-          <Button>
-            QWQ
-          </Button>
+          <fluent:HyperlinkButton>
+            <fluent:SymbolIcon Symbol="Refresh" 
+                               FontSize="17"
+                               Foreground="{DynamicResource TextFillColorPrimary}"/>
+          </fluent:HyperlinkButton>
+          <fluent:HyperlinkButton>
+            <fluent:SymbolIcon Symbol="Settings"
+                               FontSize="17"
+                               Foreground="{DynamicResource TextFillColorPrimary}"/>
+          </fluent:HyperlinkButton>
         </StackPanel>
       </Grid>
     </Border>
-    <ListBox DockPanel.Dock="Left" Width="150"
-             ItemsSource="{CompiledBinding Sessions}"
-             SelectedItem="{CompiledBinding SelectedSession}">
-      <ListBox.ItemTemplate>
-        <DataTemplate x:DataType="m:ChatSession">
-          <StackPanel Spacing="5">
-            <TextBlock Text="{CompiledBinding Title}"/>
-            <TextBlock Text="{CompiledBinding Messages.LastMessage.Overview}"
-                       FontSize="12"
-                       Foreground="Gray"
-                       TextWrapping="NoWrap"
-                       TextTrimming="CharacterEllipsis"/>
-          </StackPanel>
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>
-    <Panel DockPanel.Dock="Bottom" Height="150">
-      <TextBox BorderThickness="0 1 0 0"
-               CornerRadius="0"/>
-    </Panel>
-    <Panel>
-      <ScrollViewer>
-        <ItemsControl ItemsSource="{CompiledBinding SelectedSession.Messages}"
-                      Margin="10">
-          <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-              <StackPanel Spacing="10"/>
-            </ItemsPanelTemplate>
-          </ItemsControl.ItemsPanel>
-          <ItemsControl.ItemTemplate>
-            <DataTemplate x:DataType="m:ChatMessage">
-              <controls:ChatMessage Title="{CompiledBinding Title}"
-                                    MessageText="{CompiledBinding MessageText}"
-                                    Spacing="3">
-                <i:Interaction.Behaviors>
-                  <my-behaviors:ChatMessageAlignBehavior LeftAlignmentTitle="Bot" 
-                                                         RightAlignmentTitle="Me"/>
-                </i:Interaction.Behaviors>
-              </controls:ChatMessage>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="150" MinWidth="100"/>
+        <ColumnDefinition Width="1"/>
+        <ColumnDefinition MinWidth="200"/>
+      </Grid.ColumnDefinitions>
+      <Grid RowDefinitions="*,Auto">
+        <ListBox ItemsSource="{CompiledBinding Sessions}"
+                 SelectedItem="{CompiledBinding SelectedSession}"
+                 SelectedIndex="0">
+          <ListBox.Styles>
+            <Style Selector="ListBoxItem">
+              <Setter Property="Padding" Value="10 0 10 0"/>
+            </Style>
+          </ListBox.Styles>
+          <ListBox.ItemTemplate>
+            <DataTemplate x:DataType="m:ChatSession">
+              <StackPanel Spacing="2" Margin="0 5">
+                <TextBlock Text="{CompiledBinding Title}"
+                           Foreground="{DynamicResource TextFillColorPrimary}"/>
+                <TextBlock Text="{CompiledBinding Messages.LastMessage.Overview}"
+                           FontSize="12"
+                           Foreground="{DynamicResource TextFillColorSecondary}"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"/>
+              </StackPanel>
             </DataTemplate>
-          </ItemsControl.ItemTemplate>
-        </ItemsControl>
-      </ScrollViewer>
-    </Panel>
-  </DockPanel>
+          </ListBox.ItemTemplate>
+        </ListBox>
+
+        <fluent:HyperlinkButton Grid.Row="1" 
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                BorderThickness="0"
+                Background="Transparent"
+                Margin="10">
+          <TextBlock HorizontalAlignment="Center"
+                     Foreground="{DynamicResource TextFillColorPrimary}">
+            New session
+          </TextBlock>
+        </fluent:HyperlinkButton>
+        
+      </Grid>
+      <Rectangle Grid.Column="1"
+                 VerticalAlignment="Stretch"
+                 HorizontalAlignment="Stretch"
+                 Fill="{DynamicResource ControlStrokeColorDefaultBrush}"/>
+      <GridSplitter Grid.Column="1"
+                    VerticalAlignment="Stretch"
+                    Background="Transparent"/>
+      <Grid Grid.Column="2"
+            MinWidth="200"
+            RowDefinitions="*,Auto">
+        <ScrollViewer>
+          <ItemsControl ItemsSource="{CompiledBinding SelectedSession.Messages}"
+                        Margin="10">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <StackPanel Spacing="10"/>
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate x:DataType="m:ChatMessage">
+                <controls:ChatMessage Title="{CompiledBinding Title}"
+                                      MessageText="{CompiledBinding MessageText}"
+                                      MessageBackground="{DynamicResource ControlFillColorDefault}"
+                                      MessageBorderBrush="{DynamicResource ControlElevationBorderBrush}"
+                                      MessageCornerRadius="{DynamicResource ControlCornerRadius}"
+                                      Spacing="3">
+                  <i:Interaction.Behaviors>
+                    <my-behaviors:ChatMessageAlignBehavior LeftAlignmentTitle="Bot"
+                                                           RightAlignmentTitle="Me"/>
+                  </i:Interaction.Behaviors>
+                </controls:ChatMessage>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </ScrollViewer>
+        <Grid Grid.Row="1"
+              Margin="10"
+              ColumnDefinitions="*,Auto">
+          <TextBox Text="{CompiledBinding TextInput}"
+                   AcceptsReturn="True"
+                   MaxHeight="250">
+            <TextBox.KeyBindings>
+              <KeyBinding Gesture="Ctrl+Enter" Command="{CompiledBinding SendCommand}"/>
+            </TextBox.KeyBindings>
+          </TextBox>
+          <Button Grid.Column="1"
+                  Height="32"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Bottom"
+                  Content="Send" Margin="5 0 0 0"
+                  Command="{CompiledBinding SendCommand}"/>
+        </Grid>
+      </Grid>
+      </Grid>
+    </DockPanel>
 </UserControl>
