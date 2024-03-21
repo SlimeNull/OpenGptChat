@@ -26,8 +26,8 @@
                    VerticalAlignment="Center"
                    Text="Chat"
                    FontSize="16"/>
-        <StackPanel Grid.Column="2" 
-                    VerticalAlignment="Center" 
+        <StackPanel Grid.Column="2"
+                    VerticalAlignment="Center"
                     Orientation="Horizontal">
           <StackPanel.Styles>
             <Style Selector="fluent|HyperlinkButton">
@@ -35,7 +35,7 @@
             </Style>
           </StackPanel.Styles>
           <fluent:HyperlinkButton>
-            <fluent:SymbolIcon Symbol="Refresh" 
+            <fluent:SymbolIcon Symbol="Refresh"
                                FontSize="17"
                                Foreground="{DynamicResource TextFillColorPrimary}"/>
           </fluent:HyperlinkButton>
@@ -77,18 +77,20 @@
           </ListBox.ItemTemplate>
         </ListBox>
 
-        <fluent:HyperlinkButton Grid.Row="1" 
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch"
-                BorderThickness="0"
-                Background="Transparent"
-                Margin="10">
+        <fluent:HyperlinkButton 
+          Grid.Row="1"
+          VerticalAlignment="Stretch"
+          HorizontalAlignment="Stretch"
+          BorderThickness="0"
+          Background="Transparent"
+          Margin="10"
+          Command="{CompiledBinding CreateNewSessionCommand}">
           <TextBlock HorizontalAlignment="Center"
                      Foreground="{DynamicResource TextFillColorPrimary}">
             New session
           </TextBlock>
         </fluent:HyperlinkButton>
-        
+
       </Grid>
       <Rectangle Grid.Column="1"
                  VerticalAlignment="Stretch"
@@ -102,7 +104,7 @@
             RowDefinitions="*,Auto">
         <ScrollViewer>
           <ItemsControl ItemsSource="{CompiledBinding SelectedSession.Messages}"
-                        Margin="10">
+                        Margin="15 10 15 10">
             <ItemsControl.ItemsPanel>
               <ItemsPanelTemplate>
                 <StackPanel Spacing="10"/>
@@ -143,6 +145,6 @@
                   Command="{CompiledBinding SendCommand}"/>
         </Grid>
       </Grid>
-      </Grid>
-    </DockPanel>
+    </Grid>
+  </DockPanel>
 </UserControl>

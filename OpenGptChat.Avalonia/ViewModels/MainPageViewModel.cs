@@ -35,5 +35,18 @@ namespace OpenGptChat.ViewModels
             TextInput = string.Empty;
 #endif
         }
+
+        [RelayCommand]
+        public void CreateNewSession()
+        {
+            var newSession =
+                new ChatSession()
+                {
+                    Title = "New session"
+                };
+
+            Sessions.Add(newSession);
+            SelectedSession = newSession;
+        }
     }
 }

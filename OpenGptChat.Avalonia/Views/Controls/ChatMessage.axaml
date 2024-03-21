@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:md="https://github.com/whistyun/Markdown.Avalonia"
              xmlns:fluent="using:FluentAvalonia.UI.Controls"
+             xmlns:c="using:ColorTextBlock.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="OpenGptChat.Views.Controls.ChatMessage"
              x:Name="root">
@@ -16,7 +17,20 @@
             BorderBrush="{CompiledBinding #root.MessageBorderBrush}"
             CornerRadius="{CompiledBinding #root.MessageCornerRadius}"
             Padding="{CompiledBinding #root.MessagePadding}">
-      <md:MarkdownScrollViewer Markdown="{CompiledBinding #root.MessageText}"/>
+      <md:MarkdownScrollViewer Markdown="{CompiledBinding #root.MessageText}">
+        <md:MarkdownScrollViewer.Styles>
+          <Style Selector="c|CCode">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="2 0 2 0"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlElevationBorderBrush}"/>
+          </Style>
+          <Style Selector="Grid.List">
+            <Setter Property="Margin" Value="15 0 0 0"/>
+          </Style>
+        </md:MarkdownScrollViewer.Styles>
+      </md:MarkdownScrollViewer>
     </Border>
   </StackPanel>
 </UserControl>

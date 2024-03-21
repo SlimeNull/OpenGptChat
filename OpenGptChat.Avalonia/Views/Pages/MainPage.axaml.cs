@@ -43,17 +43,46 @@ public partial class MainPage : UserControl
                     new ChatMessage()
                     {
                         Title = "Me",
-                        MessageText = "Some text, **bold**, *italic*, `code inline`"
+                        MessageText =
+                            """
+                            # Header1
+
+                            ## Header2
+
+                            ### Header3
+
+                            #### Header4
+
+                            ##### Header5
+
+                            ###### Header6
+                            """
                     },
                     new ChatMessage()
                     {
                         Title = "Bot",
-                        MessageText = "Some text, **bold**, *italic*, `code inline`"
+                        MessageText =
+                            """
+                            Some text
+
+                            1. List item 1
+                            2. List item 2
+                            3. List item 3
+                            """
                     },
                     new ChatMessage()
                     {
                         Title = "Me",
-                        MessageText = "Some text, **bold**, *italic*, `code inline`"
+                        MessageText =
+                            """
+                            1. Complex list item
+                               The second line
+                            2. Complex list item
+                               The second line `code inline`, *italic*, **bold**
+
+                               - ajwoeif
+                               - jwoeifjwoe
+                            """
                     },
                     new ChatMessage()
                     {
