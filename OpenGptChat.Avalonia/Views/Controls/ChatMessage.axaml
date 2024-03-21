@@ -7,7 +7,8 @@
              x:Class="OpenGptChat.Views.Controls.ChatMessage"
              x:Name="root">
   <StackPanel Spacing="{CompiledBinding #root.Spacing}">
-    <TextBlock Text="{CompiledBinding #root.Title}"/>
+    <TextBlock Text="{CompiledBinding #root.Title}"
+               HorizontalAlignment="{CompiledBinding #root.HorizontalAlignment}"/>
     <Border BorderThickness="{CompiledBinding #root.MessageBorderThickness}"
             BorderBrush="{CompiledBinding #root.MessageBorderBrush}"
             CornerRadius="{CompiledBinding #root.MessageCornerRadius}"

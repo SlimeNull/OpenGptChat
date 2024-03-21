@@ -15,20 +15,17 @@ namespace OpenGptChat.Behaviors
         public string? LeftAlignmentTitle { get; set; }
         public string? RightAlignmentTitle { get; set; }
 
-        protected override void OnAttached()
+        protected override void OnAttachedToVisualTree()
         {
-            base.OnAttached();
+            base.OnAttachedToVisualTree();
 
             if (AssociatedObject is not ChatMessage chatMessage)
                 return;
 
-            // TODO: 这里无法获取最新属性, 导致对齐方式赋值不正确
             if (chatMessage.Title == LeftAlignmentTitle)
                 chatMessage.HorizontalAlignment = HorizontalAlignment.Left;
             else if (chatMessage.Title == RightAlignmentTitle)
                 chatMessage.HorizontalAlignment = HorizontalAlignment.Right;
         }
-
-        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change) => base.OnPropertyChanged(change);
     }
 }
