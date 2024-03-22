@@ -30,11 +30,17 @@
     <PackageReference Include="FluentAvaloniaUI" Version="2.0.5" />
     <PackageReference Include="LiteDB" Version="5.0.19" />
     <PackageReference Include="Markdown.Avalonia" Version="11.0.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="OpenAI-DotNet" Version="7.7.6" />
   </ItemGroup>
 
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Views\Pages\MainPage.axaml" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\OpenGptChat.Common\OpenGptChat.Common.csproj" />
   </ItemGroup>
 </Project>

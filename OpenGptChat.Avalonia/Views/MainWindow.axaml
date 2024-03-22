@@ -4,21 +4,78 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:pages="using:OpenGptChat.Views.Pages"
+        xmlns:animations="using:OpenGptChat.Animations"
+        xmlns:fluent="using:FluentAvalonia.UI.Controls"
         mc:Ignorable="d" d:DesignWidth="850" d:DesignHeight="560"
         Width="850" Height="560"
         x:Class="OpenGptChat.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
+        Name="Window"
         Background="Transparent"
         TransparencyLevelHint="Mica"
         Icon="/Assets/openai.ico"
         Title="OpenGptChat">
 
-  <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainWindowViewModel/>
-  </Design.DataContext>
-
-  <pages:MainPage/>
-
+  <DockPanel>
+    <Border BorderThickness="0 0 0 1"
+            BorderBrush="{DynamicResource ControlElevationBorderBrush}"
+            DockPanel.Dock="Top">
+      <Grid ColumnDefinitions="Auto,*,Auto" Margin="5 0">
+        <TextBlock Grid.Column="0"
+                   Text="{DynamicResource StrChat}"
+                   VerticalAlignment="Center"
+                   FontSize="16"/>
+        <StackPanel Grid.Column="2" 
+                    VerticalAlignment="Center" 
+                    Orientation="Horizontal">
+          <StackPanel Name="MainPageButtons" Orientation="Horizontal">
+            <StackPanel.Styles>
+              <Style Selector="fluent|HyperlinkButton">
+                <Setter Property="Padding" Value="5"/>
+              </Style>
+            </StackPanel.Styles>
+            <fluent:HyperlinkButton ToolTip.Tip="{DynamicResource StrResetChat}">
+              <fluent:SymbolIcon Symbol="Refresh"
+                                 FontSize="17"
+                                 Foreground="{DynamicResource TextFillColorPrimary}"/>
+            </fluent:HyperlinkButton>
+            <fluent:HyperlinkButton ToolTip.Tip="{DynamicResource StrGoToConfigurationPage}"
+                                    Click="GoToConfigPageButton_Click">
+              <fluent:SymbolIcon Symbol="Settings"
+                                 FontSize="17"
+                                 Foreground="{DynamicResource TextFillColorPrimary}"/>
+            </fluent:HyperlinkButton>
+          </StackPanel>
+          <StackPanel Name="ConfigPageButtons" Orientation="Horizontal">
+            <StackPanel.Styles>
+              <Style Selector="fluent|HyperlinkButton">
+                <Setter Property="Padding" Value="5"/>
+              </Style>
+            </StackPanel.Styles>
+            <fluent:HyperlinkButton ToolTip.Tip="{DynamicResource StrResetChat}">
+              <fluent:SymbolIcon Symbol="Pin"
+                                 FontSize="17"
+                                 Foreground="{DynamicResource TextFillColorPrimary}"/>
+            </fluent:HyperlinkButton>
+            <fluent:HyperlinkButton ToolTip.Tip="{DynamicResource StrGoToConfigurationPage}"
+                                    Click="GoToMainPageButton_Click">
+              <fluent:SymbolIcon Symbol="Message"
+                                 FontSize="17"
+                                 Foreground="{DynamicResource TextFillColorPrimary}"/>
+            </fluent:HyperlinkButton>
+          </StackPanel>
+        </StackPanel>
+      </Grid>
+    </Border>
+    <TransitioningContentControl Content="{CompiledBinding #Window.CurrentPage}">
+      <TransitioningContentControl.PageTransition>
+        <animations:PageFadeSlide Duration="0:0:0.1" Offset="5"/>
+      </TransitioningContentControl.PageTransition>
+      <TransitioningContentControl.ContentTemplate>
+        <DataTemplate x:DataType="Control">
+          <ContentControl Content="{CompiledBinding}"/>
+        </DataTemplate>
+      </TransitioningContentControl.ContentTemplate>
+    </TransitioningContentControl>
+  </DockPanel>
+  
 </Window>

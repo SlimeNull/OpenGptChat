@@ -23,4 +23,20 @@
     <!--<FluentTheme/>-->
     <fluent-styling:FluentAvaloniaTheme/>
   </Application.Styles>
+
+  <TrayIcon.Icons>
+    <TrayIcons>
+      <TrayIcon Icon="/Assets/openai.ico"
+                ToolTipText="OpenGptChat">
+        <TrayIcon.Menu>
+          <NativeMenu>
+            <NativeMenuItem Header="Show"/>
+            <NativeMenuItem Header="Hide"/>
+            <NativeMenuItem Header="Close"/>
+          </NativeMenu>
+        </TrayIcon.Menu>
+      </TrayIcon>
+    </TrayIcons>
+  </TrayIcon.Icons>
+  
 </Application>

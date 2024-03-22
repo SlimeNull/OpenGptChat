@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Microsoft.Extensions.DependencyInjection;
 using OpenGptChat.Models;
 using OpenGptChat.ViewModels;
 
@@ -23,7 +24,8 @@ public partial class MainPage : UserControl
                 {
                     new ChatMessage()
                     {
-                        Title = "DebugTestMessage",
+                        Role = Role.User,
+                        Sender = "DebugTestMessage",
                         MessageText = "Some text, **bold**, *italic*, `code inline`"
                     }
                 }
@@ -37,12 +39,14 @@ public partial class MainPage : UserControl
                 {
                     new ChatMessage()
                     {
-                        Title = "Bot",
+                        Role = Role.Assistant,
+                        Sender = "Bot",
                         MessageText = "Some text, **bold**, *italic*, `code inline`"
                     },
                     new ChatMessage()
                     {
-                        Title = "Me",
+                        Role = Role.User,
+                        Sender = "Me",
                         MessageText =
                             """
                             # Header1
@@ -60,7 +64,8 @@ public partial class MainPage : UserControl
                     },
                     new ChatMessage()
                     {
-                        Title = "Bot",
+                        Role = Role.Assistant,
+                        Sender = "Bot",
                         MessageText =
                             """
                             Some text
@@ -72,7 +77,8 @@ public partial class MainPage : UserControl
                     },
                     new ChatMessage()
                     {
-                        Title = "Me",
+                        Role = Role.User,
+                        Sender = "Me",
                         MessageText =
                             """
                             1. Complex list item
@@ -86,7 +92,8 @@ public partial class MainPage : UserControl
                     },
                     new ChatMessage()
                     {
-                        Title = "Bot",
+                        Role = Role.Assistant,
+                        Sender = "Bot",
                         MessageText = "Some text, **bold**, *italic*, `code inline`"
                     },
                 }
@@ -94,5 +101,11 @@ public partial class MainPage : UserControl
 #endif
 
         InitializeComponent();
+    }
+
+    private void GoToConfigPageButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        var mainWindow = App.Services.GetRequiredService<MainWindow>();
+        mainWindow.Content = App.Services.GetRequiredService<ConfigPage>();
     }
 }
