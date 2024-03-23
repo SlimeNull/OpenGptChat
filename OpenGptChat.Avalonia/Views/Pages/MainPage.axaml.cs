@@ -40,32 +40,7 @@ public partial class MainPage : UserControl
                     new ChatMessage()
                     {
                         Role = Role.Assistant,
-                        Sender = "Bot",
-                        MessageText = "Some text, **bold**, *italic*, `code inline`"
-                    },
-                    new ChatMessage()
-                    {
-                        Role = Role.User,
-                        Sender = "Me",
-                        MessageText =
-                            """
-                            # Header1
-
-                            ## Header2
-
-                            ### Header3
-
-                            #### Header4
-
-                            ##### Header5
-
-                            ###### Header6
-                            """
-                    },
-                    new ChatMessage()
-                    {
-                        Role = Role.Assistant,
-                        Sender = "Bot",
+                        Sender = "Assistant",
                         MessageText =
                             """
                             Some text
@@ -78,7 +53,7 @@ public partial class MainPage : UserControl
                     new ChatMessage()
                     {
                         Role = Role.User,
-                        Sender = "Me",
+                        Sender = "slime",
                         MessageText =
                             """
                             1. Complex list item
@@ -93,8 +68,17 @@ public partial class MainPage : UserControl
                     new ChatMessage()
                     {
                         Role = Role.Assistant,
-                        Sender = "Bot",
+                        Sender = "Assistant",
                         MessageText = "Some text, **bold**, *italic*, `code inline`"
+                    },
+                    new ChatMessage()
+                    {
+                        Role = Role.User,
+                        Sender = "slime",
+                        MessageText =
+                            """
+                            A very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message
+                            """
                     },
                 }
             });

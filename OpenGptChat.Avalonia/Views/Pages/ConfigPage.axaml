@@ -2,46 +2,122 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:OpenGptChat.ViewModels"
+             xmlns:local="using:OpenGptChat.Views.Pages"
              xmlns:fluent="using:FluentAvalonia.UI.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="OpenGptChat.Views.Pages.ConfigPage">
+             x:Class="OpenGptChat.Views.Pages.ConfigPage"
+             x:DataType="vm:ConfigPageViewModel"
+             LostFocus="PageLostFocus"
+             Tag="StrConfiguration">
 
   <Design.DataContext>
-    
+    <vm:ConfigPageViewModel/>
   </Design.DataContext>
 
-  <Grid Name="content" Margin="48">
-    <StackPanel>
-      <fluent:SettingsExpander IconSource=""
-                               Header="API"
-                               Description="API Settings"
-                               Footer="QWQ">
-        <fluent:SettingsExpanderItem>
-          <Panel>
-            <TextBlock Text="{DynamicResource StrAPIKey}"
+  <ScrollViewer Name="PageRoot" Classes="mediumLayout">
+    <Grid Name="Layout" 
+          Margin="48">
+      <StackPanel Name="Settings" Spacing="8">
+        <fluent:SettingsExpander IconSource="Link"
+                                 Header="API"
+                                 Description="API Settings">
+          <fluent:SettingsExpanderItem>
+            <Grid RowDefinitions="Auto,*">
+              <TextBlock Text="{DynamicResource StrAPIKey}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+              <TextBox Grid.Column="1"
+                       MinWidth="200"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Left"/>
-            <TextBox MinWidth="200"
-                     VerticalAlignment="Center"
-                     HorizontalAlignment="Right"/>
-          </Panel>
-        </fluent:SettingsExpanderItem>
-      </fluent:SettingsExpander>
-      <fluent:SettingsExpander IconSource=""
-                               Header="API"
-                               Description="API Settings"
-                               Footer="QWQ">
-        <fluent:SettingsExpanderItem>
-          <Panel>
-            <TextBlock Text="{DynamicResource StrAPIKey}"
+                       HorizontalAlignment="Right"
+                       Text="{CompiledBinding ConfigService.AppConfig.ApiKey}"/>
+            </Grid>
+          </fluent:SettingsExpanderItem>
+          <fluent:SettingsExpanderItem>
+            <Grid RowDefinitions="Auto,*">
+              <TextBlock Text="{DynamicResource StrAPIHost}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+              <TextBox Grid.Column="1"
+                       MinWidth="200"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Left"/>
-            <TextBox MinWidth="200"
-                     VerticalAlignment="Center"
-                     HorizontalAlignment="Right"/>
-          </Panel>
-        </fluent:SettingsExpanderItem>
-      </fluent:SettingsExpander>
-    </StackPanel>
-  </Grid>
+                       HorizontalAlignment="Right"
+                       Text="{CompiledBinding ConfigService.AppConfig.ApiHost}"/>
+            </Grid>
+          </fluent:SettingsExpanderItem>
+          <fluent:SettingsExpanderItem>
+            <Grid RowDefinitions="Auto,*">
+              <TextBlock Text="{DynamicResource StrOrganization}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+              <TextBox Grid.Column="1"
+                       MinWidth="200"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                       Text="{CompiledBinding ConfigService.AppConfig.Organization}"/>
+            </Grid>
+          </fluent:SettingsExpanderItem>
+        </fluent:SettingsExpander>
+        <fluent:SettingsExpander IconSource="Contact"
+                                 Header="Chat"
+                                 Description="Chat Settings">
+          <fluent:SettingsExpanderItem>
+            <Grid RowDefinitions="Auto,*">
+              <TextBlock Text="{DynamicResource StrModel}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+              <TextBox Grid.Column="1"
+                       MinWidth="200"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                       Text="{CompiledBinding ConfigService.AppConfig.Model}"/>
+            </Grid>
+          </fluent:SettingsExpanderItem>
+          <fluent:SettingsExpanderItem>
+            <Grid RowDefinitions="Auto,*">
+              <TextBlock Text="{DynamicResource StrAPITimeout}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+              <TextBox Grid.Column="1"
+                       MinWidth="200"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                       Text="{CompiledBinding ConfigService.AppConfig.ApiTimeout}"/>
+            </Grid>
+          </fluent:SettingsExpanderItem>
+          <fluent:SettingsExpanderItem>
+            <Grid RowDefinitions="Auto,*">
+              <TextBlock Text="{DynamicResource StrTemperature}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"/>
+              <TextBox Grid.Column="1"
+                       MinWidth="200"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                       Text="{CompiledBinding ConfigService.AppConfig.Temperature}"/>
+            </Grid>
+          </fluent:SettingsExpanderItem>
+        </fluent:SettingsExpander>
+        <fluent:SettingsExpander IconSource="View"
+                                 Header="Theme"
+                                 Description="APP Theme">
+          <fluent:SettingsExpander.Footer>
+            <ComboBox/>
+          </fluent:SettingsExpander.Footer>
+        </fluent:SettingsExpander>
+        <fluent:SettingsExpander IconSource="Earth"
+                                 Header="Language"
+                                 Description="APP Language">
+          <fluent:SettingsExpander.Footer>
+            <ComboBox/>
+          </fluent:SettingsExpander.Footer>
+        </fluent:SettingsExpander>
+      </StackPanel>
+
+      <StackPanel Grid.Column="2">
+        
+      </StackPanel>
+    </Grid>
+  </ScrollViewer>
 </UserControl>

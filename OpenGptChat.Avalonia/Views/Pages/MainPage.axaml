@@ -12,7 +12,8 @@
              xmlns:fluent="using:FluentAvalonia.UI.Controls"
              mc:Ignorable="d" d:DesignWidth="850" d:DesignHeight="560"
              x:Class="OpenGptChat.Views.Pages.MainPage"
-             x:DataType="vm:MainPageViewModel">
+             x:DataType="vm:MainPageViewModel"
+             Tag="StrChat">
 
   <Design.DataContext>
     <vm:MainPageViewModel/>
@@ -58,6 +59,7 @@
         Command="{CompiledBinding CreateNewSessionCommand}"
         ToolTip.Tip="{DynamicResource StrCreateNewSession}">
         <TextBlock HorizontalAlignment="Center"
+                   FontStyle="Normal"
                    Foreground="{DynamicResource TextFillColorPrimary}"
                    Text="{DynamicResource StrNewSession}"/>
       </fluent:HyperlinkButton>

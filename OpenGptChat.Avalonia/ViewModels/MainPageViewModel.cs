@@ -13,8 +13,8 @@ namespace OpenGptChat.ViewModels
 {
     public partial class MainPageViewModel : ViewModelBase
     {
-        private readonly ChatService _chatService = 
-            App.Services.GetRequiredService<ChatService>();
+        public ChatService ChatService { get; set; }
+            = App.Services.GetRequiredService<ChatService>();
 
         public ObservableCollection<ChatSession> Sessions { get; } = new();
 
@@ -54,7 +54,7 @@ namespace OpenGptChat.ViewModels
                 selectedSession.Messages.Add(assistantMessage);
 
                 var responseText = 
-                    await _chatService.ChatAsync(selectedSession, TextInput, responseText =>
+                    await ChatService.ChatAsync(selectedSession, TextInput, responseText =>
                     {
                         assistantMessage.MessageText = responseText;
                     }, default);

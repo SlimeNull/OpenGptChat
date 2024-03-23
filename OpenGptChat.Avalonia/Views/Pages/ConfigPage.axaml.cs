@@ -1,5 +1,7 @@
 using Avalonia.Controls;
 using Microsoft.Extensions.DependencyInjection;
+using OpenGptChat.Services;
+using OpenGptChat.ViewModels;
 
 namespace OpenGptChat.Views.Pages
 {
@@ -7,15 +9,16 @@ namespace OpenGptChat.Views.Pages
     {
         public ConfigPage()
         {
-            InitializeComponent();
+            DataContext = new ConfigPageViewModel();
 
-            
+            InitializeComponent();
         }
 
-        private void GoToChatPage_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        private void PageLostFocus(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            var mainWindow = App.Services.GetRequiredService<MainWindow>();
-            mainWindow.Content = App.Services.GetRequiredService<MainPage>();
+            App.Services
+                .GetRequiredService<ConfigService>()
+                .Save();
         }
     }
 }

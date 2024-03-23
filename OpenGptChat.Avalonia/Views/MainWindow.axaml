@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:pages="using:OpenGptChat.Views.Pages"
+        xmlns:converters="using:OpenGptChat.Converters"
         xmlns:animations="using:OpenGptChat.Animations"
         xmlns:fluent="using:FluentAvalonia.UI.Controls"
         mc:Ignorable="d" d:DesignWidth="850" d:DesignHeight="560"
         Width="850" Height="560"
         x:Class="OpenGptChat.Views.MainWindow"
         Name="Window"
-        Background="Transparent"
+        Background="{x:Null}"
         TransparencyLevelHint="Mica"
         Icon="/Assets/openai.ico"
         Title="OpenGptChat">
@@ -20,8 +21,8 @@
             BorderBrush="{DynamicResource ControlElevationBorderBrush}"
             DockPanel.Dock="Top">
       <Grid ColumnDefinitions="Auto,*,Auto" Margin="5 0">
-        <TextBlock Grid.Column="0"
-                   Text="{DynamicResource StrChat}"
+        <TextBlock Name="PageTitle"
+                   Grid.Column="0"
                    VerticalAlignment="Center"
                    FontSize="16"/>
         <StackPanel Grid.Column="2" 

@@ -53,10 +53,10 @@ namespace OpenGptChat
                 var mainWindow = Services.GetRequiredService<MainWindow>();
                 var mainPage = Services.GetRequiredService<MainPage>();
 
-                mainWindow.CurrentPage = mainPage;
-
                 BindingPlugins.DataValidators.RemoveAt(0);
                 desktop.MainWindow = mainWindow;
+
+                mainWindow.CurrentPage = mainPage;
             }
 
             base.OnFrameworkInitializationCompleted();

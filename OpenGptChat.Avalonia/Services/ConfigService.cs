@@ -34,5 +34,14 @@ namespace OpenGptChat.Services
             if (AppConfig == null)
                 AppConfig = new();
         }
+
+        public void Save()
+        {
+            string fullFilePath = Path.Combine(
+                Path.GetDirectoryName(Process.GetCurrentProcess().MainModule?.FileName) ?? "./", FilePath);
+
+            string json = JsonSerializer.Serialize(AppConfig, JsonHelper.ConfigurationOptions);
+            File.WriteAllText(fullFilePath, json);
+        }
     }
 }

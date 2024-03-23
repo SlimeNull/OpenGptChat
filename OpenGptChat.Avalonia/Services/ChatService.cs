@@ -87,7 +87,7 @@ namespace OpenGptChat.Services
             ChatRequest request = new ChatRequest(
                 messages: BuildMessages(session, message),
                 model: _configService.AppConfig.Model,
-                temperature: _configService.AppConfig.Temerature);
+                temperature: _configService.AppConfig.Temperature);
 
             DateTime lastTime = DateTime.Now;
             CancellationTokenSource chatTaskCancellation =

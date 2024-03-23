@@ -20,7 +20,7 @@ namespace OpenGptChat
         private int _apiTimeout = 5000;
 
         [ObservableProperty]
-        private double _temerature = .5;
+        private double _temperature = .5;
 
         [ObservableProperty]
         private bool _enableChatContext = true;
