@@ -1,6 +1,7 @@
 using System;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml.MarkupExtensions;
 using Microsoft.Extensions.DependencyInjection;
 using OpenGptChat.Strings;
 using OpenGptChat.Views.Pages;
@@ -54,10 +55,9 @@ namespace OpenGptChat.Views
                     mainWindow.ConfigPageButtons.IsVisible = newValue is ConfigPage;
 
                     if (newValue is not null && 
-                        newValue.Tag is not null &&
-                        StringResources.Instance.TryGetResource(newValue.Tag, null, out var title))
+                        newValue.Tag is not null)
                     {
-                        mainWindow.PageTitle.Text = title as string;
+                        mainWindow.PageTitle.Bind(TextBlock.TextProperty, new DynamicResourceExtension(newValue.Tag));
                     }
                 }
                 else
