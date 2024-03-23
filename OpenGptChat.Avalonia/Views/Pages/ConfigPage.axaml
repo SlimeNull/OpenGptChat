@@ -9,7 +9,8 @@
              x:Class="OpenGptChat.Views.Pages.ConfigPage"
              x:DataType="vm:ConfigPageViewModel"
              LostFocus="PageLostFocus"
-             Tag="StrConfiguration">
+             Tag="StrConfiguration"
+             Loaded="PageLoaded">
 
   <Design.DataContext>
     <vm:ConfigPageViewModel/>
@@ -19,7 +20,8 @@
     <Grid Name="Layout" 
           Margin="48">
       <StackPanel Name="Settings" Spacing="8">
-        <fluent:SettingsExpander IconSource="Link"
+        <fluent:SettingsExpander Name="APISettings" 
+                                 IconSource="Link"
                                  Header="API"
                                  Description="API Settings">
           <fluent:SettingsExpanderItem>

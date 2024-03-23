@@ -20,5 +20,16 @@ namespace OpenGptChat.Views.Pages
                 .GetRequiredService<ConfigService>()
                 .Save();
         }
+
+        private void PageLoaded(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var config = App.Services
+                .GetRequiredService<ConfigService>()
+                .AppConfig;
+
+            if (string.IsNullOrWhiteSpace(config.ApiKey) ||
+                string.IsNullOrWhiteSpace(config.ApiHost))
+                APISettings.IsExpanded = true;
+        }
     }
 }
