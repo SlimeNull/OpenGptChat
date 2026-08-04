@@ -12,6 +12,9 @@ namespace OpenGptChat.Models
         private string _apiKey = string.Empty;
 
         [ObservableProperty]
+        private bool _disableSSL;
+
+        [ObservableProperty]
         private string _organization = string.Empty;
 
         [ObservableProperty]

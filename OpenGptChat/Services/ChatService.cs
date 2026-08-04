@@ -31,7 +31,7 @@ namespace OpenGptChat.Services
         public ConfigurationService ConfigurationService { get; }
 
         private void NewOpenAIClient(
-            [NotNull] out OpenAIClient client, 
+            [NotNull] out OpenAIClient client,
             [NotNull] out string client_apikey,
             [NotNull] out string client_apihost,
             [NotNull] out string client_organization)
@@ -40,9 +40,18 @@ namespace OpenGptChat.Services
             client_apihost = ConfigurationService.Configuration.ApiHost;
             client_organization = ConfigurationService.Configuration.Organization;
 
+            if (ConfigurationService.Configuration.DisableSSL)
+            {
+                client_apihost = "http://" + client_apihost;
+            }
+            else
+            {
+                client_apihost = "https://" + client_apihost;
+            }
+
             client = new OpenAIClient(
                 new OpenAIAuthentication(client_apikey, client_organization),
-                new OpenAIClientSettings(client_apihost));
+                new OpenAISettings(client_apihost));
         }
 
         private OpenAIClient GetOpenAIClient()
@@ -94,7 +103,7 @@ namespace OpenGptChat.Services
 
         private async Task<ChatDialogue> ChatCoreAsync(Guid sessionId, string message, Action<string> messageHandler, CancellationToken token)
         {
-            ChatSession? session = 
+            ChatSession? session =
                 ChatStorageService.GetSession(sessionId);
 
             ChatMessage ask = ChatMessage.Create(sessionId, "user", message);
@@ -145,13 +154,13 @@ namespace OpenGptChat.Services
                         // 有响应了, 更新时间
                         lastTime = DateTime.Now;
                     }
-                }, completionTaskCancellation.Token);
+                }, false, completionTaskCancellation.Token);
 
             Task cancelTask = Task.Run(async () =>
             {
                 try
                 {
-                    TimeSpan timeout = 
+                    TimeSpan timeout =
                         TimeSpan.FromMilliseconds(ConfigurationService.Configuration.ApiTimeout);
 
                     while (!completionTask.IsCompleted)
